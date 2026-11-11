@@ -1,0 +1,420 @@
+<!doctype html>
+<html lang="pl" data-theme="light">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Komponenty · Panel i Piksel v1.7</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Archivo:ital,wght@0,400;0,600;0,700;0,800;0,900;1,400&family=Press+Start+2P&display=swap" rel="stylesheet">
+  <!-- System Panel & Piksel — jedyne źródło stylów komponentów -->
+  <link rel="stylesheet" href="../assets/panel-piksel/tokens.css">
+  <link rel="stylesheet" href="../assets/panel-piksel/components.css">
+  <link rel="stylesheet" href="../assets/panel-piksel/icons.css">
+  <!-- Style tej strony: tylko układ katalogu, wyłącznie tokeny -->
+  <style id="screen">
+    .ex { margin: 40px 0 0; padding-top: 24px; border-top: var(--border); }
+    .ex > h2 { margin: 0 0 4px; font: 900 18px/28px var(--font-sans); letter-spacing: -.45px; }
+    .ex > p { margin: 0 0 16px; max-width: 76ch; color: var(--ink-2); font-size: 14px; }
+    .row { display: flex; flex-wrap: wrap; gap: 12px; align-items: center; }
+    .grid2 { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 340px), 1fr)); gap: 24px; align-items: start; }
+    .grid3 { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 260px), 1fr)); gap: 24px; align-items: start; }
+    .note { margin: 8px 0 0; font-size: 13px; color: var(--ink-3); }
+    .theme-switch { margin-left: auto; }
+    .card .card-title a { color: var(--ink); text-decoration: none; }
+    .card .card-title a:hover { text-decoration: underline; }
+    .shop-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(min(100%, 210px), 1fr)); gap: 16px; margin: 0; padding: 0; list-style: none; }
+    .shop-grid > li { display: flex; } .shop-grid > li > .card { flex: 1; }
+    .wallet-sprite { display: inline-flex; align-items: center; gap: 6px; } .wallet-value { font: 10px/1 var(--font-pixel); }
+  </style>
+</head>
+<body class="bg-dots">
+<a class="sr-only" href="#tresc">Przejdź do treści</a>
+<header class="site-header">
+  <div class="container">
+    <a class="logo" href="#tresc">PANEL<span>&amp;PIKSEL</span></a>
+    <button class="icon-btn is-boxed nav-toggle" type="button" aria-expanded="false" aria-controls="nav-main" aria-label="Menu"><span class="icon i-menu" aria-hidden="true"></span></button>
+    <nav class="site-nav" id="nav-main" aria-label="Sekcje" data-collapsible>
+      <a href="#przyciski">Przyciski</a><a href="#listy">Listy</a><a href="#tabele">Tabele</a><a href="#sklep">Sklep</a><a href="#stany">Stany</a><a href="#powiadomienia">Powiadomienia</a><a href="#formularze">Formularze</a><a href="#nakladki">Nakładki</a><a href="ikony.html">Ikony</a>
+    </nav>
+    <div class="tabs theme-switch" role="group" aria-label="Motyw" id="theme">
+      <button type="button" aria-pressed="true" data-theme-set="light">Jasny</button>
+      <button type="button" aria-pressed="false" data-theme-set="dark">Ciemny</button>
+      <button type="button" aria-pressed="false" data-theme-set="auto">Systemowy</button>
+    </div>
+  </div>
+</header>
+
+<main id="tresc" class="container">
+  <div class="page-head"><div>
+    <h1>Komponenty i stany · v1.7</h1>
+    <p>Katalog wzorców do kopiowania. Wszystko poniżej używa wyłącznie <code>tokens.css</code> i <code>components.css</code>; sortowanie, filtry i przełączniki działają (<code>list-controls.js</code>, <code>table-sort.js</code>, <code>ui-controls.js</code>); ikony z <code>icons.css</code>. Poniżej 600 px nawigacja zwija się do przycisku „Menu”, poniżej 900 px filtry otwierają się w szufladzie. Dane są przykładowe. Przełącznik motywu w nagłówku ustawia <code>data-theme</code> na <code>&lt;html&gt;</code>.</p>
+  </div></div>
+
+  <!-- ============ PRZYCISKI ============ -->
+  <section class="ex" id="przyciski" aria-labelledby="h-btn">
+    <h2 id="h-btn">Przyciski</h2>
+    <p>44 px dla akcji sekcji, 36 px (<code>.btn-compact</code>) dla przycisku powtarzanego w każdej pozycji listy. Rozmiar nigdy nie zmienia się w stanach.</p>
+    <div class="row">
+      <button class="btn btn-primary" type="button" data-demo-load>Aplikuj teraz</button>
+      <button class="btn btn-secondary" type="button" data-demo-load>Wyślij CV</button>
+      <button class="btn btn-secondary" type="button" aria-pressed="false" data-label-on="Zapisano" data-label-off="Zapisz ofertę">Zapisz ofertę</button>
+      <button class="btn btn-primary btn-compact" type="button" data-demo-load>Do koszyka</button>
+      <button class="btn btn-secondary btn-compact" type="button" aria-pressed="false" data-label-on="Zapisano" data-label-off="Zapisz">Zapisz</button>
+      <button class="btn btn-primary" type="button" data-demo-load>Wyślij (ładowanie)</button>
+    </div>
+    <div class="row" style="margin-top:16px">
+      <div><button class="btn btn-primary" type="button" aria-disabled="true" aria-describedby="why-1"><span class="lock" aria-hidden="true"></span>Aplikuj teraz</button>
+        <p class="btn-reason" id="why-1">Dodaj CV do profilu, aby aplikować.</p></div>
+      <div><button class="btn btn-primary is-loading" type="button" aria-disabled="true" aria-busy="true">Aplikuj teraz</button>
+        <p class="note">Stan ładowania (podgląd stały)</p></div>
+    </div>
+    <span class="sr-only" aria-live="polite" id="live"></span>
+  </section>
+
+  <!-- ============ ETYKIETY ============ -->
+  <section class="ex" aria-labelledby="h-lab">
+    <h2 id="h-lab">Badge, chip, licznik, awatar, pakiet</h2>
+    <p>Rzadkość i pakiet zawsze jako <code>.tier-tag</code> — kolor zawsze z nazwą.</p>
+    <div class="row">
+      <span class="badge badge-new">Nowa</span>
+      <span class="badge">Polecany</span>
+      <span class="badge badge-seg"><span>Zdalnie</span><span>100%</span></span>
+      <span class="badge badge-sm">Nowa</span>
+      <span class="chip">React</span><span class="chip">Unity</span><span class="chip-more">+3</span>
+      <span class="count">1 128</span>
+      <span class="avatar" style="--av:var(--avatar-1)" aria-hidden="true">PF</span>
+      <span class="avatar avatar-xl" style="--av:var(--avatar-4)" aria-hidden="true">ŁŻ</span>
+      <span class="tier-tag tier-legendary">Legendarny</span><span class="tier-tag tier-epic">Epicki</span><span class="tier-tag tier-rare">Rzadki</span><span class="tier-tag tier-common">Zwykły</span>
+    </div>
+  </section>
+
+  <!-- ============ LISTY ============ -->
+  <section class="ex" id="listy" aria-labelledby="h-list">
+    <h2 id="h-list">Panel listy i karty z sortowaniem</h2>
+    <p>Kwota w wierszu: pełna na desktopie, skrót „18–24 tys.” poniżej 600 px (zwęź okno). Sortowanie = grupa przycisków <code>aria-pressed</code>.</p>
+    <div class="grid2">
+      <section class="panel" aria-labelledby="p-front">
+        <header class="panel-head"><h2 id="p-front">Frontend</h2><span class="count">128</span></header>
+        <p class="panel-motto">„Piksele, które klikają się same”</p>
+        <ol class="list">
+          <li><a href="#listy"><span class="list-n">1.</span><span class="avatar" style="--av:var(--avatar-1)" aria-hidden="true">PF</span><span class="list-name" title="Senior Frontend Developer (React)">Senior Frontend Developer (React)</span><span class="list-value"><span class="amt-full">18 000–24 000 zł</span><span class="amt-short" aria-hidden="true">18–24 tys.</span></span></a></li>
+          <li><a href="#listy"><span class="list-n">2.</span><span class="avatar" style="--av:var(--avatar-3)" aria-hidden="true">KK</span><span class="list-name" title="Frontend Engineer — Design System">Frontend Engineer — Design System</span><span class="list-value"><span class="amt-full">16 000–22 500 zł</span><span class="amt-short" aria-hidden="true">16–22,5 tys.</span></span></a></li>
+          <li><a href="#listy"><span class="list-n">3.</span><span class="avatar" style="--av:var(--avatar-2)" aria-hidden="true">8A</span><span class="list-name">Junior Vue.js Developer</span><span class="badge badge-sm badge-new">Nowa</span></a></li>
+          <li><a href="#listy"><span class="list-n">4.</span><span class="avatar" style="--av:var(--avatar-5)" aria-hidden="true">SJ</span><span class="list-name">Angular Developer w fintechu</span><span class="list-value" aria-label="brak widełek">—</span></a></li>
+        </ol>
+        <a class="panel-more" href="#listy">Zobacz wszystkie</a>
+      </section>
+
+      <div class="stack">
+        <div class="section-title"><h2><span data-count-for="demo" data-count-forms="oferta|oferty|ofert">3 oferty</span></h2>
+          <button class="btn btn-secondary btn-compact filters-toggle" type="button" data-dialog-open="filtry-szuflada"><span class="icon i-filter" aria-hidden="true"></span>Filtry</button>
+          <div class="tabs" role="group" aria-label="Sortuj oferty" data-sort-for="demo">
+            <button type="button" aria-pressed="true" data-sort-key="date" data-sort-dir="desc">Najnowsze</button>
+            <button type="button" aria-pressed="false" data-sort-key="salary" data-sort-dir="desc">Najwyższe widełki</button>
+          </div></div>
+        <div class="stack" data-list="demo" style="display:grid;gap:16px">
+          <article class="card" data-item data-sort-date="20261110" data-sort-salary="28000" data-f-tryb="hybrydowo" data-n-salary="22000 28000">
+            <span class="avatar avatar-xl" style="--av:var(--avatar-2)" aria-hidden="true">SJ</span>
+            <div class="card-body">
+              <div class="card-head"><h3 class="card-title"><a href="#listy">Senior Unity Developer</a></h3><span class="badge badge-new">Nowa</span></div>
+              <p class="card-sub">Smocza Jama Studio · Wrocław</p>
+              <ul class="card-meta"><li><span class="icon icon-sm i-user" aria-hidden="true"></span>Poziom: <b>Senior</b></li><li><span class="icon icon-sm i-home" aria-hidden="true"></span>Tryb: <b>Hybrydowo</b></li><li><span class="icon icon-sm i-hourglass" aria-hidden="true"></span>Dodano: <b>2 godz. temu</b></li></ul>
+              <p class="amount">22 000–28 000 <small>zł netto B2B</small></p>
+              <div class="chips"><span class="chip">Unity</span><span class="chip">C#</span><span class="chip-more">+2</span></div>
+              <div class="card-foot"><span>dodano 2 godz. temu</span><button class="btn btn-secondary btn-compact" type="button" aria-pressed="false" data-label-on="Zapisano" data-label-off="Zapisz">Zapisz</button></div>
+            </div>
+          </article>
+          <article class="card" data-item data-sort-date="20261109" data-f-tryb="zdalnie">
+            <span class="avatar avatar-xl" style="--av:var(--avatar-3)" aria-hidden="true">KK</span>
+            <div class="card-body">
+              <div class="card-head"><h3 class="card-title"><a href="#listy">Game Designer — ekonomia gry</a></h3></div>
+              <p class="card-sub">Kosmiczny Kret · zdalnie</p>
+              <p class="amount is-empty">Widełki nie podane</p>
+              <div class="card-foot"><span>dodano wczoraj</span><button class="btn btn-secondary btn-compact" type="button" aria-pressed="false" data-label-on="Zapisano" data-label-off="Zapisz">Zapisz</button></div>
+            </div>
+          </article>
+          <article class="card" data-item data-sort-date="20261105" data-sort-salary="32000" data-f-tryb="stacjonarnie" data-n-salary="26000 32000">
+            <span class="avatar avatar-xl" style="--av:var(--avatar-1)" aria-hidden="true">8A</span>
+            <div class="card-body">
+              <div class="card-head"><h3 class="card-title"><a href="#listy">Lead Backend Developer (Go)</a></h3></div>
+              <p class="card-sub">8bit Atelier · Gdańsk</p>
+              <p class="amount">26 000–32 000 <small>zł netto B2B</small></p>
+              <div class="card-foot"><span>dodano 5 dni temu</span><button class="btn btn-secondary btn-compact" type="button" aria-pressed="false" data-label-on="Zapisano" data-label-off="Zapisz">Zapisz</button></div>
+            </div>
+          </article>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ TABELE ============ -->
+  <section class="ex" id="tabele" aria-labelledby="h-tab">
+    <h2 id="h-tab">Zakładki z panelami i tabela sortowalna</h2>
+    <p>Zakładki (<code>role="tab"</code>) tylko gdy przełączają panele treści. Tabela: każda kolumna z danymi sortowalna, pakiet po randze (<code>data-sort-value</code>).</p>
+    <div class="tabs" role="tablist" aria-label="Statusy ofert" id="status-tabs">
+      <button type="button" role="tab" id="t-a" aria-selected="true" aria-controls="tp-a">Aktywne</button>
+      <button type="button" role="tab" id="t-s" aria-selected="false" aria-controls="tp-s" tabindex="-1">Szkice</button>
+    </div>
+    <div role="tabpanel" id="tp-a" aria-labelledby="t-a" style="margin-top:16px">
+      <div class="table-wrap"><table class="table">
+        <caption class="sr-only">Aktywne oferty</caption>
+        <thead><tr><th scope="col">#</th><th scope="col"><button class="sort" type="button">Firma</button></th><th scope="col" data-sort-first="descending"><button class="sort" type="button">Pakiet</button></th><th class="num" scope="col"><button class="sort" type="button">Wyświetlenia</button></th><th class="num" scope="col"><button class="sort" type="button">Zmiana</button></th><th scope="col">Akcje</th></tr></thead>
+        <tbody>
+          <tr><td><span class="rank rank-1">1</span></td><td class="name"><span class="cell-entity"><span class="avatar" style="--av:var(--avatar-2)" aria-hidden="true">SJ</span><a href="#tabele">Smocza Jama</a></span></td><td data-sort-value="4"><span class="tier-tag tier-legendary">Legendarny</span></td><td class="num">12 480</td><td class="num"><span class="delta-up">12</span></td><td><a class="btn btn-secondary btn-compact" href="#tabele">Edytuj</a></td></tr>
+          <tr><td><span class="rank rank-2">2</span></td><td class="name"><span class="cell-entity"><span class="avatar" style="--av:var(--avatar-3)" aria-hidden="true">KK</span><a href="#tabele">Kosmiczny Kret</a></span></td><td data-sort-value="3"><span class="tier-tag tier-epic">Epicki</span></td><td class="num">9 310</td><td class="num"><span class="delta-down">4</span></td><td><a class="btn btn-secondary btn-compact" href="#tabele">Edytuj</a></td></tr>
+          <tr><td><span class="rank rank-3">3</span></td><td class="name"><span class="cell-entity"><span class="avatar" style="--av:var(--avatar-1)" aria-hidden="true">8A</span><a href="#tabele">8bit Atelier</a></span></td><td data-sort-value="1"><span class="tier-tag tier-common">Zwykły</span></td><td class="num">—</td><td class="num"><span class="delta-up">3</span></td><td><a class="btn btn-secondary btn-compact" href="#tabele">Edytuj</a></td></tr>
+          <tr><td><span class="rank">4</span></td><td class="name"><span class="cell-entity"><span class="avatar" style="--av:var(--avatar-4)" aria-hidden="true">ŻŁ</span><a href="#tabele">Żółwie Łamigłówki</a></span></td><td data-sort-value="2"><span class="tier-tag tier-rare">Rzadki</span></td><td class="num">4 905</td><td class="num"><span class="delta-down">1</span></td><td><a class="btn btn-secondary btn-compact" href="#tabele">Edytuj</a></td></tr>
+        </tbody></table></div>
+    </div>
+    <div role="tabpanel" id="tp-s" aria-labelledby="t-s" hidden style="margin-top:16px">
+      <div class="empty"><h2>Brak szkiców</h2><p>Zapisane, nieopublikowane oferty pojawią się tutaj.</p><a class="btn btn-primary" href="#tabele">Dodaj ofertę</a></div>
+    </div>
+    <nav aria-label="Strony wyników"><ul class="pagination">
+      <li><span aria-disabled="true">&lt;</span></li><li><a href="#tabele" aria-current="page">1</a></li><li><a href="#tabele">2</a></li><li><span class="gap">…</span></li><li><a href="#tabele">9</a></li><li><a href="#tabele" aria-label="Następna strona">&gt;</a></li>
+    </ul></nav>
+  </section>
+
+  <!-- ============ RANKING / PAKIETY ============ -->
+  <section class="ex" aria-labelledby="h-rank">
+    <h2 id="h-rank">Podium, pakiety, fakty</h2>
+    <p>Podium to „głośny” element ekranu rankingu — tylko jeden taki element na ekran. Kolejność DOM 1-2-3.</p>
+    <div class="grid3">
+      <ol class="podium" aria-label="Podium">
+        <li class="podium-1"><span class="avatar avatar-xl" style="--av:var(--avatar-2)" aria-hidden="true">KK</span><span>KosmoKret</span><span class="podium-pts">98 450</span><span class="podium-step">1</span></li>
+        <li class="podium-2"><span class="avatar avatar-xl" style="--av:var(--avatar-3)" aria-hidden="true">PB</span><span>PikselBaba</span><span class="podium-pts">91 200</span><span class="podium-step">2</span></li>
+        <li class="podium-3"><span class="avatar avatar-xl" style="--av:var(--avatar-1)" aria-hidden="true">ŁZ</span><span>Łazik</span><span class="podium-pts">87 015</span><span class="podium-step">3</span></li>
+      </ol>
+      <div class="stack" style="display:grid;gap:12px">
+        <div class="tier tier-legendary"><span class="tier-name">Legendarny</span><span class="tier-price">899 zł</span><span class="tier-desc">Podium + wyróżniony panel 30 dni</span></div>
+        <div class="tier tier-epic"><span class="tier-name">Epicki <span class="badge badge-sm">Polecany</span></span><span class="tier-price">499 zł</span><span class="tier-desc">Wyróżnienie w kategorii 14 dni</span></div>
+        <div class="tier tier-rare"><span class="tier-name">Rzadki</span><span class="tier-price">249 zł</span><span class="tier-desc">Odświeżenie co 7 dni</span></div>
+      </div>
+      <dl class="facts">
+        <div><dt>Widełki</dt><dd class="num">22 000–28 000 zł</dd></div>
+        <div><dt>Tryb</dt><dd>Hybrydowo</dd></div>
+        <div><dt>Poziom</dt><dd>Senior</dd></div>
+        <div><dt>Umowa</dt><dd>B2B</dd></div>
+      </dl>
+    </div>
+  </section>
+
+  <!-- ============ SKLEP / RANKING (v1.11) ============ -->
+  <section class="ex" id="sklep" aria-labelledby="h-shop">
+    <h2 id="h-shop">Sklep, wyszukiwarka z listą, kod kraju (v1.11)</h2>
+    <p>Pionowa karta produktu <code>.card-vertical</code>, saldo jako <code>.badge-seg</code> ze sprite’em waluty (bez własnej klasy), wyszukiwarka z jedną listą <code>.search-main.has-select</code> i kod kraju <code>.cc</code> zawsze z nazwą obok.</p>
+    <div class="row" style="margin-bottom:16px">
+      <p class="badge badge-seg" style="margin:0"><span class="wallet-sprite"><span class="sprite sprite-sm s-coin" aria-hidden="true"></span>Twoje monety</span><span class="wallet-value" aria-live="polite">1 250</span></p>
+    </div>
+    <ul class="shop-grid">
+        <li><article class="card card-vertical">
+          <div class="card-art"><span class="sprite sprite-xl s-sword" aria-hidden="true"></span></div>
+          <h3>Ostrze Zmierzchu</h3>
+          <span class="tier-tag tier-legendary">Legendarny</span>
+          <ul class="card-meta"><li>Broń</li><li>Obrażenia <b>+48</b></li></ul>
+          <div class="card-foot"><span class="card-price"><span class="sprite sprite-sm s-coin" aria-hidden="true"></span>1 800<small>monet</small></span><button class="btn btn-secondary btn-compact" type="button" aria-pressed="false" data-label-on="W koszyku" data-label-off="Do koszyka">Do koszyka</button></div>
+        </article></li>
+        <li><article class="card card-vertical">
+          <div class="card-art"><span class="sprite sprite-xl s-potion" aria-hidden="true"></span></div>
+          <h3>Mikstura Świtu</h3>
+          <span class="tier-tag tier-rare">Rzadki</span>
+          <ul class="card-meta"><li>Zużywalny</li><li>Leczenie <b>+120</b></li></ul>
+          <div class="card-foot"><span class="card-price"><span class="sprite sprite-sm s-coin" aria-hidden="true"></span>90<small>monet</small></span><button class="btn btn-secondary btn-compact" type="button" aria-pressed="false" data-label-on="W koszyku" data-label-off="Do koszyka">Do koszyka</button></div>
+        </article></li>
+        <li><article class="card card-vertical">
+          <div class="card-art"><span class="sprite sprite-xl s-shield" aria-hidden="true"></span></div>
+          <h3>Tarcza Strażnika</h3>
+          <span class="tier-tag tier-epic">Epicki</span>
+          <ul class="card-meta"><li>Pancerz</li><li>Obrona <b>+32</b></li></ul>
+          <div class="card-foot"><span class="card-price"><span class="sprite sprite-sm s-coin" aria-hidden="true"></span>640<small>monet</small></span><button class="btn btn-secondary btn-compact" type="button" aria-pressed="false" data-label-on="W koszyku" data-label-off="Do koszyka">Do koszyka</button></div>
+        </article></li>
+        <li><article class="card card-vertical">
+          <div class="card-art"><span class="sprite sprite-xl s-key" aria-hidden="true"></span></div>
+          <h3>Klucz do Lochu</h3>
+          <span class="tier-tag tier-common">Zwykły</span>
+          <ul class="card-meta"><li>Przedmiot</li><li>Jednorazowy</li></ul>
+          <div class="card-foot"><span class="card-price"><span class="sprite sprite-sm s-coin" aria-hidden="true"></span>25<small>monet</small></span><button class="btn btn-secondary btn-compact" type="button" aria-pressed="false" data-label-on="W koszyku" data-label-off="Do koszyka">Do koszyka</button></div>
+        </article></li>
+    </ul>
+    <div class="grid2" style="margin-top:24px">
+      <form class="search-main has-select" role="search" action="#sklep" onsubmit="event.preventDefault()">
+        <input type="search" name="q" placeholder="Stanowisko, technologia, firma" aria-label="Szukaj ofert">
+        <div class="select"><select name="miasto" aria-label="Miasto"><option value="">Cała Polska</option><option value="warszawa">Warszawa</option><option value="krakow">Kraków</option><option value="zdalnie">Zdalnie</option></select></div>
+        <button type="submit">Szukaj</button>
+      </form>
+      <div class="table-wrap"><table class="table">
+        <caption class="sr-only">Gracze i kraje</caption>
+        <thead><tr><th scope="col">Gracz</th><th scope="col">Kraj</th><th class="num" scope="col">Wynik</th></tr></thead>
+        <tbody>
+          <tr><td class="name">KosmoGrzyb</td><td><span class="cc" aria-hidden="true">PL</span>Polska</td><td class="num">59 043</td></tr>
+          <tr><td class="name">OrbitKometa</td><td><span class="cc" aria-hidden="true">SE</span>Szwecja</td><td class="num">59 390</td></tr>
+          <tr><td class="name">KosmoRakieta</td><td><span class="cc" aria-hidden="true">LT</span>Litwa</td><td class="num">59 751</td></tr>
+        </tbody></table></div>
+    </div>
+  </section>
+
+  <!-- ============ STANY ============ -->
+  <section class="ex" id="stany" aria-labelledby="h-st">
+    <h2 id="h-st">Formularz, błąd i ładowanie</h2>
+    <p>Stan nie zmienia rozmiaru; kolor nigdy nie jest jedynym sygnałem; animacje skokowe, wyłączone przy „ogranicz ruch”.</p>
+    <div class="grid3">
+      <form class="panel-filters" id="filtry-demo" data-drawer-form data-filter-for="demo" aria-labelledby="h-f">
+        <h2 id="h-f">Filtry</h2>
+        <div class="field"><label for="q">Słowa kluczowe</label><input id="q" type="search" data-search placeholder="np. Unity"></div>
+        <fieldset><legend>Tryb pracy</legend>
+          <label class="checkbox"><input type="checkbox" name="tryb" value="zdalnie">Zdalnie <span class="opt-n"></span></label>
+          <label class="checkbox"><input type="checkbox" name="tryb" value="hybrydowo">Hybrydowo <span class="opt-n"></span></label>
+          <label class="checkbox"><input type="checkbox" name="tryb" value="stacjonarnie">Stacjonarnie <span class="opt-n"></span></label>
+          <label class="checkbox"><input type="checkbox" data-require="salary">Tylko z widełkami <span class="opt-n"></span></label>
+        </fieldset>
+        <fieldset><legend>Widełki (zł / mies.)</legend>
+          <div class="range"><label class="field"><span>Od</span><input type="number" inputmode="numeric" data-min="salary" id="sal-od" placeholder="10 000"></label><span class="dash" aria-hidden="true">–</span><label class="field"><span>Do</span><input type="number" inputmode="numeric" data-max="salary" id="sal-do" placeholder="30 000"></label></div>
+        </fieldset>
+        <button class="btn btn-primary btn-full" type="submit">Pokaż <span data-count-for="demo" data-count-forms="ofertę|oferty|ofert">3 oferty</span></button>
+      </form>
+      <div class="stack" style="display:grid;gap:16px">
+        <div class="field is-error"><label for="mail">E-mail do kontaktu</label><input id="mail" type="email" value="anna.kowalska@" aria-invalid="true" aria-describedby="mail-err"><p class="field-error" id="mail-err">Dokończ adres e-mail — brakuje domeny, np. @firma.pl.</p></div>
+        <div class="field"><label for="sal">Widełki od (zł)</label><input id="sal" type="text" inputmode="numeric" value="18000" aria-describedby="sal-h"><p class="field-hint" id="sal-h">Kwota brutto miesięcznie.</p></div>
+        <div class="callout"><strong>Wskazówka:</strong> oferty z widełkami dostają 2× więcej aplikacji.</div>
+        <div class="notice notice-error"><span class="notice-icon"><span class="icon i-error" aria-hidden="true"></span></span><div class="notice-body"><strong class="notice-title">Oferta wygasła 3 dni temu</strong><p>Aplikowanie jest wyłączone.</p></div></div>
+      </div>
+      <div class="stack" style="display:grid;gap:16px">
+        <section class="panel" aria-labelledby="p-load" aria-busy="true"><header class="panel-head"><h2 id="p-load">Backend</h2><span class="count">···</span></header>
+          <ol class="list" aria-hidden="true">
+            <li class="skel-row"><span class="skel skel-n"></span><span class="skel skel-av"></span><span class="skel" style="width:62%"></span></li>
+            <li class="skel-row"><span class="skel skel-n"></span><span class="skel skel-av"></span><span class="skel" style="width:48%"></span></li>
+            <li class="skel-row"><span class="skel skel-n"></span><span class="skel skel-av"></span><span class="skel" style="width:70%"></span></li>
+          </ol><span class="sr-only">Wczytywanie ofert…</span></section>
+        <div class="load-error" role="alert"><h3>Nie udało się wczytać ofert</h3><p>Sprawdź połączenie i spróbuj jeszcze raz.</p><button class="btn btn-secondary btn-compact" type="button" data-demo-load>Spróbuj ponownie</button><span class="code">BŁĄD 503</span></div>
+      </div>
+    </div>
+    <div class="dither" aria-hidden="true" style="margin-top:32px"></div>
+  </section>
+
+  <!-- ============ POWIADOMIENIA ============ -->
+  <section class="ex" id="powiadomienia" aria-labelledby="h-not">
+    <h2 id="h-not">Statusy i powiadomienia</h2>
+    <p>Cztery statusy: informacja, sukces, ostrzeżenie, błąd — zawsze kolor + ikona + tekst. <code>.notice</code> w treści, <code>ppToast()</code> wyskakuje w prawym dolnym rogu: sukces i informacja znikają po 6 s (pauza po najechaniu), ostrzeżenie i błąd zostają do zamknięcia.</p>
+    <div class="grid2">
+      <div class="notice notice-info"><span class="notice-icon"><span class="icon i-info" aria-hidden="true"></span></span><div class="notice-body"><strong class="notice-title">Oferta czeka na weryfikację</strong><p>Zwykle trwa to do 2 godzin. Powiadomimy Cię e-mailem.</p></div><button class="icon-btn" type="button" data-dismiss aria-label="Zamknij powiadomienie"><span class="icon i-close" aria-hidden="true"></span></button></div>
+      <div class="notice notice-success"><span class="notice-icon"><span class="icon i-success" aria-hidden="true"></span></span><div class="notice-body"><strong class="notice-title">Aplikacja wysłana</strong><p>Smocza Jama Studio dostała Twoje CV.</p></div><button class="icon-btn" type="button" data-dismiss aria-label="Zamknij powiadomienie"><span class="icon i-close" aria-hidden="true"></span></button></div>
+      <div class="notice notice-warning"><span class="notice-icon"><span class="icon i-warning" aria-hidden="true"></span></span><div class="notice-body"><strong class="notice-title">3 oferty wygasają w tym tygodniu</strong><p>Przedłuż je, żeby nie zniknęły z wyników.</p><div class="notice-actions"><a class="btn btn-secondary btn-compact" href="#powiadomienia">Przedłuż oferty</a></div></div></div>
+      <div class="notice notice-error" role="alert"><span class="notice-icon"><span class="icon i-error" aria-hidden="true"></span></span><div class="notice-body"><strong class="notice-title">Nie udało się zapisać zmian</strong><p>Sprawdź połączenie i spróbuj ponownie.</p></div></div>
+    </div>
+    <div class="row" style="margin-top:16px">
+      <button class="btn btn-secondary btn-compact" type="button" data-toast="success">Pokaż sukces</button>
+      <button class="btn btn-secondary btn-compact" type="button" data-toast="info">Pokaż informację</button>
+      <button class="btn btn-secondary btn-compact" type="button" data-toast="error">Pokaż błąd</button>
+    </div>
+  </section>
+
+  <!-- ============ FORMULARZE ============ -->
+  <section class="ex" id="formularze" aria-labelledby="h-form">
+    <h2 id="h-form">Pola formularza</h2>
+    <p>Lista wyboru, radio (pikselowe koło), przełącznik z napisem WŁ/WYŁ, pole wielowierszowe z licznikiem znaków, licznik −/+, wgrywanie pliku (CV), pole zablokowane i tylko do odczytu.</p>
+    <div class="grid3">
+      <div class="stack" style="display:grid;gap:16px">
+        <div class="field"><label for="f-lvl">Poziom <span class="req" aria-hidden="true">*</span></label>
+          <div class="select"><select id="f-lvl" required><option>Junior</option><option selected>Mid</option><option>Senior</option><option>Lead</option></select></div></div>
+        <fieldset style="margin:0"><legend>Tryb pracy</legend>
+          <label class="radio"><input type="radio" name="tryb-r" value="zdalnie" checked>Zdalnie</label>
+          <label class="radio"><input type="radio" name="tryb-r" value="hybrydowo">Hybrydowo</label>
+          <label class="radio"><input type="radio" name="tryb-r" value="biuro" disabled>Stacjonarnie (brak ofert)</label>
+        </fieldset>
+        <button class="switch" type="button" role="switch" aria-checked="true"><span class="switch-track" aria-hidden="true"></span>Powiadomienia o nowych ofertach<span class="switch-state" aria-hidden="true">WŁ</span></button>
+        <div><span class="k" style="display:block;margin-bottom:6px;font:700 14px var(--font-sans)" id="qty-l">Liczba sztuk</span>
+          <div class="stepper"><button type="button" data-step="-1" aria-label="Mniej sztuk"><span class="icon i-minus" aria-hidden="true"></span></button><input type="number" min="1" max="9" value="1" aria-labelledby="qty-l"><button type="button" data-step="1" aria-label="Więcej sztuk"><span class="icon i-plus" aria-hidden="true"></span></button></div></div>
+      </div>
+      <div class="stack" style="display:grid;gap:16px">
+        <div class="field"><label for="f-about">Kilka słów o sobie</label><textarea id="f-about" maxlength="300" data-count="f-about-n" aria-describedby="f-about-n">Tworzę gry w Unity od 6 lat.</textarea><p class="field-count" id="f-about-n"></p></div>
+        <div class="field"><label for="f-id">Numer oferty</label><input id="f-id" type="text" value="PP-2026-0412" readonly><p class="field-hint">Tylko do odczytu — nadawany automatycznie.</p></div>
+        <div class="field"><label for="f-pkg">Pakiet</label><input id="f-pkg" type="text" value="Epicki" disabled><p class="field-hint">Zmiana pakietu po publikacji jest niedostępna.</p></div>
+      </div>
+      <div class="field"><span style="display:block;margin:0 0 6px;font:700 14px var(--font-sans)" id="cv-l">CV</span>
+        <label class="upload" data-max-mb="5"><input type="file" id="f-cv" accept=".pdf,.doc,.docx" aria-labelledby="cv-l" aria-describedby="cv-h">
+          <span class="icon icon-lg i-upload" aria-hidden="true"></span><span class="upload-title">Przeciągnij plik albo <u>wybierz z dysku</u></span><span class="upload-hint" id="cv-h">PDF lub DOC, do 5 MB</span></label>
+        <p class="field-error" data-upload-error hidden></p>
+        <ul class="file-list" data-files-for="f-cv"></ul></div>
+    </div>
+  </section>
+
+  <!-- ============ NAKŁADKI ============ -->
+  <section class="ex" id="nakladki" aria-labelledby="h-ov">
+    <h2 id="h-ov">Okno, menu, podpowiedź</h2>
+    <p>Okno modalne to natywny <code>&lt;dialog&gt;</code>: fokus zostaje w środku, Esc zamyka, fokus wraca na przycisk. Menu „więcej” otwiera się klikiem lub strzałką w dół, Esc zamyka. Podpowiedź pokazuje się po najechaniu i fokusie, Esc ją chowa.</p>
+    <div class="row">
+      <button class="btn btn-primary" type="button" data-dialog-open="okno-aplikuj">Aplikuj (okno)</button>
+      <div class="menu"><button class="icon-btn is-boxed" type="button" aria-expanded="false" aria-controls="menu-oferta" aria-label="Więcej akcji dla oferty"><span class="icon i-more" aria-hidden="true"></span></button>
+        <ul class="menu-list" id="menu-oferta" hidden>
+          <li><button type="button"><span class="icon i-edit" aria-hidden="true"></span>Edytuj</button></li>
+          <li><button type="button"><span class="icon i-eye" aria-hidden="true"></span>Podgląd</button></li>
+          <li><button type="button"><span class="icon i-external" aria-hidden="true"></span>Udostępnij</button></li>
+          <li><hr></li>
+          <li><button type="button" class="is-danger"><span class="icon i-trash" aria-hidden="true"></span>Usuń ofertę</button></li>
+        </ul></div>
+      <span>Widełki B2B <span class="tip"><button class="icon-btn" type="button" aria-describedby="tip-b2b" aria-label="Co to znaczy?"><span class="icon i-info" aria-hidden="true"></span></button><span class="tip-body" role="tooltip" id="tip-b2b">Kwota netto na fakturze, bez VAT. Zawiera ubezpieczenie i podatki po Twojej stronie.</span></span></span>
+    </div>
+  </section>
+</main>
+
+<dialog class="modal" id="okno-aplikuj" aria-labelledby="okno-aplikuj-h">
+  <div class="modal-head"><h2 id="okno-aplikuj-h">Aplikuj: Senior Unity Developer</h2><button class="icon-btn" type="button" data-dialog-close aria-label="Zamknij okno"><span class="icon i-close" aria-hidden="true"></span></button></div>
+  <form class="modal-body" id="apply-form" data-validate>
+    <div class="field"><label for="a-mail">E-mail <span class="req" aria-hidden="true">*</span></label><input id="a-mail" type="email" required autocomplete="email"></div>
+    <div class="field" style="margin-top:16px"><label for="a-note">Wiadomość do firmy</label><textarea id="a-note" maxlength="500" data-count="a-note-n"></textarea><p class="field-count" id="a-note-n"></p></div>
+  </form>
+  <div class="modal-foot"><button class="btn btn-secondary" type="button" data-dialog-close>Anuluj</button><button class="btn btn-primary" type="submit" form="apply-form" data-apply>Wyślij aplikację</button></div>
+</dialog>
+
+<dialog class="drawer" id="filtry-szuflada" data-drawer-source="filtry-demo" aria-labelledby="filtry-szuflada-h">
+  <div class="modal-head"><h2 id="filtry-szuflada-h">Filtry</h2><button class="icon-btn" type="button" data-dialog-close aria-label="Zamknij filtry"><span class="icon i-close" aria-hidden="true"></span></button></div>
+  <div class="modal-body" data-drawer-slot></div>
+</dialog>
+
+<footer class="site-footer"><div class="container">Panel &amp; Piksel v1.9 · katalog komponentów · specyfikacja: <code>design.md</code> · dokumentacja dla designerów: <code>docs/panel-piksel-komponenty-v2.html</code></div></footer>
+
+<script src="../assets/panel-piksel/list-controls.js"></script>
+<script src="../assets/panel-piksel/table-sort.js"></script>
+<script src="../assets/panel-piksel/ui-controls.js"></script>
+<script>
+// Kod tylko dla katalogu (w produkcie: motyw z ustawień użytkownika, zakładki z routera).
+(function () {
+  // motyw
+  var themeBtns = document.querySelectorAll('[data-theme-set]');
+  function setTheme(t) {
+    document.documentElement.setAttribute('data-theme', t);
+    themeBtns.forEach(function (b) { b.setAttribute('aria-pressed', String(b.getAttribute('data-theme-set') === t)); });
+    try { localStorage.setItem('pp-theme', t); } catch (e) {}
+  }
+  themeBtns.forEach(function (b) { b.addEventListener('click', function () { setTheme(b.getAttribute('data-theme-set')); }); });
+  try { var saved = localStorage.getItem('pp-theme'); if (saved) setTheme(saved); } catch (e) {}
+
+  // zakładki z panelami (APG Tabs: strzałki zmieniają zakładkę)
+  var tabs = Array.prototype.slice.call(document.querySelectorAll('#status-tabs [role=tab]'));
+  function select(t) {
+    tabs.forEach(function (x) { var on = x === t; x.setAttribute('aria-selected', String(on)); x.tabIndex = on ? 0 : -1; document.getElementById(x.getAttribute('aria-controls')).hidden = !on; });
+  }
+  tabs.forEach(function (t, i) {
+    t.addEventListener('click', function () { select(t); });
+    t.addEventListener('keydown', function (e) { var k = e.key === 'ArrowRight' ? 1 : e.key === 'ArrowLeft' ? -1 : 0; if (!k) return; var n = tabs[(i + k + tabs.length) % tabs.length]; n.focus(); select(n); e.preventDefault(); });
+  });
+
+  // ładowanie przycisku (demo: 2 s)
+  var live = document.getElementById('live');
+  document.querySelectorAll('[data-demo-load]').forEach(function (b) {
+    b.addEventListener('click', function () {
+      if (b.classList.contains('is-loading')) return;
+      b.classList.add('is-loading'); b.setAttribute('aria-disabled', 'true'); b.setAttribute('aria-busy', 'true'); live.textContent = 'Wysyłanie…';
+      setTimeout(function () { b.classList.remove('is-loading'); b.removeAttribute('aria-disabled'); b.removeAttribute('aria-busy'); live.textContent = 'Gotowe.'; }, 2000);
+    });
+  });
+  // powiadomienia wyskakujące (demo)
+  var TOASTS = { success: { title: 'Zapisano ofertę', text: 'Znajdziesz ją w zakładce „Zapisane”.' }, info: { title: 'Nowe oferty w Twojej kategorii', text: '4 oferty od wczoraj.' }, error: { title: 'Nie udało się wysłać CV', text: 'Plik jest uszkodzony — wgraj go ponownie.' } };
+  document.querySelectorAll('[data-toast]').forEach(function (b) { b.addEventListener('click', function () { var k = b.getAttribute('data-toast'); ppToast({ status: k, title: TOASTS[k].title, text: TOASTS[k].text }); }); });
+  document.getElementById('apply-form').addEventListener('pp:valid', function () { document.getElementById('okno-aplikuj').close(); ppToast({ status: 'success', title: 'Aplikacja wysłana', text: 'Smocza Jama Studio dostała Twoje zgłoszenie.' }); });
+  // blokada: aria-disabled nie wykonuje akcji
+  document.querySelectorAll('.btn[aria-disabled="true"]:not(.is-loading)').forEach(function (b) { b.addEventListener('click', function (e) { e.preventDefault(); live.textContent = 'Akcja niedostępna: ' + (document.getElementById(b.getAttribute('aria-describedby') || '') || {}).textContent; }); });
+})();
+</script>
+</body>
+</html>

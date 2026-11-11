@@ -1,0 +1,2 @@
+== /Users/sethai/Data/szkolenie_ai_heroes/code/design_system/skills/panel-piksel-ui-workspace/iteration-1/employer-dashboard-table/with_skill/outputs/panel-pracodawcy.html
+  OK — brak uwag (obejrzyj jeszcze render w 1280 i 390 px).

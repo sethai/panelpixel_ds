@@ -1,0 +1,4 @@
+schema_version: "1.1"
+name: leaderboard-high-scores
+expected_outcome: |
+  Ekran leaderboardu „Kosmiczny Kret”: jedno podium z miejscami 1–3 (kolejność w DOM 1-2-3), tabela danych z nagłówkami, liczby wyrównane do prawej w foncie pikselowym, zmiana pozycji ze strzałkami, zakładki okresu i paginacja; zgodny z zasadami systemu.

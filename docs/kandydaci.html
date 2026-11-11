@@ -1,0 +1,242 @@
+<!doctype html>
+<html lang="pl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Panel i Piksel — kandydaci z testów skilla</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:ital,wght@0,400;0,600;0,700;0,800;0,900;1,400&family=Press+Start+2P&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../skills/panel-piksel-ui/assets/tokens.css">
+<link rel="stylesheet" href="../skills/panel-piksel-ui/assets/components.css">
+<link rel="stylesheet" href="../skills/panel-piksel-ui/assets/icons.css">
+<style id="screen">
+  main { padding-bottom: 64px; }
+  .lead { max-width: 80ch; color: var(--ink-2); }
+  .part { margin: 40px 0 0; padding-top: 24px; border-top: var(--border); }
+  .part-h { display: flex; flex-wrap: wrap; align-items: center; gap: 10px 14px; margin: 0 0 8px; }
+  .part-h h2 { margin: 0; font: 900 24px/32px var(--font-sans); letter-spacing: -.6px; }
+  .num { display: inline-grid; place-items: center; min-width: 32px; height: 32px; padding: 0 4px; box-sizing: border-box; font: 12px/1 var(--font-pixel); background: var(--ink); color: var(--on-ink); }
+  .two { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 24px; align-items: start; margin-top: 16px; }
+  @media (max-width: 900px) { .two { grid-template-columns: 1fr; } }
+  .k { margin: 0 0 8px; font: 700 12px var(--font-sans); letter-spacing: .3px; text-transform: uppercase; color: var(--ink-3); }
+  .shot { margin: 0; background: var(--surface); border: var(--border); }
+  .shot img { display: block; width: 100%; height: auto; }
+  .shot figcaption { padding: 6px 10px; font-size: 12px; color: var(--ink-3); border-top: 2px solid var(--paper); }
+  .shot + .shot { margin-top: 12px; }
+  .stage { display: grid; gap: 16px; padding: 16px; background: var(--paper); border: 2px dashed var(--line-soft); min-width: 0; }
+  .pc { list-style: none; margin: 12px 0 0; padding: 0; font-size: 14px; }
+  .pc li { position: relative; margin: 4px 0; padding-left: 20px; color: var(--ink-2); }
+  .pc li::before { position: absolute; left: 0; font-weight: 700; }
+  .pc .plus::before { content: "+"; color: var(--action); } .pc .minus::before { content: "−"; color: var(--danger); } .pc .eq::before { content: "="; color: var(--ink-3); }
+  code { font: 13px ui-monospace, Menlo, monospace; background: var(--surface); padding: 0 4px; overflow-wrap: anywhere; }
+  .spec { margin: 12px 0 0; font-size: 14px; color: var(--ink-2); }
+  .spec li { margin: 3px 0; }
+  .where { font-size: 14px; color: var(--ink-3); margin: 0 0 4px; }
+  .summary { margin-top: 16px; }
+  .narrow { max-width: 100%; overflow-x: auto; }
+
+  .vgrid { display: grid; grid-template-columns: repeat(auto-fill, minmax(min(100%, 210px), 1fr)); gap: 16px; }
+  .vgrid > li { display: flex; }
+  .vgrid > li > .card { flex: 1; }
+  .vgrid { list-style: none; margin: 0; padding: 0; }
+
+  /* demonstracja tabeli */
+  .demo-table td, .demo-table th { white-space: nowrap; }
+</style>
+</head>
+<body class="bg-dots">
+<header class="site-header">
+  <div class="container">
+    <a class="logo" href="../site/index.html">PANEL<span>&amp;PIKSEL</span></a>
+    <nav aria-label="Dokumentacja"><a href="kwestie-otwarte.html">Kwestie otwarte</a><a href="panel-piksel-komponenty-v2.html">Dokumentacja v2</a></nav>
+  </div>
+</header>
+
+<main class="container" id="tresc">
+  <nav class="breadcrumbs" aria-label="Okruszki"><a href="panel-piksel-komponenty-v2.html">Dokumentacja</a><span aria-hidden="true">/</span><span aria-current="page">Kandydaci z testów skilla</span></nav>
+  <div class="page-head">
+    <h1>Czterech kandydatów z testów skilla</h1>
+  </div>
+  <p class="lead">Agenci budujący ekrany w iteracji 2 (sklep, ranking, migracja strony KodRekrut) wymyślili cztery elementy, których nie ma w systemie. Każdy jest w rejestrze <code>components.json</code> jako <b>draft</b>. Po lewej: jak wyglądają dziś w wyniku testu. Po prawej: wersja przyjęta do systemu.</p>
+  <div class="notice notice-success" style="margin-top:16px"><span class="notice-icon"><span class="icon i-success" aria-hidden="true"></span></span><div class="notice-body"><strong class="notice-title">Wszystkie cztery rekomendacje przyjęte — 2026-11-10, system 1.11.0</strong><p>Właściciel: Konrad Kosiorek. Style są w <code>components.css</code>, statusy w <code>components.json</code>, specyfikacja w design.md §6.6, §6.11 i §6.24.</p></div></div>
+
+  <div class="table-wrap summary">
+    <table class="table">
+      <caption class="sr-only">Podsumowanie rekomendacji</caption>
+      <thead><tr><th scope="col">#</th><th scope="col">Kandydat</th><th scope="col">Gdzie wystąpił</th><th scope="col">Rekomendacja</th><th scope="col">Status po decyzji</th></tr></thead>
+      <tbody>
+        <tr><td>1</td><td>Kod kraju <code>.cc</code></td><td>ranking — iteracja 1 i 2, niezależnie</td><td>Przyjąć jako nowy komponent</td><td><span class="badge badge-sm">testowy</span></td></tr>
+        <tr><td>2</td><td>Portfel w nagłówku</td><td>sklep — iteracja 1 i 2</td><td>Nie dodawać klasy; opisać jako wzorzec z <code>.badge-seg</code></td><td><span class="badge badge-sm">wzorzec</span></td></tr>
+        <tr><td>3</td><td>Wyszukiwarka z listą miast</td><td>migracja KodRekrut</td><td>Przyjąć jako wariant <code>.search-main</code> + poprawić błąd cienia</td><td><span class="badge badge-sm">testowy</span></td></tr>
+        <tr><td>4</td><td>Pionowa karta produktu</td><td>sklep — 12 kart</td><td>Przyjąć jako modyfikator <code>.card-vertical</code> + <code>.card-art</code></td><td><span class="badge badge-sm">testowy</span></td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- 1 -->
+  <section class="part" aria-labelledby="h1">
+    <div class="part-h"><span class="num">1</span><h2 id="h1">Kod kraju w kwadracie</h2><span class="badge badge-sm">testowy od 1.11</span></div>
+    <p class="where">Ranking graczy, kolumna „Kraj”. Agent sam zastąpił emoji flag dwuliterowym kodem — w obu iteracjach testu, bez podpowiedzi.</p>
+    <div class="two">
+      <div>
+        <p class="k">Dziś w wyniku testu</p>
+        <figure class="shot"><img src="kandydaci/cc.png" alt="Tabela rankingu: przy nazwie kraju mały kwadrat z ramką i kodem LT, SE, PL pikselowym fontem"><figcaption>leaderboard.html · iteracja 2 · 1280 px</figcaption></figure>
+      </div>
+      <div>
+        <p class="k">Przyjęte</p>
+        <div class="stage">
+          <div class="table-wrap narrow">
+            <table class="table demo-table">
+              <caption class="sr-only">Przykład kolumny kraju</caption>
+              <thead><tr><th scope="col">Gracz</th><th scope="col">Kraj</th><th scope="col" class="num-col">Wynik</th></tr></thead>
+              <tbody>
+                <tr><td>KosmoGrzyb</td><td><span class="cc" aria-hidden="true">PL</span>Polska</td><td>59 043</td></tr>
+                <tr><td>OrbitKometa</td><td><span class="cc" aria-hidden="true">SE</span>Szwecja</td><td>59 390</td></tr>
+                <tr><td>KosmoRakieta</td><td><span class="cc" aria-hidden="true">LT</span>Litwa</td><td>59 751</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+        <ul class="spec">
+          <li>Anatomia: ramka 2 px, tło <code>--paper</code>, kod ISO 3166-1 alfa-2 w <code>--font-pixel</code> 7 px, min. 28 × 20 px.</li>
+          <li>Zawsze z pełną nazwą kraju obok; sam kod ma <code>aria-hidden="true"</code>.</li>
+          <li>Bez kolorów flag — kolor nie niesie znaczenia.</li>
+        </ul>
+        <ul class="pc">
+          <li class="plus">Wymyślony dwa razy niezależnie — realna potrzeba w rankingach i katalogach firm.</li>
+          <li class="plus">Emoji flag nie działają na Windows (pokazują „PL” zwykłym tekstem) i łamią paletę.</li>
+          <li class="minus">7 px pikselowego fontu to dolna granica czytelności — dlatego kod nigdy nie występuje sam.</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- 2 -->
+  <section class="part" aria-labelledby="h2">
+    <div class="part-h"><span class="num">2</span><h2 id="h2">Portfel w nagłówku</h2><span class="badge badge-sm">wzorzec od 1.11</span></div>
+    <p class="where">Sklep z przedmiotami: saldo monet obok koszyka. Agent dodał klasę <code>.wallet</code>, ale zbudował ją z istniejących części — <code>.badge.badge-seg</code> i <code>.sprite.s-coin</code>.</p>
+    <div class="two">
+      <div>
+        <p class="k">Dziś w wyniku testu</p>
+        <figure class="shot"><img src="kandydaci/wallet.png" alt="Nagłówek sklepu: po prawej plakietka z monetą, napisem Twoje monety i saldem 1 250 na ciemnym polu, obok przycisk Koszyk"><figcaption>sklep.html · iteracja 2 · nagłówek</figcaption></figure>
+      </div>
+      <div>
+        <p class="k">Przyjęte — bez nowej klasy</p>
+        <div class="stage">
+          <p class="badge badge-seg" style="margin:0;justify-self:start"><span style="display:inline-flex;align-items:center;gap:6px"><span class="sprite sprite-sm s-coin" aria-hidden="true"></span>Twoje monety</span><span aria-live="polite" style="font:10px/1 var(--font-pixel)">1 250</span></p>
+          <p class="badge badge-seg" style="margin:0;justify-self:start"><span style="display:inline-flex;align-items:center;gap:6px"><span class="sprite sprite-sm s-gem" aria-hidden="true"></span>Kryształy</span><span aria-live="polite" style="font:10px/1 var(--font-pixel)">48</span></p>
+        </div>
+        <ul class="spec">
+          <li>Wzorzec w §6.x: <code>.badge.badge-seg</code> → lewa część: sprite waluty + nazwa, prawa: saldo w <code>--font-pixel</code>.</li>
+          <li>Saldo z <code>aria-live="polite"</code>, bo zmienia się po zakupie.</li>
+        </ul>
+        <ul class="pc">
+          <li class="plus">Zero nowego CSS — skill tylko dostaje przepis, rejestr zostaje krótszy.</li>
+          <li class="eq">Jeśli w kolejnych testach pojawi się trzeci wariant (np. kilka walut naraz), wrócimy do pomysłu klasy.</li>
+          <li class="minus">Dwie drobne reguły (odstęp sprite’a, font salda) każdy ekran pisze sam.</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- 3 -->
+  <section class="part" aria-labelledby="h3">
+    <div class="part-h"><span class="num">3</span><h2 id="h3">Wyszukiwarka z listą wyboru</h2><span class="badge badge-sm">testowy od 1.11</span></div>
+    <p class="where">Migracja strony KodRekrut: stary formularz miał pole „Miasto”, a migracja nie może zmieniać pól wysyłanych do serwera. Agent wstawił <code>&lt;select&gt;</code> w <code>.search-main</code>.</p>
+    <div class="two">
+      <div>
+        <p class="k">Dziś w wyniku testu</p>
+        <figure class="shot"><img src="kandydaci/search-select.png" alt="Pasek wyszukiwania: pole tekstowe z własnym niebieskim cieniem pod spodem, lista Cała Polska i przycisk Szukaj; cień jest podwójny i schodkowy"><figcaption>migracja · 1280 px — widać podwójny niebieski cień</figcaption></figure>
+        <figure class="shot"><img src="kandydaci/search-select-mobile.png" alt="Ten sam pasek na telefonie: pole na pełną szerokość, pod nim lista i przycisk"><figcaption>migracja · 390 px</figcaption></figure>
+      </div>
+      <div>
+        <p class="k">Przyjęte</p>
+        <div class="stage">
+          <form class="search-main has-select" role="search" onsubmit="event.preventDefault(); this.querySelector('output').textContent = 'Wysłano: q=' + (this.q.value || '—') + ', miasto=' + (this.miasto.value || 'cała Polska');">
+            <input type="search" name="q" placeholder="Stanowisko, technologia, firma" aria-label="Szukaj ofert">
+            <div class="select"><select name="miasto" aria-label="Miasto"><option value="">Cała Polska</option><option value="warszawa">Warszawa</option><option value="krakow">Kraków</option><option value="zdalnie">Zdalnie</option></select></div>
+            <button type="submit">Szukaj</button>
+            <output class="sr-only" aria-live="polite"></output>
+          </form>
+        </div>
+        <ul class="spec">
+          <li>Znaczniki: <code>.search-main</code> → <code>input</code> + <code>.select &gt; select</code> + <code>button</code>. Lista oddzielona lewą ramką 2 px, bez własnego cienia.</li>
+          <li>Poniżej 600 px: pole na całą szerokość, lista i przycisk w drugim rzędzie.</li>
+          <li><b>Błąd w systemie do poprawy przy okazji:</b> <code>components.css</code> linia 109 nadaje polu własny cień (<code>.search-main input { box-shadow: 6px 6px 0 … }</code>). Przy samym przycisku jest prawie niewidoczny, przy liście tworzy podwójny, schodkowy cień (lewy zrzut). Propozycja: usunąć tę regułę — cień ma tylko ramka.</li>
+        </ul>
+        <ul class="pc">
+          <li class="plus">Migracje stron z filtrem w wyszukiwarce (miasto, kategoria) są częste — bez wariantu każdy agent rzeźbi własne style.</li>
+          <li class="plus">Poprawka cienia naprawia też zwykłą wyszukiwarkę na landingu.</li>
+          <li class="minus">Więcej niż jedna lista w pasku robi się ciasna — wtedy filtry idą do <code>.panel-filters</code>.</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- 4 -->
+  <section class="part" aria-labelledby="h4">
+    <div class="part-h"><span class="num">4</span><h2 id="h4">Pionowa karta produktu</h2><span class="badge badge-sm">testowy od 1.11</span></div>
+    <p class="where">Sklep z przedmiotami: siatka 12 kart, ilustracja nad nazwą. <code>.card</code> w systemie jest pozioma (awatar z lewej), więc agent przestawił ją ręcznie i dodał pole <code>.item-art</code>.</p>
+    <div class="two">
+      <div>
+        <p class="k">Dziś w wyniku testu</p>
+        <figure class="shot" style="max-width:300px"><img src="kandydaci/card-vertical.png" alt="Karta przedmiotu Ostrze Zmierzchu: pole z pikselowym mieczem, nazwa, znacznik Legendarny, atrybuty, cena 1 800 monet, w koszyku 1 szt. i przycisk Dodaj jeszcze"><figcaption>sklep.html · iteracja 2</figcaption></figure>
+      </div>
+      <div>
+        <p class="k">Przyjęte</p>
+        <div class="stage">
+          <ul class="vgrid">
+            <li><article class="card card-vertical">
+              <div class="card-art"><span class="sprite sprite-xl s-sword" aria-hidden="true"></span></div>
+              <h3>Ostrze Zmierzchu</h3>
+              <span class="tier-tag tier-legendary" style="justify-self:start;align-self:flex-start">Legendarny</span>
+              <ul class="card-meta"><li>Broń</li><li>Obrażenia <b>+48</b></li></ul>
+              <div class="card-foot"><span class="card-price"><span class="sprite sprite-sm s-coin" aria-hidden="true"></span>1 800<small>monet</small></span><button class="btn btn-secondary btn-compact" type="button" aria-pressed="false" data-cart>Do koszyka</button></div>
+            </article></li>
+            <li><article class="card card-vertical">
+              <div class="card-art"><span class="sprite sprite-xl s-potion" aria-hidden="true"></span></div>
+              <h3>Mikstura Świtu</h3>
+              <span class="tier-tag tier-rare" style="align-self:flex-start">Rzadki</span>
+              <ul class="card-meta"><li>Zużywalny</li><li>Leczenie <b>+120</b></li></ul>
+              <div class="card-foot"><span class="card-price"><span class="sprite sprite-sm s-coin" aria-hidden="true"></span>90<small>monet</small></span><button class="btn btn-secondary btn-compact" type="button" aria-pressed="false" data-cart>Do koszyka</button></div>
+            </article></li>
+          </ul>
+        </div>
+        <ul class="spec">
+          <li>Znaczniki: <code>.card.card-vertical</code> → <code>.card-art</code> (88 px, tło <code>--paper</code>, ramka 2 px, sprite <code>-xl</code>) → tytuł → <code>.tier-tag</code> → <code>.card-meta</code> → <code>.card-foot</code> z ceną i przyciskiem.</li>
+          <li>Stopka przyklejona do dołu (<code>margin-top: auto</code>) — ceny w siatce w jednej linii, nawet przy różnej długości nazw.</li>
+          <li>Atrybuty przez istniejące <code>.card-meta</code> (w teście były luźnym tekstem). Przycisk <code>.btn-compact</code>, żeby „w koszyku: 1 szt.” nie łamało się w dwóch liniach jak w teście.</li>
+        </ul>
+        <ul class="pc">
+          <li class="plus">Sklepy, katalogi produktów i galerie to typowe ekrany systemu — pionowa karta wróci w każdym.</li>
+          <li class="plus">Modyfikator, nie nowy komponent: anatomia i stany <code>.card</code> zostają.</li>
+          <li class="minus">Pole ilustracji kusi, by stało się „głośnym elementem” — zasada: tło <code>--paper</code>, nigdy kolor akcentu.</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <section class="part" aria-labelledby="h5">
+    <div class="part-h"><h2 id="h5">Co się zmieniło w 1.11.0</h2></div>
+    <ul class="spec">
+      <li><code>components.css</code>: <code>.cc</code>, <code>.search-main.has-select</code>, <code>.card-vertical</code> / <code>.card-art</code> / <code>.card-price</code>; usunięty własny cień pola wyszukiwarki.</li>
+      <li><code>components.json</code>: trzy pozycje „testowy” od 1.11; <code>.wallet</code> usunięty z kandydatów — saldo to wzorzec (design.md §6.24).</li>
+      <li><code>check_screen.py</code> ostrzega o flagach-emoji i liście wyboru w <code>.search-main</code> bez <code>.has-select</code>.</li>
+      <li>Przykłady: <code>examples/komponenty.html#sklep</code>; skill i przepisy ekranów zaktualizowane.</li>
+    </ul>
+  </section>
+</main>
+
+<footer class="site-footer"><div class="container"><p>Panel &amp; Piksel 1.11.0 · właściciel: Konrad Kosiorek · kandydaci z iteracji 2 testów skilla — przyjęte w 1.11.0</p></div></footer>
+<script>
+  document.querySelectorAll('[data-cart]').forEach(function (b) {
+    b.addEventListener('click', function () {
+      var on = b.getAttribute('aria-pressed') !== 'true';
+      b.setAttribute('aria-pressed', on);
+      b.textContent = on ? 'W koszyku' : 'Do koszyka';
+    });
+  });
+</script>
+</body>
+</html>

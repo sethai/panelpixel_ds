@@ -1,0 +1,4 @@
+schema_version: "1.1"
+name: job-board-listing-filters
+expected_outcome: |
+  Samodzielny ekran wyników job boardu LevelUp Jobs: karty ofert (min. 6) z kwotami w pikselowym foncie, oferty bez widełek oznaczone czytelnie, chipy technologii, sortowanie w zakładkach, panel filtrów z polami i checkboxami oraz przyciskiem z liczbą wyników; zgodny z zasadami systemu (ramki 2 px, twarde cienie, brak zaokrągleń), bez poziomego przewijania na telefonie.

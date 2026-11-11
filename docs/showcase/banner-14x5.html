@@ -1,0 +1,111 @@
+<!doctype html>
+<html lang="pl" data-theme="light">
+<head>
+<meta charset="utf-8">
+<title>Panel i Piksel — baner 14:5</title>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:ital,wght@0,400;0,600;0,700;0,800;0,900;1,400&family=Press+Start+2P&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../../skills/panel-piksel-ui/assets/tokens.css">
+<link rel="stylesheet" href="../../skills/panel-piksel-ui/assets/components.css">
+<link rel="stylesheet" href="../../skills/panel-piksel-ui/assets/icons.css">
+<style>
+  html, body { margin: 0; }
+  body { width: 1260px; height: 450px; overflow: hidden; }
+  .canvas { box-sizing: border-box; width: 1260px; height: 450px; padding: 26px 30px; display: grid; grid-template-columns: 330px 286px 300px 1fr; gap: 22px; align-items: center; }
+  .title { display: flex; flex-direction: column; gap: 12px; }
+  .title .logo { font-size: 12px; }
+  .title h1 { margin: 2px 0 0; font: 900 54px/0.98 var(--font-sans); letter-spacing: -2px; }
+  .title p { margin: 0; font-size: 15px; line-height: 22px; color: var(--ink-2); }
+  .ver { align-self: flex-start; padding: 6px 7px; font: 9px/1 var(--font-pixel); background: var(--ink); color: var(--on-ink); }
+  .sprites { display: flex; gap: 8px; padding: 8px 10px; background: var(--surface); border: var(--border); box-shadow: var(--shadow-sm); align-self: flex-start; }
+  .col { display: flex; flex-direction: column; gap: 16px; min-width: 0; }
+  .panel { padding: 12px 14px 14px; }
+  .panel-head h2 { font-size: 17px; line-height: 24px; }
+  .panel-motto { margin: 0 0 4px; font-size: 13px; }
+  .list a { height: 30px; font-size: 13px; }
+  .btns { display: flex; gap: 10px; align-items: center; }
+  .card { padding: 14px; gap: 12px; }
+  .card .avatar-xl { width: 48px; height: 48px; font-size: 12px; }
+  .card h3 { margin: 0; font: 800 16px/21px var(--font-sans); }
+  .card-sub { margin: 2px 0 6px; font-size: 13px; }
+  .card-meta { margin-bottom: 6px; gap: 4px 10px; font-size: 12px; }
+  .amount { margin-bottom: 8px; font-size: 11px; }
+  .notice { padding: 10px; }
+  .notice-body { font-size: 13px; }
+  .notice-title { font-size: 14px; }
+  .podium { padding: 12px 10px 0; gap: 8px; }
+  .podium li { font-size: 11px; gap: 4px; }
+  .podium .avatar-xl { width: 38px; height: 38px; font-size: 10px; }
+  .podium-pts { font-size: 9px; }
+  .podium-step { font-size: 15px; }
+  .podium-1 .podium-step { height: 58px; } .podium-2 .podium-step { height: 40px; } .podium-3 .podium-step { height: 28px; }
+  .dark-tile { display: grid; gap: 10px; padding: 12px; background: var(--paper); color: var(--ink); border: 2px solid #00021C; }
+  .dark-tile .chart { padding: 10px 12px; box-shadow: var(--shadow-sm); }
+  .dark-tile .chart-title { font-size: 13px; }
+  .chart-data { display: none; }
+  .chart-legend { font-size: 11px; gap: 4px 10px; margin-top: 8px; }
+  .lbl { margin: 0; font: 8px/1 var(--font-pixel); color: var(--ink-3); }
+  .tags { display: flex; gap: 8px; flex-wrap: wrap; }
+</style>
+</head>
+<body class="bg-dots">
+<div class="canvas">
+  <div class="title">
+    <span class="logo">PANEL<span>&amp;PIKSEL</span></span>
+    <h1>Retro <span class="mark">design</span> system</h1>
+    <p>Dla katalogów, list ofert, tabel, rankingów i&nbsp;sklepów. Ramka 2&nbsp;px, twarde cienie, piksel tam, gdzie się patrzy.</p>
+    <span class="ver">v1.10 · 29 KOMPONENTÓW · 86 IKON</span>
+    <div class="sprites" aria-hidden="true">
+      <span class="sprite s-coin"></span><span class="sprite s-heart"></span><span class="sprite s-star"></span><span class="sprite s-gem"></span><span class="sprite s-trophy"></span><span class="sprite s-potion"></span><span class="sprite s-chest"></span><span class="sprite s-key"></span><span class="sprite s-search"></span><span class="sprite s-bell"></span>
+    </div>
+  </div>
+
+  <div class="col">
+    <section class="panel is-featured">
+      <div class="panel-head"><h2>Frontend</h2><span class="count">1 128</span></div>
+      <p class="panel-motto">„Piksele, które klikają się same”</p>
+      <ol class="list">
+        <li><a><span class="list-n">1.</span><span class="avatar" style="--av:var(--avatar-1)">PF</span><span class="list-name">Senior Frontend Dev</span><span class="list-value">28 000 zł</span></a></li>
+        <li><a><span class="list-n">2.</span><span class="avatar" style="--av:var(--avatar-2)">8B</span><span class="list-name">UI Engineer</span><span class="badge badge-sm badge-new">Nowa</span></a></li>
+        <li><a><span class="list-n">3.</span><span class="avatar" style="--av:var(--avatar-4)">ŁŻ</span><span class="list-name">Vue Developer · Łódź</span><span class="list-value">17 000 zł</span></a></li>
+        <li><a><span class="list-n">4.</span><span class="avatar" style="--av:var(--avatar-3)">KQ</span><span class="list-name">Junior Frontend</span><span class="list-value">—</span></a></li>
+      </ol>
+    </section>
+    <div class="btns">
+      <button class="btn btn-primary" type="button">Aplikuj teraz</button>
+      <button class="btn btn-primary" type="button" aria-disabled="true"><span class="lock" aria-hidden="true"></span>Kup</button>
+    </div>
+  </div>
+
+  <div class="col">
+    <article class="card">
+      <span class="avatar avatar-xl" style="--av:var(--avatar-2)">SJ</span>
+      <div class="card-body">
+        <div class="card-head"><h3>Senior Unity Developer</h3><span class="badge badge-new">Nowa</span></div>
+        <p class="card-sub">Smocza Jama Studio · Wrocław</p>
+        <ul class="card-meta"><li><span class="icon icon-sm i-user"></span>Senior</li><li><span class="icon icon-sm i-home"></span>Hybrydowo</li></ul>
+        <p class="amount">22 000–28 000 <small>zł</small></p>
+        <div class="chips"><span class="chip">Unity</span><span class="chip">C#</span><span class="chip-more">+2</span></div>
+      </div>
+    </article>
+    <div class="notice notice-success"><span class="notice-icon"><span class="icon i-success"></span></span><div class="notice-body"><strong class="notice-title">Aplikacja wysłana</strong><p>Studio dostało Twoje CV.</p></div></div>
+    <div class="tags"><span class="tier-tag tier-legendary">Legendarny</span><span class="tier-tag tier-epic">Epicki</span><span class="tier-tag tier-rare">Rzadki</span></div>
+  </div>
+
+  <div class="col">
+    <ol class="podium" aria-label="Podium">
+      <li class="podium-1"><span class="avatar avatar-xl" style="--av:var(--avatar-2)">KK</span><span class="podium-pts">98 450</span><span class="podium-step">1</span></li>
+      <li class="podium-2"><span class="avatar avatar-xl" style="--av:var(--avatar-3)">PB</span><span class="podium-pts">91 200</span><span class="podium-step">2</span></li>
+      <li class="podium-3"><span class="avatar avatar-xl" style="--av:var(--avatar-1)">ŁZ</span><span class="podium-pts">87 015</span><span class="podium-step">3</span></li>
+    </ol>
+    <div class="dark-tile bg-dots" data-theme="dark">
+      <p class="lbl">TRYB CIEMNY</p>
+      <figure class="chart" data-chart="segments">
+        <figcaption><p class="chart-title">Skąd kandydaci</p></figcaption>
+        <script type="application/json">{"labels":["Wyszukiwarka","Polecenia","Newsletter","Inne"],"values":[412,188,96,61]}</script>
+      </figure>
+    </div>
+  </div>
+</div>
+<script src="../../skills/panel-piksel-ui/assets/charts.js"></script>
+</body>
+</html>

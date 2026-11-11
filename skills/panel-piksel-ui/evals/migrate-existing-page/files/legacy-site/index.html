@@ -1,0 +1,130 @@
+<!doctype html>
+<html lang="pl">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>KodRekrut — oferty pracy w IT</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header class="nav">
+    <a class="brand" href="/">KodRekrut</a>
+    <nav>
+      <a href="/oferty" class="active">Oferty</a>
+      <a href="/firmy">Firmy</a>
+      <a href="/blog">Blog</a>
+    </nav>
+    <a class="btn btn-gradient" href="/dodaj-oferte">Dodaj ofertę</a>
+  </header>
+
+  <section class="hero">
+    <h1>Znajdź pracę w IT, która Ci pasuje</h1>
+    <p>1 284 aktualne oferty od 312 firm. Widełki w każdej ofercie premium.</p>
+    <form class="search" action="/szukaj" method="get">
+      <input type="search" name="q" placeholder="Stanowisko, technologia, firma" aria-label="Szukaj ofert">
+      <select name="miasto" aria-label="Miasto">
+        <option value="">Cała Polska</option>
+        <option value="warszawa">Warszawa</option>
+        <option value="krakow">Kraków</option>
+        <option value="zdalnie">Zdalnie</option>
+      </select>
+      <button type="submit" class="btn btn-gradient">Szukaj</button>
+    </form>
+  </section>
+
+  <main class="layout">
+    <aside class="filters">
+      <h2>Filtry</h2>
+      <fieldset>
+        <legend>Poziom</legend>
+        <label><input type="checkbox" name="poziom" value="junior"> Junior</label>
+        <label><input type="checkbox" name="poziom" value="mid"> Mid</label>
+        <label><input type="checkbox" name="poziom" value="senior"> Senior</label>
+      </fieldset>
+      <fieldset>
+        <legend>Tryb pracy</legend>
+        <label><input type="checkbox" name="tryb" value="zdalnie"> Zdalnie</label>
+        <label><input type="checkbox" name="tryb" value="hybrydowo"> Hybrydowo</label>
+      </fieldset>
+    </aside>
+
+    <section>
+      <div class="list-head">
+        <h2>Najnowsze oferty</h2>
+        <span class="muted">Sortuj: <a href="?sort=data">najnowsze</a> · <a href="?sort=widelki">widełki</a></span>
+      </div>
+      <ul id="job-list" class="jobs">
+        <li class="job" data-id="101">
+          <div class="logo-circle">PF</div>
+          <div class="job-body">
+            <h3><a href="/oferta/101">Senior Frontend Developer (React)</a></h3>
+            <p class="company">Pixel Forge · Warszawa / zdalnie</p>
+            <p class="salary">22 000 – 28 000 zł netto B2B</p>
+            <div class="tags"><span>React</span><span>TypeScript</span><span>GraphQL</span></div>
+          </div>
+          <button class="save" type="button" data-id="101" aria-label="Zapisz ofertę">♡</button>
+        </li>
+        <li class="job" data-id="102">
+          <div class="logo-circle">KK</div>
+          <div class="job-body">
+            <h3><a href="/oferta/102">Backend Developer (Go)</a></h3>
+            <p class="company">Kosmiczny Kret · Kraków</p>
+            <p class="salary">18 000 – 24 000 zł netto B2B</p>
+            <div class="tags"><span>Go</span><span>PostgreSQL</span><span>Kubernetes</span></div>
+          </div>
+          <button class="save" type="button" data-id="102" aria-label="Zapisz ofertę">♡</button>
+        </li>
+        <li class="job" data-id="103">
+          <div class="logo-circle">ŁŻ</div>
+          <div class="job-body">
+            <h3><a href="/oferta/103">Junior QA Engineer</a></h3>
+            <p class="company">Łódzkie Żurawie · Łódź / hybrydowo</p>
+            <p class="salary muted">Wynagrodzenie do uzgodnienia</p>
+            <div class="tags"><span>Cypress</span><span>Testy manualne</span></div>
+          </div>
+          <button class="save" type="button" data-id="103" aria-label="Zapisz ofertę">♡</button>
+        </li>
+        <li class="job featured" data-id="104">
+          <div class="logo-circle">SJ</div>
+          <div class="job-body">
+            <h3><a href="/oferta/104">Lead Unity Developer</a> <span class="pill">Polecana</span></h3>
+            <p class="company">Smocza Jama Studio · Wrocław</p>
+            <p class="salary">26 000 – 32 000 zł netto B2B</p>
+            <div class="tags"><span>Unity</span><span>C#</span><span>DOTS</span></div>
+          </div>
+          <button class="save" type="button" data-id="104" aria-label="Zapisz ofertę">♡</button>
+        </li>
+      </ul>
+      <nav class="pager" aria-label="Strony">
+        <a href="?page=1" aria-current="page">1</a><a href="?page=2">2</a><a href="?page=3">3</a><a href="?page=2">Dalej →</a>
+      </nav>
+    </section>
+  </main>
+
+  <section class="newsletter">
+    <h2>Nowe oferty co tydzień</h2>
+    <form action="/newsletter" method="post" id="newsletter-form">
+      <label for="nl-email">E-mail</label>
+      <input id="nl-email" type="email" name="email" required placeholder="ty@firma.pl">
+      <label class="consent"><input type="checkbox" name="zgoda" required> Zgadzam się na otrzymywanie newslettera</label>
+      <button type="submit" class="btn btn-gradient">Zapisz się</button>
+    </form>
+  </section>
+
+  <footer class="footer">
+    <p>© 2026 KodRekrut · <a href="/regulamin">Regulamin</a> · <a href="/prywatnosc">Prywatność</a> · <a href="/kontakt">Kontakt</a></p>
+  </footer>
+
+  <script>
+    // zapisywanie ofert — kod aplikacji, musi działać po migracji
+    document.querySelectorAll('.save').forEach(function (b) {
+      b.addEventListener('click', function () {
+        var on = b.classList.toggle('is-saved');
+        b.textContent = on ? '♥' : '♡';
+        b.setAttribute('aria-label', on ? 'Usuń z zapisanych' : 'Zapisz ofertę');
+        localStorage.setItem('saved-' + b.dataset.id, on ? '1' : '');
+      });
+    });
+  </script>
+</body>
+</html>

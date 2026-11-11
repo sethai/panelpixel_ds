@@ -1,0 +1,40 @@
+{
+  "expectations": [
+    {
+      "text": "Plik HTML korzysta z tokens.css i components.css systemu (linkiem obok pliku albo wklejonych) i nie zmienia ich wartości.",
+      "passed": true,
+      "evidence": "tokens.css: wklejony do <style>; components.css: wklejony do <style>"
+    },
+    {
+      "text": "check_screen.py nie zgłasza żadnego ERROR dla ekranu.",
+      "passed": true,
+      "evidence": "0 ERROR, 0 WARN (pełny raport: check_screen.txt)"
+    },
+    {
+      "text": "Rzadkość przedmiotów jest pokazana nazwą (Legendarny/Epicki/Rzadki/Zwykły) razem z kolorem tieru, nie samym kolorem.",
+      "passed": true,
+      "evidence": "12 nazw tierów w tekście, 0 elementów z klasą tier-*, 16 użyć tokenów --tier-*"
+    },
+    {
+      "text": "Przycisk kupna ma aria-disabled=\"true\", ikonę .lock i aria-describedby wskazujący widoczny powód (np. brak monet).",
+      "passed": true,
+      "evidence": "[{\"lock\":true,\"desc\":\"why-buy\",\"descVisible\":true,\"text\":\"Kup za 3 640 monet\"}]"
+    },
+    {
+      "text": "Ceny przedmiotów są złożone fontem pikselowym.",
+      "passed": true,
+      "evidence": "27 liczbowych elementów w Press Start 2P"
+    },
+    {
+      "text": "Strona nie przewija się poziomo w szerokości 390 px ani 1280 px.",
+      "passed": true,
+      "evidence": "scrollWidth 1280→1280, 390→390"
+    }
+  ],
+  "summary": {
+    "passed": 6,
+    "failed": 0,
+    "total": 6,
+    "pass_rate": 1
+  }
+}

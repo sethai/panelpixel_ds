@@ -1,0 +1,247 @@
+<!doctype html>
+<html lang="pl" data-theme="light">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Przepisy ekranów · Panel &amp; Piksel</title>
+<meta name="description" content="Panel &amp; Piksel — retro-pikselowy design system dla katalogów, list, tabel, rankingów i sklepów.">
+<link rel="icon" href="../favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:ital,wght@0,400;0,600;0,700;0,800;0,900;1,400&family=Press+Start+2P&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../assets/panel-piksel/tokens.css">
+<link rel="stylesheet" href="../assets/panel-piksel/components.css">
+<link rel="stylesheet" href="../assets/panel-piksel/icons.css">
+<link rel="stylesheet" href="../site.css">
+</head>
+<body class="bg-dots">
+<a class="skip" href="#tresc">Przejdź do treści</a>
+<header class="topbar">
+  <button class="tb-btn side-toggle" type="button" aria-expanded="false" aria-controls="sidenav" aria-label="Nawigacja"><span class="icon i-menu" aria-hidden="true"></span></button>
+  <a class="logo" href="../index.html">PANEL<span>&amp;PIKSEL</span></a><span class="ver">1.11.0</span>
+  <nav aria-label="Główna">
+    <a href="../pierwsze-kroki.html">Pierwsze kroki</a>
+    <a href="../komponenty/index.html">Komponenty</a>
+    <a href="../pobierz.html"><span class="icon icon-sm i-download" aria-hidden="true"></span>Pobierz</a>
+  </nav>
+  <div class="tabs theme-top" role="group" aria-label="Motyw" style="margin-left:8px;box-shadow:none;border-color:var(--on-ink)">
+    <button type="button" aria-pressed="true" data-theme-set="light">Jasny</button><button type="button" aria-pressed="false" data-theme-set="dark">Ciemny</button>
+  </div>
+</header>
+<div class="shell">
+<nav class="sidenav" id="sidenav" aria-label="Dokumentacja"><h2>Start</h2><ul><li><a href="../index.html"><span>Strona główna</span></a></li><li><a href="../pierwsze-kroki.html"><span>Pierwsze kroki</span></a></li><li><a href="../pobierz.html"><span>Pobierz</span></a></li></ul><h2>Fundamenty</h2><ul><li><a href="../fundamenty/esencja.html"><span>Esencja i zasady</span></a></li><li><a href="../fundamenty/kolor.html"><span>Kolor</span></a></li><li><a href="../fundamenty/typografia.html"><span>Typografia</span></a></li><li><a href="../fundamenty/przestrzen.html"><span>Przestrzeń, kształt, głębia, ruch</span></a></li><li><a href="../fundamenty/ikony.html"><span>Ikony i grafika</span></a></li><li><a href="../fundamenty/motywy.html"><span>Motywy: ciemny i wysoki kontrast</span></a></li><li><a href="../fundamenty/tresci.html"><span>Treści i język</span></a></li><li><a href="../fundamenty/dostepnosc.html"><span>Dostępność</span></a></li></ul><h2>Komponenty</h2><ul><li><a href="../komponenty/index.html"><span>Przegląd</span></a></li><li><a href="../komponenty/przycisk.html"><span>Przycisk</span><span class="dot dot-stable" aria-hidden="true"></span></a></li><li><a href="../komponenty/badge.html"><span>Badge</span><span class="dot dot-stable" aria-hidden="true"></span></a></li><li><a href="../komponenty/chip-tag.html"><span>Chip / tag</span><span class="dot dot-stable" aria-hidden="true"></span></a></li><li><a href="../komponenty/licznik.html"><span>Licznik</span><span class="dot dot-stable" aria-hidden="true"></span></a></li><li><a href="../komponenty/awatar-monogram.html"><span>Awatar</span><span class="dot dot-stable" aria-hidden="true"></span></a></li><li><a href="../komponenty/panel-listy.html"><span>Panel listy</span><span class="dot dot-stable" aria-hidden="true"></span></a></li><li><a href="../komponenty/karta.html"><span>Karta</span><span class="dot dot-stable" aria-hidden="true"></span></a></li><li><a href="../komponenty/panel-filtrow-i-pola-formularza.html"><span>Panel filtrów</span><span class="dot dot-stable" aria-hidden="true"></span></a></li><li><a href="../komponenty/pola-formularza.html"><span>Pola formularza</span><span class="dot dot-preview" aria-hidden="true"></span></a></li><li><a href="../komponenty/wyszukiwarka-glowna.html"><span>Wyszukiwarka główna</span><span class="dot dot-stable" aria-hidden="true"></span></a></li><li><a href="../komponenty/zakladki.html"><span>Zakładki</span><span class="dot dot-stable" aria-hidden="true"></span></a></li><li><a href="../komponenty/tabela-danych.html"><span>Tabela danych</span><span class="dot dot-stable" aria-hidden="true"></span></a></li><li><a href="../komponenty/paginacja.html"><span>Paginacja</span><span class="dot dot-stable" aria-hidden="true"></span></a></li><li><a href="../komponenty/podium.html"><span>Podium</span><span class="dot dot-stable" aria-hidden="true"></span></a></li><li><a href="../komponenty/pakiet-tier-i-znacznik-pakietu.html"><span>Pakiet i znacznik</span><span class="dot dot-stable" aria-hidden="true"></span></a></li><li><a href="../komponenty/struktura-strony.html"><span>Struktura strony</span><span class="dot dot-stable" aria-hidden="true"></span></a></li><li><a href="../komponenty/callout.html"><span>Callout</span><span class="dot dot-stable" aria-hidden="true"></span></a></li><li><a href="../komponenty/pusty-stan.html"><span>Pusty stan</span><span class="dot dot-stable" aria-hidden="true"></span></a></li><li><a href="../komponenty/fakty-encji.html"><span>Fakty encji</span><span class="dot dot-stable" aria-hidden="true"></span></a></li><li><a href="../komponenty/detale-graficzne.html"><span>Detale graficzne</span><span class="dot dot-stable" aria-hidden="true"></span></a></li><li><a href="../komponenty/ikony.html"><span>Ikony</span><span class="dot dot-preview" aria-hidden="true"></span></a></li><li><a href="../komponenty/powiadomienia.html"><span>Powiadomienia</span><span class="dot dot-preview" aria-hidden="true"></span></a></li><li><a href="../komponenty/nakladki.html"><span>Nakładki</span><span class="dot dot-preview" aria-hidden="true"></span></a></li><li><a href="../komponenty/wykresy.html"><span>Wykresy</span><span class="dot dot-preview" aria-hidden="true"></span></a></li></ul><h2>Wzorce</h2><ul><li><a href="../wzorce/sterowanie-lista.html"><span>Sterowanie listą</span><span class="dot dot-stable" aria-hidden="true"></span></a></li><li><a href="../wzorce/formularz.html"><span>Formularz</span><span class="dot dot-preview" aria-hidden="true"></span></a></li><li><a href="../wzorce/nawigacja-mobilna.html"><span>Nawigacja mobilna</span><span class="dot dot-preview" aria-hidden="true"></span></a></li><li><a href="../wzorce/zaznaczanie-wierszy.html"><span>Zaznaczanie wierszy</span><span class="dot dot-preview" aria-hidden="true"></span></a></li><li><a href="../wzorce/ladowanie-i-postep.html"><span>Ładowanie i postęp</span><span class="dot dot-preview" aria-hidden="true"></span></a></li><li><a href="../wzorce/koszyk.html"><span>Koszyk sklepu</span></a></li><li><a href="../wzorce/saldo.html"><span>Saldo w nagłówku</span></a></li><li><a href="../wzorce/przepisy-ekranow.html" aria-current="page"><span>Przepisy ekranów</span></a></li></ul><h2>Zasoby</h2><ul><li><a href="../zasoby/zarzadzanie.html"><span>Zarządzanie i statusy</span></a></li><li><a href="../zasoby/macierz-stanow.html"><span>Macierz stanów</span></a></li><li><a href="../zasoby/czego-nie-robic.html"><span>Czego nie robić</span></a></li><li><a href="../zasoby/historia-zmian.html"><span>Historia zmian</span></a></li><li><a href="../przyklady/komponenty.html"><span>Przykłady: komponenty</span></a></li><li><a href="../przyklady/wzorce.html"><span>Przykłady: wzorce</span></a></li><li><a href="../archiwum/decyzje-v1-1.html"><span>Archiwum: decyzje v1.1</span></a></li><li><a href="../archiwum/kwestie-otwarte.html"><span>Archiwum: kwestie otwarte</span></a></li><li><a href="../archiwum/kandydaci.html"><span>Archiwum: kandydaci 1.11</span></a></li></ul><div class="tabs side-theme" role="group" aria-label="Motyw"><button type="button" aria-pressed="true" data-theme-set="light">Jasny</button><button type="button" aria-pressed="false" data-theme-set="dark">Ciemny</button></div></nav>
+<main class="content" id="tresc"><div class="inner doc-wide">
+<h1 class="page-title">Przepisy ekranów</h1><p class="page-lead">Struktura i HTML dla typowych ekranów: katalog, kategoria, wyniki z filtrami, szczegóły, ranking, cennik, profil, formularz, pusty stan, panel użytkownika.</p><div class="prose-doc"><p>Każdy przepis: <b>cel → struktura → „głośny” element → HTML szkieletu → pułapki</b>. Szkielety wstawiasz do <code>&lt;main&gt;</code> w <code>assets/starter.html</code>. Klasy pochodzą z <code>assets/components.css</code>; szczegóły komponentów w <code>design-system.md</code> §6.</p>
+<p>Spis: 1. Katalog (strona główna) · 2. Kategoria · 3. Wyniki z filtrami · 4. Szczegóły encji · 5. Ranking / leaderboard · 6. Cennik / pakiety · 7. Profil (firmy, sprzedawcy, gracza) · 8. Formularz · 9. Pusty stan / 404 · 10. Panel użytkownika (tabela własnych pozycji)</p>
+<h2 id="1-katalog-strona-glowna">1. Katalog — strona główna</h2>
+<p><b>Cel:</b> przegląd kategorii i szybkie wejście w listy. <b>Głośny element:</b> jeden panel <code>.is-featured</code> (np. „Świeżo dodane”).</p>
+<pre class="code" data-lang="html"><code>&lt;section class=&quot;section&quot; aria-labelledby=&quot;h-kat&quot;&gt;
+  &lt;div class=&quot;section-title&quot;&gt;&lt;h2 id=&quot;h-kat&quot;&gt;Kategorie&lt;/h2&gt;&lt;a class=&quot;btn btn-secondary&quot; href=&quot;/kategorie&quot;&gt;Wszystkie kategorie&lt;/a&gt;&lt;/div&gt;
+  &lt;div class=&quot;grid-panels&quot;&gt;
+    &lt;section class=&quot;panel&quot; aria-labelledby=&quot;k1&quot;&gt;
+      &lt;header class=&quot;panel-head&quot;&gt;&lt;h2 id=&quot;k1&quot;&gt;Frontend&lt;/h2&gt;&lt;span class=&quot;count&quot;&gt;128&lt;/span&gt;&lt;/header&gt;
+      &lt;p class=&quot;panel-motto&quot;&gt;„Krótki, zabawny opis kategorii”&lt;/p&gt;
+      &lt;ol class=&quot;list&quot;&gt;
+        &lt;li&gt;&lt;a href=&quot;/o/1&quot;&gt;&lt;span class=&quot;list-n&quot;&gt;1.&lt;/span&gt;&lt;span class=&quot;avatar&quot; style=&quot;--av:var(--avatar-1)&quot;&gt;PF&lt;/span&gt;&lt;span class=&quot;list-name&quot;&gt;Senior Frontend Developer&lt;/span&gt;&lt;span class=&quot;list-value&quot;&gt;&lt;span class=&quot;amt-full&quot;&gt;18 000–24 000&lt;/span&gt;&lt;span class=&quot;amt-short&quot; aria-hidden=&quot;true&quot;&gt;18–24 tys.&lt;/span&gt;&lt;/span&gt;&lt;/a&gt;&lt;/li&gt;
+        
+      &lt;/ol&gt;
+      &lt;a class=&quot;panel-more&quot; href=&quot;/k/frontend&quot;&gt;Zobacz wszystkie&lt;/a&gt;
+    &lt;/section&gt;
+    &lt;section class=&quot;panel is-featured&quot; aria-labelledby=&quot;k-new&quot;&gt;
+      &lt;header class=&quot;panel-head&quot;&gt;&lt;h2 id=&quot;k-new&quot;&gt;Świeżo dodane&lt;/h2&gt;&lt;span class=&quot;count&quot;&gt;8&lt;/span&gt;&lt;/header&gt;
+      &lt;ol class=&quot;list&quot;&gt;
+        &lt;li&gt;&lt;a href=&quot;/o/9&quot;&gt;&lt;span class=&quot;list-n&quot;&gt;1.&lt;/span&gt;&lt;span class=&quot;avatar&quot; style=&quot;--av:var(--avatar-6)&quot;&gt;DK&lt;/span&gt;&lt;span class=&quot;list-name&quot;&gt;Game Designer&lt;/span&gt;&lt;span class=&quot;badge badge-new badge-sm&quot;&gt;Nowa&lt;/span&gt;&lt;/a&gt;&lt;/li&gt;
+      &lt;/ol&gt;
+      &lt;a class=&quot;panel-more&quot; href=&quot;/nowe&quot;&gt;Zobacz wszystkie&lt;/a&gt;
+    &lt;/section&gt;
+    
+  &lt;/div&gt;
+&lt;/section&gt;</code></pre>
+<p><b>Pułapki:</b> nie więcej niż jeden <code>.is-featured</code>; panele mają różną długość — to normalne (<code>align-items: start</code>); liczby w <code>.count</code> i <code>.list-value</code>, nie w nazwie; kwota w wierszu zawsze jako para <code>.amt-full</code> + <code>.amt-short</code> (skrót „18–24 tys.” pokazuje się &lt; 600 px, żeby nie ucinać nazw).</p>
+<h2 id="2-kategoria">2. Kategoria</h2>
+<p><b>Cel:</b> pełna lista jednej kategorii + nawigacja do pokrewnych. <b>Głośny element:</b> brak lub wyróżniony panel boczny.</p>
+<pre class="code" data-lang="html"><code>&lt;div class=&quot;layout-main-side&quot;&gt;
+  &lt;section class=&quot;panel&quot; aria-labelledby=&quot;h-list&quot;&gt;
+    &lt;header class=&quot;panel-head&quot;&gt;&lt;h2 id=&quot;h-list&quot;&gt;Wszystkie oferty&lt;/h2&gt;&lt;span class=&quot;count&quot;&gt;128&lt;/span&gt;&lt;/header&gt;
+    &lt;ol class=&quot;list&quot;&gt;&lt;/ol&gt;
+  &lt;/section&gt;
+  &lt;aside class=&quot;stack&quot; aria-label=&quot;Inne kategorie&quot;&gt;
+    &lt;section class=&quot;panel&quot;&gt;&lt;header class=&quot;panel-head&quot;&gt;&lt;h2&gt;Backend&lt;/h2&gt;&lt;span class=&quot;count&quot;&gt;96&lt;/span&gt;&lt;/header&gt;
+      &lt;p&gt;&lt;span class=&quot;avatar&quot; style=&quot;--av:var(--avatar-2)&quot;&gt;8B&lt;/span&gt; &lt;span class=&quot;avatar&quot; style=&quot;--av:var(--avatar-3)&quot;&gt;KQ&lt;/span&gt; &lt;span class=&quot;chip-more&quot;&gt;+54&lt;/span&gt;&lt;/p&gt;
+    &lt;/section&gt;
+  &lt;/aside&gt;
+&lt;/div&gt;
+&lt;ul class=&quot;pagination&quot; aria-label=&quot;Strony&quot;&gt;&lt;li&gt;&lt;span aria-current=&quot;page&quot;&gt;1&lt;/span&gt;&lt;/li&gt;&lt;li&gt;&lt;a href=&quot;?p=2&quot;&gt;2&lt;/a&gt;&lt;/li&gt;&lt;/ul&gt;</code></pre>
+<h2 id="3-wyniki-wyszukiwania-z-filtrami">3. Wyniki wyszukiwania z filtrami</h2>
+<p><b>Cel:</b> porównanie wielu pozycji i zawężanie. <b>Głośny element:</b> zwykle żaden (praca, nie scena) — ewentualnie badge „Nowa” na kartach.</p>
+<pre class="code" data-lang="html"><code>&lt;div class=&quot;layout-results&quot;&gt;
+  &lt;div class=&quot;stack&quot;&gt;
+    &lt;div class=&quot;section-title&quot;&gt;&lt;h2&gt;42 oferty&lt;/h2&gt;
+      &lt;div class=&quot;tabs&quot; role=&quot;group&quot; aria-label=&quot;Sortuj oferty&quot;&gt;&lt;button type=&quot;button&quot; aria-pressed=&quot;true&quot;&gt;Najnowsze&lt;/button&gt;&lt;button type=&quot;button&quot; aria-pressed=&quot;false&quot;&gt;Najwyższe widełki&lt;/button&gt;&lt;/div&gt;
+    &lt;/div&gt;
+    &lt;article class=&quot;card&quot;&gt;
+      &lt;span class=&quot;avatar avatar-xl&quot; style=&quot;--av:var(--avatar-1)&quot;&gt;PF&lt;/span&gt;
+      &lt;div class=&quot;card-body&quot;&gt;
+        &lt;div class=&quot;card-head&quot;&gt;&lt;h3&gt;&lt;a href=&quot;/o/1&quot;&gt;Senior Frontend Developer&lt;/a&gt;&lt;/h3&gt;&lt;span class=&quot;badge badge-new&quot;&gt;Nowa&lt;/span&gt;&lt;/div&gt;
+        &lt;p class=&quot;card-sub&quot;&gt;Pixel Forge · Kraków / zdalnie&lt;/p&gt;
+        &lt;p class=&quot;amount&quot;&gt;18 000–24 000 &lt;small&gt;zł netto B2B&lt;/small&gt;&lt;/p&gt;
+        &lt;div class=&quot;chips&quot;&gt;&lt;span class=&quot;chip&quot;&gt;React&lt;/span&gt;&lt;span class=&quot;chip&quot;&gt;TypeScript&lt;/span&gt;&lt;span class=&quot;chip-more&quot;&gt;+2&lt;/span&gt;&lt;/div&gt;
+      &lt;/div&gt;
+    &lt;/article&gt;
+  &lt;/div&gt;
+  &lt;aside class=&quot;panel-filters&quot; aria-label=&quot;Filtry&quot;&gt;
+    &lt;h2&gt;Filtry&lt;/h2&gt;
+    &lt;label class=&quot;field&quot;&gt;&lt;span class=&quot;sr-only&quot;&gt;Słowa kluczowe&lt;/span&gt;&lt;input type=&quot;search&quot; placeholder=&quot;Słowa kluczowe&quot;&gt;&lt;/label&gt;
+    &lt;fieldset&gt;&lt;legend&gt;Tryb pracy&lt;/legend&gt;
+      &lt;label class=&quot;checkbox&quot;&gt;&lt;input type=&quot;checkbox&quot;&gt; Zdalnie&lt;/label&gt;
+    &lt;/fieldset&gt;
+    &lt;button class=&quot;btn btn-primary btn-full&quot; type=&quot;button&quot;&gt;Pokaż 42 oferty&lt;/button&gt;
+  &lt;/aside&gt;
+&lt;/div&gt;</code></pre>
+<p><b>Działające sortowanie i filtry</b> (<code>assets/list-controls.js</code>, dołącz przed <code>&lt;/body&gt;</code>). Wartości trzymaj w atrybutach kart, a kontrolki połącz identyfikatorem listy:</p>
+<pre class="code" data-lang="html"><code>&lt;h2&gt;&lt;span data-count-for=&quot;oferty&quot; data-count-forms=&quot;oferta|oferty|ofert&quot;&gt;8 ofert&lt;/span&gt;&lt;/h2&gt;
+
+&lt;div class=&quot;tabs&quot; role=&quot;group&quot; aria-label=&quot;Sortuj oferty&quot; data-sort-for=&quot;oferty&quot;&gt;
+  &lt;button type=&quot;button&quot; aria-pressed=&quot;true&quot;  data-sort-key=&quot;date&quot;   data-sort-dir=&quot;desc&quot;&gt;Najnowsze&lt;/button&gt;
+  &lt;button type=&quot;button&quot; aria-pressed=&quot;false&quot; data-sort-key=&quot;salary&quot; data-sort-dir=&quot;desc&quot;&gt;Najwyższe widełki&lt;/button&gt;
+  &lt;button type=&quot;button&quot; aria-pressed=&quot;false&quot; data-sort-key=&quot;order&quot;&gt;Trafność&lt;/button&gt;
+&lt;/div&gt;
+&lt;p class=&quot;active-filters&quot;&gt;Aktywne filtry: &lt;span data-active-for=&quot;oferty&quot;&gt;&lt;/span&gt;&lt;/p&gt;
+&lt;div class=&quot;stack&quot; data-list=&quot;oferty&quot;&gt;
+  &lt;article class=&quot;card&quot; data-item data-sort-date=&quot;20261109&quot; data-sort-salary=&quot;27000&quot; data-n-salary=&quot;20000 27000&quot;
+           data-f-tryb=&quot;zdalnie&quot; data-f-poziom=&quot;senior&quot; data-f-tech=&quot;unity csharp&quot;&gt;…&lt;/article&gt;
+  
+&lt;/div&gt;
+&lt;div class=&quot;empty&quot; data-empty-for=&quot;oferty&quot; hidden&gt;&lt;h2&gt;Brak ofert dla tych filtrów&lt;/h2&gt;&lt;button class=&quot;btn btn-secondary&quot; type=&quot;button&quot; data-clear-for=&quot;oferty&quot;&gt;Wyczyść filtry&lt;/button&gt;&lt;/div&gt;
+
+&lt;form class=&quot;panel-filters&quot; data-filter-for=&quot;oferty&quot;&gt;
+  &lt;label class=&quot;checkbox&quot;&gt;&lt;input type=&quot;checkbox&quot; name=&quot;tryb&quot; value=&quot;zdalnie&quot;&gt; Zdalnie &lt;span class=&quot;opt-n&quot;&gt;4&lt;/span&gt;&lt;/label&gt;
+  &lt;input type=&quot;number&quot; data-min=&quot;salary&quot;&gt; &lt;input type=&quot;number&quot; data-max=&quot;salary&quot;&gt;
+  &lt;label class=&quot;checkbox&quot;&gt;&lt;input type=&quot;checkbox&quot; data-require=&quot;salary&quot;&gt; Tylko z widełkami&lt;/label&gt;
+  &lt;button class=&quot;btn btn-primary btn-full&quot; type=&quot;submit&quot;&gt;Pokaż &lt;span data-count-for=&quot;oferty&quot; data-count-forms=&quot;ofertę|oferty|ofert&quot;&gt;8 ofert&lt;/span&gt;&lt;/button&gt;
+&lt;/form&gt;</code></pre>
+<p>Ta sama nazwa checkboxów = LUB, różne nazwy = I. Liczby przy opcjach (<code>.opt-n</code>) policz z faktycznych kart na stronie.</p>
+<p><b>Pułapki:</b> link w tytule karty dziedziczy kolor — dopisz w <code>&lt;style id=&quot;screen&quot;&gt;</code> <code>.card-head h3 a { color: var(--ink); text-decoration: none; }</code> + podkreślenie na hover; brak kwoty → <code>.amount.is-empty</code>; max 4 chipy + <code>.chip-more</code>.</p>
+<h2 id="4-szczegoly-encji-oferta-produkt-przedmiot">4. Szczegóły encji (oferta, produkt, przedmiot)</h2>
+<p><b>Cel:</b> decyzja (aplikuj/kup). <b>Głośny element:</b> blok akcji z ceną/kwotą lub ilustracja.</p>
+<pre class="code" data-lang="html"><code>&lt;div class=&quot;layout-main-side&quot;&gt;
+  &lt;article class=&quot;stack&quot;&gt;
+    &lt;div class=&quot;card&quot;&gt;
+      &lt;span class=&quot;avatar avatar-xl&quot; style=&quot;--av:var(--avatar-1)&quot;&gt;PF&lt;/span&gt;
+      &lt;div class=&quot;card-body&quot;&gt;&lt;div class=&quot;card-head&quot;&gt;&lt;h2&gt;Senior Frontend Developer&lt;/h2&gt;&lt;span class=&quot;badge badge-new&quot;&gt;Nowa&lt;/span&gt;&lt;/div&gt;&lt;p class=&quot;card-sub&quot;&gt;Pixel Forge · Kraków / zdalnie&lt;/p&gt;&lt;/div&gt;
+    &lt;/div&gt;
+    &lt;dl class=&quot;facts&quot;&gt;
+      &lt;div&gt;&lt;dt&gt;Widełki&lt;/dt&gt;&lt;dd class=&quot;num&quot;&gt;18 000–24 000 zł&lt;/dd&gt;&lt;/div&gt;
+      &lt;div&gt;&lt;dt&gt;Tryb&lt;/dt&gt;&lt;dd&gt;Zdalnie&lt;/dd&gt;&lt;/div&gt;
+      &lt;div&gt;&lt;dt&gt;Poziom&lt;/dt&gt;&lt;dd&gt;Senior&lt;/dd&gt;&lt;/div&gt;
+    &lt;/dl&gt;
+    &lt;section class=&quot;panel prose&quot;&gt;&lt;h2&gt;O projekcie&lt;/h2&gt;&lt;p&gt;…&lt;/p&gt;&lt;ul class=&quot;list-square&quot;&gt;&lt;li&gt;…&lt;/li&gt;&lt;/ul&gt;&lt;/section&gt;
+  &lt;/article&gt;
+  &lt;aside class=&quot;stack&quot;&gt;
+    &lt;section class=&quot;panel&quot;&gt;
+      &lt;p class=&quot;amount&quot;&gt;24 000 &lt;small&gt;zł / mies.&lt;/small&gt;&lt;/p&gt;
+      &lt;button class=&quot;btn btn-primary btn-full&quot; type=&quot;button&quot;&gt;Aplikuj teraz&lt;/button&gt;
+      &lt;button class=&quot;btn btn-secondary btn-full&quot; type=&quot;button&quot; style=&quot;margin-top:12px&quot;&gt;Zapisz&lt;/button&gt;
+    &lt;/section&gt;
+    &lt;section class=&quot;panel&quot;&gt;&lt;header class=&quot;panel-head&quot;&gt;&lt;h2&gt;Podobne oferty&lt;/h2&gt;&lt;span class=&quot;count&quot;&gt;5&lt;/span&gt;&lt;/header&gt;&lt;ol class=&quot;list&quot;&gt;&lt;/ol&gt;&lt;/section&gt;
+  &lt;/aside&gt;
+&lt;/div&gt;</code></pre>
+<p><b>Pułapki:</b> długi opis wyłącznie Archivo (<code>.prose</code>); jeśli akcja niedostępna — <code>aria-disabled</code> + <code>.lock</code> + <code>.btn-reason</code>. Przycisk „Zapisz” jako działający przełącznik: <code>&lt;button class=&quot;btn btn-secondary btn-full&quot; type=&quot;button&quot; aria-pressed=&quot;false&quot; data-label-on=&quot;Zapisano&quot; data-label-off=&quot;Zapisz ofertę&quot;&gt;Zapisz ofertę&lt;/button&gt;</code> + <code>list-controls.js</code>.</p>
+<h2 id="5-ranking-leaderboard-high-score">5. Ranking / leaderboard / high score</h2>
+<p><b>Cel:</b> kto prowadzi i jak się zmienia. <b>Głośny element:</b> podium (jedno na stronę).</p>
+<pre class="code" data-lang="html"><code>&lt;div class=&quot;page-head&quot;&gt;&lt;div&gt;&lt;h1&gt;Ranking pracodawców&lt;/h1&gt;&lt;/div&gt;
+  &lt;div class=&quot;tabs&quot; role=&quot;tablist&quot; aria-label=&quot;Okres&quot;&gt;&lt;button role=&quot;tab&quot; aria-selected=&quot;true&quot;&gt;Ten tydzień&lt;/button&gt;&lt;button role=&quot;tab&quot; aria-selected=&quot;false&quot;&gt;Ogółem&lt;/button&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;ol class=&quot;podium&quot; aria-label=&quot;Podium&quot;&gt;
+  &lt;li class=&quot;podium-1&quot;&gt;&lt;span class=&quot;avatar avatar-xl&quot; style=&quot;--av:var(--avatar-1)&quot;&gt;PF&lt;/span&gt;&lt;b&gt;Pixel Forge&lt;/b&gt;&lt;span class=&quot;podium-pts&quot;&gt;1 980&lt;/span&gt;&lt;span class=&quot;podium-step&quot;&gt;1&lt;/span&gt;&lt;/li&gt;
+  &lt;li class=&quot;podium-2&quot;&gt;…&lt;span class=&quot;podium-step&quot;&gt;2&lt;/span&gt;&lt;/li&gt;
+  &lt;li class=&quot;podium-3&quot;&gt;…&lt;span class=&quot;podium-step&quot;&gt;3&lt;/span&gt;&lt;/li&gt;
+&lt;/ol&gt;
+&lt;div class=&quot;section table-wrap&quot;&gt;
+  &lt;table class=&quot;table&quot;&gt;
+    &lt;caption class=&quot;sr-only&quot;&gt;Pełny ranking&lt;/caption&gt;
+    &lt;thead&gt;&lt;tr&gt;&lt;th scope=&quot;col&quot;&gt;#&lt;/th&gt;&lt;th scope=&quot;col&quot;&gt;Firma&lt;/th&gt;&lt;th scope=&quot;col&quot; class=&quot;num&quot; aria-sort=&quot;descending&quot;&gt;&lt;span class=&quot;sorted&quot;&gt;Punkty&lt;/span&gt;&lt;/th&gt;&lt;th scope=&quot;col&quot; class=&quot;num&quot;&gt;Zmiana&lt;/th&gt;&lt;/tr&gt;&lt;/thead&gt;
+    &lt;tbody&gt;
+      &lt;tr&gt;&lt;td&gt;&lt;span class=&quot;rank&quot;&gt;4&lt;/span&gt;&lt;/td&gt;&lt;td class=&quot;name&quot;&gt;&lt;span class=&quot;cell-entity&quot;&gt;&lt;span class=&quot;avatar&quot; style=&quot;--av:var(--avatar-4)&quot;&gt;ŁŻ&lt;/span&gt;&lt;a href=&quot;/f/4&quot;&gt;Łódzkie Żetony&lt;/a&gt;&lt;/span&gt;&lt;/td&gt;&lt;td class=&quot;num&quot;&gt;720&lt;/td&gt;&lt;td class=&quot;num delta-up&quot;&gt;2&lt;/td&gt;&lt;/tr&gt;
+    &lt;/tbody&gt;
+  &lt;/table&gt;
+&lt;/div&gt;</code></pre>
+<p><b>Pułapki:</b> tabela zaczyna się od miejsca 4 (1–3 są na podium) albo pokazuje wszystkie z <code>.rank-1/2/3</code>; liczby do prawej; zmiana zawsze ze strzałką. <b>Kolejność rankingu jest stała</b> — kolumna wyniku dostaje statyczne <code>.sorted</code>, nie przycisk. Jeśli chcesz dodatkowo sortować po innej kolumnie (np. liczbie rozgrywek), a wiersze są generowane z danych z paginacją, oznacz tabelę <code>data-sort-manual</code>, sortuj tablicę danych w kodzie (przez wszystkie strony, nie tylko bieżącą), ustawiaj <code>aria-sort</code> na <code>&lt;th&gt;</code> i wracaj na stronę 1.</p>
+<h2 id="6-cennik-pakiety">6. Cennik / pakiety</h2>
+<p><b>Cel:</b> wybór pakietu. <b>Głośny element:</b> rekomendowany pakiet (<code>.panel.is-featured</code> wokół lub badge „Polecany”).</p>
+<pre class="code" data-lang="html"><code>&lt;div class=&quot;grid-panels&quot;&gt;
+  &lt;section class=&quot;panel is-featured&quot;&gt;
+    &lt;div class=&quot;tier tier-legendary&quot;&gt;&lt;span class=&quot;tier-name&quot;&gt;Legendarny&lt;/span&gt;&lt;span class=&quot;tier-price&quot;&gt;899 zł&lt;/span&gt;&lt;span class=&quot;tier-desc&quot;&gt;Podium + wyróżniony panel 30 dni&lt;/span&gt;&lt;/div&gt;
+    &lt;ul class=&quot;list-square&quot;&gt;&lt;li&gt;…&lt;/li&gt;&lt;/ul&gt;
+    &lt;button class=&quot;btn btn-primary btn-full&quot; type=&quot;button&quot;&gt;Wybierz Legendarny&lt;/button&gt;
+  &lt;/section&gt;
+  &lt;section class=&quot;panel&quot;&gt;
+    &lt;div class=&quot;tier tier-epic&quot;&gt;…&lt;/div&gt;&lt;ul class=&quot;list-square&quot;&gt;&lt;li&gt;…&lt;/li&gt;&lt;/ul&gt;
+    &lt;button class=&quot;btn btn-secondary btn-full&quot; type=&quot;button&quot;&gt;Wybierz Epicki&lt;/button&gt;
+  &lt;/section&gt;
+  
+&lt;/div&gt;</code></pre>
+<p><b>Pułapki:</b> tylko jeden przycisk główny (przy rekomendowanym), reszta drugorzędne; nazwy tierów: Legendarny / Epicki / Rzadki / Zwykły (lub odpowiedniki domeny), kolor zawsze z nazwą.</p>
+<h2 id="7-profil-firma-sprzedawca-gracz">7. Profil (firma, sprzedawca, gracz)</h2>
+<p><b>Cel:</b> zaufanie + lista pozycji tej encji. <b>Głośny element:</b> pozycja w rankingu (<code>.rank-1/2/3</code>) lub ilustracja.</p>
+<p>Struktura: <code>.card</code> z <code>.avatar-xl</code>, nazwą, <code>.badge-seg</code> (np. „Ranking | #2”) → <code>.facts</code> (liczby: oferty, odpowiedzi, rok założenia) → <code>.tabs</code> (Oferty / O firmie / Opinie) → <code>.panel</code> z <code>.list</code> pozycji → <code>.prose</code>.</p>
+<h2 id="8-formularz-dodaj-oferte-kontakt-ustawienia">8. Formularz (dodaj ofertę, kontakt, ustawienia)</h2>
+<p><b>Cel:</b> bezbłędne wypełnienie. <b>Głośny element:</b> żaden.</p>
+<pre class="code" data-lang="html"><code>&lt;form class=&quot;panel stack&quot; style=&quot;max-width:640px;display:grid;gap:16px&quot;&gt;
+  &lt;h2&gt;Dodaj ofertę&lt;/h2&gt;
+  &lt;div class=&quot;field&quot;&gt;&lt;label for=&quot;t&quot;&gt;Stanowisko &lt;span class=&quot;req&quot; aria-hidden=&quot;true&quot;&gt;*&lt;/span&gt;&lt;/label&gt;&lt;input id=&quot;t&quot; name=&quot;title&quot; required&gt;&lt;/div&gt;
+  &lt;div class=&quot;field&quot;&gt;&lt;label for=&quot;lvl&quot;&gt;Poziom&lt;/label&gt;&lt;div class=&quot;select&quot;&gt;&lt;select id=&quot;lvl&quot;&gt;&lt;option&gt;Junior&lt;/option&gt;&lt;option selected&gt;Mid&lt;/option&gt;&lt;option&gt;Senior&lt;/option&gt;&lt;/select&gt;&lt;/div&gt;&lt;/div&gt;
+  &lt;fieldset&gt;&lt;legend&gt;Tryb pracy&lt;/legend&gt;
+    &lt;label class=&quot;radio&quot;&gt;&lt;input type=&quot;radio&quot; name=&quot;mode&quot; value=&quot;zdalnie&quot; checked&gt;Zdalnie&lt;/label&gt;
+    &lt;label class=&quot;radio&quot;&gt;&lt;input type=&quot;radio&quot; name=&quot;mode&quot; value=&quot;hybrydowo&quot;&gt;Hybrydowo&lt;/label&gt;&lt;/fieldset&gt;
+  &lt;div class=&quot;field&quot;&gt;&lt;label for=&quot;d&quot;&gt;Opis&lt;/label&gt;&lt;textarea id=&quot;d&quot; maxlength=&quot;2000&quot; data-count=&quot;d-n&quot; aria-describedby=&quot;d-n&quot;&gt;&lt;/textarea&gt;&lt;p class=&quot;field-count&quot; id=&quot;d-n&quot;&gt;&lt;/p&gt;&lt;/div&gt;
+  &lt;div class=&quot;field&quot;&gt;&lt;span id=&quot;logo-l&quot; style=&quot;display:block;margin:0 0 6px;font:700 14px var(--font-sans)&quot;&gt;Logo firmy&lt;/span&gt;
+    &lt;label class=&quot;upload&quot; data-max-mb=&quot;2&quot;&gt;&lt;input type=&quot;file&quot; id=&quot;logo&quot; accept=&quot;.png,.svg&quot; aria-labelledby=&quot;logo-l&quot; aria-describedby=&quot;logo-h&quot;&gt;
+      &lt;span class=&quot;icon icon-lg i-upload&quot; aria-hidden=&quot;true&quot;&gt;&lt;/span&gt;&lt;span class=&quot;upload-title&quot;&gt;Przeciągnij plik albo &lt;u&gt;wybierz z dysku&lt;/u&gt;&lt;/span&gt;&lt;span class=&quot;upload-hint&quot; id=&quot;logo-h&quot;&gt;PNG lub SVG, do 2 MB&lt;/span&gt;&lt;/label&gt;
+    &lt;p class=&quot;field-error&quot; data-upload-error hidden&gt;&lt;/p&gt;&lt;ul class=&quot;file-list&quot; data-files-for=&quot;logo&quot;&gt;&lt;/ul&gt;&lt;/div&gt;
+  &lt;div class=&quot;notice notice-info&quot;&gt;&lt;span class=&quot;notice-icon&quot;&gt;&lt;span class=&quot;icon i-info&quot; aria-hidden=&quot;true&quot;&gt;&lt;/span&gt;&lt;/span&gt;&lt;div class=&quot;notice-body&quot;&gt;&lt;strong class=&quot;notice-title&quot;&gt;Wskazówka&lt;/strong&gt;&lt;p&gt;Oferty z widełkami dostają 2× więcej odpowiedzi.&lt;/p&gt;&lt;/div&gt;&lt;/div&gt;
+  &lt;button class=&quot;btn btn-primary&quot; type=&quot;submit&quot;&gt;Opublikuj&lt;/button&gt;
+&lt;/form&gt;
+</code></pre>
+<p><b>Pułapki:</b> etykieta zawsze widoczna nad polem (<code>.field label</code>); wymagane = <code>required</code> + <code>&lt;span class=&quot;req&quot;&gt;*&lt;/span&gt;</code>; błąd = <code>.field.is-error</code> + <code>.field-error</code> + <code>aria-invalid</code> + <code>aria-describedby</code> (§6.13); po wysłaniu potwierdzenie <code>ppToast({status:&#x27;success&#x27;, …})</code>; przycisk wysyłki zablokowany tylko z powodem (<code>.btn-reason</code>). Przełącznik <code>.switch</code> tylko dla ustawień działających od razu — w formularzu z „Zapisz” użyj checkboxa.</p>
+<h2 id="9-pusty-stan-404-brak-wynikow">9. Pusty stan / 404 / brak wyników</h2>
+<pre class="code" data-lang="html"><code>&lt;div class=&quot;empty&quot;&gt;
+  
+  &lt;h2&gt;Brak wyników&lt;/h2&gt;
+  &lt;p&gt;Spróbuj usunąć część filtrów albo zmienić słowa kluczowe.&lt;/p&gt;
+  &lt;button class=&quot;btn btn-primary&quot; type=&quot;button&quot;&gt;Wyczyść filtry&lt;/button&gt;
+&lt;/div&gt;</code></pre>
+<p>To dobre miejsce na jedyną ilustrację pixel-art na ekranie (głośny element).</p>
+<h2 id="10-panel-uzytkownika-tabela-wlasnych-pozycji">10. Panel użytkownika (tabela własnych pozycji)</h2>
+<p><b>Cel:</b> zarządzanie (status, statystyki, akcje). <b>Głośny element:</b> żaden lub <code>.callout</code> z najważniejszą informacją.</p>
+<p>Struktura: <code>.page-head</code> z przyciskiem głównym („Dodaj ofertę”) → <code>.tabs</code> statusów (Aktywne / Szkice / Wygasłe) → <code>.table-wrap</code> z kolumnami: nazwa (<code>.name</code>), status (<code>.badge</code>), liczby (<code>.num</code>: wyświetlenia, aplikacje), akcje (<code>.btn-secondary</code> lub link) → <code>.pagination</code>.</p>
+<p>Sortowalne kolumny (wiersze w HTML) — przyciski w nagłówkach + skrypt systemu:</p>
+<pre class="code" data-lang="html"><code>&lt;th scope=&quot;col&quot; class=&quot;num&quot;&gt;&lt;button type=&quot;button&quot; class=&quot;sort&quot;&gt;Wyświetlenia&lt;/button&gt;&lt;/th&gt;
+&lt;th scope=&quot;col&quot; class=&quot;num&quot;&gt;&lt;button type=&quot;button&quot; class=&quot;sort&quot;&gt;Wygasa&lt;/button&gt;&lt;/th&gt;
+
+&lt;script src=&quot;./panel-piksel/table-sort.js&quot;&gt;&lt;/script&gt;</code></pre>
+<p>Daty w formacie dd.mm.rrrr i liczby z odstępami są rozpoznawane same; gdy komórka ma dodatkowy tekst (np. „za 2 dni”), podaj <code>data-sort-value</code>.</p>
+<p><b>Pułapki:</b> statusy jako <code>.badge</code> z tekstem (nie sam kolor); akcje w tabeli jako drugorzędne — przycisk główny tylko w nagłówku strony.</p>
+<h2 id="11-wspolne-stany-i-warianty-v1-6">11. Wspólne stany i warianty (v1.6)</h2>
+<ul><li><b>Przycisk powtarzany w każdej pozycji</b> (stopka karty, wiersz tabeli, koszyk): <code>.btn-compact</code> (36 px). Akcja sekcji zostaje 44 px. <code>&lt;div class=&quot;card-foot&quot;&gt;&lt;span&gt;dodano 2 godz. temu&lt;/span&gt;&lt;button class=&quot;btn btn-secondary btn-compact&quot; type=&quot;button&quot; aria-pressed=&quot;false&quot; data-label-on=&quot;Zapisano&quot; data-label-off=&quot;Zapisz&quot;&gt;Zapisz&lt;/button&gt;&lt;/div&gt;</code></li><li><b>Rzadkość / pakiet w karcie, tabeli, koszyku:</b> zawsze <code>&lt;span class=&quot;tier-tag tier-epic&quot;&gt;Epicki&lt;/span&gt;</code> — nie badge z kwadratem.</li><li><b>Zakładki vs przełącznik:</b> <code>role=&quot;tablist&quot;</code>/<code>role=&quot;tab&quot;</code>/<code>aria-selected</code> tylko gdy zmienia się panel treści (okres rankingu, statusy); sortowanie → <code>role=&quot;group&quot;</code> + <code>aria-pressed</code>.</li><li><b>Błąd pola:</b> <code>&lt;div class=&quot;field is-error&quot;&gt;&lt;label for=&quot;x&quot;&gt;…&lt;/label&gt;&lt;input id=&quot;x&quot; aria-invalid=&quot;true&quot; aria-describedby=&quot;x-err&quot;&gt;&lt;p class=&quot;field-error&quot; id=&quot;x-err&quot;&gt;Co poprawić.&lt;/p&gt;&lt;/div&gt;</code></li><li><b>Ładowanie:</b> przycisk <code>.is-loading</code> + <code>aria-disabled=&quot;true&quot;</code> + <code>aria-busy=&quot;true&quot;</code>; lista: wiersze <code>.skel-row</code> z <code>.skel-n</code>, <code>.skel-av</code>, <code>.skel</code> (kontener <code>aria-busy=&quot;true&quot;</code>); błąd wczytania: <code>.load-error</code> z <code>role=&quot;alert&quot;</code> i „Spróbuj ponownie”; błąd w treści: <code>.callout.callout-danger</code>.</li><li><b>Tryb ciemny:</b> <code>&lt;html lang=&quot;pl&quot; data-theme=&quot;dark&quot;&gt;</code> (lub <code>auto</code>). Działa tylko wtedy, gdy style ekranu używają tokenów — żadnych wpisanych <span class="sw" style="--c:#00021C"></span><code>#00021C</code>, <span class="sw" style="--c:#FFFFFF"></span><code>#FFFFFF</code>, <span class="sw" style="--c:#F0EDD8"></span><code>#F0EDD8</code>; ramki <code>var(--border)</code> / <code>var(--line)</code>, cienie <code>var(--shadow-*)</code>, tekst na jasnych wypełnieniach <code>var(--on-light)</code>.</li><li><b>Filtry na telefonie (v1.7):</b> formularz filtrów dostaje <code>id</code> i <code>data-drawer-form</code>; obok sortowania <code>&lt;button class=&quot;btn btn-secondary btn-compact filters-toggle&quot; type=&quot;button&quot; data-dialog-open=&quot;filtry&quot;&gt;&lt;span class=&quot;icon i-filter&quot; aria-hidden=&quot;true&quot;&gt;&lt;/span&gt;Filtry&lt;/button&gt;</code>; na końcu <code>&lt;body&gt;</code>: <code>&lt;dialog class=&quot;drawer&quot; id=&quot;filtry&quot; data-drawer-source=&quot;ID-formularza&quot; aria-labelledby=&quot;filtry-h&quot;&gt;&lt;div class=&quot;modal-head&quot;&gt;&lt;h2 id=&quot;filtry-h&quot;&gt;Filtry&lt;/h2&gt;&lt;button class=&quot;icon-btn&quot; type=&quot;button&quot; data-dialog-close aria-label=&quot;Zamknij filtry&quot;&gt;&lt;span class=&quot;icon i-close&quot; aria-hidden=&quot;true&quot;&gt;&lt;/span&gt;&lt;/button&gt;&lt;/div&gt;&lt;div class=&quot;modal-body&quot; data-drawer-slot&gt;&lt;/div&gt;&lt;/dialog&gt;</code>.</li><li><b>Zwijana nawigacja (v1.7):</b> w <code>.site-header</code> przed <code>&lt;nav&gt;</code>: <code>&lt;button class=&quot;icon-btn is-boxed nav-toggle&quot; type=&quot;button&quot; aria-expanded=&quot;false&quot; aria-controls=&quot;nav&quot; aria-label=&quot;Menu&quot;&gt;&lt;span class=&quot;icon i-menu&quot; aria-hidden=&quot;true&quot;&gt;&lt;/span&gt;&lt;/button&gt;</code> i <code>&lt;nav class=&quot;site-nav&quot; id=&quot;nav&quot; data-collapsible&gt;</code>.</li><li><b>Ikony (v1.7):</b> <code>&lt;span class=&quot;icon i-NAZWA&quot; aria-hidden=&quot;true&quot;&gt;&lt;/span&gt;</code> (kolor tekstu) i <code>&lt;span class=&quot;sprite s-NAZWA&quot; aria-hidden=&quot;true&quot;&gt;&lt;/span&gt;</code> (przedmiot z gry). Lista w <code>examples/ikony.html</code>. Żadnych emoji ani obcych zestawów ikon.</li><li><b>Powiadomienia, okno, menu, podpowiedź:</b> wzory w <code>examples/komponenty.html</code> (sekcje „Statusy i powiadomienia”, „Nakładki”).</li><li><b>Sklep / koszyk (v1.10):</b> koszyk to <code>.panel</code> z wierszami (nazwa + <code>.tier-tag</code>, pod spodem <code>.stepper</code> i cena), <code>.facts</code> z sumą i brakującą kwotą, <code>.progress</code> z odsetkiem posiadanych środków i przycisk zakupu zablokowany z powodem. Nie twórz własnych przycisków −/+ ani pasków — wzór: ekran sklepu S13, design.md §6.23.</li><li><b>Siatka produktów (v1.11):</b> <code>ul</code> z siatką <code>repeat(auto-fill, minmax(210px, 1fr))</code>, w niej <code>.card.card-vertical</code>: <code>.card-art</code> ze sprite’em <code>-xl</code> → <code>h3</code> → <code>.tier-tag</code> → <code>.card-meta</code> → <code>.card-foot</code> z <code>.card-price</code> i <code>.btn-compact</code>. Saldo w nagłówku: <code>.badge.badge-seg</code> ze sprite’em waluty (design.md §6.24) — bez klasy <code>.wallet</code>.</li><li><b>Wyszukiwarka z miastem / kategorią (v1.11):</b> <code>&lt;form class=&quot;search-main has-select&quot; role=&quot;search&quot;&gt;</code> → <code>input</code> → <code>&lt;div class=&quot;select&quot;&gt;&lt;select name=&quot;miasto&quot; aria-label=&quot;Miasto&quot;&gt;…&lt;/select&gt;&lt;/div&gt;</code> → <code>&lt;button type=&quot;submit&quot;&gt;Szukaj&lt;/button&gt;</code>. Jedna lista; więcej filtrów → <code>.panel-filters</code>.</li><li><b>Ranking z krajami (v1.11):</b> <code>&lt;td&gt;&lt;span class=&quot;cc&quot; aria-hidden=&quot;true&quot;&gt;PL&lt;/span&gt;Polska&lt;/td&gt;</code> — nigdy flagi-emoji.</li><li><b>Karta oferty (v1.10):</b> atrybuty „Poziom / Tryb / Dodano” w <code>ul.card-meta</code> pod podtytułem; liczby przy opcjach filtrów w pustym <code>&lt;span class=&quot;opt-n&quot;&gt;&lt;/span&gt;</code> — wypełnia je skrypt; widełki od–do w <code>.range</code>.</li><li><b>Formularz (v1.8):</b> zawsze <code>&lt;form data-validate&gt;</code>; dłuższy niż ~8 pól → kroki (<code>data-wizard</code>, wzór w <code>examples/wzorce.html#formularz</code>).</li><li><b>Panel pracodawcy / tabela własnych pozycji (v1.8):</b> kafelki <code>.stats</code> na górze, tabela <code>data-selectable</code> + <code>.bulk-bar</code>, wykresy <code>figure.chart</code> pod spodem (wzór: <code>examples/wzorce.html#zaznaczanie</code>, <code>#wykresy</code>).</li><li><b>Długie listy do przeglądania (v1.8):</b> <code>data-page-size</code> + <code>.load-more</code> zamiast paginacji.</li><li>Wszystkie warianty i stany w działaniu: <code>examples/komponenty.html</code>, wzorce: <code>examples/wzorce.html</code>.</li></ul></div>
+<footer class="foot">Panel &amp; Piksel 1.11.0 · właściciel: Konrad Kosiorek · źródło prawdy: <code>design.md</code> · strona wygenerowana z repozytorium (<code>tools/build_site.py</code>)</footer>
+</div></main>
+</div>
+<dialog class="modal" id="okno-aplikuj" aria-labelledby="okno-aplikuj-h">
+  <div class="modal-head"><h2 id="okno-aplikuj-h">Aplikuj: Senior Unity Developer</h2><button class="icon-btn" type="button" data-dialog-close aria-label="Zamknij okno"><span class="icon i-close" aria-hidden="true"></span></button></div>
+  <form class="modal-body" id="apply-form" data-validate>
+    <div class="field"><label for="a-mail">E-mail <span class="req" aria-hidden="true">*</span></label><input id="a-mail" type="email" required autocomplete="email"></div>
+    <div class="field" style="margin-top:16px"><label for="a-note">Wiadomość do firmy</label><textarea id="a-note" maxlength="500" data-count="a-note-n"></textarea><p class="field-count" id="a-note-n"></p></div>
+  </form>
+  <div class="modal-foot"><button class="btn btn-secondary" type="button" data-dialog-close>Anuluj</button><button class="btn btn-primary" type="submit" form="apply-form" data-apply>Wyślij aplikację</button></div>
+</dialog>
+<dialog class="drawer" id="filtry-szuflada" data-drawer-source="filtry-demo" aria-labelledby="filtry-szuflada-h">
+  <div class="modal-head"><h2 id="filtry-szuflada-h">Filtry</h2><button class="icon-btn" type="button" data-dialog-close aria-label="Zamknij filtry"><span class="icon i-close" aria-hidden="true"></span></button></div>
+  <div class="modal-body" data-drawer-slot></div>
+</dialog>
+<script src="../assets/panel-piksel/list-controls.js"></script>
+<script src="../assets/panel-piksel/table-sort.js"></script>
+<script src="../assets/panel-piksel/ui-controls.js"></script>
+<script src="../assets/panel-piksel/charts.js"></script>
+<script src="../site.js"></script>
+</body>
+</html>

@@ -1,0 +1,339 @@
+<!doctype html>
+<html lang="pl">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>PikselPraca · Oferty pracy w IT i gamedevie</title>
+  <meta name="description" content="Oferty pracy z widełkami w IT i gamedevie. 4 812 ogłoszeń, 1 236 firm, nowe oferty codziennie.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;600;700;800;900&family=Press+Start+2P&display=swap" rel="stylesheet">
+  <!-- System Panel & Piksel — nie edytuj tych plików -->
+  <link rel="stylesheet" href="./panel-piksel/tokens.css">
+  <link rel="stylesheet" href="./panel-piksel/components.css">
+  <!-- Style tego ekranu: tylko układ i drobne dopasowania, wyłącznie z tokenami var(--…) -->
+  <style id="screen">
+    .site-header .header-cta { margin-left: auto; }
+
+    /* hero */
+    .hero { padding: 56px 0 8px; }
+    .hero .display { max-width: 22ch; }
+    .hero-lead { max-width: 60ch; margin: 16px 0 28px; font-size: 18px; line-height: 28px; color: var(--ink-2); }
+    .hero .search-main { max-width: 760px; }
+    .hero .search-main input { height: 56px; font-size: 17px; }
+    .hero .search-main button { width: 64px; font-size: 16px; }
+    .popular { display: flex; flex-wrap: wrap; align-items: center; gap: 6px; margin: 20px 0 0; font-size: 14px; color: var(--ink-3); }
+    .popular a.chip { text-decoration: none; }
+    .popular a.chip:hover { text-decoration: underline; }
+    .popular a.chip:focus-visible { outline: 3px solid var(--focus); outline-offset: 2px; }
+    .hero .facts { margin-top: 32px; }
+
+    /* sekcje */
+    .section-title p { margin: 4px 0 0; color: var(--ink-2); font-size: 14px; }
+    .section-title .btn { flex: none; }
+    .list a .list-name { min-width: 0; }
+    /* 4 kategorie na landingu: 2×2 zamiast 4 kolumn — pikselowe kwoty potrzebują miejsca, inaczej nazwy ofert są ucięte */
+    .cat-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+
+    /* najnowsze oferty */
+    .offers { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 20px; }
+    .card-head h3 a { color: var(--ink); text-decoration: none; }
+    .card-head h3 a:hover { text-decoration: underline; }
+    .card-head h3 a:focus-visible { outline: 3px solid var(--focus); outline-offset: 2px; }
+    .card-foot .meta { font-size: 13px; color: var(--ink-3); }
+    .offers .btn[aria-pressed="true"] { padding: 4px 14px 0; }
+
+    /* jak to działa */
+    .steps { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 28px; margin: 0; padding: 0; list-style: none; }
+    .step h3 { display: flex; align-items: center; gap: 12px; margin: 0 0 8px; font: 900 18px/28px var(--font-sans); letter-spacing: -.45px; }
+    .step p { margin: 0; color: var(--ink-2); }
+
+    /* pracodawcy */
+    .table .cell-entity .avatar { flex: none; }
+
+    /* pakiety */
+    .tiers { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 20px; align-items: start; }
+    .tier-col { position: relative; display: grid; gap: 14px; }
+    .tier-name .badge { margin-left: 6px; vertical-align: 2px; }
+    .tier-col .list-square { font-size: 14px; color: var(--ink-2); }
+
+    /* CTA */
+    .cta { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 16px; }
+    .cta p { margin: 0; max-width: 60ch; }
+
+    @media (max-width: 1000px) { .tiers { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+    @media (max-width: 900px)  { .offers, .steps, .cat-grid { grid-template-columns: 1fr; } }
+    @media (max-width: 600px) {
+      .hero { padding-top: 32px; }
+      .display { font-size: 32px; line-height: 36px; }
+      .tiers { grid-template-columns: 1fr; }
+      .site-header .header-cta { margin-left: 0; }
+      .section-title { flex-wrap: wrap; }
+    }
+  </style>
+</head>
+<body class="bg-dots">
+  <a class="sr-only" href="#tresc">Przejdź do treści</a>
+
+  <header class="site-header">
+    <div class="container">
+      <a class="logo" href="/">PIKSEL<span>PRACA</span></a>
+      <nav class="site-nav" aria-label="Główna">
+        <a href="/oferty">Oferty</a>
+        <a href="/firmy">Firmy</a>
+        <a href="#ranking">Ranking pracodawców</a>
+        <a href="#pakiety">Dla pracodawców</a>
+      </nav>
+      <a class="btn btn-secondary header-cta" href="/dodaj-oferte">Dodaj ofertę</a>
+    </div>
+  </header>
+
+  <main id="tresc" class="container">
+
+    <!-- HERO — jedyny „głośny” element: wyszukiwarka z kolorowym cieniem -->
+    <section class="hero" aria-labelledby="h-hero">
+      <h1 id="h-hero" class="display">Praca, w której <span class="mark">level up</span> to codzienność</h1>
+      <p class="hero-lead">Oferty z IT i gamedevu od sprawdzonych firm. Każde ogłoszenie pokazuje widełki albo jasno mówi, że ich nie podaje — bez zgadywania.</p>
+      <form class="search-main" role="search" action="/oferty">
+        <label class="sr-only" for="q">Szukaj ofert pracy</label>
+        <input id="q" name="q" type="search" placeholder="Stanowisko, technologia albo firma — np. Unity, React, QA">
+        <button type="submit" aria-label="Szukaj ofert">&gt;</button>
+      </form>
+      <p class="popular">Popularne:
+        <a class="chip" href="/oferty?q=react">React</a>
+        <a class="chip" href="/oferty?q=unity">Unity</a>
+        <a class="chip" href="/oferty?tryb=zdalnie">Zdalnie</a>
+        <a class="chip" href="/oferty?poziom=junior">Junior</a>
+        <a class="chip" href="/oferty?q=qa">QA</a>
+        <a class="chip" href="/oferty?q=pixel+art">Pixel Art</a>
+      </p>
+      <dl class="facts" aria-label="PikselPraca w liczbach">
+        <div><dt>Aktywne oferty</dt><dd class="num">4 812</dd></div>
+        <div><dt>Firmy</dt><dd class="num">1 236</dd></div>
+        <div><dt>Nowe dziś</dt><dd class="num">312</dd></div>
+        <div><dt>Z widełkami</dt><dd class="num">87%</dd></div>
+      </dl>
+    </section>
+
+    <!-- KATEGORIE -->
+    <section class="section" aria-labelledby="h-kat">
+      <div class="section-title">
+        <div><h2 id="h-kat">Kategorie</h2><p>Najlepiej płatne oferty w każdej kategorii.</p></div>
+        <a class="btn btn-secondary" href="/kategorie">Wszystkie kategorie</a>
+      </div>
+      <div class="grid-panels cat-grid">
+        <section class="panel" aria-labelledby="k-front">
+          <header class="panel-head"><h2 id="k-front">Frontend</h2><span class="count">1 128</span></header>
+          <p class="panel-motto">„Piksele, które klikają się same”</p>
+          <ol class="list">
+            <li><a href="/o/101"><span class="list-n">1.</span><span class="avatar" style="--av:var(--avatar-1)" aria-hidden="true">PF</span><span class="list-name">Senior Frontend Developer (React)</span><span class="list-value"><span class="amt-full">28 000 zł</span><span class="amt-short" aria-hidden="true">28 tys.</span></span></a></li>
+            <li><a href="/o/102"><span class="list-n">2.</span><span class="avatar" style="--av:var(--avatar-2)" aria-hidden="true">8B</span><span class="list-name">UI Engineer — design system</span><span class="list-value"><span class="amt-full">24 500 zł</span><span class="amt-short" aria-hidden="true">24,5 tys.</span></span></a></li>
+            <li><a href="/o/103"><span class="list-n">3.</span><span class="avatar" style="--av:var(--avatar-4)" aria-hidden="true">ŁŻ</span><span class="list-name">Mid Vue Developer · Łódź</span><span class="list-value"><span class="amt-full">17 000 zł</span><span class="amt-short" aria-hidden="true">17 tys.</span></span></a></li>
+            <li><a href="/o/104"><span class="list-n">4.</span><span class="avatar" style="--av:var(--avatar-5)" aria-hidden="true">TS</span><span class="list-name">TypeScript Developer · zdalnie</span><span class="list-value"><span class="amt-full">21 000 zł</span><span class="amt-short" aria-hidden="true">21 tys.</span></span></a></li>
+            <li><a href="/o/105"><span class="list-n">5.</span><span class="avatar" style="--av:var(--avatar-3)" aria-hidden="true">KQ</span><span class="list-name">Junior Frontend Developer</span><span class="list-value" aria-label="brak widełek">—</span></a></li>
+          </ol>
+          <a class="panel-more" href="/kategoria/frontend">Zobacz wszystkie</a>
+        </section>
+        <section class="panel" aria-labelledby="k-back">
+          <header class="panel-head"><h2 id="k-back">Backend</h2><span class="count">964</span></header>
+          <p class="panel-motto">„Serwery, które nie padają w piątek”</p>
+          <ol class="list">
+            <li><a href="/o/201"><span class="list-n">1.</span><span class="avatar" style="--av:var(--avatar-6)" aria-hidden="true">SP</span><span class="list-name">Senior Go Developer — matchmaking</span><span class="list-value"><span class="amt-full">30 000 zł</span><span class="amt-short" aria-hidden="true">30 tys.</span></span></a></li>
+            <li><a href="/o/202"><span class="list-n">2.</span><span class="avatar" style="--av:var(--avatar-2)" aria-hidden="true">CH</span><span class="list-name">Java Developer · Kraków</span><span class="list-value"><span class="amt-full">22 000 zł</span><span class="amt-short" aria-hidden="true">22 tys.</span></span></a></li>
+            <li><a href="/o/203"><span class="list-n">3.</span><span class="avatar" style="--av:var(--avatar-1)" aria-hidden="true">PY</span><span class="list-name">Python Developer (Django)</span><span class="list-value"><span class="amt-full">19 500 zł</span><span class="amt-short" aria-hidden="true">19,5 tys.</span></span></a></li>
+            <li><a href="/o/204"><span class="list-n">4.</span><span class="avatar" style="--av:var(--avatar-4)" aria-hidden="true">DO</span><span class="list-name">DevOps Engineer (Kubernetes)</span><span class="list-value"><span class="amt-full">25 000 zł</span><span class="amt-short" aria-hidden="true">25 tys.</span></span></a></li>
+            <li><a href="/o/205"><span class="list-n">5.</span><span class="avatar" style="--av:var(--avatar-3)" aria-hidden="true">NB</span><span class="list-name">Node.js Developer · Gdańsk</span><span class="list-value"><span class="amt-full">18 000 zł</span><span class="amt-short" aria-hidden="true">18 tys.</span></span></a></li>
+          </ol>
+          <a class="panel-more" href="/kategoria/backend">Zobacz wszystkie</a>
+        </section>
+        <section class="panel" aria-labelledby="k-game">
+          <header class="panel-head"><h2 id="k-game">Gamedev</h2><span class="count">612</span></header>
+          <p class="panel-motto">„Bo ktoś te gry musi zrobić”</p>
+          <ol class="list">
+            <li><a href="/o/301"><span class="list-n">1.</span><span class="avatar" style="--av:var(--avatar-3)" aria-hidden="true">SJ</span><span class="list-name">Senior Unity Developer · Wrocław</span><span class="list-value"><span class="amt-full">28 000 zł</span><span class="amt-short" aria-hidden="true">28 tys.</span></span></a></li>
+            <li><a href="/o/302"><span class="list-n">2.</span><span class="avatar" style="--av:var(--avatar-1)" aria-hidden="true">PF</span><span class="list-name">Gameplay Programmer (C++)</span><span class="list-value"><span class="amt-full">26 000 zł</span><span class="amt-short" aria-hidden="true">26 tys.</span></span></a></li>
+            <li><a href="/o/303"><span class="list-n">3.</span><span class="avatar" style="--av:var(--avatar-6)" aria-hidden="true">DK</span><span class="list-name">Game Designer — ekonomia gry</span><span class="list-value"><span class="amt-full">16 500 zł</span><span class="amt-short" aria-hidden="true">16,5 tys.</span></span></a></li>
+            <li><a href="/o/304"><span class="list-n">4.</span><span class="avatar" style="--av:var(--avatar-2)" aria-hidden="true">ZK</span><span class="list-name">Technical Artist (shadery)</span><span class="list-value"><span class="amt-full">18 500 zł</span><span class="amt-short" aria-hidden="true">18,5 tys.</span></span></a></li>
+            <li><a href="/o/305"><span class="list-n">5.</span><span class="avatar" style="--av:var(--avatar-5)" aria-hidden="true">QA</span><span class="list-name">QA Tester — gry mobilne</span><span class="list-value"><span class="amt-full">9 000 zł</span><span class="amt-short" aria-hidden="true">9 tys.</span></span></a></li>
+          </ol>
+          <a class="panel-more" href="/kategoria/gamedev">Zobacz wszystkie</a>
+        </section>
+        <section class="panel" aria-labelledby="k-design">
+          <header class="panel-head"><h2 id="k-design">Design i UX</h2><span class="count">438</span></header>
+          <p class="panel-motto">„Każdy piksel na swoim miejscu”</p>
+          <ol class="list">
+            <li><a href="/o/401"><span class="list-n">1.</span><span class="avatar" style="--av:var(--avatar-4)" aria-hidden="true">KL</span><span class="list-name">Lead Product Designer</span><span class="list-value"><span class="amt-full">27 000 zł</span><span class="amt-short" aria-hidden="true">27 tys.</span></span></a></li>
+            <li><a href="/o/402"><span class="list-n">2.</span><span class="avatar" style="--av:var(--avatar-1)" aria-hidden="true">PF</span><span class="list-name">UX Researcher · zdalnie</span><span class="list-value"><span class="amt-full">17 500 zł</span><span class="amt-short" aria-hidden="true">17,5 tys.</span></span></a></li>
+            <li><a href="/o/403"><span class="list-n">3.</span><span class="avatar" style="--av:var(--avatar-6)" aria-hidden="true">PA</span><span class="list-name">Pixel Artist (2D, animacja)</span><span class="list-value"><span class="amt-full">13 000 zł</span><span class="amt-short" aria-hidden="true">13 tys.</span></span></a></li>
+            <li><a href="/o/404"><span class="list-n">4.</span><span class="avatar" style="--av:var(--avatar-2)" aria-hidden="true">BR</span><span class="list-name">UI Designer — aplikacje bankowe</span><span class="list-value"><span class="amt-full">15 000 zł</span><span class="amt-short" aria-hidden="true">15 tys.</span></span></a></li>
+            <li><a href="/o/405"><span class="list-n">5.</span><span class="avatar" style="--av:var(--avatar-3)" aria-hidden="true">WS</span><span class="list-name">Junior Graphic Designer</span><span class="list-value" aria-label="brak widełek">—</span></a></li>
+          </ol>
+          <a class="panel-more" href="/kategoria/design">Zobacz wszystkie</a>
+        </section>
+      </div>
+    </section>
+
+    <!-- NAJNOWSZE OFERTY — działające sortowanie i „Zapisz” (list-controls.js) -->
+    <section class="section" aria-labelledby="h-nowe">
+      <div class="section-title">
+        <div><h2 id="h-nowe">Najnowsze oferty</h2><p>Ostatnie <span data-count-for="nowe" data-count-forms="ogłoszenie|ogłoszenia|ogłoszeń">6 ogłoszeń</span> z dziś i wczoraj.</p></div>
+        <div class="tabs" role="group" aria-label="Sortuj najnowsze oferty" data-sort-for="nowe">
+          <button type="button" aria-pressed="true" data-sort-key="date" data-sort-dir="desc">Najnowsze</button>
+          <button type="button" aria-pressed="false" data-sort-key="salary" data-sort-dir="desc">Najwyższe widełki</button>
+        </div>
+      </div>
+      <div class="offers" data-list="nowe">
+        <article class="card" data-item data-sort-date="2400" data-sort-salary="27000">
+          <span class="avatar avatar-xl" style="--av:var(--avatar-1)" aria-hidden="true">PF</span>
+          <div class="card-body">
+            <div class="card-head"><h3><a href="/o/501">Senior Gameplay Programmer (Unity)</a></h3><span class="badge badge-new">Nowa</span></div>
+            <p class="card-sub">Pixel Forge Studio · Kraków / zdalnie</p>
+            <p class="amount">20 000–27 000 <small>zł netto B2B</small></p>
+            <div class="chips"><span class="chip">Unity</span><span class="chip">C#</span><span class="chip">DOTS</span><span class="chip-more" aria-label="i 2 więcej">+2</span></div>
+            <div class="card-foot"><span class="meta">dodano 12 min temu</span><button class="btn btn-secondary btn-compact" type="button" aria-pressed="false" data-label-on="Zapisano" data-label-off="Zapisz">Zapisz</button></div>
+          </div>
+        </article>
+        <article class="card" data-item data-sort-date="2390" data-sort-salary="24000">
+          <span class="avatar avatar-xl" style="--av:var(--avatar-2)" aria-hidden="true">8B</span>
+          <div class="card-body">
+            <div class="card-head"><h3><a href="/o/502">Frontend Developer — panel analityczny dla graczy e-sportowych</a></h3></div>
+            <p class="card-sub">8-Bit Labs · Warszawa / hybrydowo</p>
+            <p class="amount">18 000–24 000 <small>zł netto B2B</small></p>
+            <div class="chips"><span class="chip">React</span><span class="chip">TypeScript</span><span class="chip">D3</span></div>
+            <div class="card-foot"><span class="meta">dodano 1 godz. temu</span><button class="btn btn-secondary btn-compact" type="button" aria-pressed="false" data-label-on="Zapisano" data-label-off="Zapisz">Zapisz</button></div>
+          </div>
+        </article>
+        <article class="card" data-item data-sort-date="2380">
+          <span class="avatar avatar-xl" style="--av:var(--avatar-3)" aria-hidden="true">KQ</span>
+          <div class="card-body">
+            <div class="card-head"><h3><a href="/o/503">Junior QA Tester — gry mobilne</a></h3></div>
+            <p class="card-sub">Krakowski Quest · Kraków / stacjonarnie</p>
+            <p class="amount is-empty">Widełki nie podane</p>
+            <div class="chips"><span class="chip">Android</span><span class="chip">iOS</span><span class="chip">Jira</span></div>
+            <div class="card-foot"><span class="meta">dodano 3 godz. temu</span><button class="btn btn-secondary btn-compact" type="button" aria-pressed="false" data-label-on="Zapisano" data-label-off="Zapisz">Zapisz</button></div>
+          </div>
+        </article>
+        <article class="card" data-item data-sort-date="2370" data-sort-salary="30000">
+          <span class="avatar avatar-xl" style="--av:var(--avatar-6)" aria-hidden="true">SP</span>
+          <div class="card-body">
+            <div class="card-head"><h3><a href="/o/504">Senior Go Developer — serwery gier sieciowych</a></h3></div>
+            <p class="card-sub">Smocza Pieczara · Wrocław / zdalnie</p>
+            <p class="amount">24 000–30 000 <small>zł netto B2B</small></p>
+            <div class="chips"><span class="chip">Go</span><span class="chip">Kubernetes</span><span class="chip">gRPC</span><span class="chip-more" aria-label="i 1 więcej">+1</span></div>
+            <div class="card-foot"><span class="meta">dodano 5 godz. temu</span><button class="btn btn-secondary btn-compact" type="button" aria-pressed="false" data-label-on="Zapisano" data-label-off="Zapisz">Zapisz</button></div>
+          </div>
+        </article>
+        <article class="card" data-item data-sort-date="2360" data-sort-salary="13000">
+          <span class="avatar avatar-xl" style="--av:var(--avatar-4)" aria-hidden="true">ŁŻ</span>
+          <div class="card-body">
+            <div class="card-head"><h3><a href="/o/505">Pixel Artist — animacja postaci 2D</a></h3></div>
+            <p class="card-sub">Łódzkie Żetony · Łódź / zdalnie</p>
+            <p class="amount">9 500–13 000 <small>zł brutto UoP</small></p>
+            <div class="chips"><span class="chip">Aseprite</span><span class="chip">Animacja</span><span class="chip">Spine</span></div>
+            <div class="card-foot"><span class="meta">dodano wczoraj</span><button class="btn btn-secondary btn-compact" type="button" aria-pressed="false" data-label-on="Zapisano" data-label-off="Zapisz">Zapisz</button></div>
+          </div>
+        </article>
+        <article class="card" data-item data-sort-date="2350">
+          <span class="avatar avatar-xl" style="--av:var(--avatar-5)" aria-hidden="true">GW</span>
+          <div class="card-body">
+            <div class="card-head"><h3><a href="/o/506">Unity Developer — narzędzia edytora poziomów</a></h3></div>
+            <p class="card-sub">Gdańska Wyspa Interactive · Gdańsk / hybrydowo</p>
+            <p class="amount is-empty">Widełki nie podane</p>
+            <div class="chips"><span class="chip">Unity</span><span class="chip">C#</span><span class="chip">Odin</span></div>
+            <div class="card-foot"><span class="meta">dodano wczoraj</span><button class="btn btn-secondary btn-compact" type="button" aria-pressed="false" data-label-on="Zapisano" data-label-off="Zapisz">Zapisz</button></div>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <!-- JAK TO DZIAŁA -->
+    <section class="section" aria-labelledby="h-jak">
+      <div class="section-title"><h2 id="h-jak">Jak to działa</h2></div>
+      <ol class="steps">
+        <li class="panel step">
+          <h3><span class="count" aria-hidden="true">1</span> Szukaj z widełkami</h3>
+          <p>Filtrujesz po technologii, trybie pracy i kwocie. 87% ofert ma widełki — resztę oznaczamy wprost.</p>
+        </li>
+        <li class="panel step">
+          <h3><span class="count" aria-hidden="true">2</span> Aplikuj jednym CV</h3>
+          <p>Raz uzupełniasz profil i CV, potem aplikujesz jednym kliknięciem — bez przepisywania danych.</p>
+        </li>
+        <li class="panel step">
+          <h3><span class="count" aria-hidden="true">3</span> Dostań odpowiedź</h3>
+          <p>Firmy z rankingu odpowiadają średnio w 48 godzin. Status aplikacji widzisz na bieżąco.</p>
+        </li>
+      </ol>
+    </section>
+
+    <!-- RANKING PRACODAWCÓW — sortowalna tabela (table-sort.js) -->
+    <section class="section" id="ranking" aria-labelledby="h-ranking">
+      <div class="section-title">
+        <div><h2 id="h-ranking">Top pracodawcy tygodnia</h2><p>Kto najszybciej odpowiada kandydatom. Kliknij nagłówek, żeby posortować.</p></div>
+        <a class="btn btn-secondary" href="/ranking">Pełny ranking</a>
+      </div>
+      <div class="table-wrap">
+        <table class="table">
+          <caption class="sr-only">Top 5 pracodawców tygodnia</caption>
+          <thead>
+            <tr>
+              <th scope="col">#</th>
+              <th scope="col" aria-sort="none"><button type="button" class="sort">Firma</button></th>
+              <th scope="col" class="num" aria-sort="none"><button type="button" class="sort">Oferty</button></th>
+              <th scope="col" class="num" aria-sort="descending"><button type="button" class="sort">Odpowiedź w 48 h</button></th>
+              <th scope="col" class="num" aria-sort="none"><button type="button" class="sort">Śr. widełki</button></th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr><td><span class="rank rank-1">1</span></td><td class="name"><span class="cell-entity"><span class="avatar" style="--av:var(--avatar-1)" aria-hidden="true">PF</span><a href="/f/pixel-forge">Pixel Forge Studio</a></span></td><td class="num">24</td><td class="num">98%</td><td class="num">23 500 zł</td></tr>
+            <tr><td><span class="rank rank-2">2</span></td><td class="name"><span class="cell-entity"><span class="avatar" style="--av:var(--avatar-2)" aria-hidden="true">8B</span><a href="/f/8-bit-labs">8-Bit Labs</a></span></td><td class="num">17</td><td class="num">95%</td><td class="num">21 000 zł</td></tr>
+            <tr><td><span class="rank rank-3">3</span></td><td class="name"><span class="cell-entity"><span class="avatar" style="--av:var(--avatar-6)" aria-hidden="true">SP</span><a href="/f/smocza-pieczara">Smocza Pieczara</a></span></td><td class="num">11</td><td class="num">93%</td><td class="num">26 000 zł</td></tr>
+            <tr><td><span class="rank">4</span></td><td class="name"><span class="cell-entity"><span class="avatar" style="--av:var(--avatar-4)" aria-hidden="true">ŁŻ</span><a href="/f/lodzkie-zetony">Łódzkie Żetony</a></span></td><td class="num">8</td><td class="num">91%</td><td class="num">14 500 zł</td></tr>
+            <tr><td><span class="rank">5</span></td><td class="name"><span class="cell-entity"><span class="avatar" style="--av:var(--avatar-3)" aria-hidden="true">KQ</span><a href="/f/krakowski-quest">Krakowski Quest</a></span></td><td class="num">13</td><td class="num">88%</td><td class="num">—</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <!-- PAKIETY DLA PRACODAWCÓW -->
+    <section class="section" id="pakiety" aria-labelledby="h-pakiety">
+      <div class="section-title"><div><h2 id="h-pakiety">Dla pracodawców</h2><p>Ogłoszenie z widełkami w 5 minut. Ceny netto za 30 dni.</p></div></div>
+      <div class="tiers">
+        <div class="tier-col">
+          <div class="tier tier-common"><span class="tier-name">Zwykły</span><span class="tier-price">0 zł</span><span class="tier-desc">Standardowe ogłoszenie</span></div>
+          <ul class="list-square"><li>Publikacja na 30 dni</li><li>Widoczność w wynikach</li></ul>
+          <a class="btn btn-secondary btn-full" href="/dodaj-oferte?pakiet=zwykly">Wybierz Zwykły</a>
+        </div>
+        <div class="tier-col">
+          <div class="tier tier-rare"><span class="tier-name">Rzadki</span><span class="tier-price">249 zł</span><span class="tier-desc">Badge „Nowa” 7 dni</span></div>
+          <ul class="list-square"><li>Wszystko ze Zwykłego</li><li>Odświeżenie co 7 dni</li></ul>
+          <a class="btn btn-secondary btn-full" href="/dodaj-oferte?pakiet=rzadki">Wybierz Rzadki</a>
+        </div>
+        <div class="tier-col">
+          <div class="tier tier-epic"><span class="tier-name">Epicki <span class="badge badge-new badge-sm">Polecany</span></span><span class="tier-price">499 zł</span><span class="tier-desc">Góra listy kategorii 14 dni</span></div>
+          <ul class="list-square"><li>Wszystko z Rzadkiego</li><li>Panel na stronie głównej</li><li>Statystyki wyświetleń</li></ul>
+          <a class="btn btn-primary btn-full" href="/dodaj-oferte?pakiet=epicki">Wybierz Epicki</a>
+        </div>
+        <div class="tier-col">
+          <div class="tier tier-legendary"><span class="tier-name">Legendarny</span><span class="tier-price">899 zł</span><span class="tier-desc">Ranking + wyróżnienie 30 dni</span></div>
+          <ul class="list-square"><li>Wszystko z Epickiego</li><li>Miejsce w rankingu tygodnia</li><li>Opiekun konta</li></ul>
+          <a class="btn btn-secondary btn-full" href="/dodaj-oferte?pakiet=legendarny">Wybierz Legendarny</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- CTA -->
+    <section class="section" aria-labelledby="h-cta">
+      <div class="callout cta">
+        <p><strong id="h-cta">Szukasz pracy?</strong> Załóż darmowe konto i dostawaj nowe oferty z widełkami prosto na maila — maksymalnie raz dziennie.</p>
+        <a class="btn btn-primary" href="/rejestracja">Załóż konto</a>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container">© 2026 PikselPraca · <a href="/regulamin">Regulamin</a> · <a href="/prywatnosc">Prywatność</a> · <a href="/kontakt">Kontakt</a></div>
+  </footer>
+  <script src="./panel-piksel/list-controls.js"></script>
+  <script src="./panel-piksel/table-sort.js"></script>
+</body>
+</html>

@@ -1,0 +1,39 @@
+{
+  "expectations": [
+    {
+      "text": "Korzysta z tokens.css i components.css",
+      "passed": true,
+      "evidence": "levelup-jobs-wyniki.html"
+    },
+    {
+      "text": "check_screen bez ERROR",
+      "passed": true,
+      "evidence": "[]"
+    },
+    {
+      "text": "Bez przewijania w poziomie (1280/390) i 0 martwych kontrolek",
+      "passed": true,
+      "evidence": "szer. ['1280', '390'], martwe []"
+    },
+    {
+      "text": "Bez wycofywanych wzorców",
+      "passed": true,
+      "evidence": "[]"
+    },
+    {
+      "text": "Sortowanie = grupa przycisków aria-pressed",
+      "passed": true,
+      "evidence": "<div class=\"tabs\" role=\"group\" aria-label=\"Sortuj oferty\" data-sort-for=\"oferty\">"
+    },
+    {
+      "text": "Liczby przy opcjach liczone skryptem (puste .opt-n) albo brak liczb",
+      "passed": true,
+      "evidence": ".opt-n: 13, wpisane na sztywno: 0"
+    },
+    {
+      "text": "Wiersz meta karty jako .card-meta (jeśli są atrybuty)",
+      "passed": true,
+      "evidence": "card-meta: True"
+    }
+  ]
+}

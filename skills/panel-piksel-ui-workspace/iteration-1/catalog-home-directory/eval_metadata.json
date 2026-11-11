@@ -1,0 +1,9 @@
+{
+  "eval_name": "catalog-home-directory",
+  "prompt": "Zrób stronę główną katalogu darmowych narzędzi i zasobów dla pixel artystów „PixelHub” w stylu Panel & Piksel: wyszukiwarka, siatka paneli kategorii (Edytory, Palety, Fonty, Tutoriale, Tilesety, Animacja, Społeczności, Sklepy z assetami) z licznikami i 5–7 pozycjami każdy, jeden panel wyróżniony ze świeżo dodanymi. Jeden plik HTML.",
+  "assertions": [
+    "Plik HTML korzysta z tokens.css i components.css systemu (linkiem obok pliku albo wklejonych) i nie zmienia ich wartości.",
+    "check_screen.py nie zgłasza żadnego ERROR dla ekranu.",
+    "Strona nie przewija się poziomo w szerokości 390 px ani 1280 px."
+  ]
+}

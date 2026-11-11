@@ -1,0 +1,35 @@
+{
+  "expectations": [
+    {
+      "text": "Plik HTML korzysta z tokens.css i components.css systemu (linkiem obok pliku albo wklejonych) i nie zmienia ich wartości.",
+      "passed": true,
+      "evidence": "tokens.css: wklejony do <style>; components.css: wklejony do <style>"
+    },
+    {
+      "text": "check_screen.py nie zgłasza żadnego ERROR dla ekranu.",
+      "passed": true,
+      "evidence": "0 ERROR, 0 WARN (pełny raport: check_screen.txt)"
+    },
+    {
+      "text": "Ekran zawiera co najmniej 6 elementów .card z ofertami i panel .panel-filters z co najmniej jednym checkboxem.",
+      "passed": true,
+      "evidence": "8 kart, 1 panel filtrów, 13 checkboxów"
+    },
+    {
+      "text": "Kwoty ofert są złożone fontem pikselowym (klasa .amount lub var(--font-pixel)), a co najmniej jedna oferta ma oznaczony brak widełek.",
+      "passed": true,
+      "evidence": "5 kwot .amount w Press Start 2P, oznaczenia braku widełek: 4"
+    },
+    {
+      "text": "Strona nie przewija się poziomo w szerokości 390 px ani 1280 px.",
+      "passed": true,
+      "evidence": "scrollWidth 1280→1280, 390→390"
+    }
+  ],
+  "summary": {
+    "passed": 5,
+    "failed": 0,
+    "total": 5,
+    "pass_rate": 1
+  }
+}

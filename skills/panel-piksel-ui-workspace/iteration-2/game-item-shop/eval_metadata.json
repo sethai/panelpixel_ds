@@ -1,0 +1,14 @@
+{
+  "eval_name": "game-item-shop",
+  "prompt": "zbuduj sklep z przedmiotami do gry jako marketplace w stylu naszego design systemu panel & piksel: siatka produktow (miecze, mikstury, skorki itd. z cenami w monetach), oznaczenie rzadkosci przedmiotow (legendarny/epicki/rzadki/zwykly), boczny koszyk z podsumowaniem i przyciskiem kupna, ktory jest zablokowany bo brakuje monet. html w jednym pliku",
+  "assertions": [
+    "Plik HTML korzysta z tokens.css i components.css systemu (linkiem obok pliku albo wklejonych) i nie zmienia ich wartości.",
+    "check_screen.py nie zgłasza żadnego ERROR dla ekranu.",
+    "Rzadkość przedmiotów jest pokazana nazwą (Legendarny/Epicki/Rzadki/Zwykły) razem z kolorem tieru, nie samym kolorem.",
+    "Przycisk kupna ma aria-disabled=\"true\", ikonę .lock i aria-describedby wskazujący widoczny powód (np. brak monet).",
+    "Ceny przedmiotów są złożone fontem pikselowym.",
+    "Strona nie przewija się poziomo w szerokości 390 px ani 1280 px.",
+    "Rzadkość przedmiotów zapisana jako .tier-tag (nie badge z kolorowym kwadratem ani inny własny wzór).",
+    "Koszyk składa się z klocków systemu: licznik −/+ jako .stepper (min. 36 px), suma w .facts lub prostym zestawieniu z tokenów, pasek monet jako .progress (jeśli jest), zakup zablokowany z .lock i .btn-reason."
+  ]
+}

@@ -1,0 +1,44 @@
+/* Stary design KodRekrut — „nowoczesny SaaS”: Inter, gradienty, zaokrąglenia, rozmyte cienie */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap');
+:root { --brand: #6d28d9; --brand2: #db2777; --bg: #f8fafc; --text: #0f172a; --muted: #64748b; }
+* { box-sizing: border-box; }
+body { margin: 0; font-family: Inter, sans-serif; background: var(--bg); color: var(--text); }
+a { color: var(--brand); }
+.nav { display: flex; align-items: center; gap: 24px; padding: 16px 32px; background: #fff; box-shadow: 0 4px 20px rgba(15, 23, 42, .08); }
+.brand { font-weight: 800; font-size: 20px; text-decoration: none; color: var(--text); }
+.nav nav { display: flex; gap: 16px; margin-right: auto; }
+.nav nav a { color: var(--muted); text-decoration: none; }
+.nav nav a.active { color: var(--brand); font-weight: 600; }
+.btn { display: inline-block; padding: 10px 18px; border: 0; border-radius: 999px; font-weight: 600; cursor: pointer; text-decoration: none; }
+.btn-gradient { color: #fff; background: linear-gradient(90deg, var(--brand), var(--brand2)); box-shadow: 0 8px 24px rgba(109, 40, 217, .35); }
+.hero { padding: 56px 32px; text-align: center; background: radial-gradient(circle at top, #ede9fe, transparent 60%); }
+.hero h1 { font-size: 40px; margin: 0 0 8px; }
+.search { display: flex; gap: 8px; max-width: 720px; margin: 24px auto 0; }
+.search input, .search select { flex: 1; padding: 12px 16px; border: 1px solid #e2e8f0; border-radius: 12px; }
+.layout { display: grid; grid-template-columns: 240px 1fr; gap: 32px; max-width: 1100px; margin: 32px auto; padding: 0 32px; }
+.filters { padding: 20px; background: #fff; border-radius: 16px; box-shadow: 0 10px 30px rgba(15, 23, 42, .06); align-self: start; }
+fieldset { border: 0; padding: 0; margin: 0 0 16px; }
+legend { font-weight: 600; margin-bottom: 8px; }
+.filters label { display: block; margin: 6px 0; }
+.list-head { display: flex; justify-content: space-between; align-items: baseline; }
+.muted { color: var(--muted); }
+.jobs { list-style: none; margin: 0; padding: 0; display: grid; gap: 16px; }
+.job { display: flex; gap: 16px; padding: 20px; background: #fff; border-radius: 16px; box-shadow: 0 10px 30px rgba(15, 23, 42, .06); }
+.job.featured { outline: 2px solid var(--brand2); }
+.logo-circle { width: 48px; height: 48px; border-radius: 50%; display: grid; place-items: center; color: #fff; background: var(--brand); font-weight: 800; }
+.job-body { flex: 1; }
+.job h3 { margin: 0; font-size: 18px; }
+.job h3 a { color: var(--text); text-decoration: none; }
+.company { margin: 4px 0; color: var(--muted); }
+.salary { font-weight: 600; }
+.tags span { display: inline-block; margin: 4px 4px 0 0; padding: 4px 10px; border-radius: 999px; background: #f1f5f9; font-size: 13px; }
+.pill { font-size: 12px; padding: 2px 8px; border-radius: 999px; background: #fce7f3; color: var(--brand2); }
+.save { width: 40px; height: 40px; border-radius: 50%; border: 1px solid #e2e8f0; background: #fff; font-size: 18px; cursor: pointer; }
+.pager { display: flex; gap: 8px; margin-top: 24px; }
+.pager a { padding: 8px 12px; border-radius: 8px; background: #fff; text-decoration: none; }
+.pager a[aria-current] { background: var(--brand); color: #fff; }
+.newsletter { max-width: 720px; margin: 48px auto; padding: 32px; text-align: center; background: linear-gradient(135deg, #ede9fe, #fce7f3); border-radius: 24px; }
+.newsletter form { display: grid; gap: 12px; justify-items: center; }
+.newsletter input[type=email] { width: 100%; max-width: 360px; padding: 12px 16px; border-radius: 12px; border: 1px solid #e2e8f0; }
+.footer { padding: 24px 32px; text-align: center; color: var(--muted); }
+@media (max-width: 760px) { .layout { grid-template-columns: 1fr; } .search { flex-direction: column; } .nav { flex-wrap: wrap; } }

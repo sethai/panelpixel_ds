@@ -1,0 +1,66 @@
+{
+  "390": {
+    "overflow": false,
+    "scrollWidth": 390,
+    "cards": 1,
+    "filters": 0,
+    "checkboxes": 0,
+    "amountPixel": 1,
+    "emptyAmount": 0,
+    "podiums": 0,
+    "podiumOrder": [],
+    "th": 0,
+    "rows": 0,
+    "numCells": 0,
+    "deltas": 0,
+    "tierNames": 0,
+    "tierClasses": 0,
+    "lock": [
+      {
+        "lock": true,
+        "desc": "apply-reason",
+        "descVisible": true,
+        "text": "Aplikuj teraz"
+      }
+    ],
+    "pixelNums": 9,
+    "featured": 1,
+    "h1": 1,
+    "fonts": [
+      true,
+      true
+    ]
+  },
+  "1280": {
+    "overflow": false,
+    "scrollWidth": 1280,
+    "cards": 1,
+    "filters": 0,
+    "checkboxes": 0,
+    "amountPixel": 1,
+    "emptyAmount": 0,
+    "podiums": 0,
+    "podiumOrder": [],
+    "th": 0,
+    "rows": 0,
+    "numCells": 0,
+    "deltas": 0,
+    "tierNames": 0,
+    "tierClasses": 0,
+    "lock": [
+      {
+        "lock": true,
+        "desc": "apply-reason",
+        "descVisible": true,
+        "text": "Aplikuj teraz"
+      }
+    ],
+    "pixelNums": 9,
+    "featured": 1,
+    "h1": 1,
+    "fonts": [
+      true,
+      true
+    ]
+  }
+}

@@ -1,0 +1,4 @@
+schema_version: "1.1"
+name: migrate-existing-page
+expected_outcome: |
+  Strona KodRekrut przeniesiona na Panel & Piksel: używa plików systemu (tokens.css, components.css), stary motyw (gradienty, zaokrąglenia, rozmyte cienie, Inter) nie przebija się; zachowane wszystkie linki, teksty ofert, kwoty, pola formularzy (q, miasto, poziom, tryb, email, zgoda), akcje formularzy (/szukaj, /newsletter) i działające zapisywanie ofert (data-id, localStorage); wynik przechodzi check_screen.py i render_check.py; odpowiedź zawiera mapę stary element → komponent.

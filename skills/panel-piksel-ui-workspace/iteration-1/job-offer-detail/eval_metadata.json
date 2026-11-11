@@ -1,0 +1,9 @@
+{
+  "eval_name": "job-offer-detail",
+  "prompt": "W stylu Panel & Piksel przygotuj ekran szczegółów oferty pracy „Senior Unity Developer” w firmie „Smocza Jama Studio” (Wrocław / hybrydowo, 22 000–28 000 zł netto B2B): fakty oferty, opis projektu, wymagania, benefity, panel boczny z kwotą i przyciskami Aplikuj / Zapisz oraz podobne oferty. Kandydat nie ma CV, więc Aplikuj ma być zablokowane z powodem. Jeden plik HTML.",
+  "assertions": [
+    "Plik HTML korzysta z tokens.css i components.css systemu (linkiem obok pliku albo wklejonych) i nie zmienia ich wartości.",
+    "check_screen.py nie zgłasza żadnego ERROR dla ekranu.",
+    "Strona nie przewija się poziomo w szerokości 390 px ani 1280 px."
+  ]
+}

@@ -1,0 +1,1385 @@
+<!doctype html>
+<html lang="pl">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Sklep z przedmiotami · PikselBazar</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;600;700;800;900&family=Press+Start+2P&display=swap" rel="stylesheet">
+  <!-- System Panel & Piksel: tokens.css (wklejony bez zmian) -->
+  <style id="pp-tokens">
+/* Panel & Piksel — tokens v1.10 (z design.md §9.1)
+ * Tryb ciemny: <html data-theme="dark"> (opt-in). Automatycznie wg systemu: <html data-theme="auto">. */
+:root {
+  /* kolor — SNES (Jehkoba32) */
+  --paper: #F0EDD8;
+  --paper-dots: rgba(217, 76, 135, .22);
+  --surface: #FFFFFF;
+  --ink: #00021C;
+  --ink-2: #1C284D;
+  --ink-3: #2D5280;
+  --on-ink: #F0EDD8;
+  --action: #17735F;
+  --action-edge: #00021C;
+  --on-action: #FFFFFF;
+  --highlight: #F7C93E;
+  --mint: #96E3C9;
+  --link: #2469B3;
+  --focus: #2469B3;
+  --focus-deco: #0BAFE6;
+  --danger: #D9214F;
+  --featured: #D94C87;
+  --chip: #A3CCD9;
+  --chip-more: #F0BB90;
+  --btn-secondary-edge: #A3CCD9;
+  --line-soft: #A3CCD9;
+  --line: var(--ink);            /* v1.6: kolor ramek (osobno od tekstu) */
+  --shadow-color: var(--ink);    /* v1.6: kolor twardych cieni */
+  --on-light: #00021C;           /* v1.6: tekst na jasnych wypełnieniach (żółty, mięta, złoto…) */
+  --row-hover: #F8F6EC;          /* v1.6: tło wiersza tabeli po najechaniu */
+  --row-selected: #E4ECFF;       /* v1.8: zaznaczony wiersz (z lewą krawędzią --focus) */
+  /* v1.7: statusy (informacja / sukces / ostrzeżenie / błąd) — kolor kafelka ikony i lewej krawędzi + kolor znaku na nim */
+  --status-info: #2469B3;    --on-status-info: #FFFFFF;     /* 5.6:1 */
+  --status-success: #17735F; --on-status-success: #FFFFFF;  /* 5.7:1 */
+  --status-warning: #E45C10; --on-status-warning: #00021C;  /* NES; 5.7:1, krawędź 3.6:1 na bieli */
+  --status-error: var(--danger); --on-status-error: #FFFFFF; /* 4.9:1 */
+  /* v1.10: wykresy — kategorie w stałej kolejności (bez kolorów pakietów i statusów); ten sam zestaw w obu trybach,
+     sprawdzony validate_palette.js (CVD, kontrast, jasność) na #FFFFFF i #1C284D. Jedna seria: --chart-single. */
+  --chart-1: #B36159; --chart-2: #1BA683; --chart-3: #A6216E; --chart-4: #119955;
+  --chart-single: #2D5280;
+  --chart-grid: #E6E2CC; --chart-axis: var(--ink-3);
+  /* v1.7: warstwy */
+  --z-sticky: 10; --z-dropdown: 100; --z-drawer: 200; --z-modal: 300; --z-toast: 400; --z-tooltip: 500;
+  /* v1.7: ruch — skokowy, krótki */
+  --motion-fast: 60ms;   /* przyciski, przełączniki */
+  --motion-base: 120ms;  /* menu, podpowiedzi, dymki */
+  --motion-slow: 200ms;  /* okno, szuflada, powiadomienie */
+  --ease-steps: steps(3, end);
+  /* v1.7: punkty przełamania (do @media trzeba wpisać liczbę — CSS nie przyjmuje tu zmiennych) */
+  --bp-sm: 600px; --bp-md: 900px; --bp-lg: 1200px;
+  --disabled-bg: #BCBCBC;   /* NES */
+  --disabled-ink: #1C284D;
+  --disabled-line: #2D5280;
+  --avatar-1: #17735F; --avatar-2: #2469B3; --avatar-3: #993649;
+  --avatar-4: #732866; --avatar-5: #00021C; --avatar-6: #D9214F;
+
+  /* akcenty NES — tylko ranking i pakiety */
+  --podium: #0000BC;
+  --gold: #F8B800;
+  --silver: #BCBCBC;
+  --bronze: #E45C10;
+  --tier-legendary: #AC7C00;
+  --tier-epic: #6844FC;
+  --tier-rare: #0078F8;
+  --tier-common: #7C7C7C;
+
+  /* typografia */
+  --font-sans: "Archivo", system-ui, sans-serif;
+  --font-pixel: "Press Start 2P", ui-monospace, monospace;
+
+  /* odstępy */
+  --space-1: 4px; --space-2: 8px; --space-3: 12px; --space-4: 16px;
+  --space-6: 24px; --space-8: 32px; --space-12: 48px;
+
+  /* kształt i głębia */
+  --border: 2px solid var(--line);
+  --shadow-sm: 2px 2px 0 var(--shadow-color);
+  --shadow-md: 4px 4px 0 var(--shadow-color);
+  --shadow-lg: 6px 6px 0 var(--shadow-color);
+  --notch: polygon(0 2px, 2px 2px, 2px 0, calc(100% - 2px) 0, calc(100% - 2px) 2px, 100% 2px,
+                   100% calc(100% - 2px), calc(100% - 2px) calc(100% - 2px), calc(100% - 2px) 100%,
+                   2px 100%, 2px calc(100% - 2px), 0 calc(100% - 2px));
+  --btn-h: 44px;
+  --row-h: 32px;
+  --motion: 60ms;
+}
+@media (max-width: 600px) { :root { --row-h: 40px; } }
+@media (prefers-reduced-motion: reduce) { :root { --motion: 0ms; --motion-fast: 0ms; --motion-base: 0ms; --motion-slow: 0ms; } }
+
+/* ---------- tryb ciemny (v1.6) — te same komponenty, inne tokeny ----------
+   Tokeny złożone (--border, --shadow-*) są powtórzone, bo custom properties liczą się tam, gdzie je zadeklarowano. */
+[data-theme="dark"] {
+  --paper: #00021C; --paper-dots: rgba(217, 76, 135, .18);
+  --surface: #1C284D;
+  --ink: #F0EDD8; --ink-2: #A3CCD9; --ink-3: #96E3C9; --on-ink: #00021C;
+  --link: #0BAFE6; --focus: #F7C93E; --focus-deco: #2469B3;
+  --danger: #F27961;
+  --chip: #2D5280; --line-soft: #2D5280; --btn-secondary-edge: #2D5280;
+  --line: #F0EDD8; --shadow-color: #2469B3; --row-hover: #2D5280; --row-selected: #1F3A6B;
+  --avatar-5: #2D5280;
+  --status-info: #0BAFE6; --on-status-info: #00021C;
+  --status-success: #96E3C9; --on-status-success: #00021C;
+  --status-warning: #E45C10; --on-status-warning: #00021C;
+  --status-error: #F27961; --on-status-error: #00021C;
+  --chart-single: #A3CCD9; --chart-grid: #2D5280;
+  --tier-legendary: #F8B800; --tier-epic: #9878F8; --tier-rare: #3CBCFC; --tier-common: #BCBCBC;
+  --border: 2px solid var(--line);
+  --shadow-sm: 2px 2px 0 var(--shadow-color); --shadow-md: 4px 4px 0 var(--shadow-color); --shadow-lg: 6px 6px 0 var(--shadow-color);
+  color-scheme: dark;
+}
+@media (prefers-color-scheme: dark) {
+  [data-theme="auto"] {
+    --paper: #00021C; --paper-dots: rgba(217, 76, 135, .18);
+    --surface: #1C284D;
+    --ink: #F0EDD8; --ink-2: #A3CCD9; --ink-3: #96E3C9; --on-ink: #00021C;
+    --link: #0BAFE6; --focus: #F7C93E; --focus-deco: #2469B3;
+    --danger: #F27961;
+    --chip: #2D5280; --line-soft: #2D5280; --btn-secondary-edge: #2D5280;
+    --line: #F0EDD8; --shadow-color: #2469B3; --row-hover: #2D5280; --row-selected: #1F3A6B;
+    --avatar-5: #2D5280;
+    --status-info: #0BAFE6; --on-status-info: #00021C;
+    --status-success: #96E3C9; --on-status-success: #00021C;
+    --status-warning: #E45C10; --on-status-warning: #00021C;
+    --status-error: #F27961; --on-status-error: #00021C;
+    --chart-single: #A3CCD9; --chart-grid: #2D5280;
+    --tier-legendary: #F8B800; --tier-epic: #9878F8; --tier-rare: #3CBCFC; --tier-common: #BCBCBC;
+    --border: 2px solid var(--line);
+    --shadow-sm: 2px 2px 0 var(--shadow-color); --shadow-md: 4px 4px 0 var(--shadow-color); --shadow-lg: 6px 6px 0 var(--shadow-color);
+    color-scheme: dark;
+  }
+}
+
+</style>
+  <!-- System Panel & Piksel: components.css (wklejony bez zmian) -->
+  <style id="pp-components">
+/* Panel & Piksel — components v1.11 (z design.md §9.2) */
+/* ---------- baza ---------- */
+body { margin: 0; background: var(--paper); color: var(--ink); font: 400 16px/24px var(--font-sans); }
+.bg-dots { background-image: radial-gradient(var(--paper-dots) 1.5px, transparent 1.6px); background-size: 16px 16px; }
+[hidden] { display: none !important; } /* klasy z display:flex/grid nie mogą nadpisać hidden */
+.sr-only { position: absolute; width: 1px; height: 1px; margin: -1px; padding: 0; border: 0; overflow: hidden; clip: rect(0 0 0 0); clip-path: inset(50%); white-space: nowrap; }
+
+/* ---------- przycisk ---------- */
+.btn {
+  display: inline-flex; align-items: center; justify-content: center; gap: 8px;
+  box-sizing: border-box; height: var(--btn-h); padding: 0 18px 4px;
+  font: 700 15px/1 var(--font-sans); white-space: nowrap; vertical-align: middle;
+  border: 0; cursor: pointer; clip-path: var(--notch); text-decoration: none;
+  transition: transform var(--motion), box-shadow var(--motion);
+}
+.btn-primary   { background: var(--action);  color: var(--on-action); box-shadow: inset 0 -4px 0 var(--action-edge), inset 0 0 0 2px var(--line); }
+.btn-secondary { background: var(--surface); color: var(--ink);       box-shadow: inset 0 -4px 0 var(--btn-secondary-edge), inset 0 0 0 2px var(--line); }
+.btn-full { width: 100%; }
+
+.btn:not([aria-disabled="true"]):not(.is-pressed):not(:active):hover { transform: translateY(-2px); padding-bottom: 6px; }
+.btn-primary:not([aria-disabled="true"]):not(.is-pressed):not(:active):hover   { box-shadow: inset 0 -6px 0 var(--action-edge), inset 0 0 0 2px var(--line); }
+.btn-secondary:not([aria-disabled="true"]):not(.is-pressed):not(:active):hover { box-shadow: inset 0 -6px 0 var(--btn-secondary-edge), inset 0 0 0 2px var(--line); }
+
+.btn:active, .btn.is-pressed, .btn[aria-pressed="true"] { padding: 4px 18px 0; transform: none; box-shadow: inset 0 0 0 2px var(--line); }
+
+.btn:focus-visible {
+  outline: none; /* clip-path obcina outline — rysujemy pierścień do środka */
+  box-shadow: inset 0 0 0 2px var(--line), inset 0 0 0 5px var(--focus), inset 0 0 0 7px var(--surface) !important;
+}
+
+.btn:disabled, .btn[aria-disabled="true"],
+.btn[aria-disabled="true"]:active {
+  background: var(--disabled-bg); color: var(--disabled-ink); cursor: not-allowed;
+  padding: 0 18px; transform: none; box-shadow: inset 0 0 0 2px var(--disabled-line);
+}
+.btn-reason { margin: 8px 0 0; font: 600 13px var(--font-sans); color: var(--ink-2); }
+
+/* pikselowa kłódka 8×9, piksel 2 px */
+.lock { position: relative; display: inline-block; flex: none; width: 16px; height: 18px; }
+.lock::before {
+  content: ""; position: absolute; left: 0; top: 0; width: 2px; height: 2px;
+  box-shadow: 4px 0 currentColor, 6px 0 currentColor, 8px 0 currentColor, 10px 0 currentColor,
+    2px 2px currentColor, 12px 2px currentColor, 2px 4px currentColor, 12px 4px currentColor,
+    2px 6px currentColor, 12px 6px currentColor,
+    0 8px currentColor, 2px 8px currentColor, 4px 8px currentColor, 6px 8px currentColor, 8px 8px currentColor, 10px 8px currentColor, 12px 8px currentColor, 14px 8px currentColor,
+    0 10px currentColor, 2px 10px currentColor, 4px 10px currentColor, 6px 10px currentColor, 8px 10px currentColor, 10px 10px currentColor, 12px 10px currentColor, 14px 10px currentColor,
+    0 12px currentColor, 2px 12px currentColor, 4px 12px currentColor, 10px 12px currentColor, 12px 12px currentColor, 14px 12px currentColor,
+    0 14px currentColor, 2px 14px currentColor, 4px 14px currentColor, 10px 14px currentColor, 12px 14px currentColor, 14px 14px currentColor,
+    0 16px currentColor, 2px 16px currentColor, 4px 16px currentColor, 6px 16px currentColor, 8px 16px currentColor, 10px 16px currentColor, 12px 16px currentColor, 14px 16px currentColor;
+}
+
+/* ---------- badge, chip, licznik ---------- */
+.badge { display: inline-flex; align-items: center; padding: 5px 8px; font: 700 12px/1 var(--font-sans); letter-spacing: .3px; text-transform: uppercase; background: var(--surface); border: var(--border); box-shadow: var(--shadow-sm); }
+.badge-new { background: var(--highlight); color: var(--on-light); }
+.badge-sm { font-size: 10px; padding: 3px 6px; box-shadow: none; }
+.badge-seg { padding: 0; }
+.badge-seg > span { padding: 5px 8px; }
+.badge-seg > span + span { background: var(--ink); color: var(--on-ink); }
+
+.chips { display: flex; flex-wrap: wrap; gap: 6px; }
+.chip { display: inline-block; padding: 6px 8px; font: 600 13px/1 var(--font-sans); color: var(--ink); background: var(--chip); clip-path: var(--notch); }
+.chip-more { display: inline-grid; place-items: center; width: 32px; height: 32px; box-sizing: border-box; font: 700 12px var(--font-sans); color: var(--on-light); background: var(--chip-more); border: var(--border); }
+
+.count { display: inline-block; padding: 7px 6px 6px; font: 10px/1 var(--font-pixel); letter-spacing: 1px; background: var(--ink); color: var(--on-ink); }
+
+/* ---------- awatar / monogram ---------- */
+.avatar { display: inline-grid; place-items: center; flex: none; width: 20px; height: 20px; font: 7px/1 var(--font-pixel); color: #fff; background: var(--av, var(--avatar-1)); }
+.avatar-xl { width: 56px; height: 56px; font-size: 14px; border: var(--border); box-sizing: border-box; }
+
+/* ---------- panel listy ---------- */
+.panel { min-width: 0; padding: 16px 16px 20px; background: var(--surface); border: var(--border); box-shadow: var(--shadow-lg); }
+.panel.is-featured { box-shadow: 6px 6px 0 var(--featured); }
+.panel-head { display: flex; align-items: center; justify-content: space-between; gap: 8px; }
+.panel-head h2 { margin: 0; font: 900 18px/28px var(--font-sans); letter-spacing: -.45px; }
+.panel-motto { margin: 2px 0 8px; font-size: 14px; font-style: italic; color: var(--ink-3); }
+.list { list-style: none; margin: 8px 0 0; padding: 0; }
+.list a { display: flex; align-items: center; gap: 8px; height: var(--row-h); color: var(--ink); text-decoration: none; font: 600 14px/20px var(--font-sans); }
+.list a:hover .list-name { text-decoration: underline; }
+.list a:focus-visible { outline: 3px solid var(--focus); outline-offset: 1px; }
+.list-n { flex: none; width: 22px; text-align: right; font: 500 12px var(--font-sans); color: var(--ink-3); }
+.list-name { flex: 1; min-width: 0; overflow: hidden; white-space: nowrap; text-overflow: ellipsis; }
+.list-value { flex: none; font: 10px/1 var(--font-pixel); letter-spacing: .5px; color: var(--ink-2); }
+.list .badge-sm { margin-left: auto; }
+.panel-more { display: block; margin-top: 10px; padding-top: 12px; text-align: center; border-top: 2px dashed var(--line-soft); font: 600 14px var(--font-sans); letter-spacing: .35px; color: var(--ink-3); text-decoration: none; }
+
+/* ---------- karta ---------- */
+.card { display: flex; gap: 16px; min-width: 0; padding: 16px; background: var(--surface); border: var(--border); box-shadow: var(--shadow-md); }
+.card-body { flex: 1; min-width: 0; }
+.card-head { display: flex; align-items: flex-start; justify-content: space-between; gap: 10px; }
+.card-head h3 { margin: 0; font: 800 18px/24px var(--font-sans); }
+.card-sub { margin: 4px 0 8px; font-size: 14px; color: var(--ink-2); }
+.amount { margin: 0 0 10px; font: 12px/1.6 var(--font-pixel); }
+.amount small { font: 600 12px var(--font-sans); color: var(--ink-3); }
+.amount.is-empty { font: italic 14px var(--font-sans); color: var(--ink-3); }
+
+/* ---------- filtry i formularze ---------- */
+.panel-filters { padding: 16px; background: var(--surface); border: var(--border); box-shadow: var(--shadow-md); }
+.panel-filters h2 { margin: 0 0 10px; font: 900 18px/28px var(--font-sans); letter-spacing: -.45px; }
+.panel-filters .btn-full { margin-top: 12px; }
+.field input { box-sizing: border-box; width: 100%; padding: 8px 10px; font: 400 14px var(--font-sans); background: var(--surface); border: var(--border); border-radius: 0; box-shadow: var(--shadow-sm); }
+.field input:focus { outline: 3px solid var(--focus); outline-offset: 2px; box-shadow: 3px 3px 0 var(--focus-deco); }
+fieldset { margin: 14px 0 0; padding: 10px 0 0; border: 0; border-top: 2px solid var(--line-soft); }
+legend { padding: 0; font: 800 14px var(--font-sans); }
+.checkbox { display: flex; align-items: center; gap: 8px; margin: 6px 0; font-size: 14px; }
+.checkbox input { appearance: none; display: grid; place-items: center; width: 16px; height: 16px; margin: 0; background: var(--surface); border: var(--border); }
+.checkbox input:checked { background: var(--ink); }
+.checkbox input:checked::after { content: ""; width: 6px; height: 6px; background: var(--highlight); }
+.checkbox input:focus-visible { outline: 3px solid var(--focus); outline-offset: 2px; }
+
+/* ---------- podium ---------- */
+.podium { display: grid; grid-template-columns: repeat(3, 1fr); align-items: end; gap: 10px; margin: 0; padding: 20px 14px 0; list-style: none; color: #fff; background: var(--podium); border: var(--border); box-shadow: var(--shadow-lg); }
+.podium li { display: flex; flex-direction: column; align-items: center; gap: 6px; text-align: center; font-size: 13px; }
+.podium-2 { order: -1; }
+.podium-pts { font: 12px var(--font-pixel); }
+.podium-1 .podium-pts { color: var(--gold); }
+.podium-step { display: grid; place-items: center; width: 100%; font: 20px var(--font-pixel); color: var(--on-light); border: var(--border); border-bottom: 0; box-sizing: border-box; }
+.podium-1 .podium-step { height: 96px; background: var(--gold); }
+.podium-2 .podium-step { height: 64px; background: var(--silver); }
+.podium-3 .podium-step { height: 44px; background: var(--bronze); }
+
+/* ---------- tiery ---------- */
+.tier { display: grid; grid-template-columns: 1fr auto; gap: 2px 12px; padding: 10px 12px; background: var(--surface); border: var(--border); border-left-width: 10px; box-shadow: var(--shadow-sm); }
+.tier-name { font: 900 16px var(--font-sans); }
+.tier-price { grid-row: span 2; font: 12px/1.8 var(--font-pixel); }
+.tier-desc { font-size: 13px; color: var(--ink-2); }
+.tier-legendary { border-left-color: var(--tier-legendary); }
+.tier-epic      { border-left-color: var(--tier-epic); }
+.tier-rare      { border-left-color: var(--tier-rare); }
+.tier-common    { border-left-color: var(--tier-common); }
+/* kompaktowy znacznik tieru — do kart, wierszy tabeli i koszyka */
+.tier-tag { display: inline-flex; align-items: center; height: 24px; padding: 0 8px; box-sizing: border-box; font: 700 12px/1 var(--font-sans); letter-spacing: .3px; text-transform: uppercase; white-space: nowrap; color: var(--ink); background: var(--surface); border: var(--border); border-left-width: 10px; }
+.tier-tag.tier-legendary { border-left-color: var(--tier-legendary); }
+.tier-tag.tier-epic      { border-left-color: var(--tier-epic); }
+.tier-tag.tier-rare      { border-left-color: var(--tier-rare); }
+.tier-tag.tier-common    { border-left-color: var(--tier-common); }
+
+/* ---------- detale ---------- */
+.dither { height: 16px; margin: 4px 0 16px; border-top: 8px solid var(--action); background: conic-gradient(var(--action) 25%, transparent 0 50%, var(--action) 0 75%, transparent 0) 0 0 / 8px 8px; }
+.list-square { list-style: none; margin: 0; padding: 0; }
+.list-square li { position: relative; margin: 6px 0; padding-left: 18px; }
+.list-square li::before { content: ""; position: absolute; left: 0; top: .55em; width: 6px; height: 6px; background: var(--action); }
+.pixel-art { image-rendering: pixelated; }
+
+/* ========== v1.1 — elementy ekranu ========== */
+
+/* ---------- kontener i nagłówek strony ---------- */
+.container { max-width: 1216px; margin: 0 auto; padding: 0 24px; }
+@media (max-width: 600px) { .container { padding: 0 16px; } }
+.site-header { background: var(--paper); border-bottom: var(--border); }
+.site-header .container { display: flex; align-items: center; gap: 24px; min-height: 72px; flex-wrap: wrap; padding-top: 8px; padding-bottom: 8px; }
+.logo { font: 14px/1 var(--font-pixel); color: var(--ink); text-decoration: none; letter-spacing: 1px; }
+.logo span { color: var(--action); }
+.site-nav { display: flex; gap: 20px; }
+.site-nav a { font: 700 15px var(--font-sans); color: var(--ink); text-decoration: none; padding: 4px 0; border-bottom: 2px solid transparent; }
+.site-nav a:hover, .site-nav a[aria-current="page"] { border-bottom-color: var(--ink); }
+.site-nav a:focus-visible, .logo:focus-visible { outline: 3px solid var(--focus); outline-offset: 2px; }
+.site-header .search-main { margin-left: auto; min-width: 280px; flex: 0 1 420px; }
+
+/* wyszukiwarka główna: pole + przycisk w jednej ramce */
+.search-main { display: flex; border: var(--border); box-shadow: 6px 6px 0 var(--focus-deco); background: var(--surface); }
+.search-main input { flex: 1; min-width: 0; height: 44px; padding: 0 12px; border: 0; font: 400 15px var(--font-sans); background: transparent; color: var(--ink); }
+.search-main input:focus { outline: 3px solid var(--focus); outline-offset: -3px; }
+.search-main button { width: 48px; border: 0; border-left: var(--border); background: var(--ink); color: var(--on-ink); font: 14px var(--font-pixel); cursor: pointer; }
+.search-main button:focus-visible { outline: 3px solid var(--focus); outline-offset: -5px; }
+
+/* ---------- okruszki i nagłówek treści ---------- */
+.breadcrumbs { display: flex; flex-wrap: wrap; gap: 6px; margin: 16px 0 0; padding: 0; list-style: none; font-size: 14px; color: var(--ink-3); }
+.breadcrumbs li + li::before { content: "/"; margin-right: 6px; color: var(--ink-3); }
+.breadcrumbs a { color: var(--link); }
+.page-head { display: flex; flex-wrap: wrap; align-items: flex-end; justify-content: space-between; gap: 16px; margin: 8px 0 24px; }
+.page-head h1 { margin: 0; font: 900 24px/32px var(--font-sans); letter-spacing: -.6px; }
+.page-head p { margin: 4px 0 0; max-width: 720px; color: var(--ink-2); }
+.display { font: 900 40px/44px var(--font-sans); letter-spacing: -1px; margin: 0; }
+.mark { background: var(--mint); color: var(--on-light); padding: 0 .15em; }
+
+/* ---------- siatki ekranów ---------- */
+.grid-panels { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 28px; align-items: start; }
+@media (max-width: 1200px) { .grid-panels { grid-template-columns: repeat(3, minmax(0, 1fr)); } }
+@media (max-width: 900px)  { .grid-panels { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+@media (max-width: 600px)  { .grid-panels { grid-template-columns: 1fr; } }
+.layout-main-side { display: grid; grid-template-columns: minmax(0, 2fr) minmax(0, 1fr); gap: 28px; align-items: start; }
+.layout-results { display: grid; grid-template-columns: minmax(0, 1fr) 280px; gap: 28px; align-items: start; }
+@media (max-width: 900px) { .layout-main-side, .layout-results { grid-template-columns: 1fr; } .layout-results .panel-filters { order: -1; } }
+.stack { display: grid; gap: 20px; }
+
+/* ---------- zakładki / przełącznik okresu ---------- */
+.tabs { display: inline-flex; max-width: 100%; overflow-x: auto; border: var(--border); background: var(--surface); box-shadow: var(--shadow-sm); }
+.tabs button, .tabs a { flex: none; height: 36px; padding: 0 14px; border: 0; background: transparent; font: 700 14px var(--font-sans); color: var(--ink); cursor: pointer; text-decoration: none; display: inline-flex; align-items: center; }
+.tabs > * + * { border-left: var(--border); }
+.tabs [aria-selected="true"], .tabs [aria-current="page"] { background: var(--ink); color: var(--on-ink); }
+.tabs button:focus-visible, .tabs a:focus-visible { outline: 3px solid var(--focus); outline-offset: -5px; }
+
+/* ---------- tabela danych ---------- */
+.table-wrap { position: relative; overflow-x: auto; background: var(--surface); border: var(--border); box-shadow: var(--shadow-lg); }
+.table { width: 100%; border-collapse: collapse; font: 400 14px/20px var(--font-sans); }
+.table th { position: sticky; top: 0; height: 40px; padding: 0 12px; text-align: left; background: var(--paper); border-bottom: var(--border); font: 800 12px var(--font-sans); letter-spacing: .3px; text-transform: uppercase; white-space: nowrap; }
+.table td { height: 44px; padding: 0 12px; border-bottom: 2px solid var(--paper); vertical-align: middle; }
+.table tbody tr:last-child td { border-bottom: 0; }
+.table tbody tr:hover { background: var(--row-hover); }
+.table .num { text-align: right; font: 10px/1 var(--font-pixel); letter-spacing: .5px; white-space: nowrap; }
+.table th.num { font: 800 12px var(--font-sans); }
+.table .name { font-weight: 600; }
+.table .name a { color: var(--ink); text-decoration: none; }
+.table .name a:hover { text-decoration: underline; }
+.table .name a:focus-visible { outline: 3px solid var(--focus); outline-offset: 2px; }
+.table .cell-entity { display: flex; align-items: center; gap: 8px; }
+/* sortowanie: .sort = przycisk (TYLKO z działającym skryptem, np. table-sort.js);
+   .sorted = statyczny znacznik kolejności, gdy tabeli nie da się sortować (np. ranking).
+   Kierunek zawsze w aria-sort na <th>. */
+.sort { all: unset; cursor: pointer; display: inline-flex; gap: 6px; align-items: center; }
+/* cała komórka nagłówka jest polem kliknięcia (th ma padding 0 12px i 40 px wysokości) */
+th > .sort { box-sizing: border-box; display: flex; width: calc(100% + 24px); min-height: 40px; margin: 0 -12px; padding: 0 12px; }
+th.num > .sort { justify-content: flex-end; }
+.sort::after { content: "◆"; font-size: 8px; color: var(--ink-3); }
+th[aria-sort="ascending"] .sort::after, .sort[aria-sort="ascending"]::after { content: "▲"; color: var(--ink); }
+th[aria-sort="descending"] .sort::after, .sort[aria-sort="descending"]::after { content: "▼"; color: var(--ink); }
+.sort:hover { text-decoration: underline; text-underline-offset: 3px; }
+.sort:focus-visible { outline: 3px solid var(--focus); outline-offset: 2px; }
+.sorted { display: inline-flex; gap: 6px; align-items: center; cursor: default; }
+.sorted::after { content: "▼"; font-size: 8px; color: var(--ink); }
+th[aria-sort="ascending"] .sorted::after { content: "▲"; }
+/* miejsce w rankingu: kwadrat z numerem, top 3 w kolorach NES */
+.rank { display: inline-grid; place-items: center; min-width: 28px; padding: 0 4px; height: 28px; font: 10px/1 var(--font-pixel); border: var(--border); background: var(--surface); box-sizing: border-box; }
+.rank-1 { background: var(--gold); } .rank-2 { background: var(--silver); } .rank-3 { background: var(--bronze); }
+.rank-1, .rank-2, .rank-3 { color: var(--on-light); }
+/* zmiana wartości */
+.delta-up::before { content: "▲ "; color: var(--action); } .delta-down::before { content: "▼ "; color: var(--danger); }
+
+/* ---------- paginacja ---------- */
+.pagination { display: flex; flex-wrap: wrap; gap: 8px; margin: 24px 0 0; padding: 0; list-style: none; }
+.pagination a, .pagination span { display: inline-grid; place-items: center; min-width: 36px; height: 36px; padding: 0 8px; box-sizing: border-box; font: 10px/1 var(--font-pixel); color: var(--ink); text-decoration: none; background: var(--surface); border: var(--border); box-shadow: var(--shadow-sm); }
+.pagination [aria-current="page"] { background: var(--ink); color: var(--on-ink); box-shadow: none; }
+.pagination a:focus-visible { outline: 3px solid var(--focus); outline-offset: 2px; }
+.pagination .gap { border: 0; box-shadow: none; background: transparent; }
+.pagination [aria-disabled="true"] { color: var(--ink-3); border-color: var(--ink-3); box-shadow: none; cursor: not-allowed; }
+
+/* ---------- callout, pusty stan, sekcje ---------- */
+.callout { padding: 14px 16px; background: var(--mint); border: var(--border); color: var(--on-light); }
+.callout strong { font-weight: 800; }
+.empty { display: grid; justify-items: center; gap: 12px; padding: 40px 24px; text-align: center; background: var(--surface); border: var(--border); box-shadow: var(--shadow-lg); }
+.empty h2 { margin: 0; font: 900 24px/32px var(--font-sans); letter-spacing: -.6px; }
+.empty p { margin: 0; max-width: 46ch; color: var(--ink-2); }
+.empty-art { width: 96px; height: 96px; image-rendering: pixelated; }
+.section { margin: 40px 0; }
+.section-title { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 12px; margin: 0 0 16px; }
+.section-title h2 { margin: 0; font: 900 18px/28px var(--font-sans); letter-spacing: -.45px; }
+
+/* ---------- opisy / listy definicji (szczegóły encji) ---------- */
+.facts { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 0; margin: 0; border: var(--border); background: var(--surface); }
+.facts div { padding: 10px 12px; border-right: 2px solid var(--paper); border-bottom: 2px solid var(--paper); }
+.facts dt { font: 800 11px var(--font-sans); letter-spacing: .3px; text-transform: uppercase; color: var(--ink-3); }
+.facts dd { margin: 4px 0 0; font: 600 15px var(--font-sans); }
+.facts dd.num { font: 12px/1.6 var(--font-pixel); }
+.prose { max-width: 70ch; }
+.prose h2 { font: 900 18px/28px var(--font-sans); letter-spacing: -.45px; margin: 24px 0 8px; }
+.prose p, .prose li { color: var(--ink-2); }
+
+/* ---------- stopka ---------- */
+.site-footer { margin-top: 64px; border-top: var(--border); padding: 24px 0 40px; font-size: 14px; color: var(--ink-2); }
+.site-footer a { color: var(--link); }
+
+/* ========== v1.6 — decyzje z dokumentacji komponentów (2026-11-10) ========== */
+
+/* ---------- przycisk kompaktowy 36 px: przycisk powtarzany w każdej pozycji listy (stopka karty, wiersz tabeli, koszyk) ---------- */
+.btn.btn-compact { height: 36px; padding: 0 14px 4px; font-size: 14px; }
+.btn.btn-compact:not([aria-disabled="true"]):not(.is-pressed):not(:active):hover { padding-bottom: 6px; }
+.btn.btn-compact:active, .btn.btn-compact.is-pressed, .btn.btn-compact[aria-pressed="true"] { padding: 4px 14px 0; }
+.btn.btn-compact[aria-disabled="true"] { padding: 0 14px; }
+.card-foot { display: flex; align-items: center; justify-content: space-between; gap: 12px; margin-top: 12px; padding-top: 12px; border-top: 2px dashed var(--line-soft); font-size: 13px; color: var(--ink-3); }
+
+/* ---------- sortowanie listy = grupa przycisków przełączających w wyglądzie .tabs ----------
+   kontener: role group + aria-label; przyciski: aria-pressed (wzór w design.md §6.12).
+   Zakładki (role tab + aria-selected) tylko gdy przełączają panele treści. */
+.tabs [aria-pressed="true"] { background: var(--ink); color: var(--on-ink); }
+
+/* ---------- kwota w wierszu listy: pełna na desktopie, skrócona < 600 px ----------
+   wewnątrz .list-value: .amt-full (pełna) + .amt-short z aria-hidden (skrót „18–24 tys.”); wzór w design.md §6.5 */
+.amt-short { display: none; }
+@media (max-width: 600px) {
+  .amt-short { display: inline; }
+  .amt-full { position: absolute; width: 1px; height: 1px; margin: -1px; overflow: hidden; clip: rect(0 0 0 0); clip-path: inset(50%); white-space: nowrap; }
+}
+
+/* ---------- stany: błąd pola ---------- */
+.field label { display: block; margin: 0 0 6px; font: 700 14px var(--font-sans); }
+.field.is-error input, .field input[aria-invalid="true"] { border-color: var(--danger); box-shadow: 2px 2px 0 var(--danger); }
+.field-error { display: flex; gap: 8px; align-items: flex-start; margin: 8px 0 0; font: 600 13px/18px var(--font-sans); color: var(--ink); }
+.field-error::before { content: "!"; flex: none; display: grid; place-items: center; width: 18px; height: 18px; font: 10px/1 var(--font-pixel); color: #fff; background: var(--danger); clip-path: var(--notch); }
+.field-hint { margin: 6px 0 0; font-size: 13px; color: var(--ink-3); }
+
+/* ---------- stany: ładowanie przycisku (rozmiar bez zmian; aria-disabled + aria-busy) ---------- */
+.btn.is-loading { position: relative; color: transparent !important; cursor: progress; padding: 4px 18px 0; transform: none; }
+.btn-compact.is-loading { padding: 4px 14px 0; }
+.btn-primary.is-loading[aria-disabled="true"] { background: var(--action); box-shadow: inset 0 0 0 2px var(--line); }
+.btn-secondary.is-loading[aria-disabled="true"] { background: var(--surface); box-shadow: inset 0 0 0 2px var(--line); }
+.btn.is-loading::after { content: ""; position: absolute; left: 50%; top: calc(50% - 2px); width: 4px; height: 4px; margin-left: -14px;
+  background: var(--on-action); box-shadow: 12px 0 0 0 var(--on-action), 24px 0 0 0 var(--on-action); animation: pp-dots 900ms steps(1) infinite; }
+.btn-secondary.is-loading::after { background: var(--ink); box-shadow: 12px 0 0 0 var(--ink), 24px 0 0 0 var(--ink); }
+@keyframes pp-dots { 0% { opacity: 1; } 33% { opacity: .35; } 66% { opacity: .7; } }
+
+/* ---------- stany: szkielet wczytywania (dither 4 px) ---------- */
+.skel { display: block; height: 12px; background: conic-gradient(var(--line-soft) 25%, transparent 0 50%, var(--line-soft) 0 75%, transparent 0) 0 0 / 4px 4px; animation: pp-skel 600ms steps(2) infinite; }
+@keyframes pp-skel { to { background-position: 4px 0; } }
+.skel-row { display: flex; align-items: center; gap: 8px; height: var(--row-h); }
+.skel-n { flex: none; width: 22px; height: 10px; }
+.skel-av { flex: none; width: 20px; height: 20px; }
+@media (prefers-reduced-motion: reduce) { .btn.is-loading::after, .skel { animation: none; } }
+
+/* ---------- stany: błąd wczytania i komunikat błędu w treści ---------- */
+.load-error { display: grid; gap: 10px; justify-items: start; padding: 16px; background: var(--surface); border: var(--border); border-left: 10px solid var(--danger); box-shadow: var(--shadow-lg); }
+.load-error h2, .load-error h3 { margin: 0; font: 900 18px/24px var(--font-sans); }
+.load-error p { margin: 0; color: var(--ink-2); font-size: 14px; }
+.load-error .code { font: 10px/1 var(--font-pixel); color: var(--ink-3); }
+.callout.callout-danger { background: var(--surface); color: var(--ink); border-left: 10px solid var(--danger); }
+.callout-danger strong::before { content: "! "; font-family: var(--font-pixel); font-size: 11px; color: var(--danger); }
+
+/* ========== v1.7 — statusy, formularze, nakładki, nawigacja mobilna, wysoki kontrast ========== */
+
+/* ---------- przycisk-ikona (zamknij, więcej, menu): kwadrat 36 px ---------- */
+.icon-btn { display: inline-grid; place-items: center; flex: none; width: 36px; height: 36px; padding: 0; color: var(--ink); background: transparent; border: 2px solid transparent; cursor: pointer; clip-path: var(--notch); }
+.icon-btn:hover { background: var(--paper); border-color: var(--line); }
+.icon-btn:focus-visible { outline: 3px solid var(--focus); outline-offset: -5px; }
+.icon-btn.is-boxed { background: var(--surface); border-color: var(--line); box-shadow: inset 0 -3px 0 var(--btn-secondary-edge); }
+.icon-btn[aria-expanded="true"] { background: var(--ink); color: var(--on-ink); }
+.btn .icon { margin-left: -4px; }
+
+/* ---------- powiadomienia: w treści (.notice) i wyskakujące (.toast) ---------- */
+.notice { display: grid; grid-template-columns: auto 1fr auto; gap: 4px 12px; align-items: start; padding: 12px 12px 12px 14px; color: var(--ink);
+  background: var(--surface); border: var(--border); border-left: 10px solid var(--st, var(--status-info)); }
+.notice-icon { display: grid; place-items: center; width: 28px; height: 28px; color: var(--on-st, var(--on-status-info)); background: var(--st, var(--status-info)); clip-path: var(--notch); }
+.notice-icon .icon { width: 24px; height: 24px; }
+.notice-body { min-width: 0; padding-top: 3px; font-size: 14px; line-height: 20px; }
+.notice-title { display: block; font: 800 15px/20px var(--font-sans); }
+.notice-body p { margin: 2px 0 0; color: var(--ink-2); }
+.notice-actions { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 10px; }
+.notice > .icon-btn { margin: -6px -6px 0 0; }
+.notice-info    { --st: var(--status-info);    --on-st: var(--on-status-info); }
+.notice-success { --st: var(--status-success); --on-st: var(--on-status-success); }
+.notice-warning { --st: var(--status-warning); --on-st: var(--on-status-warning); }
+.notice-error   { --st: var(--status-error);   --on-st: var(--on-status-error); }
+.toasts { position: fixed; z-index: var(--z-toast); right: 16px; bottom: 16px; display: grid; gap: 12px; width: min(400px, calc(100vw - 32px)); margin: 0; padding: 0; list-style: none; }
+.toast { box-shadow: var(--shadow-md); animation: pp-toast-in var(--motion-slow) var(--ease-steps); }
+@keyframes pp-toast-in { from { transform: translateY(12px); opacity: 0; } }
+
+/* ---------- formularze: lista wyboru, radio, przełącznik, pole wielowierszowe, licznik, plik ---------- */
+.field textarea, .field select { box-sizing: border-box; width: 100%; padding: 8px 10px; font: 400 14px/20px var(--font-sans); color: var(--ink); background: var(--surface); border: var(--border); border-radius: 0; box-shadow: var(--shadow-sm); }
+.field textarea { min-height: 96px; resize: vertical; }
+.field input, .field textarea, .field select { color: var(--ink); }
+.field textarea:focus, .field select:focus { outline: 3px solid var(--focus); outline-offset: 2px; box-shadow: 3px 3px 0 var(--focus-deco); }
+.select { position: relative; }
+.field .select select { appearance: none; padding-right: 40px; height: 40px; cursor: pointer; }
+.select::after { content: ""; position: absolute; right: 10px; bottom: 8px; width: 24px; height: 24px; pointer-events: none; background: currentColor; color: var(--ink);
+  -webkit-mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 12 12' shape-rendering='crispEdges'%3E%3Cpath d='M1 3h1v1h-1zM10 3h1v1h-1zM1 4h2v1h-2zM9 4h2v1h-2zM2 5h2v1h-2zM8 5h2v1h-2zM3 6h2v1h-2zM7 6h2v1h-2zM4 7h4v1h-4zM5 8h2v1h-2z'/%3E%3C/svg%3E") center / 100% no-repeat; mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 12 12' shape-rendering='crispEdges'%3E%3Cpath d='M1 3h1v1h-1zM10 3h1v1h-1zM1 4h2v1h-2zM9 4h2v1h-2zM2 5h2v1h-2zM8 5h2v1h-2zM3 6h2v1h-2zM7 6h2v1h-2zM4 7h4v1h-4zM5 8h2v1h-2z'/%3E%3C/svg%3E") center / 100% no-repeat; }
+.field-count { margin: 6px 0 0; font: 10px/1 var(--font-pixel); color: var(--ink-3); text-align: right; }
+.field-count.is-over { color: var(--danger); }
+.field label .req { color: var(--danger); font-weight: 800; }
+.field input:disabled, .field textarea:disabled, .field select:disabled { color: var(--disabled-ink); background: var(--disabled-bg); border-color: var(--disabled-line); box-shadow: none; cursor: not-allowed; }
+.field input[readonly], .field textarea[readonly] { background: var(--paper); border-style: dashed; box-shadow: none; }
+.radio { display: flex; align-items: center; gap: 8px; margin: 6px 0; font-size: 14px; }
+.radio input { appearance: none; display: grid; place-items: center; width: 18px; height: 18px; margin: 0; background: var(--surface); border: var(--border);
+  clip-path: polygon(4px 0, calc(100% - 4px) 0, calc(100% - 4px) 2px, calc(100% - 2px) 2px, calc(100% - 2px) 4px, 100% 4px, 100% calc(100% - 4px), calc(100% - 2px) calc(100% - 4px), calc(100% - 2px) calc(100% - 2px), calc(100% - 4px) calc(100% - 2px), calc(100% - 4px) 100%, 4px 100%, 4px calc(100% - 2px), 2px calc(100% - 2px), 2px calc(100% - 4px), 0 calc(100% - 4px), 0 4px, 2px 4px, 2px 2px, 4px 2px); }
+.radio input:checked::after { content: ""; width: 6px; height: 6px; background: var(--ink); box-shadow: 0 0 0 2px var(--highlight); }
+.radio input:focus-visible, .checkbox input:focus-visible { outline: 3px solid var(--focus); outline-offset: 2px; clip-path: none; }
+.checkbox input:disabled, .radio input:disabled { background: var(--disabled-bg); border-color: var(--disabled-line); cursor: not-allowed; }
+.checkbox:has(input:disabled), .radio:has(input:disabled) { color: var(--ink-3); }
+.switch { display: inline-flex; align-items: center; gap: 10px; min-height: 36px; padding: 0; font: 600 14px var(--font-sans); color: var(--ink); background: none; border: 0; cursor: pointer; text-align: left; }
+.switch-track { position: relative; flex: none; width: 44px; height: 24px; box-sizing: border-box; background: var(--paper); border: var(--border); }
+.switch-track::after { content: ""; position: absolute; left: 2px; top: 2px; width: 16px; height: 16px; background: var(--ink); transition: transform var(--motion-base) var(--ease-steps); }
+.switch[aria-checked="true"] .switch-track { background: var(--action); }
+.switch[aria-checked="true"] .switch-track::after { transform: translateX(20px); background: var(--surface); }
+.switch-state { font: 10px/1 var(--font-pixel); color: var(--ink-3); min-width: 3.5em; }
+.switch:focus-visible { outline: 3px solid var(--focus); outline-offset: 2px; }
+.stepper { display: inline-flex; align-items: stretch; border: var(--border); background: var(--surface); box-shadow: var(--shadow-sm); }
+.stepper button { width: 36px; height: 36px; padding: 0; display: grid; place-items: center; color: var(--ink); background: var(--surface); border: 0; cursor: pointer; }
+.stepper button:hover { background: var(--paper); }
+.stepper button:focus-visible, .stepper input:focus-visible { outline: 3px solid var(--focus); outline-offset: -3px; }
+.stepper button[aria-disabled="true"] { color: var(--ink-3); cursor: not-allowed; background: var(--paper); }
+.stepper input { width: 52px; height: 36px; box-sizing: border-box; padding: 0; text-align: center; font: 12px var(--font-pixel); color: var(--ink); background: var(--surface); border: 0; border-left: var(--border); border-right: var(--border); -moz-appearance: textfield; }
+.stepper input::-webkit-inner-spin-button, .stepper input::-webkit-outer-spin-button { -webkit-appearance: none; margin: 0; }
+.upload, .field .upload { position: relative; display: grid; margin: 0; font: 400 14px/20px var(--font-sans); justify-items: center; gap: 6px; padding: 20px 16px; text-align: center; background: var(--surface); border: 2px dashed var(--line-soft); cursor: pointer; }
+.upload:hover, .upload.is-drag { border-color: var(--line); background: var(--paper); }
+.upload:focus-within { outline: 3px solid var(--focus); outline-offset: 2px; }
+.upload input[type="file"] { position: absolute; inset: 0; width: 100%; height: 100%; opacity: 0; cursor: pointer; }
+.upload-title { font: 800 15px var(--font-sans); }
+.upload-title u { color: var(--link); }
+.upload-hint { font-size: 13px; color: var(--ink-3); }
+.upload.is-error { border-color: var(--danger); border-style: solid; }
+.file-list { display: grid; gap: 8px; margin: 10px 0 0; padding: 0; list-style: none; }
+.file-list li { display: flex; align-items: center; gap: 10px; padding: 6px 6px 6px 10px; background: var(--surface); border: var(--border); font-size: 14px; }
+.file-list .file-name { flex: 1; min-width: 0; overflow: hidden; white-space: nowrap; text-overflow: ellipsis; font-weight: 600; }
+.file-list .file-size { font: 10px/1 var(--font-pixel); color: var(--ink-3); }
+
+/* ---------- nakładki: okno, szuflada, menu, podpowiedź ---------- */
+dialog.modal, dialog.drawer { padding: 0; color: var(--ink); background: var(--surface); border: var(--border); box-shadow: var(--shadow-lg); }
+dialog.modal { width: min(560px, calc(100vw - 32px)); max-height: calc(100vh - 64px); }
+dialog.modal[open] { animation: pp-pop var(--motion-slow) var(--ease-steps); }
+dialog.drawer { position: fixed; inset: 0 0 0 auto; width: min(380px, 92vw); height: 100%; max-height: none; margin: 0; border-width: 0 0 0 2px; box-shadow: -6px 0 0 var(--shadow-color); }
+dialog.drawer[open] { display: flex; flex-direction: column; animation: pp-slide var(--motion-slow) var(--ease-steps); }
+dialog.modal::backdrop, dialog.drawer::backdrop { background: rgba(0, 2, 28, .55); background-image: conic-gradient(rgba(0, 2, 28, .35) 25%, transparent 0 50%, rgba(0, 2, 28, .35) 0 75%, transparent 0); background-size: 4px 4px; }
+@keyframes pp-pop { from { transform: translateY(8px); opacity: 0; } }
+@keyframes pp-slide { from { transform: translateX(24px); opacity: 0; } }
+.modal-head { display: flex; align-items: center; justify-content: space-between; gap: 12px; padding: 12px 12px 12px 20px; border-bottom: var(--border); background: var(--paper); }
+.modal-head h2 { margin: 0; font: 900 18px/28px var(--font-sans); letter-spacing: -.45px; }
+.modal-body { padding: 20px; overflow: auto; }
+dialog.drawer .modal-body { flex: 1; }
+.modal-body > :first-child { margin-top: 0; }
+.modal-foot { display: flex; flex-wrap: wrap; justify-content: flex-end; gap: 12px; padding: 16px 20px; border-top: 2px dashed var(--line-soft); }
+dialog.drawer .panel-filters { border: 0; box-shadow: none; padding: 0; }
+dialog.drawer .panel-filters h2 { display: none; }
+.menu { position: relative; display: inline-block; }
+.menu-list { position: absolute; z-index: var(--z-dropdown); right: 0; top: calc(100% + 4px); min-width: 200px; margin: 0; padding: 4px; list-style: none; background: var(--surface); border: var(--border); box-shadow: var(--shadow-md); }
+.menu-list button, .menu-list a { display: flex; align-items: center; gap: 10px; width: 100%; min-height: 36px; padding: 0 10px; box-sizing: border-box; font: 600 14px var(--font-sans); color: var(--ink); text-align: left; text-decoration: none; background: none; border: 0; cursor: pointer; }
+.menu-list button:hover, .menu-list a:hover, .menu-list button:focus-visible, .menu-list a:focus-visible { background: var(--ink); color: var(--on-ink); outline: none; }
+.menu-list .is-danger { color: var(--danger); }
+.menu-list hr { margin: 4px 0; border: 0; border-top: 2px dashed var(--line-soft); }
+.tip { position: relative; display: inline-flex; vertical-align: middle; }
+.tip-body { position: absolute; z-index: var(--z-tooltip); left: 50%; bottom: 100%; width: max-content; max-width: min(260px, calc(100vw - 32px)); padding: 8px 10px; transform: translateX(calc(-50% + var(--tip-shift, 0px)));
+  font: 600 13px/18px var(--font-sans); color: var(--on-ink); background: var(--ink); border: 2px solid var(--ink); box-shadow: var(--shadow-sm); display: none; }
+.tip-body::after { content: ""; position: absolute; left: calc(50% - 4px - var(--tip-shift, 0px)); top: 100%; width: 8px; height: 6px; background: var(--ink); clip-path: polygon(0 0, 100% 0, 50% 100%); }
+.tip:hover .tip-body, .tip:focus-within .tip-body { display: block; }
+.tip.is-dismissed .tip-body { display: none; }
+
+/* ---------- nawigacja mobilna (opt-in: data-collapsible na .site-nav) ---------- */
+.nav-toggle { display: none; }
+@media (max-width: 600px) {
+  .nav-toggle { display: inline-grid; margin-left: auto; }
+  .site-nav[data-collapsible] { display: none; order: 10; flex-basis: 100%; flex-direction: column; gap: 0; border-top: 2px dashed var(--line-soft); }
+  .site-nav[data-collapsible].is-open { display: flex; }
+  .site-nav[data-collapsible] a { padding: 12px 0; border-bottom: 2px solid transparent; }
+}
+/* filtry w szufladzie poniżej 900 px: formularz z data-drawer-form chowa się w stronie i jest przenoszony do <dialog class="drawer"> */
+.filters-toggle { display: none; }
+@media (max-width: 900px) {
+  .filters-toggle { display: inline-flex; }
+  [data-drawer-form] { display: none; }
+  dialog [data-drawer-form] { display: block; }
+}
+
+/* ========== v1.8 — wzorce: formularz, wybór wierszy, ładowanie, wykresy ========== */
+
+/* ---------- podsumowanie błędów formularza (na górze, fokus po wysłaniu) ---------- */
+.error-summary:focus { outline: 3px solid var(--focus); outline-offset: 2px; }
+.error-summary ul { margin: 6px 0 0; padding: 0; list-style: none; }
+.error-summary li { margin: 4px 0; }
+.error-summary a { color: var(--ink); font-weight: 700; text-decoration: underline; text-underline-offset: 3px; }
+
+/* ---------- ostrzeżenie pola (podpowiada, nie blokuje wysłania) ---------- */
+.field.is-warning input, .field.is-warning textarea, .field.is-warning select { border-color: var(--status-warning); box-shadow: 2px 2px 0 var(--status-warning); }
+.field-warning { display: flex; gap: 8px; align-items: flex-start; margin: 8px 0 0; font: 600 13px/18px var(--font-sans); color: var(--ink); }
+.field-warning::before { content: "!"; flex: none; display: grid; place-items: end center; width: 18px; height: 18px; padding-bottom: 1px; box-sizing: border-box; font: 9px/1 var(--font-pixel); color: var(--on-status-warning); background: var(--status-warning); clip-path: polygon(50% 0, 100% 100%, 0 100%); }
+
+/* ---------- kroki formularza (postęp) ---------- */
+.steps-progress { display: flex; margin: 0 0 24px; padding: 0; list-style: none; counter-reset: step; }
+.steps-progress li { position: relative; flex: 1; display: grid; justify-items: center; align-content: start; gap: 6px; text-align: center; font: 600 13px/18px var(--font-sans); color: var(--ink-3); counter-increment: step; }
+.steps-progress li::before { content: counter(step); position: relative; z-index: 1; display: grid; place-items: center; width: 28px; height: 28px; box-sizing: border-box; font: 10px/1 var(--font-pixel); color: var(--ink-3); background: var(--surface); border: 2px dashed var(--line-soft); }
+.steps-progress li + li::after { content: ""; position: absolute; top: 13px; right: 50%; width: 100%; height: 2px; background: var(--line-soft); }
+.steps-progress li.is-done { color: var(--ink-2); }
+.steps-progress li.is-done::before { content: "✓"; font: 900 14px/1 var(--font-sans); color: var(--on-action); background: var(--action); border: var(--border); }
+.steps-progress li.is-done + li::after { background: var(--line); }
+.steps-progress li[aria-current="step"] { color: var(--ink); font-weight: 800; }
+.steps-progress li[aria-current="step"]::before { color: var(--on-ink); background: var(--ink); border: var(--border); }
+@media (max-width: 600px) { .steps-progress .step-label { display: none; } .steps-progress li[aria-current="step"] .step-label { display: block; } }
+.wizard-step > h2:first-child, .wizard-step > legend:first-child { margin-top: 0; }
+.wizard-nav { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 12px; margin-top: 24px; padding-top: 16px; border-top: 2px dashed var(--line-soft); }
+.wizard-nav .btn-primary { margin-left: auto; }
+
+/* ---------- wybór wierszy tabeli + pasek akcji zbiorczych ---------- */
+.table .col-check { width: 40px; padding-right: 0; }
+.table .col-check .checkbox { margin: 0; }
+.table tbody tr[aria-selected="true"] { background: var(--row-selected); box-shadow: inset 4px 0 0 var(--focus); }
+.bulk-bar { position: sticky; bottom: 16px; z-index: var(--z-sticky); display: flex; flex-wrap: wrap; align-items: center; gap: 12px; margin-top: 12px; padding: 10px 12px; color: var(--on-ink); background: var(--ink); border: var(--border); box-shadow: var(--shadow-md); }
+.bulk-count { margin-right: auto; font: 11px/1.6 var(--font-pixel); }
+
+/* ---------- ładowanie: pasek postępu, ładowanie w miejscu, „Pokaż więcej” ---------- */
+.progress { display: grid; gap: 6px; }
+.progress-label { display: flex; justify-content: space-between; gap: 12px; font: 600 13px var(--font-sans); }
+.progress-label .num { font: 10px/1.6 var(--font-pixel); color: var(--ink-2); }
+.progress-track { height: 16px; box-sizing: border-box; padding: 2px; overflow: hidden; background: var(--surface); border: var(--border); }
+.progress-fill { height: 100%; width: var(--value, 0%); background: repeating-linear-gradient(90deg, var(--action) 0 8px, transparent 8px 10px); transition: width var(--motion-base) var(--ease-steps); }
+.progress.is-indeterminate .progress-fill { width: 30%; animation: pp-indet 1.2s steps(8) infinite; }
+@keyframes pp-indet { from { transform: translateX(-100%); } to { transform: translateX(340%); } }
+.inline-loading { display: inline-flex; align-items: center; gap: 10px; min-height: 24px; font: 600 14px var(--font-sans); color: var(--ink-2); }
+.inline-loading::before { content: ""; flex: none; width: 4px; height: 4px; margin-right: 18px; background: var(--ink); box-shadow: 8px 0 0 var(--ink), 16px 0 0 var(--ink); animation: pp-dots 900ms steps(1) infinite; }
+.inline-loading.is-done::before { animation: none; width: 18px; height: 18px; margin-right: 0; box-shadow: none; background: var(--status-success); clip-path: var(--notch); }
+.inline-loading.is-error::before { animation: none; width: 18px; height: 18px; margin-right: 0; box-shadow: none; background: var(--status-error); clip-path: var(--notch); }
+.load-more { display: grid; justify-items: center; gap: 8px; margin-top: 20px; }
+.load-more[hidden] { display: none !important; }
+.load-more-info { font: 10px/1.6 var(--font-pixel); color: var(--ink-3); }
+@media (prefers-reduced-motion: reduce) { .progress.is-indeterminate .progress-fill { animation: none; width: 100%; opacity: .5; } .inline-loading::before { animation: none; } }
+
+/* ---------- wykresy (charts.js rysuje SVG; tu rama, legenda, dymek, tabela danych) ---------- */
+.chart { position: relative; min-width: 0; margin: 0; padding: 16px; background: var(--surface); border: var(--border); box-shadow: var(--shadow-md); }
+.chart-title { margin: 0; font: 800 15px/20px var(--font-sans); }
+.chart-sub { margin: 2px 0 12px; font-size: 13px; color: var(--ink-3); }
+.chart-plot { position: relative; }
+.chart svg { display: block; width: 100%; height: auto; overflow: visible; }
+.chart svg text { font: 8px var(--font-pixel); fill: var(--chart-axis); }
+.chart svg .lbl-strong { fill: var(--ink); }
+.chart .hit { fill: transparent; cursor: default; }
+.chart-legend { display: flex; flex-wrap: wrap; gap: 6px 16px; margin: 12px 0 0; padding: 0; list-style: none; font: 600 13px var(--font-sans); color: var(--ink-2); }
+.chart-legend li { display: inline-flex; align-items: center; gap: 6px; }
+.chart-legend .swatch { flex: none; width: 12px; height: 12px; background: var(--c); }
+.chart-legend .num { font: 9px/1.6 var(--font-pixel); color: var(--ink); }
+.chart-tip { position: absolute; z-index: var(--z-tooltip); pointer-events: none; padding: 6px 8px; font: 600 13px/18px var(--font-sans); color: var(--on-ink); background: var(--ink); border: 2px solid var(--ink); box-shadow: var(--shadow-sm); white-space: nowrap; transform: translate(-50%, calc(-100% - 8px)); }
+.chart-tip[hidden] { display: none; }
+.chart-tip b { display: block; font: 10px/1.6 var(--font-pixel); }
+.chart-data { margin-top: 12px; font-size: 13px; }
+.chart-data summary { cursor: pointer; font-weight: 700; color: var(--link); }
+.chart-data summary:focus-visible { outline: 3px solid var(--focus); outline-offset: 2px; }
+.chart-data .table-wrap { margin-top: 8px; box-shadow: none; }
+.stats { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 210px), 1fr)); gap: 16px; }
+.stat { display: grid; align-content: start; gap: 4px; padding: 14px 16px; background: var(--surface); border: var(--border); box-shadow: var(--shadow-sm); }
+.stat-label { font: 600 13px var(--font-sans); color: var(--ink-2); }
+.stat-value { font: 20px/1.4 var(--font-pixel); color: var(--ink); }
+.stat-delta { font: 600 13px var(--font-sans); color: var(--ink-2); }
+.stat-delta .up::before { content: "▲ "; color: var(--action); }
+.stat-delta .down::before { content: "▼ "; color: var(--danger); }
+.stat .chart-spark { margin-top: 6px; }
+
+/* ========== v1.10 — kandydaci przyjęci 2026-11-10 ========== */
+
+/* ---------- wiersz meta w karcie: 3–4 kluczowe atrybuty (Poziom, Tryb, Dodano) ----------
+   <ul class="card-meta"><li><span class="icon icon-sm i-user" aria-hidden="true"></span>Poziom: <b>Senior</b></li>…</ul> */
+.card-meta { display: flex; flex-wrap: wrap; gap: 6px 14px; margin: 0 0 10px; padding: 0; list-style: none; font-size: 13px; color: var(--ink-3); }
+.card-meta li { display: inline-flex; align-items: center; gap: 6px; }
+.card-meta b { font-weight: 700; color: var(--ink-2); }
+
+/* ---------- liczba pasujących pozycji przy opcji filtra (wylicza list-controls.js) ---------- */
+.checkbox .opt-n { margin-left: auto; font: 9px/1 var(--font-pixel); color: var(--ink-3); }
+.checkbox.is-zero { color: var(--ink-3); }
+.checkbox.is-zero input { border-color: var(--ink-3); }
+
+/* ---------- zakres od–do ---------- */
+.range { display: grid; grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr); align-items: end; gap: 8px; margin-top: 8px; }
+.range .field > span, .range .field > label { display: block; margin: 0 0 4px; font: 700 12px var(--font-sans); color: var(--ink-3); }
+.range .dash { padding-bottom: 10px; font-weight: 800; }
+.range + .field-error { margin-top: 8px; }
+
+/* ========== v1.11 — kandydaci z testów skilla przyjęci 2026-11-10 ========== */
+
+/* ---------- kod kraju: zamiast flag-emoji, zawsze z pełną nazwą obok ----------
+   <td><span class="cc" aria-hidden="true">PL</span>Polska</td> */
+.cc { display: inline-grid; place-items: center; min-width: 28px; height: 20px; margin-right: 6px; padding: 0 3px; box-sizing: border-box; font: 7px/1 var(--font-pixel); letter-spacing: .5px; color: var(--ink); background: var(--paper); border: var(--border); vertical-align: middle; }
+
+/* ---------- wyszukiwarka z listą wyboru (miasto, kategoria) ----------
+   <form class="search-main has-select" role="search"><input …><div class="select"><select …></select></div><button type="submit">Szukaj</button></form> */
+.search-main .select { flex: none; border-left: var(--border); }
+.search-main .select select { appearance: none; height: 100%; min-height: 44px; padding: 0 40px 0 12px; border: 0; border-radius: 0; background: transparent; font: 600 15px var(--font-sans); color: var(--ink); cursor: pointer; }
+.search-main .select select:focus-visible { outline: 3px solid var(--focus); outline-offset: -3px; }
+.search-main .select::after { bottom: auto; top: 50%; transform: translateY(-50%); }
+.search-main.has-select button { width: auto; padding: 0 18px; font-size: 12px; }
+@media (max-width: 600px) {
+  .search-main.has-select { flex-wrap: wrap; }
+  .search-main.has-select input { flex: 1 1 100%; }
+  .search-main.has-select .select { flex: 1 1 auto; border-left: 0; border-top: var(--border); }
+  .search-main.has-select .select select { width: 100%; }
+  .search-main.has-select button { border-top: var(--border); }
+}
+
+/* ---------- pionowa karta produktu (sklep, katalog, galeria) ----------
+   <article class="card card-vertical"><div class="card-art"><span class="sprite sprite-xl s-sword" aria-hidden="true"></span></div>
+   <h3>Nazwa</h3><span class="tier-tag tier-legendary">Legendarny</span><ul class="card-meta">…</ul>
+   <div class="card-foot"><span class="card-price">…</span><button class="btn btn-secondary btn-compact">…</button></div></article> */
+.card-vertical { flex-direction: column; gap: 10px; }
+.card-vertical > h3, .card-vertical .card-head h3 { margin: 0; font: 800 18px/24px var(--font-sans); }
+.card-vertical > .tier-tag { align-self: flex-start; }
+.card-vertical .card-meta { margin: 0; }
+.card-vertical .card-foot { flex-wrap: wrap; gap: 8px 12px; margin-top: auto; }
+.card-art { display: grid; place-items: center; height: 88px; background: var(--paper); border: var(--border); }
+.card-art img { max-height: 64px; image-rendering: pixelated; }
+.card-price { display: inline-flex; align-items: center; gap: 6px; font: 12px/1 var(--font-pixel); color: var(--ink); white-space: nowrap; }
+.card-price small { font: 600 12px var(--font-sans); color: var(--ink-3); }
+
+/* ---------- tryb wysokiego kontrastu (Windows, forced-colors) ----------
+   Przeglądarka usuwa wtedy cienie i tła — ramki i stany rysujemy kolorami systemowymi. */
+@media (forced-colors: active) {
+  .btn, .icon-btn, .tabs button, .pagination a, .switch-track { border: 2px solid ButtonText; }
+  .btn:focus-visible, .icon-btn:focus-visible { outline: 3px solid Highlight; outline-offset: -6px; }
+  .btn[aria-disabled="true"], .btn:disabled { color: GrayText; border-color: GrayText; }
+  .tabs [aria-selected="true"], .tabs [aria-pressed="true"], .pagination [aria-current="page"], .btn[aria-pressed="true"],
+  .icon-btn[aria-expanded="true"], .menu-list button:hover, .menu-list a:hover {
+    forced-color-adjust: none; background: Highlight; color: HighlightText; }
+  .checkbox input:checked, .radio input:checked { forced-color-adjust: none; background: Highlight; border-color: Highlight; }
+  .checkbox input:checked::after, .radio input:checked::after { background: HighlightText; box-shadow: none; }
+  .switch[aria-checked="true"] .switch-track { forced-color-adjust: none; background: Highlight; }
+  .switch-track::after { forced-color-adjust: none; background: ButtonText; }
+  .notice, .tier-tag, .tier, .load-error, .callout-danger { border-left-width: 10px; border-left-style: double; }
+  .rank-1, .rank-2, .rank-3 { border-width: 4px; }
+  .field.is-error input, .field input[aria-invalid="true"] { border-width: 4px; }
+  .skel { forced-color-adjust: none; background: GrayText; }
+  .table tbody tr[aria-selected="true"] { forced-color-adjust: none; background: Highlight; color: HighlightText; }
+  .steps-progress li[aria-current="step"]::before, .steps-progress li.is-done::before { forced-color-adjust: none; background: Highlight; color: HighlightText; }
+  .progress-fill { forced-color-adjust: none; background: Highlight; }
+  .chart svg { forced-color-adjust: none; }
+}
+
+
+</style>
+  <!-- Style tego ekranu: tylko układ i drobne dopasowania, wyłącznie z tokenami var(--…) -->
+  <style id="screen">
+  [hidden] { display: none !important; }
+
+  /* --- nagłówek: portfel --- */
+  .wallet { display: inline-flex; align-items: center; gap: 8px; height: 36px; padding: 0 10px; box-sizing: border-box;
+    background: var(--surface); border: var(--border); box-shadow: var(--shadow-sm); color: var(--ink); text-decoration: none; }
+  .wallet:focus-visible { outline: 3px solid var(--focus); outline-offset: 2px; }
+  .wallet-n { font: 10px/1 var(--font-pixel); letter-spacing: .5px; }
+  .wallet small { font: 600 12px var(--font-sans); color: var(--ink-3); }
+  .coin { flex: none; image-rendering: pixelated; }
+  .site-header .search-main { flex-basis: 320px; }
+
+  /* --- układ: siatka przedmiotów + boczny koszyk --- */
+  .shop-layout { display: grid; grid-template-columns: minmax(0, 1fr) 340px; gap: 28px; align-items: start; }
+  .shop-toolbar { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 12px; margin: 0 0 20px; }
+  .shop-toolbar h2 { margin: 0; font: 900 18px/28px var(--font-sans); letter-spacing: -.45px; }
+  .shop-layout > * { min-width: 0; }
+  .scroll-x { min-width: 0; max-width: 100%; overflow-x: auto; padding: 0 2px 2px 0; }
+  .item-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 20px; margin: 0; padding: 0; list-style: none; }
+
+  /* --- karta przedmiotu (nowy element: .card w pionie + krawędź tieru 10 px) --- */
+  .item-card { flex-direction: column; gap: 6px; height: 100%; box-sizing: border-box; border-left-width: 10px; }
+  .item-card.rar-legendary { border-left-color: var(--tier-legendary); }
+  .item-card.rar-epic      { border-left-color: var(--tier-epic); }
+  .item-card.rar-rare      { border-left-color: var(--tier-rare); }
+  .item-card.rar-common    { border-left-color: var(--tier-common); }
+  .item-top { display: flex; align-items: flex-start; justify-content: space-between; gap: 8px; margin-bottom: 6px; }
+  .item-art { display: grid; place-items: center; width: 64px; height: 64px; box-sizing: border-box; background: var(--paper); border: var(--border); }
+  .item-card h3 { margin: 0; font: 800 17px/24px var(--font-sans); overflow: hidden; white-space: nowrap; text-overflow: ellipsis; }
+  .item-card .card-sub { margin: 0; }
+  .item-card .price { display: flex; align-items: center; gap: 8px; margin: 6px 0 8px; }
+  .item-card .btn { margin-top: auto; }
+
+  /* --- etykieta rzadkości (nowy element: .badge + kwadrat w kolorze tieru) --- */
+
+  /* --- koszyk (nowy element: wiersze z licznikiem sztuk + podsumowanie) --- */
+  .cart-col { position: sticky; top: 16px; }
+  .cart-list { list-style: none; margin: 12px 0 0; padding: 0; }
+  .cart-row { display: flex; align-items: center; gap: 8px; min-height: 44px; border-bottom: 2px solid var(--paper); }
+  .cart-main { flex: 1; min-width: 0; display: grid; gap: 4px; justify-items: start; padding: 6px 0; }
+  .cart-name { max-width: 100%; min-width: 0; overflow: hidden; white-space: nowrap; text-overflow: ellipsis; font: 600 14px/20px var(--font-sans); }
+  .cart-price { flex: none; min-width: 52px; text-align: right; font: 10px/1 var(--font-pixel); letter-spacing: .5px; color: var(--ink-2); }
+  .cart-row { flex-wrap: wrap; row-gap: 6px; padding: 6px 0; }
+  .cart-row .cart-main { flex: 1 1 100%; padding: 0; }
+  .cart-row .stepper { margin-right: auto; }
+  .cart-facts { margin-top: 14px; }
+  .cart-facts .is-short dt, .cart-facts .is-short dd { color: var(--danger); }
+  .cart-progress { margin: 12px 0 16px; }
+  .cart .stepper button { font: 700 16px/1 var(--font-sans); }
+  .cart-empty { margin: 12px 0 0; color: var(--ink-3); font-style: italic; font-size: 14px; }
+
+
+
+  .cart .btn + .btn-reason + .btn { margin-top: 12px; }
+  .status { margin: 12px 0 0; font-size: 14px; }
+
+  @media (max-width: 1100px) { .item-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+  @media (max-width: 900px)  { .shop-layout { grid-template-columns: 1fr; } .cart-col { position: static; } .item-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); } }
+  @media (max-width: 720px)  { .item-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+  @media (max-width: 480px)  { .item-grid { grid-template-columns: 1fr; } .site-header .search-main { min-width: 0; flex-basis: 100%; } }
+  </style>
+</head>
+<body class="bg-dots">
+  <svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false">
+    <symbol id="coin" viewBox="0 0 8 8"><rect x="2" y="0" width="4" height="1" fill="#00021C"/><rect x="1" y="1" width="1" height="1" fill="#00021C"/><rect x="2" y="1" width="4" height="1" fill="#F7C93E"/><rect x="6" y="1" width="1" height="1" fill="#00021C"/><rect x="0" y="2" width="1" height="1" fill="#00021C"/><rect x="1" y="2" width="2" height="1" fill="#F7C93E"/><rect x="3" y="2" width="1" height="1" fill="#F0EDD8"/><rect x="4" y="2" width="2" height="1" fill="#F7C93E"/><rect x="6" y="2" width="1" height="1" fill="#B38F24"/><rect x="7" y="2" width="1" height="1" fill="#00021C"/><rect x="0" y="3" width="1" height="1" fill="#00021C"/><rect x="1" y="3" width="1" height="1" fill="#F7C93E"/><rect x="2" y="3" width="1" height="1" fill="#F0EDD8"/><rect x="3" y="3" width="3" height="1" fill="#F7C93E"/><rect x="6" y="3" width="1" height="1" fill="#B38F24"/><rect x="7" y="3" width="1" height="1" fill="#00021C"/><rect x="0" y="4" width="1" height="1" fill="#00021C"/><rect x="1" y="4" width="5" height="1" fill="#F7C93E"/><rect x="6" y="4" width="1" height="1" fill="#B38F24"/><rect x="7" y="4" width="1" height="1" fill="#00021C"/><rect x="0" y="5" width="1" height="1" fill="#00021C"/><rect x="1" y="5" width="4" height="1" fill="#F7C93E"/><rect x="5" y="5" width="2" height="1" fill="#B38F24"/><rect x="7" y="5" width="1" height="1" fill="#00021C"/><rect x="1" y="6" width="1" height="1" fill="#00021C"/><rect x="2" y="6" width="4" height="1" fill="#B38F24"/><rect x="6" y="6" width="1" height="1" fill="#00021C"/><rect x="2" y="7" width="4" height="1" fill="#00021C"/></symbol>
+  </svg>
+  <a class="sr-only" href="#tresc">Przejdź do treści</a>
+
+  <header class="site-header">
+    <div class="container">
+      <a class="logo" href="/">PIKSEL<span>BAZAR</span></a>
+      <nav class="site-nav" aria-label="Główna">
+        <a href="/sklep" aria-current="page">Sklep</a>
+        <a href="/ekwipunek">Ekwipunek</a>
+        <a href="/aukcje">Aukcje</a>
+        <a href="#koszyk">Koszyk (<span data-cart-count>4</span>)</a>
+      </nav>
+      <form class="search-main" role="search" action="/szukaj">
+        <label class="sr-only" for="q">Szukaj przedmiotu</label>
+        <input id="q" name="q" type="search" placeholder="Miecz, mikstura, skórka…">
+        <button type="submit" aria-label="Szukaj">&gt;</button>
+      </form>
+      <a class="wallet" href="/portfel" aria-label="Portfel: 2 150 monet"><svg class="coin" viewBox="0 0 8 8" width="16" height="16" aria-hidden="true" focusable="false"><use href="#coin"/></svg><span class="wallet-n" data-balance>2 150</span><small>monet</small></a>
+    </div>
+  </header>
+
+  <main id="tresc" class="container">
+    <ol class="breadcrumbs">
+      <li><a href="/">Start</a></li>
+      <li>Sklep z przedmiotami</li>
+    </ol>
+
+    <div class="page-head">
+      <div>
+        <h1>Sklep z przedmiotami</h1>
+        <p>Broń, mikstury, pancerze i skórki od kupców z całego królestwa. Płacisz monetami z portfela.</p>
+      </div>
+      <div class="tabs" role="group" aria-label="Sortuj" data-sort-for="przedmioty">
+        <button type="button" aria-pressed="true" data-sort-key="order">Popularne</button>
+        <button type="button" aria-pressed="false" data-sort-key="price" data-sort-dir="asc">Najtańsze</button>
+        <button type="button" aria-pressed="false" data-sort-key="price" data-sort-dir="desc">Najdroższe</button>
+      </div>
+    </div>
+
+    <div class="shop-layout">
+      <section aria-labelledby="h-items">
+        <div class="shop-toolbar">
+          <h2 id="h-items">12 przedmiotów</h2>
+          <div class="scroll-x">
+            <nav class="tabs" aria-label="Kategorie">
+              <a href="/sklep" aria-current="page">Wszystkie</a>
+              <a href="/sklep/bron">Broń</a>
+              <a href="/sklep/mikstury">Mikstury</a>
+              <a href="/sklep/pancerze">Pancerze</a>
+              <a href="/sklep/skorki">Skórki</a>
+            </nav>
+          </div>
+        </div>
+        <ul class="item-grid" data-list="przedmioty"><li data-item data-sort-price="2400">
+        <article class="card item-card rar-legendary" aria-labelledby="t-ostrze-switu">
+          <div class="item-top">
+            <span class="item-art"><svg class="px-icon" viewBox="0 0 12 12" width="48" height="48" shape-rendering="crispEdges" aria-hidden="true" focusable="false"><rect x="10" y="0" width="2" height="1" fill="#00021C"/><rect x="9" y="1" width="1" height="1" fill="#00021C"/><rect x="10" y="1" width="1" height="1" fill="#F0EDD8"/><rect x="11" y="1" width="1" height="1" fill="#00021C"/><rect x="8" y="2" width="1" height="1" fill="#00021C"/><rect x="9" y="2" width="1" height="1" fill="#F0EDD8"/><rect x="10" y="2" width="1" height="1" fill="#F7C93E"/><rect x="11" y="2" width="1" height="1" fill="#00021C"/><rect x="7" y="3" width="1" height="1" fill="#00021C"/><rect x="8" y="3" width="1" height="1" fill="#F0EDD8"/><rect x="9" y="3" width="1" height="1" fill="#F7C93E"/><rect x="10" y="3" width="1" height="1" fill="#00021C"/><rect x="6" y="4" width="1" height="1" fill="#00021C"/><rect x="7" y="4" width="1" height="1" fill="#F0EDD8"/><rect x="8" y="4" width="1" height="1" fill="#F7C93E"/><rect x="9" y="4" width="1" height="1" fill="#00021C"/><rect x="5" y="5" width="1" height="1" fill="#00021C"/><rect x="6" y="5" width="1" height="1" fill="#F0EDD8"/><rect x="7" y="5" width="1" height="1" fill="#F7C93E"/><rect x="8" y="5" width="1" height="1" fill="#00021C"/><rect x="1" y="6" width="1" height="1" fill="#00021C"/><rect x="4" y="6" width="1" height="1" fill="#00021C"/><rect x="5" y="6" width="1" height="1" fill="#F0EDD8"/><rect x="6" y="6" width="1" height="1" fill="#F7C93E"/><rect x="7" y="6" width="1" height="1" fill="#00021C"/><rect x="1" y="7" width="3" height="1" fill="#00021C"/><rect x="4" y="7" width="1" height="1" fill="#F0EDD8"/><rect x="5" y="7" width="1" height="1" fill="#F7C93E"/><rect x="6" y="7" width="1" height="1" fill="#00021C"/><rect x="2" y="8" width="1" height="1" fill="#00021C"/><rect x="3" y="8" width="1" height="1" fill="#D9214F"/><rect x="4" y="8" width="1" height="1" fill="#00021C"/><rect x="1" y="9" width="1" height="1" fill="#00021C"/><rect x="2" y="9" width="1" height="1" fill="#D9214F"/><rect x="3" y="9" width="3" height="1" fill="#00021C"/><rect x="0" y="10" width="1" height="1" fill="#00021C"/><rect x="1" y="10" width="1" height="1" fill="#B38F24"/><rect x="2" y="10" width="1" height="1" fill="#00021C"/><rect x="5" y="10" width="1" height="1" fill="#00021C"/><rect x="0" y="11" width="2" height="1" fill="#00021C"/></svg></span>
+            <span class="tier-tag tier-legendary">Legendarny</span>
+          </div>
+          <h3 id="t-ostrze-switu" title="Ostrze Świtu">Ostrze Świtu</h3>
+          <p class="card-sub">Broń · Obrażenia +48</p>
+          <p class="amount price"><svg class="coin" viewBox="0 0 8 8" width="16" height="16" aria-hidden="true" focusable="false"><use href="#coin"/></svg><span class="price-n">2 400</span> <small>monet</small></p>
+          <button class="btn btn-secondary btn-full" type="button" data-add="ostrze-switu" aria-pressed="true" aria-describedby="t-ostrze-switu">W koszyku</button>
+        </article></li><li data-item data-sort-price="180">
+        <article class="card item-card rar-rare" aria-labelledby="t-mikstura-leczenia">
+          <div class="item-top">
+            <span class="item-art"><svg class="px-icon" viewBox="0 0 12 12" width="48" height="48" shape-rendering="crispEdges" aria-hidden="true" focusable="false"><rect x="4" y="0" width="4" height="1" fill="#00021C"/><rect x="4" y="1" width="1" height="1" fill="#00021C"/><rect x="5" y="1" width="2" height="1" fill="#B38F24"/><rect x="7" y="1" width="1" height="1" fill="#00021C"/><rect x="4" y="2" width="4" height="1" fill="#00021C"/><rect x="5" y="3" width="2" height="1" fill="#00021C"/><rect x="4" y="4" width="1" height="1" fill="#00021C"/><rect x="5" y="4" width="1" height="1" fill="#F0EDD8"/><rect x="6" y="4" width="1" height="1" fill="#A3CCD9"/><rect x="7" y="4" width="1" height="1" fill="#00021C"/><rect x="3" y="5" width="1" height="1" fill="#00021C"/><rect x="4" y="5" width="1" height="1" fill="#F0EDD8"/><rect x="5" y="5" width="3" height="1" fill="#A3CCD9"/><rect x="8" y="5" width="1" height="1" fill="#00021C"/><rect x="2" y="6" width="1" height="1" fill="#00021C"/><rect x="3" y="6" width="1" height="1" fill="#F0EDD8"/><rect x="4" y="6" width="5" height="1" fill="#D9214F"/><rect x="9" y="6" width="1" height="1" fill="#00021C"/><rect x="1" y="7" width="1" height="1" fill="#00021C"/><rect x="2" y="7" width="1" height="1" fill="#F0EDD8"/><rect x="3" y="7" width="7" height="1" fill="#D9214F"/><rect x="10" y="7" width="1" height="1" fill="#00021C"/><rect x="1" y="8" width="1" height="1" fill="#00021C"/><rect x="2" y="8" width="8" height="1" fill="#D9214F"/><rect x="10" y="8" width="1" height="1" fill="#00021C"/><rect x="1" y="9" width="1" height="1" fill="#00021C"/><rect x="2" y="9" width="8" height="1" fill="#D9214F"/><rect x="10" y="9" width="1" height="1" fill="#00021C"/><rect x="2" y="10" width="1" height="1" fill="#00021C"/><rect x="3" y="10" width="6" height="1" fill="#D9214F"/><rect x="9" y="10" width="1" height="1" fill="#00021C"/><rect x="3" y="11" width="6" height="1" fill="#00021C"/></svg></span>
+            <span class="tier-tag tier-rare">Rzadki</span>
+          </div>
+          <h3 id="t-mikstura-leczenia" title="Mikstura Wielkiego Leczenia">Mikstura Wielkiego Leczenia</h3>
+          <p class="card-sub">Mikstura · Zdrowie +250</p>
+          <p class="amount price"><svg class="coin" viewBox="0 0 8 8" width="16" height="16" aria-hidden="true" focusable="false"><use href="#coin"/></svg><span class="price-n">180</span> <small>monet</small></p>
+          <button class="btn btn-secondary btn-full" type="button" data-add="mikstura-leczenia" aria-pressed="true" aria-describedby="t-mikstura-leczenia">W koszyku</button>
+        </article></li><li data-item data-sort-price="950">
+        <article class="card item-card rar-epic" aria-labelledby="t-neonowy-rycerz">
+          <div class="item-top">
+            <span class="item-art"><svg class="px-icon" viewBox="0 0 12 12" width="48" height="48" shape-rendering="crispEdges" aria-hidden="true" focusable="false"><rect x="3" y="0" width="6" height="1" fill="#00021C"/><rect x="2" y="1" width="1" height="1" fill="#00021C"/><rect x="3" y="1" width="6" height="1" fill="#0BAFE6"/><rect x="9" y="1" width="1" height="1" fill="#00021C"/><rect x="1" y="2" width="1" height="1" fill="#00021C"/><rect x="2" y="2" width="8" height="1" fill="#0BAFE6"/><rect x="10" y="2" width="1" height="1" fill="#00021C"/><rect x="1" y="3" width="1" height="1" fill="#00021C"/><rect x="2" y="3" width="1" height="1" fill="#0BAFE6"/><rect x="3" y="3" width="6" height="1" fill="#F09C60"/><rect x="9" y="3" width="1" height="1" fill="#0BAFE6"/><rect x="10" y="3" width="1" height="1" fill="#00021C"/><rect x="1" y="4" width="1" height="1" fill="#00021C"/><rect x="2" y="4" width="1" height="1" fill="#F09C60"/><rect x="3" y="4" width="1" height="1" fill="#00021C"/><rect x="4" y="4" width="4" height="1" fill="#F09C60"/><rect x="8" y="4" width="1" height="1" fill="#00021C"/><rect x="9" y="4" width="1" height="1" fill="#F09C60"/><rect x="10" y="4" width="1" height="1" fill="#00021C"/><rect x="1" y="5" width="1" height="1" fill="#00021C"/><rect x="2" y="5" width="8" height="1" fill="#F09C60"/><rect x="10" y="5" width="1" height="1" fill="#00021C"/><rect x="2" y="6" width="1" height="1" fill="#00021C"/><rect x="3" y="6" width="2" height="1" fill="#F09C60"/><rect x="5" y="6" width="2" height="1" fill="#00021C"/><rect x="7" y="6" width="2" height="1" fill="#F09C60"/><rect x="9" y="6" width="1" height="1" fill="#00021C"/><rect x="3" y="7" width="1" height="1" fill="#00021C"/><rect x="4" y="7" width="4" height="1" fill="#F09C60"/><rect x="8" y="7" width="1" height="1" fill="#00021C"/><rect x="2" y="8" width="2" height="1" fill="#00021C"/><rect x="4" y="8" width="4" height="1" fill="#D94C87"/><rect x="8" y="8" width="2" height="1" fill="#00021C"/><rect x="1" y="9" width="1" height="1" fill="#00021C"/><rect x="2" y="9" width="3" height="1" fill="#D94C87"/><rect x="5" y="9" width="2" height="1" fill="#F7C93E"/><rect x="7" y="9" width="3" height="1" fill="#D94C87"/><rect x="10" y="9" width="1" height="1" fill="#00021C"/><rect x="0" y="10" width="1" height="1" fill="#00021C"/><rect x="1" y="10" width="4" height="1" fill="#D94C87"/><rect x="5" y="10" width="2" height="1" fill="#F7C93E"/><rect x="7" y="10" width="4" height="1" fill="#D94C87"/><rect x="11" y="10" width="1" height="1" fill="#00021C"/><rect x="0" y="11" width="1" height="1" fill="#00021C"/><rect x="1" y="11" width="10" height="1" fill="#D94C87"/><rect x="11" y="11" width="1" height="1" fill="#00021C"/></svg></span>
+            <span class="tier-tag tier-epic">Epicki</span>
+          </div>
+          <h3 id="t-neonowy-rycerz" title="Skórka „Neonowy Rycerz”">Skórka „Neonowy Rycerz”</h3>
+          <p class="card-sub">Skórka · Efekt świetlny</p>
+          <p class="amount price"><svg class="coin" viewBox="0 0 8 8" width="16" height="16" aria-hidden="true" focusable="false"><use href="#coin"/></svg><span class="price-n">950</span> <small>monet</small></p>
+          <button class="btn btn-secondary btn-full" type="button" data-add="neonowy-rycerz" aria-pressed="false" aria-describedby="t-neonowy-rycerz">Do koszyka</button>
+        </article></li><li data-item data-sort-price="620">
+        <article class="card item-card rar-rare" aria-labelledby="t-tarcza-straznika">
+          <div class="item-top">
+            <span class="item-art"><svg class="px-icon" viewBox="0 0 12 12" width="48" height="48" shape-rendering="crispEdges" aria-hidden="true" focusable="false"><rect x="1" y="0" width="10" height="1" fill="#00021C"/><rect x="1" y="1" width="1" height="1" fill="#00021C"/><rect x="2" y="1" width="8" height="1" fill="#2469B3"/><rect x="10" y="1" width="1" height="1" fill="#00021C"/><rect x="1" y="2" width="1" height="1" fill="#00021C"/><rect x="2" y="2" width="3" height="1" fill="#2469B3"/><rect x="5" y="2" width="2" height="1" fill="#F7C93E"/><rect x="7" y="2" width="3" height="1" fill="#2469B3"/><rect x="10" y="2" width="1" height="1" fill="#00021C"/><rect x="1" y="3" width="1" height="1" fill="#00021C"/><rect x="2" y="3" width="2" height="1" fill="#2469B3"/><rect x="4" y="3" width="4" height="1" fill="#F7C93E"/><rect x="8" y="3" width="2" height="1" fill="#2469B3"/><rect x="10" y="3" width="1" height="1" fill="#00021C"/><rect x="1" y="4" width="1" height="1" fill="#00021C"/><rect x="2" y="4" width="3" height="1" fill="#2469B3"/><rect x="5" y="4" width="2" height="1" fill="#F7C93E"/><rect x="7" y="4" width="3" height="1" fill="#2469B3"/><rect x="10" y="4" width="1" height="1" fill="#00021C"/><rect x="1" y="5" width="1" height="1" fill="#00021C"/><rect x="2" y="5" width="3" height="1" fill="#2469B3"/><rect x="5" y="5" width="2" height="1" fill="#F7C93E"/><rect x="7" y="5" width="3" height="1" fill="#2469B3"/><rect x="10" y="5" width="1" height="1" fill="#00021C"/><rect x="1" y="6" width="1" height="1" fill="#00021C"/><rect x="2" y="6" width="8" height="1" fill="#2469B3"/><rect x="10" y="6" width="1" height="1" fill="#00021C"/><rect x="2" y="7" width="1" height="1" fill="#00021C"/><rect x="3" y="7" width="6" height="1" fill="#2469B3"/><rect x="9" y="7" width="1" height="1" fill="#00021C"/><rect x="2" y="8" width="1" height="1" fill="#00021C"/><rect x="3" y="8" width="6" height="1" fill="#2469B3"/><rect x="9" y="8" width="1" height="1" fill="#00021C"/><rect x="3" y="9" width="1" height="1" fill="#00021C"/><rect x="4" y="9" width="4" height="1" fill="#2469B3"/><rect x="8" y="9" width="1" height="1" fill="#00021C"/><rect x="4" y="10" width="1" height="1" fill="#00021C"/><rect x="5" y="10" width="2" height="1" fill="#2469B3"/><rect x="7" y="10" width="1" height="1" fill="#00021C"/><rect x="5" y="11" width="2" height="1" fill="#00021C"/></svg></span>
+            <span class="tier-tag tier-rare">Rzadki</span>
+          </div>
+          <h3 id="t-tarcza-straznika" title="Tarcza Strażnika Bram">Tarcza Strażnika Bram</h3>
+          <p class="card-sub">Pancerz · Obrona +32</p>
+          <p class="amount price"><svg class="coin" viewBox="0 0 8 8" width="16" height="16" aria-hidden="true" focusable="false"><use href="#coin"/></svg><span class="price-n">620</span> <small>monet</small></p>
+          <button class="btn btn-secondary btn-full" type="button" data-add="tarcza-straznika" aria-pressed="false" aria-describedby="t-tarcza-straznika">Do koszyka</button>
+        </article></li><li data-item data-sort-price="120">
+        <article class="card item-card rar-common" aria-labelledby="t-miecz-kowala">
+          <div class="item-top">
+            <span class="item-art"><svg class="px-icon" viewBox="0 0 12 12" width="48" height="48" shape-rendering="crispEdges" aria-hidden="true" focusable="false"><rect x="10" y="0" width="2" height="1" fill="#00021C"/><rect x="9" y="1" width="1" height="1" fill="#00021C"/><rect x="10" y="1" width="1" height="1" fill="#F0EDD8"/><rect x="11" y="1" width="1" height="1" fill="#00021C"/><rect x="8" y="2" width="1" height="1" fill="#00021C"/><rect x="9" y="2" width="1" height="1" fill="#F0EDD8"/><rect x="10" y="2" width="1" height="1" fill="#7497A6"/><rect x="11" y="2" width="1" height="1" fill="#00021C"/><rect x="7" y="3" width="1" height="1" fill="#00021C"/><rect x="8" y="3" width="1" height="1" fill="#F0EDD8"/><rect x="9" y="3" width="1" height="1" fill="#7497A6"/><rect x="10" y="3" width="1" height="1" fill="#00021C"/><rect x="6" y="4" width="1" height="1" fill="#00021C"/><rect x="7" y="4" width="1" height="1" fill="#F0EDD8"/><rect x="8" y="4" width="1" height="1" fill="#7497A6"/><rect x="9" y="4" width="1" height="1" fill="#00021C"/><rect x="5" y="5" width="1" height="1" fill="#00021C"/><rect x="6" y="5" width="1" height="1" fill="#F0EDD8"/><rect x="7" y="5" width="1" height="1" fill="#7497A6"/><rect x="8" y="5" width="1" height="1" fill="#00021C"/><rect x="1" y="6" width="1" height="1" fill="#00021C"/><rect x="4" y="6" width="1" height="1" fill="#00021C"/><rect x="5" y="6" width="1" height="1" fill="#F0EDD8"/><rect x="6" y="6" width="1" height="1" fill="#7497A6"/><rect x="7" y="6" width="1" height="1" fill="#00021C"/><rect x="1" y="7" width="3" height="1" fill="#00021C"/><rect x="4" y="7" width="1" height="1" fill="#F0EDD8"/><rect x="5" y="7" width="1" height="1" fill="#7497A6"/><rect x="6" y="7" width="1" height="1" fill="#00021C"/><rect x="2" y="8" width="1" height="1" fill="#00021C"/><rect x="3" y="8" width="1" height="1" fill="#2D5280"/><rect x="4" y="8" width="1" height="1" fill="#00021C"/><rect x="1" y="9" width="1" height="1" fill="#00021C"/><rect x="2" y="9" width="1" height="1" fill="#2D5280"/><rect x="3" y="9" width="3" height="1" fill="#00021C"/><rect x="0" y="10" width="1" height="1" fill="#00021C"/><rect x="1" y="10" width="1" height="1" fill="#B36159"/><rect x="2" y="10" width="1" height="1" fill="#00021C"/><rect x="5" y="10" width="1" height="1" fill="#00021C"/><rect x="0" y="11" width="2" height="1" fill="#00021C"/></svg></span>
+            <span class="tier-tag tier-common">Zwykły</span>
+          </div>
+          <h3 id="t-miecz-kowala" title="Miecz Kowala z Wieliczki">Miecz Kowala z Wieliczki</h3>
+          <p class="card-sub">Broń · Obrażenia +14</p>
+          <p class="amount price"><svg class="coin" viewBox="0 0 8 8" width="16" height="16" aria-hidden="true" focusable="false"><use href="#coin"/></svg><span class="price-n">120</span> <small>monet</small></p>
+          <button class="btn btn-secondary btn-full" type="button" data-add="miecz-kowala" aria-pressed="false" aria-describedby="t-miecz-kowala">Do koszyka</button>
+        </article></li><li data-item data-sort-price="60">
+        <article class="card item-card rar-common" aria-labelledby="t-eliksir-many">
+          <div class="item-top">
+            <span class="item-art"><svg class="px-icon" viewBox="0 0 12 12" width="48" height="48" shape-rendering="crispEdges" aria-hidden="true" focusable="false"><rect x="4" y="0" width="4" height="1" fill="#00021C"/><rect x="4" y="1" width="1" height="1" fill="#00021C"/><rect x="5" y="1" width="2" height="1" fill="#B38F24"/><rect x="7" y="1" width="1" height="1" fill="#00021C"/><rect x="4" y="2" width="4" height="1" fill="#00021C"/><rect x="5" y="3" width="2" height="1" fill="#00021C"/><rect x="4" y="4" width="1" height="1" fill="#00021C"/><rect x="5" y="4" width="1" height="1" fill="#F0EDD8"/><rect x="6" y="4" width="1" height="1" fill="#A3CCD9"/><rect x="7" y="4" width="1" height="1" fill="#00021C"/><rect x="3" y="5" width="1" height="1" fill="#00021C"/><rect x="4" y="5" width="1" height="1" fill="#F0EDD8"/><rect x="5" y="5" width="3" height="1" fill="#A3CCD9"/><rect x="8" y="5" width="1" height="1" fill="#00021C"/><rect x="2" y="6" width="1" height="1" fill="#00021C"/><rect x="3" y="6" width="1" height="1" fill="#F0EDD8"/><rect x="4" y="6" width="5" height="1" fill="#2469B3"/><rect x="9" y="6" width="1" height="1" fill="#00021C"/><rect x="1" y="7" width="1" height="1" fill="#00021C"/><rect x="2" y="7" width="1" height="1" fill="#F0EDD8"/><rect x="3" y="7" width="7" height="1" fill="#2469B3"/><rect x="10" y="7" width="1" height="1" fill="#00021C"/><rect x="1" y="8" width="1" height="1" fill="#00021C"/><rect x="2" y="8" width="8" height="1" fill="#2469B3"/><rect x="10" y="8" width="1" height="1" fill="#00021C"/><rect x="1" y="9" width="1" height="1" fill="#00021C"/><rect x="2" y="9" width="8" height="1" fill="#2469B3"/><rect x="10" y="9" width="1" height="1" fill="#00021C"/><rect x="2" y="10" width="1" height="1" fill="#00021C"/><rect x="3" y="10" width="6" height="1" fill="#2469B3"/><rect x="9" y="10" width="1" height="1" fill="#00021C"/><rect x="3" y="11" width="6" height="1" fill="#00021C"/></svg></span>
+            <span class="tier-tag tier-common">Zwykły</span>
+          </div>
+          <h3 id="t-eliksir-many" title="Eliksir Many">Eliksir Many</h3>
+          <p class="card-sub">Mikstura · Mana +80</p>
+          <p class="amount price"><svg class="coin" viewBox="0 0 8 8" width="16" height="16" aria-hidden="true" focusable="false"><use href="#coin"/></svg><span class="price-n">60</span> <small>monet</small></p>
+          <button class="btn btn-secondary btn-full" type="button" data-add="eliksir-many" aria-pressed="false" aria-describedby="t-eliksir-many">Do koszyka</button>
+        </article></li><li data-item data-sort-price="880">
+        <article class="card item-card rar-epic" aria-labelledby="t-helm-krola">
+          <div class="item-top">
+            <span class="item-art"><svg class="px-icon" viewBox="0 0 12 12" width="48" height="48" shape-rendering="crispEdges" aria-hidden="true" focusable="false"><rect x="4" y="1" width="4" height="1" fill="#00021C"/><rect x="2" y="2" width="2" height="1" fill="#00021C"/><rect x="4" y="2" width="4" height="1" fill="#B38F24"/><rect x="8" y="2" width="2" height="1" fill="#00021C"/><rect x="1" y="3" width="1" height="1" fill="#00021C"/><rect x="2" y="3" width="2" height="1" fill="#B38F24"/><rect x="4" y="3" width="2" height="1" fill="#F7C93E"/><rect x="6" y="3" width="4" height="1" fill="#B38F24"/><rect x="10" y="3" width="1" height="1" fill="#00021C"/><rect x="1" y="4" width="1" height="1" fill="#00021C"/><rect x="2" y="4" width="2" height="1" fill="#B38F24"/><rect x="4" y="4" width="1" height="1" fill="#F7C93E"/><rect x="5" y="4" width="5" height="1" fill="#B38F24"/><rect x="10" y="4" width="1" height="1" fill="#00021C"/><rect x="0" y="5" width="1" height="1" fill="#00021C"/><rect x="1" y="5" width="10" height="1" fill="#B38F24"/><rect x="11" y="5" width="1" height="1" fill="#00021C"/><rect x="0" y="6" width="1" height="1" fill="#00021C"/><rect x="1" y="6" width="2" height="1" fill="#B38F24"/><rect x="3" y="6" width="6" height="1" fill="#00021C"/><rect x="9" y="6" width="2" height="1" fill="#B38F24"/><rect x="11" y="6" width="1" height="1" fill="#00021C"/><rect x="0" y="7" width="1" height="1" fill="#00021C"/><rect x="1" y="7" width="2" height="1" fill="#B38F24"/><rect x="3" y="7" width="6" height="1" fill="#00021C"/><rect x="9" y="7" width="2" height="1" fill="#B38F24"/><rect x="11" y="7" width="1" height="1" fill="#00021C"/><rect x="0" y="8" width="1" height="1" fill="#00021C"/><rect x="1" y="8" width="2" height="1" fill="#B38F24"/><rect x="3" y="8" width="1" height="1" fill="#00021C"/><rect x="8" y="8" width="1" height="1" fill="#00021C"/><rect x="9" y="8" width="2" height="1" fill="#B38F24"/><rect x="11" y="8" width="1" height="1" fill="#00021C"/><rect x="0" y="9" width="1" height="1" fill="#00021C"/><rect x="1" y="9" width="2" height="1" fill="#B38F24"/><rect x="3" y="9" width="1" height="1" fill="#00021C"/><rect x="8" y="9" width="1" height="1" fill="#00021C"/><rect x="9" y="9" width="2" height="1" fill="#B38F24"/><rect x="11" y="9" width="1" height="1" fill="#00021C"/><rect x="0" y="10" width="4" height="1" fill="#00021C"/><rect x="8" y="10" width="4" height="1" fill="#00021C"/></svg></span>
+            <span class="tier-tag tier-epic">Epicki</span>
+          </div>
+          <h3 id="t-helm-krola" title="Hełm Zapomnianego Króla">Hełm Zapomnianego Króla</h3>
+          <p class="card-sub">Pancerz · Obrona +27 · Mądrość +5</p>
+          <p class="amount price"><svg class="coin" viewBox="0 0 8 8" width="16" height="16" aria-hidden="true" focusable="false"><use href="#coin"/></svg><span class="price-n">880</span> <small>monet</small></p>
+          <button class="btn btn-secondary btn-full" type="button" data-add="helm-krola" aria-pressed="true" aria-describedby="t-helm-krola">W koszyku</button>
+        </article></li><li data-item data-sort-price="3200">
+        <article class="card item-card rar-legendary" aria-labelledby="t-pikselowy-smok">
+          <div class="item-top">
+            <span class="item-art"><svg class="px-icon" viewBox="0 0 12 12" width="48" height="48" shape-rendering="crispEdges" aria-hidden="true" focusable="false"><rect x="3" y="0" width="6" height="1" fill="#00021C"/><rect x="2" y="1" width="1" height="1" fill="#00021C"/><rect x="3" y="1" width="6" height="1" fill="#17735F"/><rect x="9" y="1" width="1" height="1" fill="#00021C"/><rect x="1" y="2" width="1" height="1" fill="#00021C"/><rect x="2" y="2" width="8" height="1" fill="#17735F"/><rect x="10" y="2" width="1" height="1" fill="#00021C"/><rect x="1" y="3" width="1" height="1" fill="#00021C"/><rect x="2" y="3" width="1" height="1" fill="#17735F"/><rect x="3" y="3" width="6" height="1" fill="#67B31B"/><rect x="9" y="3" width="1" height="1" fill="#17735F"/><rect x="10" y="3" width="1" height="1" fill="#00021C"/><rect x="1" y="4" width="1" height="1" fill="#00021C"/><rect x="2" y="4" width="1" height="1" fill="#67B31B"/><rect x="3" y="4" width="1" height="1" fill="#00021C"/><rect x="4" y="4" width="4" height="1" fill="#67B31B"/><rect x="8" y="4" width="1" height="1" fill="#00021C"/><rect x="9" y="4" width="1" height="1" fill="#67B31B"/><rect x="10" y="4" width="1" height="1" fill="#00021C"/><rect x="1" y="5" width="1" height="1" fill="#00021C"/><rect x="2" y="5" width="8" height="1" fill="#67B31B"/><rect x="10" y="5" width="1" height="1" fill="#00021C"/><rect x="2" y="6" width="1" height="1" fill="#00021C"/><rect x="3" y="6" width="2" height="1" fill="#67B31B"/><rect x="5" y="6" width="2" height="1" fill="#00021C"/><rect x="7" y="6" width="2" height="1" fill="#67B31B"/><rect x="9" y="6" width="1" height="1" fill="#00021C"/><rect x="3" y="7" width="1" height="1" fill="#00021C"/><rect x="4" y="7" width="4" height="1" fill="#67B31B"/><rect x="8" y="7" width="1" height="1" fill="#00021C"/><rect x="2" y="8" width="2" height="1" fill="#00021C"/><rect x="4" y="8" width="4" height="1" fill="#D9214F"/><rect x="8" y="8" width="2" height="1" fill="#00021C"/><rect x="1" y="9" width="1" height="1" fill="#00021C"/><rect x="2" y="9" width="3" height="1" fill="#D9214F"/><rect x="5" y="9" width="2" height="1" fill="#F7C93E"/><rect x="7" y="9" width="3" height="1" fill="#D9214F"/><rect x="10" y="9" width="1" height="1" fill="#00021C"/><rect x="0" y="10" width="1" height="1" fill="#00021C"/><rect x="1" y="10" width="4" height="1" fill="#D9214F"/><rect x="5" y="10" width="2" height="1" fill="#F7C93E"/><rect x="7" y="10" width="4" height="1" fill="#D9214F"/><rect x="11" y="10" width="1" height="1" fill="#00021C"/><rect x="0" y="11" width="1" height="1" fill="#00021C"/><rect x="1" y="11" width="10" height="1" fill="#D9214F"/><rect x="11" y="11" width="1" height="1" fill="#00021C"/></svg></span>
+            <span class="tier-tag tier-legendary">Legendarny</span>
+          </div>
+          <h3 id="t-pikselowy-smok" title="Skórka „Pikselowy Smok”">Skórka „Pikselowy Smok”</h3>
+          <p class="card-sub">Skórka · Animowane skrzydła</p>
+          <p class="amount price"><svg class="coin" viewBox="0 0 8 8" width="16" height="16" aria-hidden="true" focusable="false"><use href="#coin"/></svg><span class="price-n">3 200</span> <small>monet</small></p>
+          <button class="btn btn-secondary btn-full" type="button" data-add="pikselowy-smok" aria-pressed="false" aria-describedby="t-pikselowy-smok">Do koszyka</button>
+        </article></li><li data-item data-sort-price="1100">
+        <article class="card item-card rar-epic" aria-labelledby="t-sztylet-cienia">
+          <div class="item-top">
+            <span class="item-art"><svg class="px-icon" viewBox="0 0 12 12" width="48" height="48" shape-rendering="crispEdges" aria-hidden="true" focusable="false"><rect x="10" y="0" width="2" height="1" fill="#00021C"/><rect x="9" y="1" width="1" height="1" fill="#00021C"/><rect x="10" y="1" width="1" height="1" fill="#A3CCD9"/><rect x="11" y="1" width="1" height="1" fill="#00021C"/><rect x="8" y="2" width="1" height="1" fill="#00021C"/><rect x="9" y="2" width="1" height="1" fill="#A3CCD9"/><rect x="10" y="2" width="1" height="1" fill="#732866"/><rect x="11" y="2" width="1" height="1" fill="#00021C"/><rect x="7" y="3" width="1" height="1" fill="#00021C"/><rect x="8" y="3" width="1" height="1" fill="#A3CCD9"/><rect x="9" y="3" width="1" height="1" fill="#732866"/><rect x="10" y="3" width="1" height="1" fill="#00021C"/><rect x="6" y="4" width="1" height="1" fill="#00021C"/><rect x="7" y="4" width="1" height="1" fill="#A3CCD9"/><rect x="8" y="4" width="1" height="1" fill="#732866"/><rect x="9" y="4" width="1" height="1" fill="#00021C"/><rect x="5" y="5" width="1" height="1" fill="#00021C"/><rect x="6" y="5" width="1" height="1" fill="#A3CCD9"/><rect x="7" y="5" width="1" height="1" fill="#732866"/><rect x="8" y="5" width="1" height="1" fill="#00021C"/><rect x="1" y="6" width="1" height="1" fill="#00021C"/><rect x="4" y="6" width="1" height="1" fill="#00021C"/><rect x="5" y="6" width="1" height="1" fill="#A3CCD9"/><rect x="6" y="6" width="1" height="1" fill="#732866"/><rect x="7" y="6" width="1" height="1" fill="#00021C"/><rect x="1" y="7" width="3" height="1" fill="#00021C"/><rect x="4" y="7" width="1" height="1" fill="#A3CCD9"/><rect x="5" y="7" width="1" height="1" fill="#732866"/><rect x="6" y="7" width="1" height="1" fill="#00021C"/><rect x="2" y="8" width="1" height="1" fill="#00021C"/><rect x="3" y="8" width="1" height="1" fill="#343473"/><rect x="4" y="8" width="1" height="1" fill="#00021C"/><rect x="1" y="9" width="1" height="1" fill="#00021C"/><rect x="2" y="9" width="1" height="1" fill="#343473"/><rect x="3" y="9" width="3" height="1" fill="#00021C"/><rect x="0" y="10" width="1" height="1" fill="#00021C"/><rect x="1" y="10" width="1" height="1" fill="#00021C"/><rect x="2" y="10" width="1" height="1" fill="#00021C"/><rect x="5" y="10" width="1" height="1" fill="#00021C"/><rect x="0" y="11" width="2" height="1" fill="#00021C"/></svg></span>
+            <span class="tier-tag tier-epic">Epicki</span>
+          </div>
+          <h3 id="t-sztylet-cienia" title="Sztylet Cienia">Sztylet Cienia</h3>
+          <p class="card-sub">Broń · Obrażenia +31 · Krytyk +8%</p>
+          <p class="amount price"><svg class="coin" viewBox="0 0 8 8" width="16" height="16" aria-hidden="true" focusable="false"><use href="#coin"/></svg><span class="price-n">1 100</span> <small>monet</small></p>
+          <button class="btn btn-secondary btn-full" type="button" data-add="sztylet-cienia" aria-pressed="false" aria-describedby="t-sztylet-cienia">Do koszyka</button>
+        </article></li><li data-item data-sort-price="340">
+        <article class="card item-card rar-rare" aria-labelledby="t-mikstura-niewidzialnosci">
+          <div class="item-top">
+            <span class="item-art"><svg class="px-icon" viewBox="0 0 12 12" width="48" height="48" shape-rendering="crispEdges" aria-hidden="true" focusable="false"><rect x="4" y="0" width="4" height="1" fill="#00021C"/><rect x="4" y="1" width="1" height="1" fill="#00021C"/><rect x="5" y="1" width="2" height="1" fill="#B38F24"/><rect x="7" y="1" width="1" height="1" fill="#00021C"/><rect x="4" y="2" width="4" height="1" fill="#00021C"/><rect x="5" y="3" width="2" height="1" fill="#00021C"/><rect x="4" y="4" width="1" height="1" fill="#00021C"/><rect x="5" y="4" width="1" height="1" fill="#F0EDD8"/><rect x="6" y="4" width="1" height="1" fill="#A3CCD9"/><rect x="7" y="4" width="1" height="1" fill="#00021C"/><rect x="3" y="5" width="1" height="1" fill="#00021C"/><rect x="4" y="5" width="1" height="1" fill="#F0EDD8"/><rect x="5" y="5" width="3" height="1" fill="#A3CCD9"/><rect x="8" y="5" width="1" height="1" fill="#00021C"/><rect x="2" y="6" width="1" height="1" fill="#00021C"/><rect x="3" y="6" width="1" height="1" fill="#F0EDD8"/><rect x="4" y="6" width="5" height="1" fill="#732866"/><rect x="9" y="6" width="1" height="1" fill="#00021C"/><rect x="1" y="7" width="1" height="1" fill="#00021C"/><rect x="2" y="7" width="1" height="1" fill="#F0EDD8"/><rect x="3" y="7" width="7" height="1" fill="#732866"/><rect x="10" y="7" width="1" height="1" fill="#00021C"/><rect x="1" y="8" width="1" height="1" fill="#00021C"/><rect x="2" y="8" width="8" height="1" fill="#732866"/><rect x="10" y="8" width="1" height="1" fill="#00021C"/><rect x="1" y="9" width="1" height="1" fill="#00021C"/><rect x="2" y="9" width="8" height="1" fill="#732866"/><rect x="10" y="9" width="1" height="1" fill="#00021C"/><rect x="2" y="10" width="1" height="1" fill="#00021C"/><rect x="3" y="10" width="6" height="1" fill="#732866"/><rect x="9" y="10" width="1" height="1" fill="#00021C"/><rect x="3" y="11" width="6" height="1" fill="#00021C"/></svg></span>
+            <span class="tier-tag tier-rare">Rzadki</span>
+          </div>
+          <h3 id="t-mikstura-niewidzialnosci" title="Mikstura Niewidzialności">Mikstura Niewidzialności</h3>
+          <p class="card-sub">Mikstura · Niewidzialność 30 s</p>
+          <p class="amount price"><svg class="coin" viewBox="0 0 8 8" width="16" height="16" aria-hidden="true" focusable="false"><use href="#coin"/></svg><span class="price-n">340</span> <small>monet</small></p>
+          <button class="btn btn-secondary btn-full" type="button" data-add="mikstura-niewidzialnosci" aria-pressed="false" aria-describedby="t-mikstura-niewidzialnosci">Do koszyka</button>
+        </article></li><li data-item data-sort-price="90">
+        <article class="card item-card rar-common" aria-labelledby="t-zwoj-teleportacji">
+          <div class="item-top">
+            <span class="item-art"><svg class="px-icon" viewBox="0 0 12 12" width="48" height="48" shape-rendering="crispEdges" aria-hidden="true" focusable="false"><rect x="1" y="0" width="10" height="1" fill="#00021C"/><rect x="0" y="1" width="1" height="1" fill="#00021C"/><rect x="1" y="1" width="10" height="1" fill="#F0EDD8"/><rect x="11" y="1" width="1" height="1" fill="#00021C"/><rect x="1" y="2" width="10" height="1" fill="#00021C"/><rect x="2" y="3" width="1" height="1" fill="#00021C"/><rect x="3" y="3" width="7" height="1" fill="#F09C60"/><rect x="10" y="3" width="1" height="1" fill="#00021C"/><rect x="2" y="4" width="1" height="1" fill="#00021C"/><rect x="3" y="4" width="1" height="1" fill="#F09C60"/><rect x="4" y="4" width="5" height="1" fill="#2D5280"/><rect x="9" y="4" width="1" height="1" fill="#F09C60"/><rect x="10" y="4" width="1" height="1" fill="#00021C"/><rect x="2" y="5" width="1" height="1" fill="#00021C"/><rect x="3" y="5" width="7" height="1" fill="#F09C60"/><rect x="10" y="5" width="1" height="1" fill="#00021C"/><rect x="2" y="6" width="1" height="1" fill="#00021C"/><rect x="3" y="6" width="1" height="1" fill="#F09C60"/><rect x="4" y="6" width="4" height="1" fill="#2D5280"/><rect x="8" y="6" width="2" height="1" fill="#F09C60"/><rect x="10" y="6" width="1" height="1" fill="#00021C"/><rect x="2" y="7" width="1" height="1" fill="#00021C"/><rect x="3" y="7" width="7" height="1" fill="#F09C60"/><rect x="10" y="7" width="1" height="1" fill="#00021C"/><rect x="2" y="8" width="1" height="1" fill="#00021C"/><rect x="3" y="8" width="1" height="1" fill="#F09C60"/><rect x="4" y="8" width="5" height="1" fill="#2D5280"/><rect x="9" y="8" width="1" height="1" fill="#F09C60"/><rect x="10" y="8" width="1" height="1" fill="#00021C"/><rect x="1" y="9" width="10" height="1" fill="#00021C"/><rect x="0" y="10" width="1" height="1" fill="#00021C"/><rect x="1" y="10" width="10" height="1" fill="#F0EDD8"/><rect x="11" y="10" width="1" height="1" fill="#00021C"/><rect x="1" y="11" width="10" height="1" fill="#00021C"/></svg></span>
+            <span class="tier-tag tier-common">Zwykły</span>
+          </div>
+          <h3 id="t-zwoj-teleportacji" title="Zwój Teleportacji">Zwój Teleportacji</h3>
+          <p class="card-sub">Zwój · Powrót do miasta</p>
+          <p class="amount price"><svg class="coin" viewBox="0 0 8 8" width="16" height="16" aria-hidden="true" focusable="false"><use href="#coin"/></svg><span class="price-n">90</span> <small>monet</small></p>
+          <button class="btn btn-secondary btn-full" type="button" data-add="zwoj-teleportacji" aria-pressed="false" aria-describedby="t-zwoj-teleportacji">Do koszyka</button>
+        </article></li><li data-item data-sort-price="450">
+        <article class="card item-card rar-rare" aria-labelledby="t-lesny-zwiadowca">
+          <div class="item-top">
+            <span class="item-art"><svg class="px-icon" viewBox="0 0 12 12" width="48" height="48" shape-rendering="crispEdges" aria-hidden="true" focusable="false"><rect x="3" y="0" width="6" height="1" fill="#00021C"/><rect x="2" y="1" width="1" height="1" fill="#00021C"/><rect x="3" y="1" width="6" height="1" fill="#B36159"/><rect x="9" y="1" width="1" height="1" fill="#00021C"/><rect x="1" y="2" width="1" height="1" fill="#00021C"/><rect x="2" y="2" width="8" height="1" fill="#B36159"/><rect x="10" y="2" width="1" height="1" fill="#00021C"/><rect x="1" y="3" width="1" height="1" fill="#00021C"/><rect x="2" y="3" width="1" height="1" fill="#B36159"/><rect x="3" y="3" width="6" height="1" fill="#F09C60"/><rect x="9" y="3" width="1" height="1" fill="#B36159"/><rect x="10" y="3" width="1" height="1" fill="#00021C"/><rect x="1" y="4" width="1" height="1" fill="#00021C"/><rect x="2" y="4" width="1" height="1" fill="#F09C60"/><rect x="3" y="4" width="1" height="1" fill="#00021C"/><rect x="4" y="4" width="4" height="1" fill="#F09C60"/><rect x="8" y="4" width="1" height="1" fill="#00021C"/><rect x="9" y="4" width="1" height="1" fill="#F09C60"/><rect x="10" y="4" width="1" height="1" fill="#00021C"/><rect x="1" y="5" width="1" height="1" fill="#00021C"/><rect x="2" y="5" width="8" height="1" fill="#F09C60"/><rect x="10" y="5" width="1" height="1" fill="#00021C"/><rect x="2" y="6" width="1" height="1" fill="#00021C"/><rect x="3" y="6" width="2" height="1" fill="#F09C60"/><rect x="5" y="6" width="2" height="1" fill="#00021C"/><rect x="7" y="6" width="2" height="1" fill="#F09C60"/><rect x="9" y="6" width="1" height="1" fill="#00021C"/><rect x="3" y="7" width="1" height="1" fill="#00021C"/><rect x="4" y="7" width="4" height="1" fill="#F09C60"/><rect x="8" y="7" width="1" height="1" fill="#00021C"/><rect x="2" y="8" width="2" height="1" fill="#00021C"/><rect x="4" y="8" width="4" height="1" fill="#119955"/><rect x="8" y="8" width="2" height="1" fill="#00021C"/><rect x="1" y="9" width="1" height="1" fill="#00021C"/><rect x="2" y="9" width="3" height="1" fill="#119955"/><rect x="5" y="9" width="2" height="1" fill="#F7C93E"/><rect x="7" y="9" width="3" height="1" fill="#119955"/><rect x="10" y="9" width="1" height="1" fill="#00021C"/><rect x="0" y="10" width="1" height="1" fill="#00021C"/><rect x="1" y="10" width="4" height="1" fill="#119955"/><rect x="5" y="10" width="2" height="1" fill="#F7C93E"/><rect x="7" y="10" width="4" height="1" fill="#119955"/><rect x="11" y="10" width="1" height="1" fill="#00021C"/><rect x="0" y="11" width="1" height="1" fill="#00021C"/><rect x="1" y="11" width="10" height="1" fill="#119955"/><rect x="11" y="11" width="1" height="1" fill="#00021C"/></svg></span>
+            <span class="tier-tag tier-rare">Rzadki</span>
+          </div>
+          <h3 id="t-lesny-zwiadowca" title="Skórka „Leśny Zwiadowca”">Skórka „Leśny Zwiadowca”</h3>
+          <p class="card-sub">Skórka · Kamuflaż w lesie</p>
+          <p class="amount price"><svg class="coin" viewBox="0 0 8 8" width="16" height="16" aria-hidden="true" focusable="false"><use href="#coin"/></svg><span class="price-n">450</span> <small>monet</small></p>
+          <button class="btn btn-secondary btn-full" type="button" data-add="lesny-zwiadowca" aria-pressed="false" aria-describedby="t-lesny-zwiadowca">Do koszyka</button>
+        </article></li>
+        </ul>
+        <ul class="pagination" aria-label="Strony">
+          <li><span aria-current="page">1</span></li>
+          <li><a href="?p=2">2</a></li>
+          <li><a href="?p=3">3</a></li>
+        </ul>
+      </section>
+
+      <aside class="cart-col" id="koszyk" aria-label="Koszyk">
+        <section class="panel is-featured cart" aria-labelledby="h-cart">
+          <header class="panel-head"><h2 id="h-cart">Koszyk</h2><span class="count" data-cart-count>4</span></header>
+          <ol class="cart-list" data-cart-list>
+            <li class="cart-row">
+              <span class="cart-main"><span class="cart-name">Ostrze Świtu</span><span class="tier-tag tier-legendary">Legendarny</span></span>
+              <span class="stepper"><button type="button" data-dec="ostrze-switu" aria-label="Zmniejsz liczbę: Ostrze Świtu">−</button><input type="number" readonly value="1" aria-label="Sztuk: 1"><button type="button" data-inc="ostrze-switu" aria-label="Zwiększ liczbę: Ostrze Świtu">+</button></span>
+              <span class="cart-price">2 400</span>
+            </li>
+            <li class="cart-row">
+              <span class="cart-main"><span class="cart-name">Mikstura Wielkiego Leczenia</span><span class="tier-tag tier-rare">Rzadki</span></span>
+              <span class="stepper"><button type="button" data-dec="mikstura-leczenia" aria-label="Zmniejsz liczbę: Mikstura Wielkiego Leczenia">−</button><input type="number" readonly value="2" aria-label="Sztuk: 2"><button type="button" data-inc="mikstura-leczenia" aria-label="Zwiększ liczbę: Mikstura Wielkiego Leczenia">+</button></span>
+              <span class="cart-price">360</span>
+            </li>
+            <li class="cart-row">
+              <span class="cart-main"><span class="cart-name">Hełm Zapomnianego Króla</span><span class="tier-tag tier-epic">Epicki</span></span>
+              <span class="stepper"><button type="button" data-dec="helm-krola" aria-label="Zmniejsz liczbę: Hełm Zapomnianego Króla">−</button><input type="number" readonly value="1" aria-label="Sztuk: 1"><button type="button" data-inc="helm-krola" aria-label="Zwiększ liczbę: Hełm Zapomnianego Króla">+</button></span>
+              <span class="cart-price">880</span>
+            </li>
+          </ol>
+          <dl class="facts cart-facts">
+            <div><dt>Przedmioty (<span data-cart-count>4</span> szt.)</dt><dd class="num" data-sum>3 640</dd></div>
+            <div><dt>Twoje monety</dt><dd class="num" data-balance>2 150</dd></div>
+            <div class="is-short" data-short-row><dt>Brakuje</dt><dd class="num" data-missing>1 490</dd></div>
+          </dl>
+          <div class="progress cart-progress" data-meter style="--value:59%">
+            <div class="progress-label"><span id="meter-l" data-meter-label>Masz 59% potrzebnych monet</span><span class="num">59%</span></div>
+            <div class="progress-track" role="progressbar" aria-labelledby="meter-l" aria-valuemin="0" aria-valuemax="100" aria-valuenow="59"><div class="progress-fill"></div></div>
+          </div>
+          <button class="btn btn-primary btn-full" type="button" data-buy aria-disabled="true" aria-describedby="why-buy">
+            <span class="lock" aria-hidden="true"></span><span data-buy-label>Kup za 3 640 monet</span>
+          </button>
+          <p class="btn-reason" id="why-buy" data-reason>Brakuje 1 490 monet. Doładuj portfel albo usuń coś z koszyka.</p>
+          <a class="btn btn-secondary btn-full" href="/portfel/doladuj">Doładuj monety</a>
+          <p class="status" role="status" data-status></p>
+        </section>
+      </aside>
+    </div>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container">© 2026 PikselBazar · <a href="/regulamin">Regulamin</a> · <a href="/prywatnosc">Prywatność</a></div>
+  </footer>
+
+  <script>
+  (function () {
+    var ITEMS = {"ostrze-switu": {"name": "Ostrze Świtu", "rar": "legendary", "price": 2400}, "mikstura-leczenia": {"name": "Mikstura Wielkiego Leczenia", "rar": "rare", "price": 180}, "neonowy-rycerz": {"name": "Skórka „Neonowy Rycerz”", "rar": "epic", "price": 950}, "tarcza-straznika": {"name": "Tarcza Strażnika Bram", "rar": "rare", "price": 620}, "miecz-kowala": {"name": "Miecz Kowala z Wieliczki", "rar": "common", "price": 120}, "eliksir-many": {"name": "Eliksir Many", "rar": "common", "price": 60}, "helm-krola": {"name": "Hełm Zapomnianego Króla", "rar": "epic", "price": 880}, "pikselowy-smok": {"name": "Skórka „Pikselowy Smok”", "rar": "legendary", "price": 3200}, "sztylet-cienia": {"name": "Sztylet Cienia", "rar": "epic", "price": 1100}, "mikstura-niewidzialnosci": {"name": "Mikstura Niewidzialności", "rar": "rare", "price": 340}, "zwoj-teleportacji": {"name": "Zwój Teleportacji", "rar": "common", "price": 90}, "lesny-zwiadowca": {"name": "Skórka „Leśny Zwiadowca”", "rar": "rare", "price": 450}};
+    var RAR = {"legendary": "Legendarny", "epic": "Epicki", "rare": "Rzadki", "common": "Zwykły"};
+    var balance = 2150;
+    var cart = {"ostrze-switu": 1, "mikstura-leczenia": 2, "helm-krola": 1};
+    var $ = function (s) { return document.querySelector(s); };
+    var $$ = function (s) { return Array.prototype.slice.call(document.querySelectorAll(s)); };
+    function fmt(n) { return String(n).replace(/\B(?=(\d{3})+(?!\d))/g, '\u00a0'); }
+    function esc(s) { return s.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/"/g, '&quot;'); }
+
+    function render() {
+      var ids = Object.keys(cart), total = 0, count = 0, html = '';
+      ids.forEach(function (id) {
+        var it = ITEMS[id], q = cart[id];
+        total += it.price * q; count += q;
+        html += '<li class="cart-row"><span class="cart-main"><span class="cart-name">' + esc(it.name) + '</span>' +
+          '<span class="tier-tag tier-' + it.rar + '">' + RAR[it.rar] + '</span></span>' +
+          '<span class="stepper"><button type="button" data-dec="' + id + '" aria-label="Zmniejsz liczbę: ' + esc(it.name) + '">\u2212</button>' +
+          '<input type="number" readonly value="' + q + '" aria-label="Sztuk: ' + q + '">' +
+          '<button type="button" data-inc="' + id + '" aria-label="Zwiększ liczbę: ' + esc(it.name) + '">+</button></span>' +
+          '<span class="cart-price">' + fmt(it.price * q) + '</span></li>';
+      });
+      var list = $('[data-cart-list]');
+      list.innerHTML = html;
+      if (!ids.length) list.innerHTML = '<li class="cart-empty">Koszyk jest pusty — dodaj coś z siatki obok.</li>';
+
+      var missing = Math.max(0, total - balance);
+      var pct = total ? Math.min(100, Math.round(balance / total * 100)) : 100;
+      $$('[data-cart-count]').forEach(function (el) { el.textContent = count; });
+      $$('[data-sum]').forEach(function (el) { el.textContent = fmt(total); });
+      $$('[data-balance]').forEach(function (el) { el.textContent = fmt(balance); });
+      $('[data-missing]').textContent = fmt(missing);
+      $('[data-short-row]').hidden = missing === 0;
+      var meter = $('[data-meter]');
+      meter.style.setProperty('--value', pct + '%');
+      meter.querySelector('[role=progressbar]').setAttribute('aria-valuenow', pct);
+      meter.querySelector('.progress-label .num').textContent = pct + '%';
+      $('[data-meter-label]').textContent = 'Masz ' + pct + '% potrzebnych monet';
+
+      var buy = $('[data-buy]'), reason = $('[data-reason]');
+      var blocked = !count || missing > 0;
+      buy.setAttribute('aria-disabled', blocked ? 'true' : 'false');
+      buy.querySelector('.lock').hidden = !blocked;
+      $('[data-buy-label]').textContent = count ? 'Kup za ' + fmt(total) + ' monet' : 'Kup';
+      reason.hidden = !blocked;
+      reason.textContent = !count ? 'Dodaj przedmiot do koszyka, aby kupić.'
+        : 'Brakuje ' + fmt(missing) + ' monet. Doładuj portfel albo usuń coś z koszyka.';
+      if (blocked) buy.setAttribute('aria-describedby', 'why-buy'); else buy.removeAttribute('aria-describedby');
+
+      $$('[data-add]').forEach(function (b) {
+        var inCart = !!cart[b.getAttribute('data-add')];
+        b.setAttribute('aria-pressed', inCart ? 'true' : 'false');
+        b.textContent = inCart ? 'W koszyku' : 'Do koszyka';
+      });
+    }
+
+    document.addEventListener('click', function (e) {
+      var t = e.target.closest('button');
+      if (!t) return;
+      var id;
+      if ((id = t.getAttribute('data-add'))) { if (cart[id]) delete cart[id]; else cart[id] = 1; render(); }
+      else if ((id = t.getAttribute('data-inc'))) { cart[id]++; render(); focusQty(id, 'inc'); }
+      else if ((id = t.getAttribute('data-dec'))) { cart[id]--; if (cart[id] <= 0) delete cart[id]; render(); focusQty(id, 'dec'); }
+      else if (t.hasAttribute('data-buy')) {
+        var status = $('[data-status]');
+        if (t.getAttribute('aria-disabled') === 'true') {
+          e.preventDefault();
+          status.textContent = $('[data-reason]').textContent;
+          return;
+        }
+        var total = Object.keys(cart).reduce(function (s, k) { return s + ITEMS[k].price * cart[k]; }, 0);
+        balance -= total; cart = {};
+        render();
+        status.textContent = 'Kupiono! Przedmioty czekają w ekwipunku.';
+      }
+    });
+    function focusQty(id, kind) {
+      var b = document.querySelector('[data-' + kind + '="' + id + '"]') || $('[data-buy]');
+      b.focus();
+    }
+    render();
+  })();
+  </script>
+<script id="pp-list-controls">
+/* Panel & Piksel — sortowanie, filtry, „Pokaż więcej” i przełączniki dla list kart v1.3
+ *
+ * Działa na atrybutach data-*, bez zależności. Kontrakt:
+ *
+ * LISTA       <div data-list="oferty"> … <article data-item …> … </div>
+ *   wartości  data-sort-<klucz>="…"        liczba albo tekst do sortowania (np. data-sort-date="20261109")
+ *             data-f-<nazwa>="a b c"       tokeny faset do filtrów (np. data-f-tryb="zdalnie")
+ *             data-n-<nazwa>="od do"       zakres liczbowy (np. data-n-salary="20000 27000"); brak = brak danych
+ *
+ * SORTOWANIE  <div class="tabs" role="group" aria-label="Sortuj oferty" data-sort-for="oferty">
+ *               <button type="button" aria-pressed="true" data-sort-key="date" data-sort-dir="desc">Najnowsze</button>
+ *             (v1.6: grupa przycisków aria-pressed; starsze role="tab" + aria-selected nadal działają)
+ *             data-sort-key="order" = kolejność z HTML (np. „Trafność”, „Popularne”).
+ *
+ * FILTRY      <form data-filter-for="oferty"> (filtruje na żywo, przy każdej zmianie)
+ *               <input type="checkbox" name="tryb" value="zdalnie">  — ta sama nazwa: LUB, różne nazwy: I
+ *               <input type="checkbox" data-require="salary">        — tylko pozycje z data-n-salary
+ *               <input type="number" data-min="salary"> / data-max="salary"
+ *               <input type="search" data-search>                    — szuka w tekście pozycji (wszystkie słowa)
+ *               <button type="submit">Pokaż <span data-count-for="oferty" data-count-forms="ofertę|oferty|ofert"></span></button>
+ *             <span class="opt-n"></span> w etykiecie checkboxa — (v1.3) skrypt wpisuje liczbę pozycji, które zostaną po zaznaczeniu
+ *               tej opcji (przy pozostałych filtrach); opcja z 0 dostaje .is-zero (wyszarzona, ale klikalna)
+ *             .range z data-min i data-max — (v1.3) „Od” większe niż „Do” → komunikat .field-error pod zakresem
+ *             [data-count-for] — liczba widocznych pozycji z polską odmianą (formy: 1|2–4|5+)
+ *             [data-empty-for] — element pokazywany, gdy nic nie pasuje
+ *             [data-active-for] — tu pojawią się chipy aktywnych filtrów; [data-clear-for] — czyści filtry
+ *
+ * POKAŻ WIĘCEJ  <div data-list="oferty" data-page-size="6"> + <div class="load-more" data-more-for="oferty">
+ *               <p class="load-more-info"></p><button class="btn btn-secondary" type="button">Pokaż więcej</button></div>
+ *             (v1.2) pokazuje pierwsze N pasujących pozycji, przycisk dokłada kolejne N; filtr/sortowanie wraca do pierwszej strony.
+ *
+ * PRZEŁĄCZNIK <button class="btn btn-secondary" aria-pressed="false" data-label-on="Zapisano" data-label-off="Zapisz ofertę">
+ *
+ * Zmiany są ogłaszane czytnikom ekranu przez niewidoczny region aria-live.
+ */
+(function () {
+  'use strict';
+  var $$ = function (sel, root) { return Array.prototype.slice.call((root || document).querySelectorAll(sel)); };
+
+  function plural(n, forms) {
+    var f = (forms || '').split('|');
+    if (f.length < 3) return String(n);
+    var form = n === 1 ? f[0] : (n % 10 >= 2 && n % 10 <= 4 && (n % 100 < 12 || n % 100 > 14)) ? f[1] : f[2];
+    return n + ' ' + form;
+  }
+  function val(item, key) {
+    if (key === 'order') return +item.getAttribute('data-pp-order');
+    var v = item.getAttribute('data-sort-' + key);
+    if (v === null || v === '') return null;
+    return isNaN(+v) ? v.toLowerCase() : +v;
+  }
+  function range(item, name) {
+    var v = item.getAttribute('data-n-' + name);
+    if (!v) return null;
+    var p = v.trim().split(/\s+/).map(Number);
+    return [p[0], p.length > 1 ? p[1] : p[0]];
+  }
+  function announcer(list) {
+    var live = document.createElement('span');
+    live.className = 'sr-only';
+    live.setAttribute('aria-live', 'polite');
+    list.parentNode.insertBefore(live, list);
+    return live;
+  }
+
+  function setup(list) {
+    var id = list.getAttribute('data-list');
+    var items = $$('[data-item]', list);
+    items.forEach(function (it, i) { it.setAttribute('data-pp-order', i); });
+    var live = announcer(list);
+    var counts = $$('[data-count-for="' + id + '"]');
+    var empties = $$('[data-empty-for="' + id + '"]');
+    var actives = $$('[data-active-for="' + id + '"]');
+    var pageSize = +list.getAttribute('data-page-size') || 0, page = 1;
+    var mores = $$('[data-more-for="' + id + '"]');
+    items.forEach(function (it) { it.__ppMatch = !it.hidden; });
+    // „Pokaż więcej”: widoczne tylko pierwsze page × pageSize pasujące pozycje, w bieżącej kolejności DOM
+    function limit(focusFrom) {
+      var parent = items[0] && items[0].parentNode;
+      var ordered = parent ? Array.prototype.filter.call(parent.children, function (c) { return items.indexOf(c) !== -1; }) : items;
+      var matched = ordered.filter(function (it) { return it.__ppMatch; });
+      var cap = pageSize ? page * pageSize : Infinity;
+      ordered.forEach(function (it) { it.hidden = !it.__ppMatch; });
+      matched.forEach(function (it, k) { if (k >= cap) it.hidden = true; });
+      var shown = Math.min(matched.length, cap);
+      mores.forEach(function (m) {
+        m.hidden = shown >= matched.length;
+        var info = m.querySelector('.load-more-info');
+        if (info) info.textContent = shown + ' z ' + matched.length;
+        var btn = m.querySelector('button');
+        if (btn) btn.textContent = 'Pokaż więcej (' + Math.min(pageSize, matched.length - shown) + ')';
+      });
+      if (focusFrom != null && matched[focusFrom]) { var f = matched[focusFrom]; f.setAttribute('tabindex', '-1'); f.focus(); }
+    }
+    mores.forEach(function (m) {
+      var btn = m.querySelector('button');
+      if (btn) btn.addEventListener('click', function () {
+        var first = page * pageSize; page++; limit(first);
+        live.textContent = 'Dodano kolejne pozycje';
+      });
+    });
+
+    // ---------- sortowanie ----------
+    function sortBy(key, dir) {
+      var parent = items[0] && items[0].parentNode;
+      if (!parent) return;
+      // miejsce wstawienia liczymy od pozycji, która JEST TERAZ ostatnia w DOM (po poprzednim sortowaniu kolejność jest inna)
+      var inDom = Array.prototype.filter.call(parent.children, function (c) { return items.indexOf(c) !== -1; });
+      var anchor = inDom[inDom.length - 1].nextSibling;
+      items.slice().sort(function (a, b) {
+        var x = val(a, key), y = val(b, key);
+        if (x === null && y === null) return +a.getAttribute('data-pp-order') - +b.getAttribute('data-pp-order');
+        if (x === null) return 1;            // brak wartości zawsze na końcu
+        if (y === null) return -1;
+        var r = (typeof x === 'number' && typeof y === 'number') ? x - y : String(x).localeCompare(String(y), 'pl');
+        if (r === 0) r = +a.getAttribute('data-pp-order') - +b.getAttribute('data-pp-order');
+        return dir === 'desc' && key !== 'order' ? -r : r;
+      }).forEach(function (it) { parent.insertBefore(it, anchor); });
+      page = 1; limit();
+    }
+    $$('[data-sort-for="' + id + '"]').forEach(function (group) {
+      var btns = $$('[data-sort-key]', group);
+      function select(btn, announce) {
+        btns.forEach(function (b) {
+          var on = b === btn;
+          if (b.getAttribute('role') === 'tab') { b.setAttribute('aria-selected', on); b.tabIndex = on ? 0 : -1; }
+          else b.setAttribute('aria-pressed', on);
+        });
+        sortBy(btn.getAttribute('data-sort-key'), btn.getAttribute('data-sort-dir') || 'asc');
+        if (announce) live.textContent = 'Posortowano: ' + btn.textContent.trim();
+      }
+      btns.forEach(function (b, i) {
+        b.addEventListener('click', function () { select(b, true); });
+        b.addEventListener('keydown', function (e) {
+          var k = e.key === 'ArrowRight' ? 1 : e.key === 'ArrowLeft' ? -1 : 0;
+          if (!k) return;
+          var n = btns[(i + k + btns.length) % btns.length]; n.focus(); select(n, true); e.preventDefault();
+        });
+      });
+      var initial = btns.filter(function (b) { return b.getAttribute('aria-selected') === 'true' || b.getAttribute('aria-pressed') === 'true'; })[0];
+      if (initial) select(initial, false);
+    });
+
+    // ---------- filtry ----------
+    var forms = $$('[data-filter-for="' + id + '"]');
+    function apply(announce) {
+      var groups = {}, require = [], mins = {}, maxs = {}, words = [], chips = [];
+      forms.forEach(function (f) {
+        $$('input', f).forEach(function (inp) {
+          if (inp.type === 'checkbox' && inp.checked) {
+            var lab = inp.closest('label'), label = lab ? Array.prototype.filter.call(lab.childNodes, function (n) { return !(n.classList && n.classList.contains('opt-n')); }).map(function (n) { return n.textContent; }).join('') : inp.value;
+            label = label.replace(/\s+\d+\s*$/, '').trim();
+            if (inp.hasAttribute('data-require')) require.push(inp.getAttribute('data-require'));
+            else if (inp.name) (groups[inp.name] = groups[inp.name] || []).push(inp.value.toLowerCase());
+            chips.push({ input: inp, label: label });
+          } else if (inp.hasAttribute('data-min') && inp.value !== '') mins[inp.getAttribute('data-min')] = +inp.value;
+          else if (inp.hasAttribute('data-max') && inp.value !== '') maxs[inp.getAttribute('data-max')] = +inp.value;
+          else if (inp.hasAttribute('data-search') && inp.value.trim()) words = words.concat(inp.value.toLowerCase().trim().split(/\s+/));
+        });
+      });
+      // zakres „od” > „do” — pokaż błąd i nie stosuj zakresu (zamiast cichego zera wyników)
+      forms.forEach(function (f) {
+        $$('.range', f).forEach(function (rg) {
+          var lo = rg.querySelector('[data-min]'), hi = rg.querySelector('[data-max]');
+          if (!lo || !hi) return;
+          var bad = lo.value !== '' && hi.value !== '' && +lo.value > +hi.value;
+          var msg = rg.nextElementSibling && rg.nextElementSibling.classList.contains('field-error') ? rg.nextElementSibling : null;
+          if (bad && !msg) { msg = document.createElement('p'); msg.className = 'field-error'; msg.id = (lo.id || 'pp-range') + '-err'; rg.parentNode.insertBefore(msg, rg.nextSibling); }
+          if (msg) { msg.hidden = !bad; msg.textContent = bad ? '„Od” nie może być większe niż „Do”. Zamień wartości albo popraw jedną z nich.' : ''; }
+          [lo, hi].forEach(function (i) { if (bad) { i.setAttribute('aria-invalid', 'true'); i.setAttribute('aria-describedby', msg.id); } else { i.removeAttribute('aria-invalid'); } });
+          if (bad) { delete mins[lo.getAttribute('data-min')]; delete maxs[hi.getAttribute('data-max')]; }
+        });
+      });
+      function passes(it, skipGroup, extra) {
+        var g = groups;
+        if (extra && extra.name) { g = {}; for (var k in groups) g[k] = groups[k]; g[extra.name] = [extra.value]; }
+        var ok = Object.keys(g).every(function (name) {
+          if (name === skipGroup && !extra) return true;
+          var tokens = (it.getAttribute('data-f-' + name) || '').toLowerCase().split(/\s+/);
+          return g[name].some(function (v) { return tokens.indexOf(v) !== -1; });
+        });
+        var req = extra && extra.require ? require.concat([extra.require]) : require;
+        ok = ok && req.every(function (n) { return range(it, n) !== null; });
+        Object.keys(mins).forEach(function (n) { var r = range(it, n); if (ok && r && r[1] < mins[n]) ok = false; });
+        Object.keys(maxs).forEach(function (n) { var r = range(it, n); if (ok && r && r[0] > maxs[n]) ok = false; });
+        if (ok && words.length) {
+          var text = it.textContent.toLowerCase();
+          ok = words.every(function (w) { return text.indexOf(w) !== -1; });
+        }
+        return ok;
+      }
+      var shown = 0;
+      items.forEach(function (it) {
+        var ok = passes(it);
+        it.__ppMatch = ok;
+        if (ok) shown++;
+      });
+      // liczby przy opcjach: ile pozycji zostanie po zaznaczeniu tej opcji (ta sama grupa = LUB, więc grupa liczona bez siebie)
+      forms.forEach(function (f) {
+        $$('input[type="checkbox"]', f).forEach(function (inp) {
+          var lab = inp.closest('label'), out = lab && lab.querySelector('.opt-n');
+          if (!out) return;
+          var n = 0;
+          if (inp.hasAttribute('data-require')) items.forEach(function (it) { if (passes(it, null, { require: inp.getAttribute('data-require') })) n++; });
+          else if (inp.name) items.forEach(function (it) { if (passes(it, inp.name, { name: inp.name, value: inp.value.toLowerCase() })) n++; });
+          out.textContent = n;
+          lab.classList.toggle('is-zero', n === 0 && !inp.checked);
+        });
+      });
+      page = 1; limit();
+      counts.forEach(function (c) { c.textContent = plural(shown, c.getAttribute('data-count-forms')); });
+      empties.forEach(function (e) { e.hidden = shown > 0; });
+      actives.forEach(function (box) {
+        box.innerHTML = '';
+        chips.forEach(function (ch) {
+          var b = document.createElement('button');
+          b.type = 'button'; b.className = 'chip'; b.textContent = ch.label + ' ×';
+          b.setAttribute('aria-label', 'Usuń filtr: ' + ch.label);
+          b.addEventListener('click', function () { ch.input.checked = false; apply(true); });
+          box.appendChild(b);
+        });
+        box.hidden = !chips.length;
+      });
+      if (announce) live.textContent = 'Wyniki: ' + plural(shown, (counts[0] && counts[0].getAttribute('data-count-forms')) || 'pozycja|pozycje|pozycji');
+    }
+    forms.forEach(function (f) {
+      f.addEventListener('change', function () { apply(true); });
+      f.addEventListener('input', function (e) { if (e.target.type !== 'checkbox') apply(true); });
+      f.addEventListener('submit', function (e) {
+        e.preventDefault(); apply(true);
+        var target = list.closest('section') || list;
+        target.scrollIntoView({ block: 'start' });
+      });
+    });
+    $$('[data-clear-for="' + id + '"]').forEach(function (c) {
+      c.addEventListener('click', function (e) {
+        e.preventDefault();
+        forms.forEach(function (f) { $$('input', f).forEach(function (i) { if (i.type === 'checkbox') i.checked = false; else i.value = ''; }); });
+        apply(true);
+      });
+    });
+    if (forms.length) apply(false); else limit();
+  }
+
+  function toggles(root) {
+    $$('button[aria-pressed][data-label-on]', root).forEach(function (b) {
+      if (b.__ppToggle) return; b.__ppToggle = true;
+      function label() { var on = b.getAttribute('aria-pressed') === 'true'; var t = b.getAttribute(on ? 'data-label-on' : 'data-label-off'); if (t) b.lastChild.nodeType === 3 ? (b.lastChild.textContent = t) : (b.textContent = t); }
+      b.addEventListener('click', function () { b.setAttribute('aria-pressed', b.getAttribute('aria-pressed') === 'true' ? 'false' : 'true'); label(); });
+      label();
+    });
+  }
+
+  function initAll(root) {
+    $$('[data-list]', root).forEach(function (l) { if (!l.__ppList) { l.__ppList = true; setup(l); } });
+    toggles(root);
+  }
+  window.ppListControls = { initAll: initAll };
+  if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', function () { initAll(); });
+  else initAll();
+})();
+
+</script>
+</body>
+</html>

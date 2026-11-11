@@ -1,0 +1,66 @@
+<!doctype html>
+<html lang="pl">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Nazwa ekranu · Nazwa serwisu</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;600;700;800;900&family=Press+Start+2P&display=swap" rel="stylesheet">
+  <!-- System Panel & Piksel — nie edytuj tych plików -->
+  <link rel="stylesheet" href="./panel-piksel/tokens.css">
+  <link rel="stylesheet" href="./panel-piksel/components.css">
+  <link rel="stylesheet" href="./panel-piksel/icons.css">
+  <!-- Style tego ekranu: tylko układ i drobne dopasowania, wyłącznie z tokenami var(--…) -->
+  <style id="screen">
+  </style>
+</head>
+<body class="bg-dots">
+  <a class="sr-only" href="#tresc">Przejdź do treści</a>
+
+  <header class="site-header">
+    <div class="container">
+      <a class="logo" href="/">NAZWA<span>SERWISU</span></a>
+      <nav class="site-nav" aria-label="Główna">
+        <a href="/" aria-current="page">Sekcja 1</a>
+        <a href="/">Sekcja 2</a>
+        <a href="/">Sekcja 3</a>
+      </nav>
+      <form class="search-main" role="search" action="/szukaj">
+        <label class="sr-only" for="q">Szukaj</label>
+        <input id="q" name="q" type="search" placeholder="Czego szukasz?">
+        <button type="submit" aria-label="Szukaj">&gt;</button>
+      </form>
+    </div>
+  </header>
+
+  <main id="tresc" class="container">
+    <ol class="breadcrumbs">
+      <li><a href="/">Start</a></li>
+      <li>Bieżąca strona</li>
+    </ol>
+
+    <div class="page-head">
+      <div>
+        <h1>Tytuł strony</h1>
+        <p>Jedno zdanie, które mówi, co tu jest i po co.</p>
+      </div>
+    </div>
+
+    <!-- treść ekranu: złóż z przepisu w references/screen-recipes.md -->
+  </main>
+
+  <footer class="site-footer">
+    <div class="container">© 2026 Nazwa serwisu · <a href="/">Regulamin</a> · <a href="/">Prywatność</a></div>
+  </footer>
+  <!-- Interakcje systemu — dołącz, gdy ekran ich używa (każda kontrolka musi działać): -->
+  <!-- listy kart: sortowanie, filtry, licznik, przełączniki „Zapisz” -->
+  <!-- <script src="./panel-piksel/list-controls.js"></script> -->
+  <!-- tabele z <button class="sort"> -->
+  <!-- <script src="./panel-piksel/table-sort.js"></script> -->
+  <!-- Przełączniki, licznik −/+, pliki, okna, szuflada, menu, podpowiedzi, powiadomienia, zwijana nawigacja: -->
+  <!-- <script src="./panel-piksel/ui-controls.js"></script> -->
+  <!-- Wykresy (figure.chart[data-chart]) i minilinie w kafelkach .stat: -->
+  <!-- <script src="./panel-piksel/charts.js"></script> -->
+</body>
+</html>

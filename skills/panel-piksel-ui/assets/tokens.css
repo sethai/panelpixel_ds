@@ -1,0 +1,130 @@
+/* Panel & Piksel — tokens v1.10 (z design.md §9.1)
+ * Tryb ciemny: <html data-theme="dark"> (opt-in). Automatycznie wg systemu: <html data-theme="auto">. */
+:root {
+  /* kolor — SNES (Jehkoba32) */
+  --paper: #F0EDD8;
+  --paper-dots: rgba(217, 76, 135, .22);
+  --surface: #FFFFFF;
+  --ink: #00021C;
+  --ink-2: #1C284D;
+  --ink-3: #2D5280;
+  --on-ink: #F0EDD8;
+  --action: #17735F;
+  --action-edge: #00021C;
+  --on-action: #FFFFFF;
+  --highlight: #F7C93E;
+  --mint: #96E3C9;
+  --link: #2469B3;
+  --focus: #2469B3;
+  --focus-deco: #0BAFE6;
+  --danger: #D9214F;
+  --featured: #D94C87;
+  --chip: #A3CCD9;
+  --chip-more: #F0BB90;
+  --btn-secondary-edge: #A3CCD9;
+  --line-soft: #A3CCD9;
+  --line: var(--ink);            /* v1.6: kolor ramek (osobno od tekstu) */
+  --shadow-color: var(--ink);    /* v1.6: kolor twardych cieni */
+  --on-light: #00021C;           /* v1.6: tekst na jasnych wypełnieniach (żółty, mięta, złoto…) */
+  --row-hover: #F8F6EC;          /* v1.6: tło wiersza tabeli po najechaniu */
+  --row-selected: #E4ECFF;       /* v1.8: zaznaczony wiersz (z lewą krawędzią --focus) */
+  /* v1.7: statusy (informacja / sukces / ostrzeżenie / błąd) — kolor kafelka ikony i lewej krawędzi + kolor znaku na nim */
+  --status-info: #2469B3;    --on-status-info: #FFFFFF;     /* 5.6:1 */
+  --status-success: #17735F; --on-status-success: #FFFFFF;  /* 5.7:1 */
+  --status-warning: #E45C10; --on-status-warning: #00021C;  /* NES; 5.7:1, krawędź 3.6:1 na bieli */
+  --status-error: var(--danger); --on-status-error: #FFFFFF; /* 4.9:1 */
+  /* v1.10: wykresy — kategorie w stałej kolejności (bez kolorów pakietów i statusów); ten sam zestaw w obu trybach,
+     sprawdzony validate_palette.js (CVD, kontrast, jasność) na #FFFFFF i #1C284D. Jedna seria: --chart-single. */
+  --chart-1: #B36159; --chart-2: #1BA683; --chart-3: #A6216E; --chart-4: #119955;
+  --chart-single: #2D5280;
+  --chart-grid: #E6E2CC; --chart-axis: var(--ink-3);
+  /* v1.7: warstwy */
+  --z-sticky: 10; --z-dropdown: 100; --z-drawer: 200; --z-modal: 300; --z-toast: 400; --z-tooltip: 500;
+  /* v1.7: ruch — skokowy, krótki */
+  --motion-fast: 60ms;   /* przyciski, przełączniki */
+  --motion-base: 120ms;  /* menu, podpowiedzi, dymki */
+  --motion-slow: 200ms;  /* okno, szuflada, powiadomienie */
+  --ease-steps: steps(3, end);
+  /* v1.7: punkty przełamania (do @media trzeba wpisać liczbę — CSS nie przyjmuje tu zmiennych) */
+  --bp-sm: 600px; --bp-md: 900px; --bp-lg: 1200px;
+  --disabled-bg: #BCBCBC;   /* NES */
+  --disabled-ink: #1C284D;
+  --disabled-line: #2D5280;
+  --avatar-1: #17735F; --avatar-2: #2469B3; --avatar-3: #993649;
+  --avatar-4: #732866; --avatar-5: #00021C; --avatar-6: #D9214F;
+
+  /* akcenty NES — tylko ranking i pakiety */
+  --podium: #0000BC;
+  --gold: #F8B800;
+  --silver: #BCBCBC;
+  --bronze: #E45C10;
+  --tier-legendary: #AC7C00;
+  --tier-epic: #6844FC;
+  --tier-rare: #0078F8;
+  --tier-common: #7C7C7C;
+
+  /* typografia */
+  --font-sans: "Archivo", system-ui, sans-serif;
+  --font-pixel: "Press Start 2P", ui-monospace, monospace;
+
+  /* odstępy */
+  --space-1: 4px; --space-2: 8px; --space-3: 12px; --space-4: 16px;
+  --space-6: 24px; --space-8: 32px; --space-12: 48px;
+
+  /* kształt i głębia */
+  --border: 2px solid var(--line);
+  --shadow-sm: 2px 2px 0 var(--shadow-color);
+  --shadow-md: 4px 4px 0 var(--shadow-color);
+  --shadow-lg: 6px 6px 0 var(--shadow-color);
+  --notch: polygon(0 2px, 2px 2px, 2px 0, calc(100% - 2px) 0, calc(100% - 2px) 2px, 100% 2px,
+                   100% calc(100% - 2px), calc(100% - 2px) calc(100% - 2px), calc(100% - 2px) 100%,
+                   2px 100%, 2px calc(100% - 2px), 0 calc(100% - 2px));
+  --btn-h: 44px;
+  --row-h: 32px;
+  --motion: 60ms;
+}
+@media (max-width: 600px) { :root { --row-h: 40px; } }
+@media (prefers-reduced-motion: reduce) { :root { --motion: 0ms; --motion-fast: 0ms; --motion-base: 0ms; --motion-slow: 0ms; } }
+
+/* ---------- tryb ciemny (v1.6) — te same komponenty, inne tokeny ----------
+   Tokeny złożone (--border, --shadow-*) są powtórzone, bo custom properties liczą się tam, gdzie je zadeklarowano. */
+[data-theme="dark"] {
+  --paper: #00021C; --paper-dots: rgba(217, 76, 135, .18);
+  --surface: #1C284D;
+  --ink: #F0EDD8; --ink-2: #A3CCD9; --ink-3: #96E3C9; --on-ink: #00021C;
+  --link: #0BAFE6; --focus: #F7C93E; --focus-deco: #2469B3;
+  --danger: #F27961;
+  --chip: #2D5280; --line-soft: #2D5280; --btn-secondary-edge: #2D5280;
+  --line: #F0EDD8; --shadow-color: #2469B3; --row-hover: #2D5280; --row-selected: #1F3A6B;
+  --avatar-5: #2D5280;
+  --status-info: #0BAFE6; --on-status-info: #00021C;
+  --status-success: #96E3C9; --on-status-success: #00021C;
+  --status-warning: #E45C10; --on-status-warning: #00021C;
+  --status-error: #F27961; --on-status-error: #00021C;
+  --chart-single: #A3CCD9; --chart-grid: #2D5280;
+  --tier-legendary: #F8B800; --tier-epic: #9878F8; --tier-rare: #3CBCFC; --tier-common: #BCBCBC;
+  --border: 2px solid var(--line);
+  --shadow-sm: 2px 2px 0 var(--shadow-color); --shadow-md: 4px 4px 0 var(--shadow-color); --shadow-lg: 6px 6px 0 var(--shadow-color);
+  color-scheme: dark;
+}
+@media (prefers-color-scheme: dark) {
+  [data-theme="auto"] {
+    --paper: #00021C; --paper-dots: rgba(217, 76, 135, .18);
+    --surface: #1C284D;
+    --ink: #F0EDD8; --ink-2: #A3CCD9; --ink-3: #96E3C9; --on-ink: #00021C;
+    --link: #0BAFE6; --focus: #F7C93E; --focus-deco: #2469B3;
+    --danger: #F27961;
+    --chip: #2D5280; --line-soft: #2D5280; --btn-secondary-edge: #2D5280;
+    --line: #F0EDD8; --shadow-color: #2469B3; --row-hover: #2D5280; --row-selected: #1F3A6B;
+    --avatar-5: #2D5280;
+    --status-info: #0BAFE6; --on-status-info: #00021C;
+    --status-success: #96E3C9; --on-status-success: #00021C;
+    --status-warning: #E45C10; --on-status-warning: #00021C;
+    --status-error: #F27961; --on-status-error: #00021C;
+    --chart-single: #A3CCD9; --chart-grid: #2D5280;
+    --tier-legendary: #F8B800; --tier-epic: #9878F8; --tier-rare: #3CBCFC; --tier-common: #BCBCBC;
+    --border: 2px solid var(--line);
+    --shadow-sm: 2px 2px 0 var(--shadow-color); --shadow-md: 4px 4px 0 var(--shadow-color); --shadow-lg: 6px 6px 0 var(--shadow-color);
+    color-scheme: dark;
+  }
+}

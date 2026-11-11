@@ -1,0 +1,39 @@
+{
+  "expectations": [
+    {
+      "text": "Wynikowa strona korzysta z tokens.css i components.css systemu",
+      "passed": true,
+      "evidence": "linki/bloki w index.html"
+    },
+    {
+      "text": "Stary motyw usunięty (gradienty, zaokrąglenia, rozmyte cienie, Inter)",
+      "passed": true,
+      "evidence": "brak resztek; style.css niepodlinkowany"
+    },
+    {
+      "text": "Zachowane wszystkie linki starej strony",
+      "passed": true,
+      "evidence": "17/17; brak: []"
+    },
+    {
+      "text": "Formularze zachowują akcje i nazwy pól",
+      "passed": true,
+      "evidence": "wszystkie obecne"
+    },
+    {
+      "text": "Zapisywanie ofert: data-id 101–104 + localStorage",
+      "passed": true,
+      "evidence": "data-id: True, localStorage: True"
+    },
+    {
+      "text": "check_screen bez ERROR, render bez przewijania, 0 martwych",
+      "passed": true,
+      "evidence": "{\"check_errors\": [], \"check_warns\": [], \"widths\": [\"1280\", \"390\"], \"overflow\": [], \"dead\": []}"
+    },
+    {
+      "text": "Odpowiedź zawiera mapę stary element → komponent",
+      "passed": true,
+      "evidence": "response.md zawiera tabelę „Stary element | Komponent Panel & Piksel” (ok. 30 pozycji) i listę kandydatów."
+    }
+  ]
+}

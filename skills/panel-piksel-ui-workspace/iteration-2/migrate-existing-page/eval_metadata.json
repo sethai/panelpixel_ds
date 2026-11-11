@@ -1,0 +1,13 @@
+{
+  "eval_name": "migrate-existing-page",
+  "prompt": "mam juz strone z ofertami pracy (KodRekrut) w katalogu files/legacy-site — index.html + style.css w starym designie. przenies ja na nasz design system panel & piksel: ma wygladac w naszym stylu, ale tresc, linki, formularze (wyszukiwarka, newsletter) i zapisywanie ofert maja dzialac tak jak teraz. planu mi nie pokazuj, od razu zrob migracje i na koncu wypisz mape: stary element -> komponent systemu",
+  "assertions": [
+    "Wynikowa strona korzysta z tokens.css i components.css systemu (linkiem lub wklejonych) i nie zmienia ich wartości.",
+    "W wyniku nie ma już starego motywu: brak gradientów, zaokrągleń (border-radius > 0 poza świadomie dopuszczonymi), rozmytych cieni i fontu Inter w stylach ekranu.",
+    "Zachowane są wszystkie linki ze starej strony (/oferty, /firmy, /blog, /dodaj-oferte, /oferta/101–104, ?page=1–3, ?sort=…, /regulamin, /prywatnosc, /kontakt) i teksty ofert z kwotami.",
+    "Formularze zachowują akcje i metody (/szukaj GET, /newsletter POST) oraz pola o tych samych nazwach: q, miasto, poziom, tryb, email, zgoda.",
+    "Przyciski zapisywania ofert mają data-id 101–104 i działają po migracji (przełączają stan, zapis do localStorage), z dostępną nazwą.",
+    "check_screen.py nie zgłasza błędów (ERROR), a render_check.py pokazuje brak poziomego przewijania przy 1280 i 390 px i 0 martwych kontrolek.",
+    "Odpowiedź zawiera mapę: stary element → komponent Panel & Piksel oraz listę elementów spoza systemu (lub informację, że takich nie ma)."
+  ]
+}

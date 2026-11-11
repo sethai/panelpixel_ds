@@ -1,0 +1,11 @@
+{
+  "eval_name": "job-board-listing-filters",
+  "prompt": "zrob mi w naszym stylu panel & piksel ekran wynikow wyszukiwania dla job boardu dla branzy gamedev (nazwa serwisu: LevelUp Jobs). ma byc lista ofert w kartach (min 6 ofert, rozne firmy, widelki w zl, czesc bez widelek, tagi technologii), sortowanie i panel filtrow po prawej (tryb pracy, poziom, technologia, widelki). jedna oferta jest nowa. zapisz jako jeden plik html",
+  "assertions": [
+    "Plik HTML korzysta z tokens.css i components.css systemu (linkiem obok pliku albo wklejonych) i nie zmienia ich wartości.",
+    "check_screen.py nie zgłasza żadnego ERROR dla ekranu.",
+    "Ekran zawiera co najmniej 6 elementów .card z ofertami i panel .panel-filters z co najmniej jednym checkboxem.",
+    "Kwoty ofert są złożone fontem pikselowym (klasa .amount lub var(--font-pixel)), a co najmniej jedna oferta ma oznaczony brak widełek.",
+    "Strona nie przewija się poziomo w szerokości 390 px ani 1280 px."
+  ]
+}

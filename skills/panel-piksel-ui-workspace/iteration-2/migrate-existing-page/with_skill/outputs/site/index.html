@@ -1,0 +1,226 @@
+<!doctype html>
+<html lang="pl">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>KodRekrut — oferty pracy w IT</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;600;700;800;900&family=Press+Start+2P&display=swap" rel="stylesheet">
+  <!-- System Panel & Piksel — nie edytuj tych plików -->
+  <link rel="stylesheet" href="./panel-piksel/tokens.css">
+  <link rel="stylesheet" href="./panel-piksel/components.css">
+  <link rel="stylesheet" href="./panel-piksel/icons.css">
+  <!-- Style tego ekranu: tylko układ i drobne dopasowania, wyłącznie z tokenami var(--…) -->
+  <style id="screen">
+    .site-header .header-cta { margin-left: auto; }
+
+    /* hero: nagłówek strony + wyszukiwarka główna (jedyny „głośny” element ekranu) */
+    .hero { padding: 32px 0 8px; }
+    .hero .page-head { margin-bottom: 20px; }
+    .hero h1 { font-size: 32px; line-height: 40px; }
+    .hero-search { max-width: 760px; }
+    .hero-search .hero-city { flex: none; position: relative; border-left: var(--border); }
+    .hero-search select { appearance: none; height: 50px; padding: 0 40px 0 12px; border: 0; border-radius: 0; background: transparent; font: 600 15px var(--font-sans); color: var(--ink); cursor: pointer; }
+    .hero-search select:focus-visible { outline: 3px solid var(--focus); outline-offset: -3px; }
+    .hero-search .hero-city::after { bottom: 13px; }
+    .hero-search button[type="submit"] { width: auto; padding: 0 18px; font-size: 12px; }
+
+    /* lista ofert */
+    .results-head { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 12px; }
+    .results-head h2 { display: flex; align-items: center; gap: 10px; margin: 0; font: 900 18px/28px var(--font-sans); letter-spacing: -.45px; }
+    .sort-by { display: flex; align-items: center; gap: 8px; min-width: 0; font-size: 14px; color: var(--ink-3); }
+    .jobs { list-style: none; margin: 0; padding: 0; }
+    .card-head h3 a { color: var(--ink); text-decoration: none; }
+    .card-head h3 a:hover { text-decoration: underline; }
+    .card-head h3 a:focus-visible { outline: 3px solid var(--focus); outline-offset: 2px; }
+    .card-head .badge { flex: none; gap: 6px; }
+    .card .save { align-self: flex-start; }
+
+    .newsletter { max-width: 720px; margin: 48px auto; }
+    .newsletter form { display: grid; gap: 14px; margin-top: 12px; }
+    .newsletter .btn { justify-self: start; }
+
+    @media (max-width: 600px) {
+      .hero h1 { font-size: 24px; line-height: 32px; }
+      .hero-search { flex-wrap: wrap; }
+      .hero-search input[type="search"] { flex: 1 1 100%; }
+      .hero-search .hero-city { flex: 1 1 auto; border-left: 0; border-top: var(--border); }
+      .hero-search .hero-city select { width: 100%; }
+      .hero-search button[type="submit"] { border-top: var(--border); }
+      .card { gap: 12px; }
+      .card-head { flex-wrap: wrap; gap: 6px; }
+      .card .avatar-xl { width: 40px; height: 40px; font-size: 10px; }
+    }
+  </style>
+</head>
+<body class="bg-dots">
+  <a class="sr-only" href="#tresc">Przejdź do treści</a>
+
+  <header class="site-header">
+    <div class="container">
+      <a class="logo" href="/">Kod<span>Rekrut</span></a>
+      <nav class="site-nav" aria-label="Główna">
+        <a href="/oferty" aria-current="page">Oferty</a>
+        <a href="/firmy">Firmy</a>
+        <a href="/blog">Blog</a>
+      </nav>
+      <a class="btn btn-primary header-cta" href="/dodaj-oferte">Dodaj ofertę</a>
+    </div>
+  </header>
+
+  <main id="tresc" class="container">
+    <section class="hero" aria-labelledby="h-hero">
+      <div class="page-head">
+        <div>
+          <h1 id="h-hero">Znajdź pracę w IT, która Ci pasuje</h1>
+          <p>1 284 aktualne oferty od 312 firm. Widełki w każdej ofercie premium.</p>
+        </div>
+      </div>
+      <form class="search-main hero-search" role="search" action="/szukaj" method="get">
+        <input type="search" name="q" placeholder="Stanowisko, technologia, firma" aria-label="Szukaj ofert">
+        <div class="select hero-city">
+          <select name="miasto" aria-label="Miasto">
+            <option value="">Cała Polska</option>
+            <option value="warszawa">Warszawa</option>
+            <option value="krakow">Kraków</option>
+            <option value="zdalnie">Zdalnie</option>
+          </select>
+        </div>
+        <button type="submit">Szukaj</button>
+      </form>
+    </section>
+
+    <div class="layout-results section">
+      <section class="stack" aria-labelledby="h-list">
+        <div class="results-head">
+          <h2 id="h-list">Najnowsze oferty <span class="count" data-count-for="oferty">4</span></h2>
+          <div class="sort-by">
+            <span id="sort-l">Sortuj:</span>
+            <nav class="tabs" aria-labelledby="sort-l">
+              <a href="?sort=data" data-sort-link="data">najnowsze</a>
+              <a href="?sort=widelki" data-sort-link="widelki">widełki</a>
+            </nav>
+          </div>
+        </div>
+
+        <ul id="job-list" class="jobs stack" data-list="oferty">
+          <li class="job card" data-id="101" data-item data-f-poziom="senior" data-f-tryb="zdalnie">
+            <span class="avatar avatar-xl" style="--av:var(--avatar-1)" aria-hidden="true">PF</span>
+            <div class="card-body">
+              <div class="card-head"><h3><a href="/oferta/101">Senior Frontend Developer (React)</a></h3></div>
+              <p class="card-sub company">Pixel Forge · Warszawa / zdalnie</p>
+              <p class="amount salary">22 000–28 000 <small>zł netto B2B</small></p>
+              <div class="chips tags"><span class="chip">React</span><span class="chip">TypeScript</span><span class="chip">GraphQL</span></div>
+            </div>
+            <button class="save icon-btn is-boxed" type="button" data-id="101" aria-label="Zapisz ofertę"><span class="icon i-heart-outline" aria-hidden="true"></span></button>
+          </li>
+          <li class="job card" data-id="102" data-item>
+            <span class="avatar avatar-xl" style="--av:var(--avatar-2)" aria-hidden="true">KK</span>
+            <div class="card-body">
+              <div class="card-head"><h3><a href="/oferta/102">Backend Developer (Go)</a></h3></div>
+              <p class="card-sub company">Kosmiczny Kret · Kraków</p>
+              <p class="amount salary">18 000–24 000 <small>zł netto B2B</small></p>
+              <div class="chips tags"><span class="chip">Go</span><span class="chip">PostgreSQL</span><span class="chip">Kubernetes</span></div>
+            </div>
+            <button class="save icon-btn is-boxed" type="button" data-id="102" aria-label="Zapisz ofertę"><span class="icon i-heart-outline" aria-hidden="true"></span></button>
+          </li>
+          <li class="job card" data-id="103" data-item data-f-poziom="junior" data-f-tryb="hybrydowo">
+            <span class="avatar avatar-xl" style="--av:var(--avatar-3)" aria-hidden="true">ŁŻ</span>
+            <div class="card-body">
+              <div class="card-head"><h3><a href="/oferta/103">Junior QA Engineer</a></h3></div>
+              <p class="card-sub company">Łódzkie Żurawie · Łódź / hybrydowo</p>
+              <p class="amount salary is-empty">Wynagrodzenie do uzgodnienia</p>
+              <div class="chips tags"><span class="chip">Cypress</span><span class="chip">Testy manualne</span></div>
+            </div>
+            <button class="save icon-btn is-boxed" type="button" data-id="103" aria-label="Zapisz ofertę"><span class="icon i-heart-outline" aria-hidden="true"></span></button>
+          </li>
+          <li class="job card featured" data-id="104" data-item>
+            <span class="avatar avatar-xl" style="--av:var(--avatar-4)" aria-hidden="true">SJ</span>
+            <div class="card-body">
+              <div class="card-head"><h3><a href="/oferta/104">Lead Unity Developer</a></h3><span class="badge badge-new"><span class="icon i-star" aria-hidden="true"></span>Polecana</span></div>
+              <p class="card-sub company">Smocza Jama Studio · Wrocław</p>
+              <p class="amount salary">26 000–32 000 <small>zł netto B2B</small></p>
+              <div class="chips tags"><span class="chip">Unity</span><span class="chip">C#</span><span class="chip">DOTS</span></div>
+            </div>
+            <button class="save icon-btn is-boxed" type="button" data-id="104" aria-label="Zapisz ofertę"><span class="icon i-heart-outline" aria-hidden="true"></span></button>
+          </li>
+        </ul>
+
+        <div class="empty" data-empty-for="oferty" hidden>
+          <h2>Brak ofert dla tych filtrów</h2>
+          <p>Odznacz część filtrów, żeby zobaczyć więcej ofert.</p>
+          <button class="btn btn-secondary" type="button" data-clear-for="oferty">Wyczyść filtry</button>
+        </div>
+
+        <nav aria-label="Strony">
+          <ul class="pagination pager">
+            <li><a href="?page=1" aria-current="page">1</a></li>
+            <li><a href="?page=2">2</a></li>
+            <li><a href="?page=3">3</a></li>
+            <li><a href="?page=2">Dalej →</a></li>
+          </ul>
+        </nav>
+      </section>
+
+      <aside class="panel-filters filters" aria-labelledby="h-filters">
+        <h2 id="h-filters">Filtry</h2>
+        <form data-filter-for="oferty">
+          <fieldset>
+            <legend>Poziom</legend>
+            <label class="checkbox"><input type="checkbox" name="poziom" value="junior"> Junior <span class="opt-n"></span></label>
+            <label class="checkbox"><input type="checkbox" name="poziom" value="mid"> Mid <span class="opt-n"></span></label>
+            <label class="checkbox"><input type="checkbox" name="poziom" value="senior"> Senior <span class="opt-n"></span></label>
+          </fieldset>
+          <fieldset>
+            <legend>Tryb pracy</legend>
+            <label class="checkbox"><input type="checkbox" name="tryb" value="zdalnie"> Zdalnie <span class="opt-n"></span></label>
+            <label class="checkbox"><input type="checkbox" name="tryb" value="hybrydowo"> Hybrydowo <span class="opt-n"></span></label>
+          </fieldset>
+        </form>
+      </aside>
+    </div>
+
+    <section class="newsletter panel" aria-labelledby="h-nl">
+      <header class="panel-head"><h2 id="h-nl">Nowe oferty co tydzień</h2></header>
+      <form action="/newsletter" method="post" id="newsletter-form" data-validate>
+        <div class="field">
+          <label for="nl-email">E-mail <span class="req" aria-hidden="true">*</span></label>
+          <input id="nl-email" type="email" name="email" required placeholder="ty@firma.pl" autocomplete="email">
+        </div>
+        <label class="checkbox consent"><input type="checkbox" name="zgoda" required> Zgadzam się na otrzymywanie newslettera <span class="req" aria-hidden="true">*</span></label>
+        <button type="submit" class="btn btn-primary">Zapisz się</button>
+      </form>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container">© 2026 KodRekrut · <a href="/regulamin">Regulamin</a> · <a href="/prywatnosc">Prywatność</a> · <a href="/kontakt">Kontakt</a></div>
+  </footer>
+
+  <script src="./panel-piksel/list-controls.js"></script>
+  <script src="./panel-piksel/ui-controls.js"></script>
+  <script>
+    // zapisywanie ofert — kod aplikacji, musi działać po migracji
+    // (logika bez zmian: klasa is-saved, aria-label, localStorage 'saved-<id>'; zamiast znaku ♡/♥ przełączana jest ikona systemu)
+    document.querySelectorAll('.save').forEach(function (b) {
+      b.addEventListener('click', function () {
+        var on = b.classList.toggle('is-saved');
+        var icon = b.querySelector('.icon');
+        icon.classList.toggle('i-heart', on);
+        icon.classList.toggle('i-heart-outline', !on);
+        b.setAttribute('aria-label', on ? 'Usuń z zapisanych' : 'Zapisz ofertę');
+        localStorage.setItem('saved-' + b.dataset.id, on ? '1' : '');
+      });
+    });
+
+    // zaznaczenie aktywnego sortowania (linki serwerowe ?sort=… bez zmian); domyślnie „najnowsze”
+    (function () {
+      var sort = new URLSearchParams(location.search).get('sort') || 'data';
+      document.querySelectorAll('[data-sort-link]').forEach(function (a) {
+        if (a.getAttribute('data-sort-link') === sort) a.setAttribute('aria-current', 'page');
+      });
+    })();
+  </script>
+</body>
+</html>

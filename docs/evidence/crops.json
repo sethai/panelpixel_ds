@@ -1,0 +1,569 @@
+[
+  {
+    "id": "btn-states",
+    "source": "S04",
+    "file": "research/direction-study.html",
+    "selector": "#comp .states",
+    "viewport": 1280,
+    "state": "domyślny",
+    "crop": "docs/evidence/btn-states.png"
+  },
+  {
+    "id": "btn-disabled-variants",
+    "source": "S04",
+    "file": "research/direction-study.html",
+    "selector": "#comp .dis-grid",
+    "viewport": 1280,
+    "state": "domyślny",
+    "crop": "docs/evidence/btn-disabled-variants.png"
+  },
+  {
+    "id": "btn-disabled-in-context",
+    "source": "S15",
+    "file": "skills/panel-piksel-ui-workspace/iteration-1/job-offer-detail/with_skill/outputs/oferta-senior-unity-developer.html",
+    "selector": "aside .panel.is-featured, aside .panel",
+    "viewport": 1280,
+    "state": "domyślny",
+    "crop": "docs/evidence/btn-disabled-in-context.png"
+  },
+  {
+    "id": "btn-toggle-pressed",
+    "source": "S10",
+    "file": "screens/landing/landing-portal-pracy.html",
+    "selector": ".offers .card",
+    "viewport": 1280,
+    "state": "po interakcji: document.querySelector('.offers .card button[data-label-on]').click()",
+    "crop": "docs/evidence/btn-toggle-pressed.png"
+  },
+  {
+    "id": "badges",
+    "source": "S04",
+    "file": "research/direction-study.html",
+    "selector": "#comp .spec:has(.badge-seg)",
+    "viewport": 1280,
+    "state": "domyślny",
+    "crop": "docs/evidence/badges.png"
+  },
+  {
+    "id": "chips-card",
+    "source": "S11",
+    "file": "skills/panel-piksel-ui-workspace/iteration-1/job-board-listing-filters/with_skill/outputs/levelup-jobs-wyniki.html",
+    "selector": "[data-list] .card .chips",
+    "viewport": 1280,
+    "state": "domyślny",
+    "crop": "docs/evidence/chips-card.png"
+  },
+  {
+    "id": "active-filters",
+    "source": "S11",
+    "file": "skills/panel-piksel-ui-workspace/iteration-1/job-board-listing-filters/with_skill/outputs/levelup-jobs-wyniki.html",
+    "selector": ".active-filters",
+    "viewport": 1280,
+    "state": "domyślny",
+    "crop": "docs/evidence/active-filters.png"
+  },
+  {
+    "id": "panel-list",
+    "source": "S10",
+    "file": "screens/landing/landing-portal-pracy.html",
+    "selector": ".cat-grid .panel",
+    "viewport": 1280,
+    "state": "domyślny",
+    "crop": "docs/evidence/panel-list.png"
+  },
+  {
+    "id": "panel-featured",
+    "source": "S14",
+    "file": "skills/panel-piksel-ui-workspace/iteration-1/catalog-home-directory/with_skill/outputs/index.html",
+    "selector": ".panel.is-featured",
+    "viewport": 1280,
+    "state": "domyślny",
+    "crop": "docs/evidence/panel-featured.png"
+  },
+  {
+    "id": "panel-list-mobile",
+    "source": "S10",
+    "file": "screens/landing/landing-portal-pracy.html",
+    "selector": ".cat-grid .panel",
+    "viewport": 390,
+    "state": "domyślny",
+    "crop": "docs/evidence/panel-list-mobile.png"
+  },
+  {
+    "id": "card-offer",
+    "source": "S11",
+    "file": "skills/panel-piksel-ui-workspace/iteration-1/job-board-listing-filters/with_skill/outputs/levelup-jobs-wyniki.html",
+    "selector": "[data-list] .card",
+    "viewport": 1280,
+    "state": "domyślny",
+    "crop": "docs/evidence/card-offer.png"
+  },
+  {
+    "id": "card-offer-empty-salary",
+    "source": "S11",
+    "file": "skills/panel-piksel-ui-workspace/iteration-1/job-board-listing-filters/with_skill/outputs/levelup-jobs-wyniki.html",
+    "selector": "[data-list] .card:not([hidden]):has(.amount.is-empty)",
+    "viewport": 1280,
+    "state": "domyślny",
+    "crop": "docs/evidence/card-offer-empty-salary.png"
+  },
+  {
+    "id": "card-item-shop",
+    "source": "S13",
+    "file": "skills/panel-piksel-ui-workspace/iteration-1/game-item-shop/with_skill/outputs/sklep-przedmiotow.html",
+    "selector": ".item-grid li",
+    "viewport": 1280,
+    "state": "domyślny",
+    "crop": "docs/evidence/card-item-shop.png"
+  },
+  {
+    "id": "card-offer-mobile",
+    "source": "S10",
+    "file": "screens/landing/landing-portal-pracy.html",
+    "selector": ".offers .card",
+    "viewport": 390,
+    "state": "domyślny",
+    "crop": "docs/evidence/card-offer-mobile.png"
+  },
+  {
+    "id": "filters",
+    "source": "S11",
+    "file": "skills/panel-piksel-ui-workspace/iteration-1/job-board-listing-filters/with_skill/outputs/levelup-jobs-wyniki.html",
+    "selector": ".panel-filters",
+    "viewport": 1280,
+    "state": "domyślny",
+    "crop": "docs/evidence/filters.png"
+  },
+  {
+    "id": "search-main-hero",
+    "source": "S10",
+    "file": "screens/landing/landing-portal-pracy.html",
+    "selector": ".hero .search-main",
+    "viewport": 1280,
+    "state": "domyślny",
+    "crop": "docs/evidence/search-main-hero.png"
+  },
+  {
+    "id": "tabs-sort",
+    "source": "S11",
+    "file": "skills/panel-piksel-ui-workspace/iteration-1/job-board-listing-filters/with_skill/outputs/levelup-jobs-wyniki.html",
+    "selector": ".tabs[data-sort-for]",
+    "viewport": 1280,
+    "state": "domyślny",
+    "crop": "docs/evidence/tabs-sort.png"
+  },
+  {
+    "id": "tabs-period",
+    "source": "S12",
+    "file": "skills/panel-piksel-ui-workspace/iteration-1/leaderboard-high-scores/with_skill/outputs/leaderboard.html",
+    "selector": "[role=tablist]",
+    "viewport": 1280,
+    "state": "domyślny",
+    "crop": "docs/evidence/tabs-period.png"
+  },
+  {
+    "id": "tabs-status",
+    "source": "S16",
+    "file": "skills/panel-piksel-ui-workspace/iteration-1/employer-dashboard-table/with_skill/outputs/panel-pracodawcy.html",
+    "selector": "[role=tablist]",
+    "viewport": 1280,
+    "state": "domyślny",
+    "crop": "docs/evidence/tabs-status.png"
+  },
+  {
+    "id": "table-ranking",
+    "source": "S10",
+    "file": "screens/landing/landing-portal-pracy.html",
+    "selector": "#ranking .table-wrap",
+    "viewport": 1280,
+    "state": "domyślny",
+    "crop": "docs/evidence/table-ranking.png"
+  },
+  {
+    "id": "table-dashboard",
+    "source": "S16",
+    "file": "skills/panel-piksel-ui-workspace/iteration-1/employer-dashboard-table/with_skill/outputs/panel-pracodawcy.html",
+    "selector": ".table-wrap",
+    "viewport": 1280,
+    "state": "domyślny",
+    "crop": "docs/evidence/table-dashboard.png"
+  },
+  {
+    "id": "table-leaderboard-sorted",
+    "source": "S12",
+    "file": "skills/panel-piksel-ui-workspace/iteration-1/leaderboard-high-scores/with_skill/outputs/leaderboard.html",
+    "selector": ".table-wrap",
+    "viewport": 1280,
+    "state": "po interakcji: document.querySelector('th .sort[data-key=\"g\"]').click()",
+    "crop": "docs/evidence/table-leaderboard-sorted.png"
+  },
+  {
+    "id": "table-mobile",
+    "source": "S12",
+    "file": "skills/panel-piksel-ui-workspace/iteration-1/leaderboard-high-scores/with_skill/outputs/leaderboard.html",
+    "selector": ".table-wrap",
+    "viewport": 390,
+    "state": "domyślny",
+    "crop": "docs/evidence/table-mobile.png"
+  },
+  {
+    "id": "pagination",
+    "source": "S12",
+    "file": "skills/panel-piksel-ui-workspace/iteration-1/leaderboard-high-scores/with_skill/outputs/leaderboard.html",
+    "selector": "#pages",
+    "viewport": 1280,
+    "state": "domyślny",
+    "crop": "docs/evidence/pagination.png"
+  },
+  {
+    "id": "podium",
+    "source": "S12",
+    "file": "skills/panel-piksel-ui-workspace/iteration-1/leaderboard-high-scores/with_skill/outputs/leaderboard.html",
+    "selector": ".podium",
+    "viewport": 1280,
+    "state": "domyślny",
+    "crop": "docs/evidence/podium.png"
+  },
+  {
+    "id": "tiers",
+    "source": "S10",
+    "file": "screens/landing/landing-portal-pracy.html",
+    "selector": ".tiers",
+    "viewport": 1280,
+    "state": "domyślny",
+    "crop": "docs/evidence/tiers.png"
+  },
+  {
+    "id": "tier-tag-table",
+    "source": "S16",
+    "file": "skills/panel-piksel-ui-workspace/iteration-1/employer-dashboard-table/with_skill/outputs/panel-pracodawcy.html",
+    "selector": ".table-wrap",
+    "viewport": 1280,
+    "state": "domyślny",
+    "crop": "docs/evidence/tier-tag-table.png"
+  },
+  {
+    "id": "rarity-shop",
+    "source": "S13",
+    "file": "skills/panel-piksel-ui-workspace/iteration-1/game-item-shop/with_skill/outputs/sklep-przedmiotow.html",
+    "selector": ".item-grid li .item-top",
+    "viewport": 1280,
+    "state": "domyślny",
+    "crop": "docs/evidence/rarity-shop.png"
+  },
+  {
+    "id": "header",
+    "source": "S10",
+    "file": "screens/landing/landing-portal-pracy.html",
+    "selector": ".site-header",
+    "viewport": 1280,
+    "state": "domyślny",
+    "crop": "docs/evidence/header.png"
+  },
+  {
+    "id": "header-mobile",
+    "source": "S10",
+    "file": "screens/landing/landing-portal-pracy.html",
+    "selector": ".site-header",
+    "viewport": 390,
+    "state": "domyślny",
+    "crop": "docs/evidence/header-mobile.png"
+  },
+  {
+    "id": "breadcrumbs-pagehead",
+    "source": "S12",
+    "file": "skills/panel-piksel-ui-workspace/iteration-1/leaderboard-high-scores/with_skill/outputs/leaderboard.html",
+    "selector": "main",
+    "viewport": 1280,
+    "state": "domyślny",
+    "crop": "docs/evidence/breadcrumbs-pagehead.png"
+  },
+  {
+    "id": "footer",
+    "source": "S10",
+    "file": "screens/landing/landing-portal-pracy.html",
+    "selector": ".site-footer",
+    "viewport": 1280,
+    "state": "domyślny",
+    "crop": "docs/evidence/footer.png"
+  },
+  {
+    "id": "callout-cta",
+    "source": "S10",
+    "file": "screens/landing/landing-portal-pracy.html",
+    "selector": ".cta",
+    "viewport": 1280,
+    "state": "domyślny",
+    "crop": "docs/evidence/callout-cta.png"
+  },
+  {
+    "id": "callout-dashboard",
+    "source": "S16",
+    "file": "skills/panel-piksel-ui-workspace/iteration-1/employer-dashboard-table/with_skill/outputs/panel-pracodawcy.html",
+    "selector": ".callout",
+    "viewport": 1280,
+    "state": "domyślny",
+    "crop": "docs/evidence/callout-dashboard.png"
+  },
+  {
+    "id": "empty-state",
+    "source": "S11",
+    "file": "skills/panel-piksel-ui-workspace/iteration-1/job-board-listing-filters/with_skill/outputs/levelup-jobs-wyniki.html",
+    "selector": "[data-empty-for]",
+    "viewport": 1280,
+    "state": "po interakcji: (()=>{const i=document.querySelector('input[data-search]');i.value='kobol';i.dis",
+    "crop": "docs/evidence/empty-state.png"
+  },
+  {
+    "id": "facts-hero",
+    "source": "S10",
+    "file": "screens/landing/landing-portal-pracy.html",
+    "selector": ".hero .facts",
+    "viewport": 1280,
+    "state": "domyślny",
+    "crop": "docs/evidence/facts-hero.png"
+  },
+  {
+    "id": "facts-offer",
+    "source": "S15",
+    "file": "skills/panel-piksel-ui-workspace/iteration-1/job-offer-detail/with_skill/outputs/oferta-senior-unity-developer.html",
+    "selector": ".facts",
+    "viewport": 1280,
+    "state": "domyślny",
+    "crop": "docs/evidence/facts-offer.png"
+  },
+  {
+    "id": "details-dither",
+    "source": "S04",
+    "file": "research/direction-study.html",
+    "selector": "#comp .spec.span2:has(.dither)",
+    "viewport": 1280,
+    "state": "domyślny",
+    "crop": "docs/evidence/details-dither.png"
+  },
+  {
+    "id": "hero",
+    "source": "S10",
+    "file": "screens/landing/landing-portal-pracy.html",
+    "selector": ".hero",
+    "viewport": 1280,
+    "state": "domyślny",
+    "crop": "docs/evidence/hero.png"
+  },
+  {
+    "id": "steps",
+    "source": "S10",
+    "file": "screens/landing/landing-portal-pracy.html",
+    "selector": ".steps",
+    "viewport": 1280,
+    "state": "domyślny",
+    "crop": "docs/evidence/steps.png"
+  },
+  {
+    "id": "cart-shop",
+    "source": "S13",
+    "file": "skills/panel-piksel-ui-workspace/iteration-1/game-item-shop/with_skill/outputs/sklep-przedmiotow.html",
+    "selector": ".cart",
+    "viewport": 1280,
+    "state": "domyślny",
+    "crop": "docs/evidence/cart-shop.png"
+  },
+  {
+    "id": "tabs-sort-mobile",
+    "source": "S11",
+    "file": "skills/panel-piksel-ui-workspace/iteration-1/job-board-listing-filters/with_skill/outputs/levelup-jobs-wyniki.html",
+    "selector": ".tabs[data-sort-for]",
+    "viewport": 390,
+    "state": "domyślny",
+    "crop": "docs/evidence/tabs-sort-mobile.png"
+  },
+  {
+    "id": "form-controls-dark",
+    "source": "S20",
+    "file": "skills/panel-piksel-ui/examples/komponenty.html",
+    "selector": "#formularze .grid3",
+    "viewport": 1280,
+    "state": "po interakcji: (document.documentElement.setAttribute('data-theme','dark'), (()=>{const i=docum",
+    "crop": "docs/evidence/form-controls-dark.png"
+  },
+  {
+    "id": "wizard-errors",
+    "source": "S21",
+    "file": "skills/panel-piksel-ui/examples/wzorce.html",
+    "selector": ".wizard",
+    "viewport": 1280,
+    "state": "po interakcji: document.querySelector('[data-wizard-next]').click()",
+    "crop": "docs/evidence/wizard-errors.png"
+  },
+  {
+    "id": "wizard-warning",
+    "source": "S21",
+    "file": "skills/panel-piksel-ui/examples/wzorce.html",
+    "selector": ".wizard",
+    "viewport": 1280,
+    "state": "po interakcji: (()=>{const t=document.getElementById('w-title');t.value='Senior Unity Developer",
+    "crop": "docs/evidence/wizard-warning.png"
+  },
+  {
+    "id": "modal",
+    "source": "S20",
+    "file": "skills/panel-piksel-ui/examples/komponenty.html",
+    "selector": "dialog#okno-aplikuj",
+    "viewport": 1280,
+    "state": "po interakcji: document.querySelector('[data-dialog-open=okno-aplikuj]').click()",
+    "crop": "docs/evidence/modal.png"
+  },
+  {
+    "id": "menu",
+    "source": "S20",
+    "file": "skills/panel-piksel-ui/examples/komponenty.html",
+    "selector": "#nakladki .row",
+    "viewport": 1280,
+    "state": "po interakcji: document.querySelector('[aria-controls=menu-oferta]').click()",
+    "crop": "docs/evidence/menu.png"
+  },
+  {
+    "id": "tooltip",
+    "source": "S20",
+    "file": "skills/panel-piksel-ui/examples/komponenty.html",
+    "selector": "#nakladki .row",
+    "viewport": 1280,
+    "state": "po interakcji: document.querySelector('[aria-describedby=tip-b2b]').focus()",
+    "crop": "docs/evidence/tooltip.png"
+  },
+  {
+    "id": "nav-mobile",
+    "source": "S20",
+    "file": "skills/panel-piksel-ui/examples/komponenty.html",
+    "selector": ".site-header",
+    "viewport": 390,
+    "state": "po interakcji: document.querySelector('.nav-toggle').click()",
+    "crop": "docs/evidence/nav-mobile.png"
+  },
+  {
+    "id": "drawer-mobile",
+    "source": "S20",
+    "file": "skills/panel-piksel-ui/examples/komponenty.html",
+    "selector": "dialog#filtry-szuflada",
+    "viewport": 390,
+    "state": "po interakcji: document.querySelector('.filters-toggle').click()",
+    "crop": "docs/evidence/drawer-mobile.png"
+  },
+  {
+    "id": "selectable",
+    "source": "S21",
+    "file": "skills/panel-piksel-ui/examples/wzorce.html",
+    "selector": "#zaznaczanie",
+    "viewport": 1280,
+    "state": "po interakcji: (()=>{const r=document.querySelectorAll('#t-oferty [data-select-row]');r[0].clic",
+    "crop": "docs/evidence/selectable.png"
+  },
+  {
+    "id": "loading",
+    "source": "S21",
+    "file": "skills/panel-piksel-ui/examples/wzorce.html",
+    "selector": "#ladowanie .two",
+    "viewport": 1280,
+    "state": "po interakcji: ppProgress(document.getElementById('up-progress'),62)",
+    "crop": "docs/evidence/loading.png"
+  },
+  {
+    "id": "skeleton-error",
+    "source": "S20",
+    "file": "skills/panel-piksel-ui/examples/komponenty.html",
+    "selector": "#stany .grid3 > .stack:last-child",
+    "viewport": 1280,
+    "state": "domyślny",
+    "crop": "docs/evidence/skeleton-error.png"
+  },
+  {
+    "id": "charts",
+    "source": "S21",
+    "file": "skills/panel-piksel-ui/examples/wzorce.html",
+    "selector": "#wykresy",
+    "viewport": 1280,
+    "state": "domyślny",
+    "crop": "docs/evidence/charts.png"
+  },
+  {
+    "id": "charts-dark",
+    "source": "S21",
+    "file": "skills/panel-piksel-ui/examples/wzorce.html",
+    "selector": "#wykresy",
+    "viewport": 1280,
+    "state": "po interakcji: document.documentElement.setAttribute('data-theme','dark')",
+    "crop": "docs/evidence/charts-dark.png"
+  },
+  {
+    "id": "dark-list",
+    "source": "S20",
+    "file": "skills/panel-piksel-ui/examples/komponenty.html",
+    "selector": "#listy .grid2",
+    "viewport": 1280,
+    "state": "po interakcji: document.documentElement.setAttribute('data-theme','dark')",
+    "crop": "docs/evidence/dark-list.png"
+  },
+  {
+    "id": "icons-ui",
+    "source": "S22",
+    "file": "skills/panel-piksel-ui/examples/ikony.html",
+    "selector": "section:has(#h1) .ico-grid",
+    "viewport": 1280,
+    "state": "domyślny",
+    "crop": "docs/evidence/icons-ui.png"
+  },
+  {
+    "id": "icons-color",
+    "source": "S22",
+    "file": "skills/panel-piksel-ui/examples/ikony.html",
+    "selector": "section:has(#h2) .ico-grid",
+    "viewport": 1280,
+    "state": "domyślny",
+    "crop": "docs/evidence/icons-color.png"
+  },
+  {
+    "id": "icons-items",
+    "source": "S22",
+    "file": "skills/panel-piksel-ui/examples/ikony.html",
+    "selector": "section:has(#h3) .ico-grid",
+    "viewport": 1280,
+    "state": "domyślny",
+    "crop": "docs/evidence/icons-items.png"
+  },
+  {
+    "id": "icons-usage",
+    "source": "S22",
+    "file": "skills/panel-piksel-ui/examples/ikony.html",
+    "selector": "section:has(#h5)",
+    "viewport": 1280,
+    "state": "domyślny",
+    "crop": "docs/evidence/icons-usage.png"
+  },
+  {
+    "id": "notices",
+    "source": "S20",
+    "file": "skills/panel-piksel-ui/examples/komponenty.html",
+    "selector": "#powiadomienia .grid2",
+    "viewport": 1280,
+    "state": "domyślny",
+    "crop": "docs/evidence/notices.png"
+  },
+  {
+    "id": "toast",
+    "source": "S20",
+    "file": "skills/panel-piksel-ui/examples/komponenty.html",
+    "selector": ".toasts",
+    "viewport": 1280,
+    "state": "po interakcji: (()=>{document.querySelector('[data-toast=success]').click();document.querySelec",
+    "crop": "docs/evidence/toast.png"
+  },
+  {
+    "id": "form-controls",
+    "source": "S20",
+    "file": "skills/panel-piksel-ui/examples/komponenty.html",
+    "selector": "#formularze .grid3",
+    "viewport": 1280,
+    "state": "po interakcji: (()=>{const i=document.getElementById('f-cv');const dt=new DataTransfer();dt.ite",
+    "crop": "docs/evidence/form-controls.png"
+  }
+]

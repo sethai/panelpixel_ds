@@ -1,0 +1,12 @@
+{
+  "eval_name": "leaderboard-high-scores",
+  "prompt": "Potrzebuję ekranu leaderboardu dla naszej gry przeglądarkowej „Kosmiczny Kret” — high scores graczy. Na górze top 3 na podium, niżej tabela z miejscami 4–20 (nick, kraj, wynik, liczba rozgrywek, zmiana pozycji), przełącznik Dziś / Ten tydzień / Wszech czasów i paginacja. Styl Panel & Piksel. Jeden plik HTML proszę.",
+  "assertions": [
+    "Plik HTML korzysta z tokens.css i components.css systemu (linkiem obok pliku albo wklejonych) i nie zmienia ich wartości.",
+    "check_screen.py nie zgłasza żadnego ERROR dla ekranu.",
+    "Na stronie jest dokładnie jedno .podium, a jego elementy w DOM są w kolejności miejsc 1, 2, 3.",
+    "Tabela ma komórki <th> i co najmniej 10 wierszy danych, a kolumny liczbowe używają klasy .num.",
+    "Zmiana pozycji jest pokazana strzałką/znakiem (np. .delta-up/.delta-down), nie tylko kolorem.",
+    "Strona nie przewija się poziomo w szerokości 390 px ani 1280 px."
+  ]
+}

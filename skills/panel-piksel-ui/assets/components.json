@@ -1,0 +1,726 @@
+{
+  "$schema-note": "Rejestr komponentów Panel & Piksel. Status: stable (gotowy, cała checklista §0.2), preview (w systemie, działa, brak części testów lub użycia na 2 ekranach), draft (kandydat — widziany na ekranach, poza systemem), deprecated (wycofywany: działa do wersji removeIn, check_screen ostrzega). Edytuj tutaj; tabela w design.md §0 generuje się przez scripts/sync_system.py.",
+  "version": "1.11.0",
+  "components": [
+    {
+      "id": "button",
+      "name": "Przycisk",
+      "status": "stable",
+      "since": "1.0",
+      "classes": [
+        ".btn",
+        ".btn-primary",
+        ".btn-secondary",
+        ".btn-full",
+        ".lock",
+        ".btn-reason"
+      ],
+      "docs": "§6.1",
+      "example": "examples/komponenty.html#przyciski",
+      "screens": 7
+    },
+    {
+      "id": "button-compact",
+      "name": "Przycisk kompaktowy 36 px",
+      "status": "stable",
+      "since": "1.6",
+      "classes": [
+        ".btn-compact",
+        ".card-foot"
+      ],
+      "docs": "§6.1",
+      "example": "examples/komponenty.html#przyciski",
+      "screens": 2
+    },
+    {
+      "id": "button-loading",
+      "name": "Przycisk w trakcie wysyłania",
+      "status": "preview",
+      "since": "1.6",
+      "classes": [
+        ".is-loading"
+      ],
+      "docs": "§6.1",
+      "example": "examples/komponenty.html#przyciski",
+      "screens": 0,
+      "missing": [
+        "użycie na 2 ekranach",
+        "test z czytnikiem"
+      ]
+    },
+    {
+      "id": "icon-button",
+      "name": "Przycisk-ikona",
+      "status": "preview",
+      "since": "1.7",
+      "classes": [
+        ".icon-btn"
+      ],
+      "docs": "§6.16",
+      "example": "examples/komponenty.html#nakladki",
+      "screens": 0,
+      "missing": [
+        "użycie na 2 ekranach",
+        "test z czytnikiem"
+      ]
+    },
+    {
+      "id": "badge",
+      "name": "Badge",
+      "status": "stable",
+      "since": "1.0",
+      "classes": [
+        ".badge",
+        ".badge-new",
+        ".badge-seg",
+        ".badge-sm"
+      ],
+      "docs": "§6.2",
+      "example": "examples/komponenty.html",
+      "screens": 6
+    },
+    {
+      "id": "chip",
+      "name": "Chip / tag",
+      "status": "stable",
+      "since": "1.0",
+      "classes": [
+        ".chip",
+        ".chips",
+        ".chip-more"
+      ],
+      "docs": "§6.3",
+      "example": "examples/komponenty.html",
+      "screens": 4
+    },
+    {
+      "id": "count",
+      "name": "Licznik",
+      "status": "stable",
+      "since": "1.0",
+      "classes": [
+        ".count"
+      ],
+      "docs": "§6.4",
+      "example": "examples/komponenty.html",
+      "screens": 4
+    },
+    {
+      "id": "avatar",
+      "name": "Awatar / monogram",
+      "status": "stable",
+      "since": "1.0",
+      "classes": [
+        ".avatar",
+        ".avatar-xl"
+      ],
+      "docs": "§5",
+      "example": "examples/komponenty.html",
+      "screens": 6
+    },
+    {
+      "id": "panel-list",
+      "name": "Panel listy",
+      "status": "stable",
+      "since": "1.0",
+      "classes": [
+        ".panel",
+        ".is-featured",
+        ".panel-head",
+        ".list",
+        ".list-value",
+        ".amt-full",
+        ".amt-short",
+        ".panel-more"
+      ],
+      "docs": "§6.5",
+      "example": "examples/komponenty.html#listy",
+      "screens": 3
+    },
+    {
+      "id": "card",
+      "name": "Karta",
+      "status": "stable",
+      "since": "1.0",
+      "classes": [
+        ".card",
+        ".card-body",
+        ".card-head",
+        ".card-sub",
+        ".amount"
+      ],
+      "docs": "§6.6",
+      "example": "examples/komponenty.html#listy",
+      "screens": 4
+    },
+    {
+      "id": "filters",
+      "name": "Panel filtrów, pole, checkbox",
+      "status": "stable",
+      "since": "1.0",
+      "classes": [
+        ".panel-filters",
+        ".field",
+        ".checkbox"
+      ],
+      "docs": "§6.7",
+      "example": "examples/komponenty.html#stany",
+      "screens": 2
+    },
+    {
+      "id": "search-main",
+      "name": "Wyszukiwarka główna",
+      "status": "stable",
+      "since": "1.1",
+      "classes": [
+        ".search-main"
+      ],
+      "docs": "§6.11",
+      "example": "examples/komponenty.html",
+      "screens": 5
+    },
+    {
+      "id": "tabs",
+      "name": "Zakładki (panele) i przełącznik sortowania",
+      "status": "stable",
+      "since": "1.1",
+      "classes": [
+        ".tabs"
+      ],
+      "docs": "§6.11",
+      "example": "examples/komponenty.html#tabele",
+      "screens": 5
+    },
+    {
+      "id": "table",
+      "name": "Tabela danych z sortowaniem",
+      "status": "stable",
+      "since": "1.1",
+      "classes": [
+        ".table-wrap",
+        ".table",
+        ".sort",
+        ".sorted",
+        ".rank",
+        ".delta-up",
+        ".delta-down"
+      ],
+      "js": "table-sort.js",
+      "docs": "§6.11",
+      "example": "examples/komponenty.html#tabele",
+      "screens": 3
+    },
+    {
+      "id": "pagination",
+      "name": "Paginacja",
+      "status": "stable",
+      "since": "1.1",
+      "classes": [
+        ".pagination"
+      ],
+      "docs": "§6.11",
+      "example": "examples/komponenty.html#tabele",
+      "screens": 2
+    },
+    {
+      "id": "podium",
+      "name": "Podium",
+      "status": "stable",
+      "since": "1.0",
+      "classes": [
+        ".podium"
+      ],
+      "docs": "§6.8",
+      "example": "examples/komponenty.html",
+      "screens": 1,
+      "note": "jedno użycie z natury (ranking)"
+    },
+    {
+      "id": "tier",
+      "name": "Pakiet i znacznik pakietu / rzadkości",
+      "status": "stable",
+      "since": "1.0",
+      "classes": [
+        ".tier",
+        ".tier-tag"
+      ],
+      "docs": "§6.9",
+      "example": "examples/komponenty.html",
+      "screens": 3
+    },
+    {
+      "id": "page-structure",
+      "name": "Nagłówek, okruszki, nagłówek treści, sekcja, stopka",
+      "status": "stable",
+      "since": "1.1",
+      "classes": [
+        ".container",
+        ".site-header",
+        ".logo",
+        ".site-nav",
+        ".breadcrumbs",
+        ".page-head",
+        ".section",
+        ".section-title",
+        ".site-footer"
+      ],
+      "docs": "§6.11",
+      "example": "examples/komponenty.html",
+      "screens": 7
+    },
+    {
+      "id": "callout",
+      "name": "Callout (wskazówka)",
+      "status": "stable",
+      "since": "1.0",
+      "classes": [
+        ".callout"
+      ],
+      "docs": "§6.10",
+      "example": "examples/komponenty.html#stany",
+      "screens": 2
+    },
+    {
+      "id": "empty",
+      "name": "Pusty stan",
+      "status": "stable",
+      "since": "1.0",
+      "classes": [
+        ".empty"
+      ],
+      "docs": "§6.10",
+      "example": "examples/komponenty.html#tabele",
+      "screens": 1
+    },
+    {
+      "id": "facts",
+      "name": "Fakty encji",
+      "status": "stable",
+      "since": "1.1",
+      "classes": [
+        ".facts"
+      ],
+      "docs": "§6.11",
+      "example": "examples/komponenty.html",
+      "screens": 2
+    },
+    {
+      "id": "details",
+      "name": "Detale graficzne",
+      "status": "stable",
+      "since": "1.0",
+      "classes": [
+        ".dither",
+        ".list-square",
+        ".bg-dots"
+      ],
+      "docs": "§5",
+      "example": "examples/komponenty.html",
+      "screens": 3
+    },
+    {
+      "id": "list-controls",
+      "name": "Sterowanie listą kart (sortowanie, filtry, licznik, przełącznik)",
+      "status": "stable",
+      "since": "1.4",
+      "js": "list-controls.js",
+      "docs": "§6.12",
+      "example": "examples/komponenty.html#listy",
+      "screens": 4
+    },
+    {
+      "id": "load-more",
+      "name": "Pokaż więcej",
+      "status": "preview",
+      "since": "1.8",
+      "classes": [
+        ".load-more"
+      ],
+      "js": "list-controls.js",
+      "docs": "§6.20",
+      "example": "examples/wzorce.html#ladowanie",
+      "screens": 0,
+      "missing": [
+        "użycie na 2 ekranach",
+        "test z czytnikiem"
+      ]
+    },
+    {
+      "id": "field-states",
+      "name": "Błąd, ostrzeżenie, podpowiedź, zablokowane, tylko do odczytu",
+      "status": "preview",
+      "since": "1.6",
+      "classes": [
+        ".field.is-error",
+        ".field-error",
+        ".field.is-warning",
+        ".field-warning",
+        ".field-hint",
+        ".req"
+      ],
+      "docs": "§6.13, §6.14",
+      "example": "examples/wzorce.html#formularz",
+      "screens": 0,
+      "missing": [
+        "użycie na 2 ekranach",
+        "test z czytnikiem"
+      ]
+    },
+    {
+      "id": "form-pattern",
+      "name": "Formularz z walidacją, podsumowaniem błędów i krokami",
+      "status": "preview",
+      "since": "1.8",
+      "classes": [
+        ".error-summary",
+        ".steps-progress",
+        ".wizard-step",
+        ".wizard-nav"
+      ],
+      "js": "ui-controls.js",
+      "docs": "§6.18",
+      "example": "examples/wzorce.html#formularz",
+      "screens": 0,
+      "missing": [
+        "użycie na 2 ekranach",
+        "test z czytnikiem"
+      ]
+    },
+    {
+      "id": "form-controls",
+      "name": "Lista wyboru, radio, przełącznik, pole wielowierszowe, licznik −/+, plik",
+      "status": "preview",
+      "since": "1.7",
+      "classes": [
+        ".select",
+        ".radio",
+        ".switch",
+        ".field-count",
+        ".stepper",
+        ".upload",
+        ".file-list"
+      ],
+      "js": "ui-controls.js",
+      "docs": "§6.14",
+      "example": "examples/komponenty.html#formularze",
+      "screens": 0,
+      "missing": [
+        "użycie na 2 ekranach",
+        "test z czytnikiem"
+      ]
+    },
+    {
+      "id": "notice",
+      "name": "Powiadomienia (w treści i wyskakujące)",
+      "status": "preview",
+      "since": "1.7",
+      "classes": [
+        ".notice",
+        ".notice-info",
+        ".notice-success",
+        ".notice-warning",
+        ".notice-error",
+        ".toasts",
+        ".toast"
+      ],
+      "js": "ui-controls.js",
+      "docs": "§6.15",
+      "example": "examples/komponenty.html#powiadomienia",
+      "screens": 0,
+      "missing": [
+        "użycie na 2 ekranach",
+        "test z czytnikiem"
+      ]
+    },
+    {
+      "id": "overlays",
+      "name": "Okno, szuflada, menu, podpowiedź",
+      "status": "preview",
+      "since": "1.7",
+      "classes": [
+        "dialog.modal",
+        "dialog.drawer",
+        ".menu",
+        ".menu-list",
+        ".tip",
+        ".tip-body"
+      ],
+      "js": "ui-controls.js",
+      "docs": "§6.16",
+      "example": "examples/komponenty.html#nakladki",
+      "screens": 0,
+      "missing": [
+        "użycie na 2 ekranach",
+        "test z czytnikiem"
+      ]
+    },
+    {
+      "id": "mobile-nav",
+      "name": "Zwijana nawigacja i filtry w szufladzie",
+      "status": "preview",
+      "since": "1.7",
+      "classes": [
+        ".nav-toggle",
+        ".site-nav[data-collapsible]",
+        ".filters-toggle",
+        "[data-drawer-form]"
+      ],
+      "js": "ui-controls.js",
+      "docs": "§6.17",
+      "example": "examples/komponenty.html",
+      "screens": 0,
+      "missing": [
+        "użycie na 2 ekranach",
+        "test na telefonie"
+      ]
+    },
+    {
+      "id": "selectable-table",
+      "name": "Zaznaczanie wierszy i akcje zbiorcze",
+      "status": "preview",
+      "since": "1.8",
+      "classes": [
+        ".col-check",
+        ".bulk-bar",
+        ".bulk-count"
+      ],
+      "js": "ui-controls.js",
+      "docs": "§6.19",
+      "example": "examples/wzorce.html#zaznaczanie",
+      "screens": 0,
+      "missing": [
+        "użycie na 2 ekranach",
+        "test z czytnikiem"
+      ]
+    },
+    {
+      "id": "loading",
+      "name": "Szkielet, błąd wczytania, postęp, ładowanie w miejscu",
+      "status": "preview",
+      "since": "1.6",
+      "classes": [
+        ".skel",
+        ".skel-row",
+        ".load-error",
+        ".progress",
+        ".inline-loading"
+      ],
+      "js": "ui-controls.js",
+      "docs": "§6.13, §6.20",
+      "example": "examples/wzorce.html#ladowanie",
+      "screens": 0,
+      "missing": [
+        "użycie na 2 ekranach",
+        "test z czytnikiem"
+      ]
+    },
+    {
+      "id": "charts",
+      "name": "Wykresy i kafelki liczb",
+      "status": "preview",
+      "since": "1.8",
+      "classes": [
+        ".chart",
+        ".stats",
+        ".stat",
+        ".chart-spark"
+      ],
+      "js": "charts.js",
+      "docs": "§6.21",
+      "example": "examples/wzorce.html#wykresy",
+      "screens": 0,
+      "missing": [
+        "użycie na 2 ekranach",
+        "test z czytnikiem"
+      ]
+    },
+    {
+      "id": "icons",
+      "name": "Ikony pikselowe",
+      "status": "preview",
+      "since": "1.7",
+      "classes": [
+        ".icon",
+        ".sprite"
+      ],
+      "css": "icons.css",
+      "docs": "§5",
+      "example": "examples/ikony.html",
+      "screens": 0,
+      "missing": [
+        "użycie na 2 ekranach"
+      ]
+    },
+    {
+      "id": "dark-theme",
+      "name": "Tryb ciemny",
+      "status": "preview",
+      "since": "1.6",
+      "classes": [
+        "[data-theme=dark]",
+        "[data-theme=auto]"
+      ],
+      "docs": "§2.6",
+      "example": "examples/komponenty.html",
+      "screens": 0,
+      "missing": [
+        "sprawdzenie na 7 ekranach",
+        "potwierdzenie #F27961 w Jehkoba32"
+      ]
+    },
+    {
+      "id": "forced-colors",
+      "name": "Tryb wysokiego kontrastu",
+      "status": "preview",
+      "since": "1.7",
+      "docs": "§8",
+      "example": "examples/komponenty.html",
+      "screens": 7,
+      "missing": [
+        "test na Windows z wysokim kontrastem"
+      ]
+    },
+    {
+      "id": "opt-count",
+      "name": "Liczba przy opcji filtra (liczona automatycznie)",
+      "status": "preview",
+      "since": "1.10",
+      "classes": [
+        ".opt-n",
+        ".is-zero"
+      ],
+      "js": "list-controls.js",
+      "docs": "§6.7",
+      "example": "examples/komponenty.html#stany",
+      "screens": 1,
+      "missing": [
+        "użycie na 2 ekranach",
+        "test z czytnikiem"
+      ]
+    },
+    {
+      "id": "range",
+      "name": "Zakres od–do",
+      "status": "preview",
+      "since": "1.10",
+      "classes": [
+        ".range"
+      ],
+      "js": "list-controls.js",
+      "docs": "§6.7",
+      "example": "examples/komponenty.html#stany",
+      "screens": 1,
+      "missing": [
+        "użycie na 2 ekranach",
+        "test z czytnikiem"
+      ]
+    },
+    {
+      "id": "card-meta",
+      "name": "Wiersz meta w karcie",
+      "status": "preview",
+      "since": "1.10",
+      "classes": [
+        ".card-meta"
+      ],
+      "docs": "§6.6",
+      "example": "examples/komponenty.html#listy",
+      "screens": 1,
+      "missing": [
+        "użycie na 2 ekranach",
+        "test z czytnikiem"
+      ]
+    },
+    {
+      "id": "country-code",
+      "name": "Kod kraju",
+      "status": "preview",
+      "since": "1.11",
+      "classes": [
+        ".cc"
+      ],
+      "docs": "§6.11",
+      "example": "examples/komponenty.html#sklep",
+      "screens": 1,
+      "missing": [
+        "użycie na 2 ekranach",
+        "test z czytnikiem"
+      ]
+    },
+    {
+      "id": "search-select",
+      "name": "Wyszukiwarka z listą wyboru",
+      "status": "preview",
+      "since": "1.11",
+      "classes": [
+        ".search-main.has-select",
+        ".search-main .select"
+      ],
+      "docs": "§6.11",
+      "example": "examples/komponenty.html#sklep",
+      "screens": 1,
+      "missing": [
+        "użycie na 2 ekranach",
+        "test z czytnikiem"
+      ]
+    },
+    {
+      "id": "product-card-vertical",
+      "name": "Pionowa karta produktu",
+      "status": "preview",
+      "since": "1.11",
+      "classes": [
+        ".card-vertical",
+        ".card-art",
+        ".card-price"
+      ],
+      "docs": "§6.6",
+      "example": "examples/komponenty.html#sklep",
+      "screens": 1,
+      "missing": [
+        "użycie na 2 ekranach",
+        "test z czytnikiem"
+      ]
+    },
+    {
+      "id": "sort-as-tabs",
+      "name": "Sortowanie listy jako zakładki (role=tab)",
+      "status": "deprecated",
+      "since": "1.1",
+      "deprecatedIn": "1.6",
+      "removeIn": "2.0",
+      "replacedBy": "role=group + przyciski aria-pressed (§6.12)",
+      "detect": "data-sort-for=\"[^\"]*\"[^>]*role=\"tablist\"|role=\"tablist\"[^>]*data-sort-for"
+    },
+    {
+      "id": "callout-danger",
+      "name": "Callout błędu",
+      "status": "deprecated",
+      "since": "1.6",
+      "deprecatedIn": "1.7",
+      "removeIn": "2.0",
+      "replacedBy": ".notice.notice-error (§6.15)",
+      "detect": "class=\"[^\"]*callout-danger"
+    },
+    {
+      "id": "rarity-badge",
+      "name": "Rzadkość jako badge z kwadratem",
+      "status": "deprecated",
+      "since": "—",
+      "deprecatedIn": "1.6",
+      "removeIn": "2.0",
+      "replacedBy": ".tier-tag (§6.9)",
+      "detect": "class=\"[^\"]*\\brarity\\b"
+    },
+    {
+      "id": "btn-height-override",
+      "name": "Nadpisana wysokość przycisku w stylach ekranu",
+      "status": "deprecated",
+      "since": "—",
+      "deprecatedIn": "1.6",
+      "removeIn": "2.0",
+      "replacedBy": ".btn-compact (§6.1)",
+      "detect": "\\.btn[^{]*\\{[^}]*height:\\s*3[0-9]px"
+    }
+  ]
+}

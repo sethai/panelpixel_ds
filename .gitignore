@@ -1,0 +1,18 @@
+# Paczki z tools/build_all.py — budowane lokalnie, publikowane ręcznie (Cloudflare, udostępnianie)
+dist/
+
+# Różnice z testu wizualnego (wzorce w tests/visual/*.png są w repozytorium)
+*.diff.png
+
+# System i edytory
+.DS_Store
+__pycache__/
+*.pyc
+.venv/
+venv/
+node_modules/
+.idea/
+.vscode/
+
+# Badania z zrzutami cudzych stron i gier — tylko lokalnie (repozytorium jest publiczne)
+research/

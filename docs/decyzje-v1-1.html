@@ -1,0 +1,542 @@
+<!doctype html>
+<html lang="pl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Panel i Piksel — decyzje v1.1</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:ital,wght@0,400;0,600;0,700;0,800;0,900;1,400&family=Press+Start+2P&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../skills/panel-piksel-ui/assets/tokens.css">
+<link rel="stylesheet" href="../skills/panel-piksel-ui/assets/components.css">
+<style id="screen">
+/* ---------- strona porównań ---------- */
+main { padding-bottom: 64px; }
+.lead { max-width: 76ch; color: var(--ink-2); }
+.toc { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 12px; margin: 0 0 8px; padding: 0; list-style: none; }
+.toc a { display: flex; gap: 10px; align-items: flex-start; padding: 10px 12px; background: var(--surface); border: var(--border); box-shadow: var(--shadow-sm); color: var(--ink); text-decoration: none; font-weight: 600; font-size: 14px; }
+.toc a:hover { text-decoration: underline; }
+.toc a:focus-visible { outline: 3px solid var(--focus); outline-offset: 2px; }
+.toc .count { flex: none; }
+.state { display: inline-block; margin-top: 4px; font: 700 11px/1 var(--font-sans); letter-spacing: .3px; text-transform: uppercase; padding: 4px 6px; border: var(--border); }
+.state-ok { background: var(--mint); } .state-pick { background: var(--highlight); } .state-prop { background: var(--chip); }
+.part { margin: 56px 0 0; padding-top: 24px; border-top: var(--border); scroll-margin-top: 16px; }
+.part > h2 { margin: 0 0 6px; font: 900 24px/32px var(--font-sans); letter-spacing: -.6px; }
+.part > .lead { margin: 0 0 20px; }
+.opts { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 380px), 1fr)); gap: 24px; align-items: start; }
+.opt { min-width: 0; }
+.opt-h { display: flex; align-items: center; gap: 10px; margin: 0 0 12px; }
+.opt-h h3 { margin: 0; font: 900 18px/24px var(--font-sans); }
+.opt-letter { display: inline-grid; place-items: center; width: 32px; height: 32px; font: 12px/1 var(--font-pixel); background: var(--ink); color: var(--on-ink); flex: none; }
+.opt.is-rec .opt-letter { background: var(--action); color: var(--on-action); }
+.rec { margin-left: auto; }
+.stage { display: grid; gap: 16px; padding: 16px; background: var(--paper); border: 2px dashed var(--line-soft); }
+.pc { list-style: none; margin: 12px 0 0; padding: 0; font-size: 14px; }
+.pc li { position: relative; margin: 4px 0; padding-left: 20px; color: var(--ink-2); }
+.pc li::before { position: absolute; left: 0; top: 0; font: 700 14px var(--font-sans); }
+.pc .plus::before { content: "+"; color: var(--action); }
+.pc .minus::before { content: "−"; color: var(--danger); }
+.pc .eq::before { content: "="; color: var(--ink-3); }
+.verdict { margin-top: 20px; }
+.k { font: 600 12px var(--font-sans); letter-spacing: .3px; text-transform: uppercase; color: var(--ink-3); margin: 0 0 6px; }
+code { font: 13px ui-monospace, Menlo, monospace; background: var(--surface); border: 1px solid var(--line-soft); padding: 0 4px; }
+.spec-table { margin-top: 16px; }
+
+/* ---------- 1. przycisk kompaktowy (propozycja klasy do components.css) ---------- */
+.btn.btn-compact { height: 36px; padding: 0 14px 4px; font-size: 14px; }
+.btn.btn-compact:not([aria-disabled="true"]):not(.is-pressed):not(:active):hover { padding-bottom: 6px; }
+.btn.btn-compact:active, .btn.btn-compact.is-pressed, .btn.btn-compact[aria-pressed="true"] { padding: 4px 14px 0; }
+.btn.btn-compact[aria-disabled="true"] { padding: 0 14px; }
+.card-foot { display: flex; align-items: center; justify-content: space-between; gap: 12px; margin-top: 12px; padding-top: 12px; border-top: 2px dashed var(--line-soft); font-size: 13px; color: var(--ink-3); }
+.btn-row { display: flex; flex-wrap: wrap; gap: 12px; align-items: center; }
+.measure { font: 10px/1 var(--font-pixel); color: var(--ink-3); }
+
+/* ---------- 2. rzadkość ---------- */
+.item { display: grid; grid-template-columns: 56px 1fr; gap: 12px; padding: 12px; background: var(--surface); border: var(--border); box-shadow: var(--shadow-md); }
+.item-icon { width: 56px; height: 56px; border: var(--border); box-sizing: border-box; background: var(--paper); display: grid; place-items: center; }
+.item-icon svg { width: 40px; height: 40px; image-rendering: pixelated; }
+.item h4 { margin: 0 0 6px; font: 800 16px/22px var(--font-sans); }
+.item-price { margin: 8px 0 0; font: 12px/1 var(--font-pixel); }
+.item-price small { font: 600 12px var(--font-sans); color: var(--ink-3); }
+.cart { padding: 12px; background: var(--surface); border: var(--border); box-shadow: var(--shadow-md); }
+.cart-row { display: flex; align-items: center; gap: 10px; padding: 6px 0; font-size: 14px; font-weight: 600; }
+.cart-row + .cart-row { border-top: 2px solid var(--paper); }
+.cart-row .name { flex: 1; min-width: 0; }
+.cart-row .num { font: 10px/1 var(--font-pixel); }
+/* wariant B — kopia rozwiązania z ekranu sklepu (S13) */
+.rarity { gap: 6px; white-space: nowrap; }
+.rarity::before { content: ""; display: inline-block; flex: none; width: 8px; height: 8px; background: var(--rar); }
+.rarity-legendary { --rar: var(--tier-legendary); } .rarity-epic { --rar: var(--tier-epic); }
+.rarity-rare { --rar: var(--tier-rare); } .rarity-common { --rar: var(--tier-common); }
+
+/* ---------- 3. sortowanie: grupa przycisków przełączających (propozycja) ---------- */
+.tabs [aria-pressed="true"] { background: var(--ink); color: var(--on-ink); }
+.mini-list { display: grid; gap: 10px; margin-top: 12px; }
+.mini { display: flex; align-items: center; gap: 10px; padding: 10px 12px; background: var(--surface); border: var(--border); box-shadow: var(--shadow-sm); }
+.mini .name { flex: 1; min-width: 0; font: 700 14px/20px var(--font-sans); }
+.mini .name small { display: block; font: 400 13px var(--font-sans); color: var(--ink-3); }
+.mini .num { font: 10px/1.6 var(--font-pixel); text-align: right; }
+.mini .num.is-empty { font: italic 13px var(--font-sans); color: var(--ink-3); }
+.sr-says { margin: 12px 0 0; padding: 10px 12px; font-size: 14px; background: var(--surface); border: var(--border); }
+.sr-says b { display: block; font: 800 12px var(--font-sans); letter-spacing: .3px; text-transform: uppercase; color: var(--ink-3); margin-bottom: 4px; }
+.sr-says q { font-style: italic; }
+
+/* ---------- 4. kwoty na telefonie ---------- */
+.phones { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 340px), 1fr)); gap: 24px; align-items: start; }
+.phone { --row-h: 40px; width: 100%; max-width: 390px; box-sizing: border-box; padding: 16px; background: var(--paper); border: var(--border); box-shadow: var(--shadow-md); }
+.phone-bar { display: flex; justify-content: space-between; margin: -4px 0 12px; font: 8px/1 var(--font-pixel); color: var(--ink-3); }
+/* C2: kwota w drugiej linii */
+.list.two-line a { height: auto; min-height: 52px; align-items: flex-start; padding: 6px 0; }
+.list.two-line .list-n, .list.two-line .avatar { margin-top: 2px; }
+.list.two-line .list-main { flex: 1; min-width: 0; display: grid; gap: 4px; }
+.list.two-line .list-name { white-space: nowrap; }
+.list.two-line .list-value { color: var(--ink-2); }
+/* C4: moneta z dymkiem */
+.list.coins li { position: relative; display: flex; align-items: center; gap: 4px; }
+.list.coins li > a { flex: 1; min-width: 0; }
+.coin { flex: none; display: grid; place-items: center; width: 32px; height: 32px; padding: 0; border: 0; background: transparent; cursor: pointer; }
+.coin svg { width: 20px; height: 20px; image-rendering: pixelated; transition: transform var(--motion); }
+.coin:hover svg { transform: translateY(-2px); }
+.coin[aria-expanded="true"] svg { transform: translateY(1px); }
+.coin:focus-visible { outline: 3px solid var(--focus); outline-offset: -1px; }
+.coin-tip { position: absolute; right: 0; top: calc(100% - 2px); z-index: 3; padding: 8px 10px; font: 10px/1.6 var(--font-pixel); white-space: nowrap; color: var(--on-ink); background: var(--ink); border: var(--border); box-shadow: 4px 4px 0 var(--gold); }
+.coin-tip::before { content: ""; position: absolute; right: 12px; top: -8px; width: 8px; height: 6px; background: var(--ink); clip-path: polygon(50% 0, 100% 100%, 0 100%); }
+
+/* ---------- 5. tryb ciemny (propozycja tokenów) ---------- */
+.themes { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 440px), 1fr)); gap: 24px; }
+.theme { padding: 20px; background: var(--paper); color: var(--ink); border: 2px solid #00021C; display: grid; gap: 16px; min-width: 0; }
+.theme-label { margin: 0; font: 10px/1 var(--font-pixel); color: var(--ink-3); }
+.theme .logo { font-size: 12px; }
+.theme-dark {
+  --paper: #00021C; --surface: #1C284D; --ink: #F0EDD8; --ink-2: #A3CCD9; --ink-3: #96E3C9; --on-ink: #00021C;
+  --link: #0BAFE6; --focus: #F7C93E; --focus-deco: #2469B3; --danger: #F27961;
+  --chip: #2D5280; --line-soft: #2D5280; --btn-secondary-edge: #2D5280; --paper-dots: rgba(217, 76, 135, .18);
+  --avatar-5: #2D5280;
+  --tier-legendary: #F8B800; --tier-epic: #9878F8; --tier-rare: #3CBCFC; --tier-common: #BCBCBC;
+  --border: 2px solid #F0EDD8;
+  --shadow-sm: 2px 2px 0 #2469B3; --shadow-md: 4px 4px 0 #2469B3; --shadow-lg: 6px 6px 0 #2469B3;
+}
+/* elementy z jasnym tłem i dziedziczonym kolorem tekstu potrzebują tekstu „na jasnym” (nowy token --on-light) */
+.theme-dark .badge-new, .theme-dark .chip-more, .theme-dark .callout, .theme-dark .mark,
+.theme-dark .rank-1, .theme-dark .rank-2, .theme-dark .rank-3 { color: #00021C; }
+.theme-dark .table tbody tr:hover { background: #2D5280; }
+.theme-dark .btn[aria-disabled="true"] { box-shadow: inset 0 0 0 2px #F0EDD8; }
+.theme .table-wrap { box-shadow: var(--shadow-md); }
+.theme .card { box-shadow: var(--shadow-md); }
+.theme .grid2 { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+@media (max-width: 520px) { .theme .grid2 { grid-template-columns: 1fr; } }
+
+/* ---------- 6. błąd i ładowanie (propozycje) ---------- */
+.states { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 340px), 1fr)); gap: 24px; align-items: start; }
+.field label { display: block; margin: 0 0 6px; font: 700 14px var(--font-sans); }
+.field.is-error input { border-color: var(--danger); box-shadow: 2px 2px 0 var(--danger); }
+.field-error { display: flex; gap: 8px; align-items: flex-start; margin: 8px 0 0; font: 600 13px/18px var(--font-sans); color: var(--ink); }
+.field-error::before { content: "!"; flex: none; display: grid; place-items: center; width: 18px; height: 18px; font: 10px/1 var(--font-pixel); color: #fff; background: var(--danger); clip-path: var(--notch); }
+.field-hint { margin: 6px 0 0; font-size: 13px; color: var(--ink-3); }
+.btn.is-loading { position: relative; color: transparent !important; cursor: progress; padding: 4px 18px 0; transform: none; }
+.btn-primary.is-loading[aria-disabled="true"] { background: var(--action); box-shadow: inset 0 0 0 2px var(--ink); }
+.btn-secondary.is-loading[aria-disabled="true"] { background: var(--surface); box-shadow: inset 0 0 0 2px var(--ink); }
+.btn-compact.is-loading { padding: 4px 14px 0; }
+.btn.is-loading::after { content: ""; position: absolute; left: 50%; top: calc(50% - 2px); width: 4px; height: 4px; margin-left: -14px; background: currentColor; color: var(--on-action);
+  box-shadow: 12px 0 0 0 var(--on-action), 24px 0 0 0 var(--on-action); animation: pp-dots 900ms steps(1) infinite; }
+.btn-secondary.is-loading::after { color: var(--ink); background: var(--ink); box-shadow: 12px 0 0 0 var(--ink), 24px 0 0 0 var(--ink); }
+@keyframes pp-dots { 0% { opacity: 1; } 33% { opacity: .35; } 66% { opacity: .7; } }
+@media (prefers-reduced-motion: reduce) { .btn.is-loading::after { animation: none; } .skel { animation: none !important; } }
+.skel { display: block; height: 12px; background: conic-gradient(var(--line-soft) 25%, transparent 0 50%, var(--line-soft) 0 75%, transparent 0) 0 0 / 4px 4px; animation: pp-skel 600ms steps(2) infinite; }
+@keyframes pp-skel { to { background-position: 4px 0; } }
+.skel-row { display: flex; align-items: center; gap: 8px; height: var(--row-h); }
+.skel-row .skel-n { width: 22px; height: 10px; }
+.skel-row .skel-av { width: 20px; height: 20px; }
+.load-error { display: grid; gap: 10px; justify-items: start; padding: 16px; background: var(--surface); border: var(--border); border-left: 10px solid var(--danger); box-shadow: var(--shadow-lg); }
+.load-error h3 { margin: 0; font: 900 18px/24px var(--font-sans); }
+.load-error p { margin: 0; color: var(--ink-2); font-size: 14px; }
+.load-error .code { font: 10px/1 var(--font-pixel); color: var(--ink-3); }
+.callout-danger { background: var(--surface); border-left: 10px solid var(--danger); }
+.callout-danger strong::before { content: "! "; font-family: var(--font-pixel); font-size: 11px; color: var(--danger); }
+.ctl { margin-top: 10px; }
+.ctl button { all: unset; cursor: pointer; font: 600 13px var(--font-sans); color: var(--link); text-decoration: underline; }
+.ctl button:focus-visible { outline: 3px solid var(--focus); outline-offset: 2px; }
+</style>
+</head>
+<body class="bg-dots">
+<a class="sr-only" href="#tresc">Przejdź do treści</a>
+<header class="site-header">
+  <div class="container">
+    <a class="logo" href="panel-piksel-komponenty-v2.html">PANEL<span>&amp;PIKSEL</span></a>
+    <nav class="site-nav" aria-label="Dokumentacja">
+      <a href="panel-piksel-komponenty-v2.html">Komponenty v2.0</a>
+      <a href="decyzje-v1-1.html" aria-current="page">Decyzje v1.1</a>
+    </nav>
+  </div>
+</header>
+
+<main id="tresc" class="container">
+  <ol class="breadcrumbs"><li><a href="panel-piksel-komponenty-v2.html">Dokumentacja komponentów</a></li><li>Decyzje v1.1</li></ol>
+  <div class="page-head">
+    <div>
+      <h1>Decyzje do wersji v1.1</h1>
+      <p>Odpowiedzi na pytania z dokumentacji v1. Warianty w punktach 2, 4 i 5 zostały wybrane 2026-11-10 (oznaczone „Wybrane”); tryb ciemny i stany błędu/ładowania to propozycje. Wszystkie przykłady są zbudowane na prawdziwych stylach systemu (<code>tokens.css</code>, <code>components.css</code> v1.5) — nowe klasy są dopisane w stylach tej strony i opisane jako propozycje.</p>
+    </div>
+  </div>
+
+  <ul class="toc">
+    <li><a href="#kompakt"><span class="count">1</span><span>Przycisk kompaktowy 36 px<br><span class="state state-ok">Przyjęte</span></span></a></li>
+    <li><a href="#rzadkosc"><span class="count">2</span><span>Zapis rzadkości: znacznik czy kwadrat<br><span class="state state-ok">Przyjęte: A</span></span></a></li>
+    <li><a href="#aria-sort"><span class="count">3</span><span>aria-sort="none" na nieaktywnych kolumnach<br><span class="state state-ok">Przyjęte: zostaje</span></span></a></li>
+    <li><a href="#sortowanie"><span class="count">4</span><span>Sortowanie: zakładki czy przyciski przełączające<br><span class="state state-ok">Przyjęte: B</span></span></a></li>
+    <li><a href="#kwoty"><span class="count">5</span><span>Kwoty w wierszach list na telefonie<br><span class="state state-ok">Przyjęte: C3</span></span></a></li>
+    <li><a href="#ciemny"><span class="count">6</span><span>Tryb ciemny<br><span class="state state-ok">Zaakceptowane</span></span></a></li>
+    <li><a href="#stany"><span class="count">6</span><span>Stany błędu i ładowania<br><span class="state state-ok">Zaakceptowane</span></span></a></li>
+  </ul>
+
+  <!-- ===================================================== 1 -->
+  <section class="part" id="kompakt" aria-labelledby="h-kompakt">
+    <h2 id="h-kompakt">1. Przycisk kompaktowy 36 px</h2>
+    <p class="lead">Decyzja: wchodzi do systemu jako <code>.btn-compact</code>. Używaj go tam, gdzie przycisk powtarza się w każdej pozycji listy: stopka karty, wiersz tabeli, koszyk. Akcja główna sekcji (Aplikuj, Pokaż wyniki, Wybierz pakiet) zostaje w 44 px.</p>
+    <div class="opts">
+      <div class="opt">
+        <p class="k">Obok siebie — te same stany, inna wysokość</p>
+        <div class="stage">
+          <div class="btn-row"><button class="btn btn-primary" type="button" data-demo-load>Aplikuj teraz</button><span class="measure">44 PX</span></div>
+          <div class="btn-row"><button class="btn btn-secondary btn-compact" type="button" aria-pressed="false" data-label-on="Zapisano" data-label-off="Zapisz">Zapisz</button>
+            <button class="btn btn-primary btn-compact" type="button" data-demo-load>Do koszyka</button>
+            <button class="btn btn-primary btn-compact" type="button" aria-disabled="true" aria-describedby="r-kmp"><span class="lock" aria-hidden="true"></span>Kup</button><span class="measure">36 PX</span></div>
+          <p class="btn-reason" id="r-kmp">Za mało monet (brakuje 300).</p>
+        </div>
+      </div>
+      <div class="opt">
+        <p class="k">W kontekście — stopka karty oferty</p>
+        <div class="stage">
+          <article class="card">
+            <span class="avatar avatar-xl" style="--av: var(--avatar-2)" aria-hidden="true">SJ</span>
+            <div class="card-body">
+              <div class="card-head"><h3>Senior Unity Developer</h3><span class="badge badge-new">Nowa</span></div>
+              <p class="card-sub">Smocza Jama Studio · Kraków / hybrydowo</p>
+              <p class="amount">22 000–28 000 <small>zł netto B2B</small></p>
+              <div class="card-foot"><span>dodano 2 godz. temu</span><button class="btn btn-secondary btn-compact" type="button" aria-pressed="false" data-label-on="Zapisano" data-label-off="Zapisz">Zapisz</button></div>
+            </div>
+          </article>
+        </div>
+      </div>
+    </div>
+    <div class="tw spec-table table-wrap"><table class="table">
+      <caption class="sr-only">Specyfikacja przycisku kompaktowego</caption>
+      <thead><tr><th scope="col">Właściwość</th><th scope="col">Domyślny</th><th scope="col">Kompaktowy</th></tr></thead>
+      <tbody>
+        <tr><td>wysokość (stała we wszystkich stanach)</td><td class="num">44</td><td class="num">36</td></tr>
+        <tr><td>padding poziomy</td><td class="num">18</td><td class="num">14</td></tr>
+        <tr><td>etykieta</td><td>Archivo 700 15 px</td><td>Archivo 700 14 px</td></tr>
+        <tr><td>dolna krawędź (spoczynek / hover / wciśnięty)</td><td>4 / 6 / 0 px</td><td>4 / 6 / 0 px</td></tr>
+        <tr><td>kiedy</td><td>akcja sekcji, panel akcji, formularz</td><td>przycisk powtarzany w każdej pozycji listy</td></tr>
+        <tr><td>rozmiar celu</td><td colspan="2">oba spełniają WCAG 2.2 2.5.8 (min. 24 × 24 px)</td></tr>
+      </tbody></table></div>
+  </section>
+
+  <!-- ===================================================== 2 -->
+  <section class="part" id="rzadkosc" aria-labelledby="h-rz">
+    <h2 id="h-rz">2. Zapis rzadkości: znacznik czy kwadrat</h2>
+    <p class="lead">Sklep (S13) pokazuje rzadkość jako badge z kwadratem 8 px, panel pracodawcy (S16) i cennik — jako znacznik <code>.tier-tag</code> z krawędzią 10 px. Poniżej oba zapisy w tych samych trzech miejscach.</p>
+    <div class="opts">
+      <div class="opt is-rec">
+        <div class="opt-h"><span class="opt-letter">A</span><h3>Znacznik z krawędzią <code>.tier-tag</code></h3><span class="badge badge-sm badge-new rec">Wybrane</span></div>
+        <div class="stage">
+          <article class="item"><span class="item-icon" aria-hidden="true"><svg viewBox="0 0 8 8" shape-rendering="crispEdges"><path fill="#00021C" d="M6 0h2v2H6zM5 1h1v1H5zM4 2h1v1H4zM3 3h1v1H3zM1 4h1v1H1zM2 5h1v1H2zM0 6h2v2H0z"/><path fill="#F8B800" d="M6 1h1v1H6zM5 2h1v1H5zM4 3h1v1H4zM3 4h1v1H3zM2 4h1v1H2z"/></svg></span>
+            <div><h4>Ostrze Świtu</h4><span class="tier-tag tier-legendary">Legendarny</span><p class="item-price">1 200 <small>monet</small></p></div></article>
+          <div class="table-wrap"><table class="table"><thead><tr><th scope="col">Przedmiot</th><th scope="col">Rzadkość</th><th class="num" scope="col">Cena</th></tr></thead>
+            <tbody><tr><td class="name">Neonowy Rycerz</td><td><span class="tier-tag tier-epic">Epicki</span></td><td class="num">640</td></tr>
+            <tr><td class="name">Tarcza Strażnika</td><td><span class="tier-tag tier-rare">Rzadki</span></td><td class="num">280</td></tr>
+            <tr><td class="name">Miecz Kowala</td><td><span class="tier-tag tier-common">Zwykły</span></td><td class="num">90</td></tr></tbody></table></div>
+          <div class="cart"><div class="cart-row"><span class="name">Ostrze Świtu</span><span class="tier-tag tier-legendary">Legendarny</span><span class="num">1 200</span></div>
+            <div class="cart-row"><span class="name">Mikstura leczenia</span><span class="tier-tag tier-rare">Rzadki</span><span class="num">40</span></div></div>
+        </div>
+        <ul class="pc">
+          <li class="plus">Ten sam zapis co karta pakietu <code>.tier</code> — jeden kod koloru rzadkości w całym systemie.</li>
+          <li class="plus">Krawędź 10 px jest dobrze widoczna; kolor ma kontrast 3,4–5,5:1 z bielą (WCAG 1.4.11).</li>
+          <li class="plus">Bez cienia — nie konkuruje z badge „Nowa”.</li>
+          <li class="minus">Szerszy o ok. 6 px niż wariant B; w wąskiej kolumnie koszyka nazwa skraca się wcześniej.</li>
+        </ul>
+      </div>
+      <div class="opt">
+        <div class="opt-h"><span class="opt-letter">B</span><h3>Badge z kwadratem 8 px (S13)</h3></div>
+        <div class="stage">
+          <article class="item"><span class="item-icon" aria-hidden="true"><svg viewBox="0 0 8 8" shape-rendering="crispEdges"><path fill="#00021C" d="M6 0h2v2H6zM5 1h1v1H5zM4 2h1v1H4zM3 3h1v1H3zM1 4h1v1H1zM2 5h1v1H2zM0 6h2v2H0z"/><path fill="#F8B800" d="M6 1h1v1H6zM5 2h1v1H5zM4 3h1v1H4zM3 4h1v1H3zM2 4h1v1H2z"/></svg></span>
+            <div><h4>Ostrze Świtu</h4><span class="badge rarity rarity-legendary">Legendarny</span><p class="item-price">1 200 <small>monet</small></p></div></article>
+          <div class="table-wrap"><table class="table"><thead><tr><th scope="col">Przedmiot</th><th scope="col">Rzadkość</th><th class="num" scope="col">Cena</th></tr></thead>
+            <tbody><tr><td class="name">Neonowy Rycerz</td><td><span class="badge rarity rarity-epic">Epicki</span></td><td class="num">640</td></tr>
+            <tr><td class="name">Tarcza Strażnika</td><td><span class="badge rarity rarity-rare">Rzadki</span></td><td class="num">280</td></tr>
+            <tr><td class="name">Miecz Kowala</td><td><span class="badge rarity rarity-common">Zwykły</span></td><td class="num">90</td></tr></tbody></table></div>
+          <div class="cart"><div class="cart-row"><span class="name">Ostrze Świtu</span><span class="badge rarity rarity-legendary">Legendarny</span><span class="num">1 200</span></div>
+            <div class="cart-row"><span class="name">Mikstura leczenia</span><span class="badge rarity rarity-rare">Rzadki</span><span class="num">40</span></div></div>
+        </div>
+        <ul class="pc">
+          <li class="plus">Wygląda jak „przedmiot z gry” — pasuje do sklepu.</li>
+          <li class="minus">Kwadrat 8 px to mała plama koloru: Epicki i Rzadki trudno odróżnić bez czytania nazwy.</li>
+          <li class="minus">Badge ma cień 2 px — w tabeli wygląda jak klikalny i konkuruje z „Nowa”.</li>
+          <li class="minus">Drugi zapis tego samego znaczenia; agent musi wiedzieć, którego użyć gdzie.</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================================================== 3 -->
+  <section class="part" id="aria-sort" aria-labelledby="h-as">
+    <h2 id="h-as">3. aria-sort="none" na nieaktywnych kolumnach</h2>
+    <p class="lead">Decyzja: zostaje tak, jak robi to <code>table-sort.js</code> — aktywna kolumna ma <code>ascending</code> lub <code>descending</code>, pozostałe sortowalne <code>none</code>. Atrybut jest zgodny ze specyfikacją WAI-ARIA; przykład APG ustawia go tylko na aktywnej kolumnie, więc niektóre czytniki mogą ogłaszać „bez sortowania” przy każdej kolumnie. Do sprawdzenia przy teście z czytnikiem ekranu.</p>
+  </section>
+
+  <!-- ===================================================== 4 -->
+  <section class="part" id="sortowanie" aria-labelledby="h-so">
+    <h2 id="h-so">4. Sortowanie listy: zakładki czy przyciski przełączające</h2>
+    <p class="lead">Wyglądają tak samo — różnią się tym, co słyszy czytnik ekranu i jak działa klawiatura. Obie listy poniżej naprawdę sortują (<code>list-controls.js</code>).</p>
+    <div class="opts">
+      <div class="opt">
+        <div class="opt-h"><span class="opt-letter">A</span><h3>Zakładki — obecnie</h3></div>
+        <div class="stage">
+          <div class="tabs" role="tablist" aria-label="Sortowanie ofert" data-sort-for="sortA">
+            <button role="tab" type="button" aria-selected="true" data-sort-key="date" data-sort-dir="desc">Najnowsze</button>
+            <button role="tab" type="button" aria-selected="false" data-sort-key="salary" data-sort-dir="desc">Najwyższe widełki</button>
+            <button role="tab" type="button" aria-selected="false" data-sort-key="name" data-sort-dir="asc">A–Z</button>
+          </div>
+          <div class="mini-list" data-list="sortA">
+            <div class="mini" data-item data-sort-date="20261110" data-sort-salary="28000" data-sort-name="senior unity developer"><span class="name">Senior Unity Developer<small>Smocza Jama · dziś</small></span><span class="num">22–28K</span></div>
+            <div class="mini" data-item data-sort-date="20261109" data-sort-salary="" data-sort-name="game designer"><span class="name">Game Designer<small>Pikselowo · wczoraj</small></span><span class="num is-empty">brak widełek</span></div>
+            <div class="mini" data-item data-sort-date="20261107" data-sort-salary="32000" data-sort-name="lead backend (go)"><span class="name">Lead Backend (Go)<small>Kosmiczny Kret · 3 dni</small></span><span class="num">26–32K</span></div>
+            <div class="mini" data-item data-sort-date="20261105" data-sort-salary="14000" data-sort-name="artysta pixel-art"><span class="name">Artysta pixel-art<small>8bit Atelier · 5 dni</small></span><span class="num">10–14K</span></div>
+          </div>
+        </div>
+        <div class="sr-says"><b>Czytnik ekranu</b><q>Najwyższe widełki, zakładka, 2 z 3, wybrana</q>. Fokus wchodzi raz do grupy; strzałki ← → zmieniają wybór.</div>
+        <ul class="pc">
+          <li class="plus">Wzorzec znany z S11, S12, S16 — nic nie trzeba zmieniać w kodzie.</li>
+          <li class="minus">Zakładka obiecuje osobny panel treści (<code>tabpanel</code>), a tu zmienia się tylko kolejność tej samej listy — semantyka myli.</li>
+        </ul>
+      </div>
+      <div class="opt is-rec">
+        <div class="opt-h"><span class="opt-letter">B</span><h3>Grupa przycisków przełączających</h3><span class="badge badge-sm badge-new rec">Wybrane</span></div>
+        <div class="stage">
+          <div class="tabs" role="group" aria-label="Sortuj oferty" data-sort-for="sortB">
+            <button type="button" aria-pressed="true" data-sort-key="date" data-sort-dir="desc">Najnowsze</button>
+            <button type="button" aria-pressed="false" data-sort-key="salary" data-sort-dir="desc">Najwyższe widełki</button>
+            <button type="button" aria-pressed="false" data-sort-key="name" data-sort-dir="asc">A–Z</button>
+          </div>
+          <div class="mini-list" data-list="sortB">
+            <div class="mini" data-item data-sort-date="20261110" data-sort-salary="28000" data-sort-name="senior unity developer"><span class="name">Senior Unity Developer<small>Smocza Jama · dziś</small></span><span class="num">22–28K</span></div>
+            <div class="mini" data-item data-sort-date="20261109" data-sort-salary="" data-sort-name="game designer"><span class="name">Game Designer<small>Pikselowo · wczoraj</small></span><span class="num is-empty">brak widełek</span></div>
+            <div class="mini" data-item data-sort-date="20261107" data-sort-salary="32000" data-sort-name="lead backend (go)"><span class="name">Lead Backend (Go)<small>Kosmiczny Kret · 3 dni</small></span><span class="num">26–32K</span></div>
+            <div class="mini" data-item data-sort-date="20261105" data-sort-salary="14000" data-sort-name="artysta pixel-art"><span class="name">Artysta pixel-art<small>8bit Atelier · 5 dni</small></span><span class="num">10–14K</span></div>
+          </div>
+        </div>
+        <div class="sr-says"><b>Czytnik ekranu</b><q>Sortuj oferty, grupa. Najwyższe widełki, przycisk przełączający, wciśnięty</q>. Każdy przycisk jest osobnym przystankiem klawisza Tab.</div>
+        <ul class="pc">
+          <li class="plus">Semantyka odpowiada działaniu: przycisk zmienia ustawienie listy, nie pokazuje innego panelu.</li>
+          <li class="plus"><code>list-controls.js</code> już to obsługuje (dla przycisków bez <code>role="tab"</code> ustawia <code>aria-pressed</code>).</li>
+          <li class="eq">Wymaga dopisania do <code>components.css</code> stylu <code>.tabs [aria-pressed="true"]</code>. Zakładki zostają tam, gdzie przełączają panele (statusy w S16, okres w S12).</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================================================== 5 -->
+  <section class="part" id="kwoty" aria-labelledby="h-kw">
+    <h2 id="h-kw">5. Kwoty w wierszach list na telefonie (390 px)</h2>
+    <p class="lead">Kwota w Press Start 2P („18 000–24 000”) zajmuje ok. 130 px z 358 px szerokości, więc nazwy oferty ucinają się po kilku słowach. Cztery możliwości w tym samym panelu i z tymi samymi danymi:</p>
+    <div class="phones">
+      <div class="opt">
+        <div class="opt-h"><span class="opt-letter">C1</span><h3>Obecnie</h3></div>
+        <div class="phone"><div class="phone-bar"><span>9:41</span><span>390 PX</span></div>
+          <section class="panel" aria-label="C1 obecnie"><div class="panel-head"><h2>Frontend</h2><span class="count">128</span></div>
+            <ol class="list">
+              <li><a href="#kwoty"><span class="list-n">1</span><span class="avatar" style="--av:var(--avatar-1)" aria-hidden="true">PH</span><span class="list-name" title="Senior Frontend Developer (React)">Senior Frontend Developer (React)</span><span class="list-value">18 000–24 000</span></a></li>
+              <li><a href="#kwoty"><span class="list-n">2</span><span class="avatar" style="--av:var(--avatar-3)" aria-hidden="true">KK</span><span class="list-name" title="Frontend Engineer — Design System">Frontend Engineer — Design System</span><span class="list-value">16 000–22 500</span></a></li>
+              <li><a href="#kwoty"><span class="list-n">3</span><span class="avatar" style="--av:var(--avatar-2)" aria-hidden="true">8A</span><span class="list-name" title="Junior Vue.js Developer">Junior Vue.js Developer</span><span class="list-value">8 000–11 000</span></a></li>
+              <li><a href="#kwoty"><span class="list-n">4</span><span class="avatar" style="--av:var(--avatar-4)" aria-hidden="true">SJ</span><span class="list-name" title="Angular Developer w fintechu">Angular Developer w fintechu</span><span class="list-value" aria-label="brak widełek">—</span></a></li>
+            </ol></section></div>
+        <ul class="pc"><li class="minus">„Senior Frontend…” — połowa nazw nieczytelna; pełna nazwa tylko w <code>title</code>, niedostępnym na dotyku.</li></ul>
+      </div>
+
+      <div class="opt">
+        <div class="opt-h"><span class="opt-letter">C2</span><h3>Kwota w drugiej linii</h3></div>
+        <div class="phone"><div class="phone-bar"><span>9:41</span><span>390 PX</span></div>
+          <section class="panel" aria-label="C2 kwota w drugiej linii"><div class="panel-head"><h2>Frontend</h2><span class="count">128</span></div>
+            <ol class="list two-line">
+              <li><a href="#kwoty"><span class="list-n">1</span><span class="avatar" style="--av:var(--avatar-1)" aria-hidden="true">PH</span><span class="list-main"><span class="list-name">Senior Frontend Developer (React)</span><span class="list-value">18 000–24 000 ZŁ</span></span></a></li>
+              <li><a href="#kwoty"><span class="list-n">2</span><span class="avatar" style="--av:var(--avatar-3)" aria-hidden="true">KK</span><span class="list-main"><span class="list-name">Frontend Engineer — Design System</span><span class="list-value">16 000–22 500 ZŁ</span></span></a></li>
+              <li><a href="#kwoty"><span class="list-n">3</span><span class="avatar" style="--av:var(--avatar-2)" aria-hidden="true">8A</span><span class="list-main"><span class="list-name">Junior Vue.js Developer</span><span class="list-value">8 000–11 000 ZŁ</span></span></a></li>
+              <li><a href="#kwoty"><span class="list-n">4</span><span class="avatar" style="--av:var(--avatar-4)" aria-hidden="true">SJ</span><span class="list-main"><span class="list-name">Angular Developer w fintechu</span><span class="list-value">BRAK WIDEŁEK</span></span></a></li>
+            </ol></section></div>
+        <ul class="pc"><li class="plus">Pełna nazwa i pełna kwota widoczne.</li><li class="minus">Wiersz 52 px zamiast 40 — w panelu mieści się ok. 30% mniej pozycji; lista traci „gęstość” katalogu.</li></ul>
+      </div>
+
+      <div class="opt is-rec">
+        <div class="opt-h"><span class="opt-letter">C3</span><h3>Skrócona kwota „18–24K”</h3><span class="badge badge-sm badge-new rec">Wybrane</span></div>
+        <div class="phone"><div class="phone-bar"><span>9:41</span><span>390 PX</span></div>
+          <section class="panel" aria-label="C3 skrócona kwota"><div class="panel-head"><h2>Frontend</h2><span class="count">128</span></div>
+            <ol class="list">
+              <li><a href="#kwoty"><span class="list-n">1</span><span class="avatar" style="--av:var(--avatar-1)" aria-hidden="true">PH</span><span class="list-name">Senior Frontend Developer (React)</span><span class="list-value"><span aria-hidden="true">18–24K</span><span class="sr-only">18 000–24 000 zł</span></span></a></li>
+              <li><a href="#kwoty"><span class="list-n">2</span><span class="avatar" style="--av:var(--avatar-3)" aria-hidden="true">KK</span><span class="list-name">Frontend Engineer — Design System</span><span class="list-value"><span aria-hidden="true">16–22,5K</span><span class="sr-only">16 000–22 500 zł</span></span></a></li>
+              <li><a href="#kwoty"><span class="list-n">3</span><span class="avatar" style="--av:var(--avatar-2)" aria-hidden="true">8A</span><span class="list-name">Junior Vue.js Developer</span><span class="list-value"><span aria-hidden="true">8–11K</span><span class="sr-only">8 000–11 000 zł</span></span></a></li>
+              <li><a href="#kwoty"><span class="list-n">4</span><span class="avatar" style="--av:var(--avatar-4)" aria-hidden="true">SJ</span><span class="list-name">Angular Developer w fintechu</span><span class="list-value" aria-label="brak widełek">—</span></a></li>
+            </ol></section></div>
+        <ul class="pc"><li class="plus">Kwota zajmuje ok. 60 px zamiast 130 — na nazwę zostaje ok. 70 px więcej (ucinają się już tylko najdłuższe), wiersz zostaje 40 px.</li><li class="plus">Kwota dalej widoczna od razu i nadal w foncie pikselowym; czytnik słyszy pełną wartość.</li><li class="minus">„K” to skrót z żargonu IT; dla ogólnej publiczności lepsze „tys.” (dłuższe) — do decyzji przy treściach.</li></ul>
+      </div>
+
+      <div class="opt">
+        <div class="opt-h"><span class="opt-letter">C4</span><h3>Złota moneta z dymkiem</h3></div>
+        <div class="phone"><div class="phone-bar"><span>9:41</span><span>390 PX</span></div>
+          <section class="panel" aria-label="C4 moneta z dymkiem"><div class="panel-head"><h2>Frontend</h2><span class="count">128</span></div>
+            <ol class="list coins">
+              <li><a href="#kwoty"><span class="list-n">1</span><span class="avatar" style="--av:var(--avatar-1)" aria-hidden="true">PH</span><span class="list-name">Senior Frontend Developer (React)</span></a><button class="coin" type="button" aria-expanded="false" aria-controls="tip1" aria-label="Pokaż widełki: Senior Frontend Developer"><svg viewBox="0 0 8 8" shape-rendering="crispEdges" aria-hidden="true"><path fill="#00021C" d="M2 0h4v1H2zM1 1h1v1H1zM6 1h1v1H6zM0 2h1v4H0zM7 2h1v4H7zM1 6h1v1H1zM6 6h1v1H6zM2 7h4v1H2z"/><path fill="#F8B800" d="M2 1h4v1H2zM1 2h6v4H1zM2 6h4v1H2z"/><path fill="#AC7C00" d="M3 2h2v1H3zM3 3h1v2H3zM3 5h2v1H3z"/><path fill="#FFF" d="M2 2h1v1H2z"/></svg></button><span class="coin-tip" id="tip1" role="status" hidden>18 000–24 000 zł</span></li>
+              <li><a href="#kwoty"><span class="list-n">2</span><span class="avatar" style="--av:var(--avatar-3)" aria-hidden="true">KK</span><span class="list-name">Frontend Engineer — Design System</span></a><button class="coin" type="button" aria-expanded="false" aria-controls="tip2" aria-label="Pokaż widełki: Frontend Engineer"><svg viewBox="0 0 8 8" shape-rendering="crispEdges" aria-hidden="true"><path fill="#00021C" d="M2 0h4v1H2zM1 1h1v1H1zM6 1h1v1H6zM0 2h1v4H0zM7 2h1v4H7zM1 6h1v1H1zM6 6h1v1H6zM2 7h4v1H2z"/><path fill="#F8B800" d="M2 1h4v1H2zM1 2h6v4H1zM2 6h4v1H2z"/><path fill="#AC7C00" d="M3 2h2v1H3zM3 3h1v2H3zM3 5h2v1H3z"/><path fill="#FFF" d="M2 2h1v1H2z"/></svg></button><span class="coin-tip" id="tip2" role="status" hidden>16 000–22 500 zł</span></li>
+              <li><a href="#kwoty"><span class="list-n">3</span><span class="avatar" style="--av:var(--avatar-2)" aria-hidden="true">8A</span><span class="list-name">Junior Vue.js Developer</span></a><button class="coin" type="button" aria-expanded="false" aria-controls="tip3" aria-label="Pokaż widełki: Junior Vue.js Developer"><svg viewBox="0 0 8 8" shape-rendering="crispEdges" aria-hidden="true"><path fill="#00021C" d="M2 0h4v1H2zM1 1h1v1H1zM6 1h1v1H6zM0 2h1v4H0zM7 2h1v4H7zM1 6h1v1H1zM6 6h1v1H6zM2 7h4v1H2z"/><path fill="#F8B800" d="M2 1h4v1H2zM1 2h6v4H1zM2 6h4v1H2z"/><path fill="#AC7C00" d="M3 2h2v1H3zM3 3h1v2H3zM3 5h2v1H3z"/><path fill="#FFF" d="M2 2h1v1H2z"/></svg></button><span class="coin-tip" id="tip3" role="status" hidden>8 000–11 000 zł</span></li>
+              <li><a href="#kwoty"><span class="list-n">4</span><span class="avatar" style="--av:var(--avatar-4)" aria-hidden="true">SJ</span><span class="list-name">Angular Developer w fintechu</span></a><span class="coin" aria-hidden="true"></span></li>
+            </ol></section></div>
+        <ul class="pc"><li class="plus">Najbardziej „growe”, nazwy w całości. Kliknij monetę, by zobaczyć dymek (Esc lub klik obok zamyka).</li><li class="minus">Widełki to główne kryterium wyboru oferty — tu trzeba kliknąć każdą pozycję, żeby porównać. Brak widełek nie jest widoczny wcale (pusta moneta).</li><li class="minus">Dwie kontrolki w jednym wierszu (link + moneta, cel 32 px) — łatwo trafić w złą na dotyku.</li></ul>
+      </div>
+    </div>
+    <div class="callout verdict"><strong>Decyzja (2026-11-10):</strong> C3 dla wierszy list na szerokości &lt; 600 px (na desktopie pełna kwota zostaje). Moneta C4 może wrócić jako dekoracja w sklepie z przedmiotami, gdzie cena jest drugorzędna wobec nazwy — ale nie jako sposób ukrywania widełek ofert pracy.</div>
+  </section>
+
+  <!-- ===================================================== 6a -->
+  <section class="part" id="ciemny" aria-labelledby="h-dk">
+    <h2 id="h-dk">6a. Tryb ciemny — propozycja</h2>
+    <p class="lead">Zasada: zamieniamy tylko tokeny, komponenty zostają te same. Papier i panele idą w granaty z palety SNES, ramki w kremowy, twarde cienie w niebieski #2469B3 (czarny cień na czarnym tle znika). Akcenty NES rzadkości przechodzą na jaśniejsze odcienie z tej samej palety NES. Lewa i prawa kolumna to ten sam HTML.</p>
+    <div class="themes">
+      <div class="theme bg-dots">
+        <p class="theme-label">JASNY · OBECNY</p>
+        <div data-demo></div>
+      </div>
+      <div class="theme theme-dark bg-dots">
+        <p class="theme-label">CIEMNY · PROPOZYCJA</p>
+        <div data-demo></div>
+      </div>
+    </div>
+    <h3 class="k" style="margin-top:24px">Tokeny trybu ciemnego i kontrasty (wyliczone z wartości hex)</h3>
+    <div class="table-wrap"><table class="table">
+      <caption class="sr-only">Tokeny trybu ciemnego</caption>
+      <thead><tr><th scope="col">Token</th><th scope="col">Jasny</th><th scope="col">Ciemny</th><th scope="col">Kontrast w ciemnym</th></tr></thead>
+      <tbody>
+        <tr><td>--paper</td><td>#F0EDD8</td><td>#00021C</td><td>—</td></tr>
+        <tr><td>--surface</td><td>#FFFFFF</td><td>#1C284D</td><td>—</td></tr>
+        <tr><td>--ink (tekst, ramki)</td><td>#00021C</td><td>#F0EDD8</td><td>12,2:1 na surface · 17,4:1 na paper</td></tr>
+        <tr><td>--ink-2 / --ink-3</td><td>#1C284D / #2D5280</td><td>#A3CCD9 / #96E3C9</td><td>8,4:1 / 9,7:1 na surface</td></tr>
+        <tr><td>--link</td><td>#2469B3</td><td>#0BAFE6</td><td>5,7:1 na surface</td></tr>
+        <tr><td>--focus</td><td>#2469B3</td><td>#F7C93E</td><td>9,2:1 (#2469B3 dałby 2,6:1 — za mało)</td></tr>
+        <tr><td>--danger</td><td>#D9214F</td><td>#F27961</td><td>5,3:1 (#D9214F dałby 2,9:1)</td></tr>
+        <tr><td>--chip</td><td>#A3CCD9</td><td>#2D5280</td><td>tekst 6,8:1</td></tr>
+        <tr><td>cienie (nowy token --shadow-color)</td><td>#00021C</td><td>#2469B3</td><td>3,7:1 względem paper</td></tr>
+        <tr><td>--tier-legendary / epic / rare / common</td><td>#AC7C00 / #6844FC / #0078F8 / #7C7C7C</td><td>#F8B800 / #9878F8 / #3CBCFC / #BCBCBC</td><td>8,1 / 4,4 / 6,7 / 7,6:1 na surface</td></tr>
+        <tr><td>--action</td><td colspan="2">#17735F bez zmian</td><td>biały tekst 5,7:1; brzeg przycisku rysuje kremowa ramka</td></tr>
+      </tbody></table></div>
+    <div class="callout verdict"><strong>Co trzeba zmienić w systemie, żeby to działało:</strong> (1) nowe tokeny <code>--line</code> (ramka) i <code>--shadow-color</code> — dziś ramka i cień biorą <code>--ink</code>, więc nie da się ich zmienić osobno; (2) token <code>--on-light</code> dla tekstu na jasnych wypełnieniach (badge „Nowa”, „+N”, callout, miejsca 1–3) — dziś dziedziczą kolor tekstu i w ciemnym byłyby kremowe na żółtym; (3) usunąć wpisany kolor <code>#F8F6EC</code> z hovera wiersza tabeli. Kolory #F27961, #9878F8 i #3CBCFC pochodzą z palet SNES/NES — przynależność #F27961 do Jehkoba32 do potwierdzenia.</div>
+  </section>
+
+  <!-- ===================================================== 6b -->
+  <section class="part" id="stany" aria-labelledby="h-st">
+    <h2 id="h-st">6b. Stany błędu i ładowania — propozycja</h2>
+    <p class="lead">Te same reguły co reszta systemu: stan nie zmienia rozmiaru, kolor nigdy nie jest jedynym sygnałem (ikona „!” + tekst), ruch tylko skokowy (steps), a przy „ogranicz ruch” — brak animacji.</p>
+    <div class="states">
+      <div class="opt">
+        <p class="k">Pole z błędem walidacji</p>
+        <div class="stage">
+          <div class="field is-error"><label for="f-mail">E-mail do kontaktu</label><input id="f-mail" type="email" value="anna.kowalska@" aria-invalid="true" aria-describedby="e-mail"><p class="field-error" id="e-mail">Dokończ adres e-mail — brakuje domeny, np. @firma.pl.</p></div>
+          <div class="field"><label for="f-sal">Widełki od (zł)</label><input id="f-sal" type="text" value="18000" aria-describedby="h-sal"><p class="field-hint" id="h-sal">Kwota brutto miesięcznie.</p></div>
+        </div>
+        <ul class="pc"><li class="eq">Ramka i cień pola w kolorze <code>--danger</code> (ta sama grubość), komunikat pod polem w kolorze tekstu z ikoną „!” — czerwony tekst na papierze miałby tylko 4,2:1.</li><li class="eq"><code>aria-invalid="true"</code> + <code>aria-describedby</code> z komunikatem (WCAG 3.3.1, 3.3.3).</li></ul>
+      </div>
+      <div class="opt">
+        <p class="k">Przycisk w trakcie wysyłania</p>
+        <div class="stage">
+          <div class="btn-row"><button class="btn btn-primary" type="button" data-demo-load>Aplikuj teraz</button><button class="btn btn-secondary btn-compact" type="button" data-demo-load>Zapisz</button></div>
+          <span class="sr-only" aria-live="polite" id="load-live"></span>
+          <div class="btn-row"><button class="btn btn-primary is-loading" type="button" aria-disabled="true" aria-busy="true">Aplikuj teraz</button><span class="measure">STAN STAŁY DO PODGLĄDU</span></div>
+        </div>
+        <ul class="pc"><li class="eq">Kliknij górne przyciski: etykieta znika, w środku migają 3 piksele (steps), przycisk jest „wciśnięty” (bez krawędzi), szerokość i wysokość się nie zmieniają. Po 2 s wraca.</li><li class="eq"><code>aria-disabled</code> + <code>aria-busy</code>; komunikat „Wysyłanie…” w regionie <code>aria-live</code> (WCAG 4.1.3).</li></ul>
+      </div>
+      <div class="opt">
+        <p class="k">Wczytywanie listy</p>
+        <div class="stage">
+          <section class="panel" aria-label="Frontend — wczytywanie" aria-busy="true" id="skel-panel"><div class="panel-head"><h2>Frontend</h2><span class="count">···</span></div>
+            <ol class="list" aria-hidden="true">
+              <li class="skel-row"><span class="skel skel-n"></span><span class="skel skel-av"></span><span class="skel" style="width:62%"></span></li>
+              <li class="skel-row"><span class="skel skel-n"></span><span class="skel skel-av"></span><span class="skel" style="width:48%"></span></li>
+              <li class="skel-row"><span class="skel skel-n"></span><span class="skel skel-av"></span><span class="skel" style="width:70%"></span></li>
+              <li class="skel-row"><span class="skel skel-n"></span><span class="skel skel-av"></span><span class="skel" style="width:40%"></span></li>
+            </ol><span class="sr-only">Wczytywanie ofert…</span></section>
+        </div>
+        <ul class="pc"><li class="eq">Szkielet z ditheru 4 px w kolorze <code>--line-soft</code> zamiast szarych pasków z gradientem; wiersze mają docelową wysokość, więc nic nie „skacze” po wczytaniu.</li></ul>
+      </div>
+      <div class="opt">
+        <p class="k">Błąd wczytania i błąd w treści</p>
+        <div class="stage">
+          <div class="load-error" role="alert"><h3>Nie udało się wczytać ofert</h3><p>Sprawdź połączenie i spróbuj jeszcze raz. Twoje filtry zostały zapamiętane.</p><button class="btn btn-secondary btn-compact" type="button" data-retry>Spróbuj ponownie</button><span class="code">BŁĄD 503</span></div>
+          <div class="callout callout-danger"><strong>Oferta wygasła 3 dni temu.</strong> Aplikowanie jest wyłączone — zobacz podobne oferty.</div>
+        </div>
+        <ul class="pc"><li class="eq">Wzór pustego stanu z lewą krawędzią 10 px w <code>--danger</code> (jak tier) i akcją naprawczą. Callout błędu: biały z czerwoną krawędzią i „!” — miętowy zostaje dla wskazówek.</li></ul>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer class="site-footer"><div class="container">Panel &amp; Piksel · decyzje do v1.1 · 2026-11-10 · <a href="panel-piksel-komponenty-v2.html">Wróć do dokumentacji komponentów</a></div></footer>
+
+<template id="demo-tpl">
+  <div class="grid2">
+    <section class="panel"><div class="panel-head"><h2>Backend</h2><span class="count">96</span></div>
+      <ol class="list">
+        <li><a href="#ciemny"><span class="list-n">1</span><span class="avatar" style="--av:var(--avatar-5)" aria-hidden="true">KK</span><span class="list-name">Lead Backend (Go)</span><span class="list-value">26–32K</span></a></li>
+        <li><a href="#ciemny"><span class="list-n">2</span><span class="avatar" style="--av:var(--avatar-2)" aria-hidden="true">PH</span><span class="list-name">Python Developer</span><span class="badge badge-sm badge-new">Nowa</span></a></li>
+        <li><a href="#ciemny"><span class="list-n">3</span><span class="avatar" style="--av:var(--avatar-3)" aria-hidden="true">SJ</span><span class="list-name">Java Engineer</span><span class="list-value">—</span></a></li>
+      </ol></section>
+    <article class="card" style="flex-direction:column;gap:8px">
+      <div class="card-head"><h3>Game Designer</h3><span class="badge badge-new">Nowa</span></div>
+      <p class="card-sub" style="margin:0">Pikselowo · <a href="#ciemny" style="color:var(--link)">Warszawa</a></p>
+      <p class="amount" style="margin:0">15 000–19 000 <small>zł</small></p>
+      <div class="chips"><span class="chip">Unity</span><span class="chip">Figma</span><span class="chip-more">+2</span></div>
+    </article>
+  </div>
+  <div class="btn-row"><button class="btn btn-primary" type="button" data-demo-load>Aplikuj teraz</button><button class="btn btn-secondary" type="button" data-demo-load>Zapisz</button><button class="btn btn-primary" type="button" aria-disabled="true"><span class="lock" aria-hidden="true"></span>Aplikuj</button></div>
+  <div class="tabs" role="group" aria-label="Okres"><button type="button" aria-pressed="true">Tydzień</button><button type="button" aria-pressed="false">Miesiąc</button></div>
+  <div class="table-wrap"><table class="table"><thead><tr><th scope="col">#</th><th scope="col">Firma</th><th scope="col">Pakiet</th><th class="num" scope="col">Oferty</th></tr></thead>
+    <tbody><tr><td><span class="rank rank-1">1</span></td><td class="name">Smocza Jama</td><td><span class="tier-tag tier-legendary">Legendarny</span></td><td class="num">24</td></tr>
+    <tr><td><span class="rank rank-2">2</span></td><td class="name">Kosmiczny Kret</td><td><span class="tier-tag tier-epic">Epicki</span></td><td class="num">18</td></tr>
+    <tr><td><span class="rank">4</span></td><td class="name">8bit Atelier</td><td><span class="tier-tag tier-rare">Rzadki</span></td><td class="num">9</td></tr></tbody></table></div>
+  <div class="callout"><strong>Wskazówka:</strong> oferty z widełkami dostają 2× więcej aplikacji.</div>
+  <div class="field"><input type="search" placeholder="Szukaj oferty…" aria-label="Szukaj oferty"></div>
+</template>
+
+<script>
+// wstaw ten sam HTML do obu motywów
+document.querySelectorAll('[data-demo]').forEach(function (slot) { slot.style.display = 'grid'; slot.style.gap = '16px'; slot.appendChild(document.getElementById('demo-tpl').content.cloneNode(true)); });
+</script>
+<script src="../skills/panel-piksel-ui/assets/list-controls.js"></script>
+<script>
+// C4 — moneta z dymkiem: klik przełącza, Esc i klik poza zamykają
+(function () {
+  var coins = document.querySelectorAll('button.coin');
+  function closeAll(except) { coins.forEach(function (c) { if (c !== except) { c.setAttribute('aria-expanded', 'false'); document.getElementById(c.getAttribute('aria-controls')).hidden = true; } }); }
+  coins.forEach(function (c) {
+    c.addEventListener('click', function (e) { e.stopPropagation(); var open = c.getAttribute('aria-expanded') === 'true'; closeAll(c); c.setAttribute('aria-expanded', String(!open)); document.getElementById(c.getAttribute('aria-controls')).hidden = open; });
+  });
+  document.addEventListener('click', function () { closeAll(); });
+  document.addEventListener('keydown', function (e) { if (e.key === 'Escape') closeAll(); });
+})();
+// przełączniki okresu w demie trybów
+document.querySelectorAll('[data-demo] .tabs[role=group]').forEach(function (g) {
+  var bs = g.querySelectorAll('button'); bs.forEach(function (b) { b.addEventListener('click', function () { bs.forEach(function (x) { x.setAttribute('aria-pressed', String(x === b)); }); }); });
+});
+// ładowanie przycisku
+(function () {
+  var live = document.getElementById('load-live');
+  document.querySelectorAll('[data-demo-load]').forEach(function (b) {
+    b.addEventListener('click', function () {
+      if (b.classList.contains('is-loading')) return;
+      b.classList.add('is-loading'); b.setAttribute('aria-disabled', 'true'); b.setAttribute('aria-busy', 'true'); live.textContent = 'Wysyłanie…';
+      setTimeout(function () { b.classList.remove('is-loading'); b.removeAttribute('aria-disabled'); b.removeAttribute('aria-busy'); live.textContent = 'Wysłano.'; }, 2000);
+    });
+  });
+  // „Spróbuj ponownie” — pokazuje szkielet przez chwilę
+  var retry = document.querySelector('[data-retry]');
+  retry.addEventListener('click', function () { retry.classList.add('is-loading'); retry.setAttribute('aria-disabled', 'true'); retry.setAttribute('aria-busy', 'true'); live.textContent = 'Ponawianie…'; setTimeout(function () { retry.classList.remove('is-loading'); retry.removeAttribute('aria-disabled'); retry.removeAttribute('aria-busy'); live.textContent = 'Nadal brak połączenia (przykład).'; }, 1500); });
+})();
+</script>
+</body>
+</html>

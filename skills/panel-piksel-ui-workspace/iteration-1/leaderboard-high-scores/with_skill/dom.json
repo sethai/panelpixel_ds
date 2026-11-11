@@ -1,0 +1,60 @@
+{
+  "390": {
+    "overflow": false,
+    "scrollWidth": 390,
+    "cards": 0,
+    "filters": 0,
+    "checkboxes": 0,
+    "amountPixel": 0,
+    "emptyAmount": 0,
+    "podiums": 1,
+    "podiumOrder": [
+      "1",
+      "2",
+      "3"
+    ],
+    "th": 6,
+    "rows": 17,
+    "numCells": 54,
+    "deltas": 10,
+    "tierNames": 0,
+    "tierClasses": 0,
+    "lock": [],
+    "pixelNums": 56,
+    "featured": 0,
+    "h1": 1,
+    "fonts": [
+      true,
+      false
+    ]
+  },
+  "1280": {
+    "overflow": false,
+    "scrollWidth": 1280,
+    "cards": 0,
+    "filters": 0,
+    "checkboxes": 0,
+    "amountPixel": 0,
+    "emptyAmount": 0,
+    "podiums": 1,
+    "podiumOrder": [
+      "1",
+      "2",
+      "3"
+    ],
+    "th": 6,
+    "rows": 17,
+    "numCells": 54,
+    "deltas": 10,
+    "tierNames": 0,
+    "tierClasses": 0,
+    "lock": [],
+    "pixelNums": 56,
+    "featured": 0,
+    "h1": 1,
+    "fonts": [
+      true,
+      false
+    ]
+  }
+}

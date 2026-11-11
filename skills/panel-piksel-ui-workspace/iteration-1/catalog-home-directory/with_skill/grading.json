@@ -1,0 +1,25 @@
+{
+  "expectations": [
+    {
+      "text": "Plik HTML korzysta z tokens.css i components.css systemu (linkiem obok pliku albo wklejonych) i nie zmienia ich wartości.",
+      "passed": true,
+      "evidence": "tokens.css: wklejony do <style>; components.css: wklejony do <style>"
+    },
+    {
+      "text": "check_screen.py nie zgłasza żadnego ERROR dla ekranu.",
+      "passed": true,
+      "evidence": "0 ERROR, 0 WARN (pełny raport: check_screen.txt)"
+    },
+    {
+      "text": "Strona nie przewija się poziomo w szerokości 390 px ani 1280 px.",
+      "passed": true,
+      "evidence": "scrollWidth 1280→1280, 390→390"
+    }
+  ],
+  "summary": {
+    "passed": 3,
+    "failed": 0,
+    "total": 3,
+    "pass_rate": 1
+  }
+}

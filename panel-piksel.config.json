@@ -1,0 +1,7 @@
+{
+  "designMd": "design.md",
+  "copies": ["screens/landing/panel-piksel"],
+  "builds": [{"from": "screens/landing/index.html", "to": "screens/landing/landing-portal-pracy.html"}],
+  "inlined": ["skills/panel-piksel-ui-workspace/iteration-1/*/with_skill/outputs/*.html"],
+  "installed": "~/.claude/skills/panel-piksel-ui"
+}

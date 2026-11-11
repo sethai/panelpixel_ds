@@ -1,0 +1,1005 @@
+<!doctype html>
+<html lang="pl">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Ranking graczy · Kosmiczny Kret</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700;800;900&family=Press+Start+2P&display=swap" rel="stylesheet">
+  <!-- System Panel & Piksel: tokens.css v1.0 (wklejony bez zmian) -->
+  <style id="pp-tokens">
+/* Panel & Piksel — tokens v1.10 (z design.md §9.1)
+ * Tryb ciemny: <html data-theme="dark"> (opt-in). Automatycznie wg systemu: <html data-theme="auto">. */
+:root {
+  /* kolor — SNES (Jehkoba32) */
+  --paper: #F0EDD8;
+  --paper-dots: rgba(217, 76, 135, .22);
+  --surface: #FFFFFF;
+  --ink: #00021C;
+  --ink-2: #1C284D;
+  --ink-3: #2D5280;
+  --on-ink: #F0EDD8;
+  --action: #17735F;
+  --action-edge: #00021C;
+  --on-action: #FFFFFF;
+  --highlight: #F7C93E;
+  --mint: #96E3C9;
+  --link: #2469B3;
+  --focus: #2469B3;
+  --focus-deco: #0BAFE6;
+  --danger: #D9214F;
+  --featured: #D94C87;
+  --chip: #A3CCD9;
+  --chip-more: #F0BB90;
+  --btn-secondary-edge: #A3CCD9;
+  --line-soft: #A3CCD9;
+  --line: var(--ink);            /* v1.6: kolor ramek (osobno od tekstu) */
+  --shadow-color: var(--ink);    /* v1.6: kolor twardych cieni */
+  --on-light: #00021C;           /* v1.6: tekst na jasnych wypełnieniach (żółty, mięta, złoto…) */
+  --row-hover: #F8F6EC;          /* v1.6: tło wiersza tabeli po najechaniu */
+  --row-selected: #E4ECFF;       /* v1.8: zaznaczony wiersz (z lewą krawędzią --focus) */
+  /* v1.7: statusy (informacja / sukces / ostrzeżenie / błąd) — kolor kafelka ikony i lewej krawędzi + kolor znaku na nim */
+  --status-info: #2469B3;    --on-status-info: #FFFFFF;     /* 5.6:1 */
+  --status-success: #17735F; --on-status-success: #FFFFFF;  /* 5.7:1 */
+  --status-warning: #E45C10; --on-status-warning: #00021C;  /* NES; 5.7:1, krawędź 3.6:1 na bieli */
+  --status-error: var(--danger); --on-status-error: #FFFFFF; /* 4.9:1 */
+  /* v1.10: wykresy — kategorie w stałej kolejności (bez kolorów pakietów i statusów); ten sam zestaw w obu trybach,
+     sprawdzony validate_palette.js (CVD, kontrast, jasność) na #FFFFFF i #1C284D. Jedna seria: --chart-single. */
+  --chart-1: #B36159; --chart-2: #1BA683; --chart-3: #A6216E; --chart-4: #119955;
+  --chart-single: #2D5280;
+  --chart-grid: #E6E2CC; --chart-axis: var(--ink-3);
+  /* v1.7: warstwy */
+  --z-sticky: 10; --z-dropdown: 100; --z-drawer: 200; --z-modal: 300; --z-toast: 400; --z-tooltip: 500;
+  /* v1.7: ruch — skokowy, krótki */
+  --motion-fast: 60ms;   /* przyciski, przełączniki */
+  --motion-base: 120ms;  /* menu, podpowiedzi, dymki */
+  --motion-slow: 200ms;  /* okno, szuflada, powiadomienie */
+  --ease-steps: steps(3, end);
+  /* v1.7: punkty przełamania (do @media trzeba wpisać liczbę — CSS nie przyjmuje tu zmiennych) */
+  --bp-sm: 600px; --bp-md: 900px; --bp-lg: 1200px;
+  --disabled-bg: #BCBCBC;   /* NES */
+  --disabled-ink: #1C284D;
+  --disabled-line: #2D5280;
+  --avatar-1: #17735F; --avatar-2: #2469B3; --avatar-3: #993649;
+  --avatar-4: #732866; --avatar-5: #00021C; --avatar-6: #D9214F;
+
+  /* akcenty NES — tylko ranking i pakiety */
+  --podium: #0000BC;
+  --gold: #F8B800;
+  --silver: #BCBCBC;
+  --bronze: #E45C10;
+  --tier-legendary: #AC7C00;
+  --tier-epic: #6844FC;
+  --tier-rare: #0078F8;
+  --tier-common: #7C7C7C;
+
+  /* typografia */
+  --font-sans: "Archivo", system-ui, sans-serif;
+  --font-pixel: "Press Start 2P", ui-monospace, monospace;
+
+  /* odstępy */
+  --space-1: 4px; --space-2: 8px; --space-3: 12px; --space-4: 16px;
+  --space-6: 24px; --space-8: 32px; --space-12: 48px;
+
+  /* kształt i głębia */
+  --border: 2px solid var(--line);
+  --shadow-sm: 2px 2px 0 var(--shadow-color);
+  --shadow-md: 4px 4px 0 var(--shadow-color);
+  --shadow-lg: 6px 6px 0 var(--shadow-color);
+  --notch: polygon(0 2px, 2px 2px, 2px 0, calc(100% - 2px) 0, calc(100% - 2px) 2px, 100% 2px,
+                   100% calc(100% - 2px), calc(100% - 2px) calc(100% - 2px), calc(100% - 2px) 100%,
+                   2px 100%, 2px calc(100% - 2px), 0 calc(100% - 2px));
+  --btn-h: 44px;
+  --row-h: 32px;
+  --motion: 60ms;
+}
+@media (max-width: 600px) { :root { --row-h: 40px; } }
+@media (prefers-reduced-motion: reduce) { :root { --motion: 0ms; --motion-fast: 0ms; --motion-base: 0ms; --motion-slow: 0ms; } }
+
+/* ---------- tryb ciemny (v1.6) — te same komponenty, inne tokeny ----------
+   Tokeny złożone (--border, --shadow-*) są powtórzone, bo custom properties liczą się tam, gdzie je zadeklarowano. */
+[data-theme="dark"] {
+  --paper: #00021C; --paper-dots: rgba(217, 76, 135, .18);
+  --surface: #1C284D;
+  --ink: #F0EDD8; --ink-2: #A3CCD9; --ink-3: #96E3C9; --on-ink: #00021C;
+  --link: #0BAFE6; --focus: #F7C93E; --focus-deco: #2469B3;
+  --danger: #F27961;
+  --chip: #2D5280; --line-soft: #2D5280; --btn-secondary-edge: #2D5280;
+  --line: #F0EDD8; --shadow-color: #2469B3; --row-hover: #2D5280; --row-selected: #1F3A6B;
+  --avatar-5: #2D5280;
+  --status-info: #0BAFE6; --on-status-info: #00021C;
+  --status-success: #96E3C9; --on-status-success: #00021C;
+  --status-warning: #E45C10; --on-status-warning: #00021C;
+  --status-error: #F27961; --on-status-error: #00021C;
+  --chart-single: #A3CCD9; --chart-grid: #2D5280;
+  --tier-legendary: #F8B800; --tier-epic: #9878F8; --tier-rare: #3CBCFC; --tier-common: #BCBCBC;
+  --border: 2px solid var(--line);
+  --shadow-sm: 2px 2px 0 var(--shadow-color); --shadow-md: 4px 4px 0 var(--shadow-color); --shadow-lg: 6px 6px 0 var(--shadow-color);
+  color-scheme: dark;
+}
+@media (prefers-color-scheme: dark) {
+  [data-theme="auto"] {
+    --paper: #00021C; --paper-dots: rgba(217, 76, 135, .18);
+    --surface: #1C284D;
+    --ink: #F0EDD8; --ink-2: #A3CCD9; --ink-3: #96E3C9; --on-ink: #00021C;
+    --link: #0BAFE6; --focus: #F7C93E; --focus-deco: #2469B3;
+    --danger: #F27961;
+    --chip: #2D5280; --line-soft: #2D5280; --btn-secondary-edge: #2D5280;
+    --line: #F0EDD8; --shadow-color: #2469B3; --row-hover: #2D5280; --row-selected: #1F3A6B;
+    --avatar-5: #2D5280;
+    --status-info: #0BAFE6; --on-status-info: #00021C;
+    --status-success: #96E3C9; --on-status-success: #00021C;
+    --status-warning: #E45C10; --on-status-warning: #00021C;
+    --status-error: #F27961; --on-status-error: #00021C;
+    --chart-single: #A3CCD9; --chart-grid: #2D5280;
+    --tier-legendary: #F8B800; --tier-epic: #9878F8; --tier-rare: #3CBCFC; --tier-common: #BCBCBC;
+    --border: 2px solid var(--line);
+    --shadow-sm: 2px 2px 0 var(--shadow-color); --shadow-md: 4px 4px 0 var(--shadow-color); --shadow-lg: 6px 6px 0 var(--shadow-color);
+    color-scheme: dark;
+  }
+}
+
+</style>
+  <!-- System Panel & Piksel: components.css v1.1 (wklejony bez zmian) -->
+  <style id="pp-components">
+/* Panel & Piksel — components v1.11 (z design.md §9.2) */
+/* ---------- baza ---------- */
+body { margin: 0; background: var(--paper); color: var(--ink); font: 400 16px/24px var(--font-sans); }
+.bg-dots { background-image: radial-gradient(var(--paper-dots) 1.5px, transparent 1.6px); background-size: 16px 16px; }
+[hidden] { display: none !important; } /* klasy z display:flex/grid nie mogą nadpisać hidden */
+.sr-only { position: absolute; width: 1px; height: 1px; margin: -1px; padding: 0; border: 0; overflow: hidden; clip: rect(0 0 0 0); clip-path: inset(50%); white-space: nowrap; }
+
+/* ---------- przycisk ---------- */
+.btn {
+  display: inline-flex; align-items: center; justify-content: center; gap: 8px;
+  box-sizing: border-box; height: var(--btn-h); padding: 0 18px 4px;
+  font: 700 15px/1 var(--font-sans); white-space: nowrap; vertical-align: middle;
+  border: 0; cursor: pointer; clip-path: var(--notch); text-decoration: none;
+  transition: transform var(--motion), box-shadow var(--motion);
+}
+.btn-primary   { background: var(--action);  color: var(--on-action); box-shadow: inset 0 -4px 0 var(--action-edge), inset 0 0 0 2px var(--line); }
+.btn-secondary { background: var(--surface); color: var(--ink);       box-shadow: inset 0 -4px 0 var(--btn-secondary-edge), inset 0 0 0 2px var(--line); }
+.btn-full { width: 100%; }
+
+.btn:not([aria-disabled="true"]):not(.is-pressed):not(:active):hover { transform: translateY(-2px); padding-bottom: 6px; }
+.btn-primary:not([aria-disabled="true"]):not(.is-pressed):not(:active):hover   { box-shadow: inset 0 -6px 0 var(--action-edge), inset 0 0 0 2px var(--line); }
+.btn-secondary:not([aria-disabled="true"]):not(.is-pressed):not(:active):hover { box-shadow: inset 0 -6px 0 var(--btn-secondary-edge), inset 0 0 0 2px var(--line); }
+
+.btn:active, .btn.is-pressed, .btn[aria-pressed="true"] { padding: 4px 18px 0; transform: none; box-shadow: inset 0 0 0 2px var(--line); }
+
+.btn:focus-visible {
+  outline: none; /* clip-path obcina outline — rysujemy pierścień do środka */
+  box-shadow: inset 0 0 0 2px var(--line), inset 0 0 0 5px var(--focus), inset 0 0 0 7px var(--surface) !important;
+}
+
+.btn:disabled, .btn[aria-disabled="true"],
+.btn[aria-disabled="true"]:active {
+  background: var(--disabled-bg); color: var(--disabled-ink); cursor: not-allowed;
+  padding: 0 18px; transform: none; box-shadow: inset 0 0 0 2px var(--disabled-line);
+}
+.btn-reason { margin: 8px 0 0; font: 600 13px var(--font-sans); color: var(--ink-2); }
+
+/* pikselowa kłódka 8×9, piksel 2 px */
+.lock { position: relative; display: inline-block; flex: none; width: 16px; height: 18px; }
+.lock::before {
+  content: ""; position: absolute; left: 0; top: 0; width: 2px; height: 2px;
+  box-shadow: 4px 0 currentColor, 6px 0 currentColor, 8px 0 currentColor, 10px 0 currentColor,
+    2px 2px currentColor, 12px 2px currentColor, 2px 4px currentColor, 12px 4px currentColor,
+    2px 6px currentColor, 12px 6px currentColor,
+    0 8px currentColor, 2px 8px currentColor, 4px 8px currentColor, 6px 8px currentColor, 8px 8px currentColor, 10px 8px currentColor, 12px 8px currentColor, 14px 8px currentColor,
+    0 10px currentColor, 2px 10px currentColor, 4px 10px currentColor, 6px 10px currentColor, 8px 10px currentColor, 10px 10px currentColor, 12px 10px currentColor, 14px 10px currentColor,
+    0 12px currentColor, 2px 12px currentColor, 4px 12px currentColor, 10px 12px currentColor, 12px 12px currentColor, 14px 12px currentColor,
+    0 14px currentColor, 2px 14px currentColor, 4px 14px currentColor, 10px 14px currentColor, 12px 14px currentColor, 14px 14px currentColor,
+    0 16px currentColor, 2px 16px currentColor, 4px 16px currentColor, 6px 16px currentColor, 8px 16px currentColor, 10px 16px currentColor, 12px 16px currentColor, 14px 16px currentColor;
+}
+
+/* ---------- badge, chip, licznik ---------- */
+.badge { display: inline-flex; align-items: center; padding: 5px 8px; font: 700 12px/1 var(--font-sans); letter-spacing: .3px; text-transform: uppercase; background: var(--surface); border: var(--border); box-shadow: var(--shadow-sm); }
+.badge-new { background: var(--highlight); color: var(--on-light); }
+.badge-sm { font-size: 10px; padding: 3px 6px; box-shadow: none; }
+.badge-seg { padding: 0; }
+.badge-seg > span { padding: 5px 8px; }
+.badge-seg > span + span { background: var(--ink); color: var(--on-ink); }
+
+.chips { display: flex; flex-wrap: wrap; gap: 6px; }
+.chip { display: inline-block; padding: 6px 8px; font: 600 13px/1 var(--font-sans); color: var(--ink); background: var(--chip); clip-path: var(--notch); }
+.chip-more { display: inline-grid; place-items: center; width: 32px; height: 32px; box-sizing: border-box; font: 700 12px var(--font-sans); color: var(--on-light); background: var(--chip-more); border: var(--border); }
+
+.count { display: inline-block; padding: 7px 6px 6px; font: 10px/1 var(--font-pixel); letter-spacing: 1px; background: var(--ink); color: var(--on-ink); }
+
+/* ---------- awatar / monogram ---------- */
+.avatar { display: inline-grid; place-items: center; flex: none; width: 20px; height: 20px; font: 7px/1 var(--font-pixel); color: #fff; background: var(--av, var(--avatar-1)); }
+.avatar-xl { width: 56px; height: 56px; font-size: 14px; border: var(--border); box-sizing: border-box; }
+
+/* ---------- panel listy ---------- */
+.panel { min-width: 0; padding: 16px 16px 20px; background: var(--surface); border: var(--border); box-shadow: var(--shadow-lg); }
+.panel.is-featured { box-shadow: 6px 6px 0 var(--featured); }
+.panel-head { display: flex; align-items: center; justify-content: space-between; gap: 8px; }
+.panel-head h2 { margin: 0; font: 900 18px/28px var(--font-sans); letter-spacing: -.45px; }
+.panel-motto { margin: 2px 0 8px; font-size: 14px; font-style: italic; color: var(--ink-3); }
+.list { list-style: none; margin: 8px 0 0; padding: 0; }
+.list a { display: flex; align-items: center; gap: 8px; height: var(--row-h); color: var(--ink); text-decoration: none; font: 600 14px/20px var(--font-sans); }
+.list a:hover .list-name { text-decoration: underline; }
+.list a:focus-visible { outline: 3px solid var(--focus); outline-offset: 1px; }
+.list-n { flex: none; width: 22px; text-align: right; font: 500 12px var(--font-sans); color: var(--ink-3); }
+.list-name { flex: 1; min-width: 0; overflow: hidden; white-space: nowrap; text-overflow: ellipsis; }
+.list-value { flex: none; font: 10px/1 var(--font-pixel); letter-spacing: .5px; color: var(--ink-2); }
+.list .badge-sm { margin-left: auto; }
+.panel-more { display: block; margin-top: 10px; padding-top: 12px; text-align: center; border-top: 2px dashed var(--line-soft); font: 600 14px var(--font-sans); letter-spacing: .35px; color: var(--ink-3); text-decoration: none; }
+
+/* ---------- karta ---------- */
+.card { display: flex; gap: 16px; min-width: 0; padding: 16px; background: var(--surface); border: var(--border); box-shadow: var(--shadow-md); }
+.card-body { flex: 1; min-width: 0; }
+.card-head { display: flex; align-items: flex-start; justify-content: space-between; gap: 10px; }
+.card-head h3 { margin: 0; font: 800 18px/24px var(--font-sans); }
+.card-sub { margin: 4px 0 8px; font-size: 14px; color: var(--ink-2); }
+.amount { margin: 0 0 10px; font: 12px/1.6 var(--font-pixel); }
+.amount small { font: 600 12px var(--font-sans); color: var(--ink-3); }
+.amount.is-empty { font: italic 14px var(--font-sans); color: var(--ink-3); }
+
+/* ---------- filtry i formularze ---------- */
+.panel-filters { padding: 16px; background: var(--surface); border: var(--border); box-shadow: var(--shadow-md); }
+.panel-filters h2 { margin: 0 0 10px; font: 900 18px/28px var(--font-sans); letter-spacing: -.45px; }
+.panel-filters .btn-full { margin-top: 12px; }
+.field input { box-sizing: border-box; width: 100%; padding: 8px 10px; font: 400 14px var(--font-sans); background: var(--surface); border: var(--border); border-radius: 0; box-shadow: var(--shadow-sm); }
+.field input:focus { outline: 3px solid var(--focus); outline-offset: 2px; box-shadow: 3px 3px 0 var(--focus-deco); }
+fieldset { margin: 14px 0 0; padding: 10px 0 0; border: 0; border-top: 2px solid var(--line-soft); }
+legend { padding: 0; font: 800 14px var(--font-sans); }
+.checkbox { display: flex; align-items: center; gap: 8px; margin: 6px 0; font-size: 14px; }
+.checkbox input { appearance: none; display: grid; place-items: center; width: 16px; height: 16px; margin: 0; background: var(--surface); border: var(--border); }
+.checkbox input:checked { background: var(--ink); }
+.checkbox input:checked::after { content: ""; width: 6px; height: 6px; background: var(--highlight); }
+.checkbox input:focus-visible { outline: 3px solid var(--focus); outline-offset: 2px; }
+
+/* ---------- podium ---------- */
+.podium { display: grid; grid-template-columns: repeat(3, 1fr); align-items: end; gap: 10px; margin: 0; padding: 20px 14px 0; list-style: none; color: #fff; background: var(--podium); border: var(--border); box-shadow: var(--shadow-lg); }
+.podium li { display: flex; flex-direction: column; align-items: center; gap: 6px; text-align: center; font-size: 13px; }
+.podium-2 { order: -1; }
+.podium-pts { font: 12px var(--font-pixel); }
+.podium-1 .podium-pts { color: var(--gold); }
+.podium-step { display: grid; place-items: center; width: 100%; font: 20px var(--font-pixel); color: var(--on-light); border: var(--border); border-bottom: 0; box-sizing: border-box; }
+.podium-1 .podium-step { height: 96px; background: var(--gold); }
+.podium-2 .podium-step { height: 64px; background: var(--silver); }
+.podium-3 .podium-step { height: 44px; background: var(--bronze); }
+
+/* ---------- tiery ---------- */
+.tier { display: grid; grid-template-columns: 1fr auto; gap: 2px 12px; padding: 10px 12px; background: var(--surface); border: var(--border); border-left-width: 10px; box-shadow: var(--shadow-sm); }
+.tier-name { font: 900 16px var(--font-sans); }
+.tier-price { grid-row: span 2; font: 12px/1.8 var(--font-pixel); }
+.tier-desc { font-size: 13px; color: var(--ink-2); }
+.tier-legendary { border-left-color: var(--tier-legendary); }
+.tier-epic      { border-left-color: var(--tier-epic); }
+.tier-rare      { border-left-color: var(--tier-rare); }
+.tier-common    { border-left-color: var(--tier-common); }
+/* kompaktowy znacznik tieru — do kart, wierszy tabeli i koszyka */
+.tier-tag { display: inline-flex; align-items: center; height: 24px; padding: 0 8px; box-sizing: border-box; font: 700 12px/1 var(--font-sans); letter-spacing: .3px; text-transform: uppercase; white-space: nowrap; color: var(--ink); background: var(--surface); border: var(--border); border-left-width: 10px; }
+.tier-tag.tier-legendary { border-left-color: var(--tier-legendary); }
+.tier-tag.tier-epic      { border-left-color: var(--tier-epic); }
+.tier-tag.tier-rare      { border-left-color: var(--tier-rare); }
+.tier-tag.tier-common    { border-left-color: var(--tier-common); }
+
+/* ---------- detale ---------- */
+.dither { height: 16px; margin: 4px 0 16px; border-top: 8px solid var(--action); background: conic-gradient(var(--action) 25%, transparent 0 50%, var(--action) 0 75%, transparent 0) 0 0 / 8px 8px; }
+.list-square { list-style: none; margin: 0; padding: 0; }
+.list-square li { position: relative; margin: 6px 0; padding-left: 18px; }
+.list-square li::before { content: ""; position: absolute; left: 0; top: .55em; width: 6px; height: 6px; background: var(--action); }
+.pixel-art { image-rendering: pixelated; }
+
+/* ========== v1.1 — elementy ekranu ========== */
+
+/* ---------- kontener i nagłówek strony ---------- */
+.container { max-width: 1216px; margin: 0 auto; padding: 0 24px; }
+@media (max-width: 600px) { .container { padding: 0 16px; } }
+.site-header { background: var(--paper); border-bottom: var(--border); }
+.site-header .container { display: flex; align-items: center; gap: 24px; min-height: 72px; flex-wrap: wrap; padding-top: 8px; padding-bottom: 8px; }
+.logo { font: 14px/1 var(--font-pixel); color: var(--ink); text-decoration: none; letter-spacing: 1px; }
+.logo span { color: var(--action); }
+.site-nav { display: flex; gap: 20px; }
+.site-nav a { font: 700 15px var(--font-sans); color: var(--ink); text-decoration: none; padding: 4px 0; border-bottom: 2px solid transparent; }
+.site-nav a:hover, .site-nav a[aria-current="page"] { border-bottom-color: var(--ink); }
+.site-nav a:focus-visible, .logo:focus-visible { outline: 3px solid var(--focus); outline-offset: 2px; }
+.site-header .search-main { margin-left: auto; min-width: 280px; flex: 0 1 420px; }
+
+/* wyszukiwarka główna: pole + przycisk w jednej ramce */
+.search-main { display: flex; border: var(--border); box-shadow: 6px 6px 0 var(--focus-deco); background: var(--surface); }
+.search-main input { flex: 1; min-width: 0; height: 44px; padding: 0 12px; border: 0; font: 400 15px var(--font-sans); background: transparent; color: var(--ink); }
+.search-main input:focus { outline: 3px solid var(--focus); outline-offset: -3px; }
+.search-main button { width: 48px; border: 0; border-left: var(--border); background: var(--ink); color: var(--on-ink); font: 14px var(--font-pixel); cursor: pointer; }
+.search-main button:focus-visible { outline: 3px solid var(--focus); outline-offset: -5px; }
+
+/* ---------- okruszki i nagłówek treści ---------- */
+.breadcrumbs { display: flex; flex-wrap: wrap; gap: 6px; margin: 16px 0 0; padding: 0; list-style: none; font-size: 14px; color: var(--ink-3); }
+.breadcrumbs li + li::before { content: "/"; margin-right: 6px; color: var(--ink-3); }
+.breadcrumbs a { color: var(--link); }
+.page-head { display: flex; flex-wrap: wrap; align-items: flex-end; justify-content: space-between; gap: 16px; margin: 8px 0 24px; }
+.page-head h1 { margin: 0; font: 900 24px/32px var(--font-sans); letter-spacing: -.6px; }
+.page-head p { margin: 4px 0 0; max-width: 720px; color: var(--ink-2); }
+.display { font: 900 40px/44px var(--font-sans); letter-spacing: -1px; margin: 0; }
+.mark { background: var(--mint); color: var(--on-light); padding: 0 .15em; }
+
+/* ---------- siatki ekranów ---------- */
+.grid-panels { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 28px; align-items: start; }
+@media (max-width: 1200px) { .grid-panels { grid-template-columns: repeat(3, minmax(0, 1fr)); } }
+@media (max-width: 900px)  { .grid-panels { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+@media (max-width: 600px)  { .grid-panels { grid-template-columns: 1fr; } }
+.layout-main-side { display: grid; grid-template-columns: minmax(0, 2fr) minmax(0, 1fr); gap: 28px; align-items: start; }
+.layout-results { display: grid; grid-template-columns: minmax(0, 1fr) 280px; gap: 28px; align-items: start; }
+@media (max-width: 900px) { .layout-main-side, .layout-results { grid-template-columns: 1fr; } .layout-results .panel-filters { order: -1; } }
+.stack { display: grid; gap: 20px; }
+
+/* ---------- zakładki / przełącznik okresu ---------- */
+.tabs { display: inline-flex; max-width: 100%; overflow-x: auto; border: var(--border); background: var(--surface); box-shadow: var(--shadow-sm); }
+.tabs button, .tabs a { flex: none; height: 36px; padding: 0 14px; border: 0; background: transparent; font: 700 14px var(--font-sans); color: var(--ink); cursor: pointer; text-decoration: none; display: inline-flex; align-items: center; }
+.tabs > * + * { border-left: var(--border); }
+.tabs [aria-selected="true"], .tabs [aria-current="page"] { background: var(--ink); color: var(--on-ink); }
+.tabs button:focus-visible, .tabs a:focus-visible { outline: 3px solid var(--focus); outline-offset: -5px; }
+
+/* ---------- tabela danych ---------- */
+.table-wrap { position: relative; overflow-x: auto; background: var(--surface); border: var(--border); box-shadow: var(--shadow-lg); }
+.table { width: 100%; border-collapse: collapse; font: 400 14px/20px var(--font-sans); }
+.table th { position: sticky; top: 0; height: 40px; padding: 0 12px; text-align: left; background: var(--paper); border-bottom: var(--border); font: 800 12px var(--font-sans); letter-spacing: .3px; text-transform: uppercase; white-space: nowrap; }
+.table td { height: 44px; padding: 0 12px; border-bottom: 2px solid var(--paper); vertical-align: middle; }
+.table tbody tr:last-child td { border-bottom: 0; }
+.table tbody tr:hover { background: var(--row-hover); }
+.table .num { text-align: right; font: 10px/1 var(--font-pixel); letter-spacing: .5px; white-space: nowrap; }
+.table th.num { font: 800 12px var(--font-sans); }
+.table .name { font-weight: 600; }
+.table .name a { color: var(--ink); text-decoration: none; }
+.table .name a:hover { text-decoration: underline; }
+.table .name a:focus-visible { outline: 3px solid var(--focus); outline-offset: 2px; }
+.table .cell-entity { display: flex; align-items: center; gap: 8px; }
+/* sortowanie: .sort = przycisk (TYLKO z działającym skryptem, np. table-sort.js);
+   .sorted = statyczny znacznik kolejności, gdy tabeli nie da się sortować (np. ranking).
+   Kierunek zawsze w aria-sort na <th>. */
+.sort { all: unset; cursor: pointer; display: inline-flex; gap: 6px; align-items: center; }
+/* cała komórka nagłówka jest polem kliknięcia (th ma padding 0 12px i 40 px wysokości) */
+th > .sort { box-sizing: border-box; display: flex; width: calc(100% + 24px); min-height: 40px; margin: 0 -12px; padding: 0 12px; }
+th.num > .sort { justify-content: flex-end; }
+.sort::after { content: "◆"; font-size: 8px; color: var(--ink-3); }
+th[aria-sort="ascending"] .sort::after, .sort[aria-sort="ascending"]::after { content: "▲"; color: var(--ink); }
+th[aria-sort="descending"] .sort::after, .sort[aria-sort="descending"]::after { content: "▼"; color: var(--ink); }
+.sort:hover { text-decoration: underline; text-underline-offset: 3px; }
+.sort:focus-visible { outline: 3px solid var(--focus); outline-offset: 2px; }
+.sorted { display: inline-flex; gap: 6px; align-items: center; cursor: default; }
+.sorted::after { content: "▼"; font-size: 8px; color: var(--ink); }
+th[aria-sort="ascending"] .sorted::after { content: "▲"; }
+/* miejsce w rankingu: kwadrat z numerem, top 3 w kolorach NES */
+.rank { display: inline-grid; place-items: center; min-width: 28px; padding: 0 4px; height: 28px; font: 10px/1 var(--font-pixel); border: var(--border); background: var(--surface); box-sizing: border-box; }
+.rank-1 { background: var(--gold); } .rank-2 { background: var(--silver); } .rank-3 { background: var(--bronze); }
+.rank-1, .rank-2, .rank-3 { color: var(--on-light); }
+/* zmiana wartości */
+.delta-up::before { content: "▲ "; color: var(--action); } .delta-down::before { content: "▼ "; color: var(--danger); }
+
+/* ---------- paginacja ---------- */
+.pagination { display: flex; flex-wrap: wrap; gap: 8px; margin: 24px 0 0; padding: 0; list-style: none; }
+.pagination a, .pagination span { display: inline-grid; place-items: center; min-width: 36px; height: 36px; padding: 0 8px; box-sizing: border-box; font: 10px/1 var(--font-pixel); color: var(--ink); text-decoration: none; background: var(--surface); border: var(--border); box-shadow: var(--shadow-sm); }
+.pagination [aria-current="page"] { background: var(--ink); color: var(--on-ink); box-shadow: none; }
+.pagination a:focus-visible { outline: 3px solid var(--focus); outline-offset: 2px; }
+.pagination .gap { border: 0; box-shadow: none; background: transparent; }
+.pagination [aria-disabled="true"] { color: var(--ink-3); border-color: var(--ink-3); box-shadow: none; cursor: not-allowed; }
+
+/* ---------- callout, pusty stan, sekcje ---------- */
+.callout { padding: 14px 16px; background: var(--mint); border: var(--border); color: var(--on-light); }
+.callout strong { font-weight: 800; }
+.empty { display: grid; justify-items: center; gap: 12px; padding: 40px 24px; text-align: center; background: var(--surface); border: var(--border); box-shadow: var(--shadow-lg); }
+.empty h2 { margin: 0; font: 900 24px/32px var(--font-sans); letter-spacing: -.6px; }
+.empty p { margin: 0; max-width: 46ch; color: var(--ink-2); }
+.empty-art { width: 96px; height: 96px; image-rendering: pixelated; }
+.section { margin: 40px 0; }
+.section-title { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 12px; margin: 0 0 16px; }
+.section-title h2 { margin: 0; font: 900 18px/28px var(--font-sans); letter-spacing: -.45px; }
+
+/* ---------- opisy / listy definicji (szczegóły encji) ---------- */
+.facts { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 0; margin: 0; border: var(--border); background: var(--surface); }
+.facts div { padding: 10px 12px; border-right: 2px solid var(--paper); border-bottom: 2px solid var(--paper); }
+.facts dt { font: 800 11px var(--font-sans); letter-spacing: .3px; text-transform: uppercase; color: var(--ink-3); }
+.facts dd { margin: 4px 0 0; font: 600 15px var(--font-sans); }
+.facts dd.num { font: 12px/1.6 var(--font-pixel); }
+.prose { max-width: 70ch; }
+.prose h2 { font: 900 18px/28px var(--font-sans); letter-spacing: -.45px; margin: 24px 0 8px; }
+.prose p, .prose li { color: var(--ink-2); }
+
+/* ---------- stopka ---------- */
+.site-footer { margin-top: 64px; border-top: var(--border); padding: 24px 0 40px; font-size: 14px; color: var(--ink-2); }
+.site-footer a { color: var(--link); }
+
+/* ========== v1.6 — decyzje z dokumentacji komponentów (2026-11-10) ========== */
+
+/* ---------- przycisk kompaktowy 36 px: przycisk powtarzany w każdej pozycji listy (stopka karty, wiersz tabeli, koszyk) ---------- */
+.btn.btn-compact { height: 36px; padding: 0 14px 4px; font-size: 14px; }
+.btn.btn-compact:not([aria-disabled="true"]):not(.is-pressed):not(:active):hover { padding-bottom: 6px; }
+.btn.btn-compact:active, .btn.btn-compact.is-pressed, .btn.btn-compact[aria-pressed="true"] { padding: 4px 14px 0; }
+.btn.btn-compact[aria-disabled="true"] { padding: 0 14px; }
+.card-foot { display: flex; align-items: center; justify-content: space-between; gap: 12px; margin-top: 12px; padding-top: 12px; border-top: 2px dashed var(--line-soft); font-size: 13px; color: var(--ink-3); }
+
+/* ---------- sortowanie listy = grupa przycisków przełączających w wyglądzie .tabs ----------
+   kontener: role group + aria-label; przyciski: aria-pressed (wzór w design.md §6.12).
+   Zakładki (role tab + aria-selected) tylko gdy przełączają panele treści. */
+.tabs [aria-pressed="true"] { background: var(--ink); color: var(--on-ink); }
+
+/* ---------- kwota w wierszu listy: pełna na desktopie, skrócona < 600 px ----------
+   wewnątrz .list-value: .amt-full (pełna) + .amt-short z aria-hidden (skrót „18–24 tys.”); wzór w design.md §6.5 */
+.amt-short { display: none; }
+@media (max-width: 600px) {
+  .amt-short { display: inline; }
+  .amt-full { position: absolute; width: 1px; height: 1px; margin: -1px; overflow: hidden; clip: rect(0 0 0 0); clip-path: inset(50%); white-space: nowrap; }
+}
+
+/* ---------- stany: błąd pola ---------- */
+.field label { display: block; margin: 0 0 6px; font: 700 14px var(--font-sans); }
+.field.is-error input, .field input[aria-invalid="true"] { border-color: var(--danger); box-shadow: 2px 2px 0 var(--danger); }
+.field-error { display: flex; gap: 8px; align-items: flex-start; margin: 8px 0 0; font: 600 13px/18px var(--font-sans); color: var(--ink); }
+.field-error::before { content: "!"; flex: none; display: grid; place-items: center; width: 18px; height: 18px; font: 10px/1 var(--font-pixel); color: #fff; background: var(--danger); clip-path: var(--notch); }
+.field-hint { margin: 6px 0 0; font-size: 13px; color: var(--ink-3); }
+
+/* ---------- stany: ładowanie przycisku (rozmiar bez zmian; aria-disabled + aria-busy) ---------- */
+.btn.is-loading { position: relative; color: transparent !important; cursor: progress; padding: 4px 18px 0; transform: none; }
+.btn-compact.is-loading { padding: 4px 14px 0; }
+.btn-primary.is-loading[aria-disabled="true"] { background: var(--action); box-shadow: inset 0 0 0 2px var(--line); }
+.btn-secondary.is-loading[aria-disabled="true"] { background: var(--surface); box-shadow: inset 0 0 0 2px var(--line); }
+.btn.is-loading::after { content: ""; position: absolute; left: 50%; top: calc(50% - 2px); width: 4px; height: 4px; margin-left: -14px;
+  background: var(--on-action); box-shadow: 12px 0 0 0 var(--on-action), 24px 0 0 0 var(--on-action); animation: pp-dots 900ms steps(1) infinite; }
+.btn-secondary.is-loading::after { background: var(--ink); box-shadow: 12px 0 0 0 var(--ink), 24px 0 0 0 var(--ink); }
+@keyframes pp-dots { 0% { opacity: 1; } 33% { opacity: .35; } 66% { opacity: .7; } }
+
+/* ---------- stany: szkielet wczytywania (dither 4 px) ---------- */
+.skel { display: block; height: 12px; background: conic-gradient(var(--line-soft) 25%, transparent 0 50%, var(--line-soft) 0 75%, transparent 0) 0 0 / 4px 4px; animation: pp-skel 600ms steps(2) infinite; }
+@keyframes pp-skel { to { background-position: 4px 0; } }
+.skel-row { display: flex; align-items: center; gap: 8px; height: var(--row-h); }
+.skel-n { flex: none; width: 22px; height: 10px; }
+.skel-av { flex: none; width: 20px; height: 20px; }
+@media (prefers-reduced-motion: reduce) { .btn.is-loading::after, .skel { animation: none; } }
+
+/* ---------- stany: błąd wczytania i komunikat błędu w treści ---------- */
+.load-error { display: grid; gap: 10px; justify-items: start; padding: 16px; background: var(--surface); border: var(--border); border-left: 10px solid var(--danger); box-shadow: var(--shadow-lg); }
+.load-error h2, .load-error h3 { margin: 0; font: 900 18px/24px var(--font-sans); }
+.load-error p { margin: 0; color: var(--ink-2); font-size: 14px; }
+.load-error .code { font: 10px/1 var(--font-pixel); color: var(--ink-3); }
+.callout.callout-danger { background: var(--surface); color: var(--ink); border-left: 10px solid var(--danger); }
+.callout-danger strong::before { content: "! "; font-family: var(--font-pixel); font-size: 11px; color: var(--danger); }
+
+/* ========== v1.7 — statusy, formularze, nakładki, nawigacja mobilna, wysoki kontrast ========== */
+
+/* ---------- przycisk-ikona (zamknij, więcej, menu): kwadrat 36 px ---------- */
+.icon-btn { display: inline-grid; place-items: center; flex: none; width: 36px; height: 36px; padding: 0; color: var(--ink); background: transparent; border: 2px solid transparent; cursor: pointer; clip-path: var(--notch); }
+.icon-btn:hover { background: var(--paper); border-color: var(--line); }
+.icon-btn:focus-visible { outline: 3px solid var(--focus); outline-offset: -5px; }
+.icon-btn.is-boxed { background: var(--surface); border-color: var(--line); box-shadow: inset 0 -3px 0 var(--btn-secondary-edge); }
+.icon-btn[aria-expanded="true"] { background: var(--ink); color: var(--on-ink); }
+.btn .icon { margin-left: -4px; }
+
+/* ---------- powiadomienia: w treści (.notice) i wyskakujące (.toast) ---------- */
+.notice { display: grid; grid-template-columns: auto 1fr auto; gap: 4px 12px; align-items: start; padding: 12px 12px 12px 14px; color: var(--ink);
+  background: var(--surface); border: var(--border); border-left: 10px solid var(--st, var(--status-info)); }
+.notice-icon { display: grid; place-items: center; width: 28px; height: 28px; color: var(--on-st, var(--on-status-info)); background: var(--st, var(--status-info)); clip-path: var(--notch); }
+.notice-icon .icon { width: 24px; height: 24px; }
+.notice-body { min-width: 0; padding-top: 3px; font-size: 14px; line-height: 20px; }
+.notice-title { display: block; font: 800 15px/20px var(--font-sans); }
+.notice-body p { margin: 2px 0 0; color: var(--ink-2); }
+.notice-actions { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 10px; }
+.notice > .icon-btn { margin: -6px -6px 0 0; }
+.notice-info    { --st: var(--status-info);    --on-st: var(--on-status-info); }
+.notice-success { --st: var(--status-success); --on-st: var(--on-status-success); }
+.notice-warning { --st: var(--status-warning); --on-st: var(--on-status-warning); }
+.notice-error   { --st: var(--status-error);   --on-st: var(--on-status-error); }
+.toasts { position: fixed; z-index: var(--z-toast); right: 16px; bottom: 16px; display: grid; gap: 12px; width: min(400px, calc(100vw - 32px)); margin: 0; padding: 0; list-style: none; }
+.toast { box-shadow: var(--shadow-md); animation: pp-toast-in var(--motion-slow) var(--ease-steps); }
+@keyframes pp-toast-in { from { transform: translateY(12px); opacity: 0; } }
+
+/* ---------- formularze: lista wyboru, radio, przełącznik, pole wielowierszowe, licznik, plik ---------- */
+.field textarea, .field select { box-sizing: border-box; width: 100%; padding: 8px 10px; font: 400 14px/20px var(--font-sans); color: var(--ink); background: var(--surface); border: var(--border); border-radius: 0; box-shadow: var(--shadow-sm); }
+.field textarea { min-height: 96px; resize: vertical; }
+.field input, .field textarea, .field select { color: var(--ink); }
+.field textarea:focus, .field select:focus { outline: 3px solid var(--focus); outline-offset: 2px; box-shadow: 3px 3px 0 var(--focus-deco); }
+.select { position: relative; }
+.field .select select { appearance: none; padding-right: 40px; height: 40px; cursor: pointer; }
+.select::after { content: ""; position: absolute; right: 10px; bottom: 8px; width: 24px; height: 24px; pointer-events: none; background: currentColor; color: var(--ink);
+  -webkit-mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 12 12' shape-rendering='crispEdges'%3E%3Cpath d='M1 3h1v1h-1zM10 3h1v1h-1zM1 4h2v1h-2zM9 4h2v1h-2zM2 5h2v1h-2zM8 5h2v1h-2zM3 6h2v1h-2zM7 6h2v1h-2zM4 7h4v1h-4zM5 8h2v1h-2z'/%3E%3C/svg%3E") center / 100% no-repeat; mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 12 12' shape-rendering='crispEdges'%3E%3Cpath d='M1 3h1v1h-1zM10 3h1v1h-1zM1 4h2v1h-2zM9 4h2v1h-2zM2 5h2v1h-2zM8 5h2v1h-2zM3 6h2v1h-2zM7 6h2v1h-2zM4 7h4v1h-4zM5 8h2v1h-2z'/%3E%3C/svg%3E") center / 100% no-repeat; }
+.field-count { margin: 6px 0 0; font: 10px/1 var(--font-pixel); color: var(--ink-3); text-align: right; }
+.field-count.is-over { color: var(--danger); }
+.field label .req { color: var(--danger); font-weight: 800; }
+.field input:disabled, .field textarea:disabled, .field select:disabled { color: var(--disabled-ink); background: var(--disabled-bg); border-color: var(--disabled-line); box-shadow: none; cursor: not-allowed; }
+.field input[readonly], .field textarea[readonly] { background: var(--paper); border-style: dashed; box-shadow: none; }
+.radio { display: flex; align-items: center; gap: 8px; margin: 6px 0; font-size: 14px; }
+.radio input { appearance: none; display: grid; place-items: center; width: 18px; height: 18px; margin: 0; background: var(--surface); border: var(--border);
+  clip-path: polygon(4px 0, calc(100% - 4px) 0, calc(100% - 4px) 2px, calc(100% - 2px) 2px, calc(100% - 2px) 4px, 100% 4px, 100% calc(100% - 4px), calc(100% - 2px) calc(100% - 4px), calc(100% - 2px) calc(100% - 2px), calc(100% - 4px) calc(100% - 2px), calc(100% - 4px) 100%, 4px 100%, 4px calc(100% - 2px), 2px calc(100% - 2px), 2px calc(100% - 4px), 0 calc(100% - 4px), 0 4px, 2px 4px, 2px 2px, 4px 2px); }
+.radio input:checked::after { content: ""; width: 6px; height: 6px; background: var(--ink); box-shadow: 0 0 0 2px var(--highlight); }
+.radio input:focus-visible, .checkbox input:focus-visible { outline: 3px solid var(--focus); outline-offset: 2px; clip-path: none; }
+.checkbox input:disabled, .radio input:disabled { background: var(--disabled-bg); border-color: var(--disabled-line); cursor: not-allowed; }
+.checkbox:has(input:disabled), .radio:has(input:disabled) { color: var(--ink-3); }
+.switch { display: inline-flex; align-items: center; gap: 10px; min-height: 36px; padding: 0; font: 600 14px var(--font-sans); color: var(--ink); background: none; border: 0; cursor: pointer; text-align: left; }
+.switch-track { position: relative; flex: none; width: 44px; height: 24px; box-sizing: border-box; background: var(--paper); border: var(--border); }
+.switch-track::after { content: ""; position: absolute; left: 2px; top: 2px; width: 16px; height: 16px; background: var(--ink); transition: transform var(--motion-base) var(--ease-steps); }
+.switch[aria-checked="true"] .switch-track { background: var(--action); }
+.switch[aria-checked="true"] .switch-track::after { transform: translateX(20px); background: var(--surface); }
+.switch-state { font: 10px/1 var(--font-pixel); color: var(--ink-3); min-width: 3.5em; }
+.switch:focus-visible { outline: 3px solid var(--focus); outline-offset: 2px; }
+.stepper { display: inline-flex; align-items: stretch; border: var(--border); background: var(--surface); box-shadow: var(--shadow-sm); }
+.stepper button { width: 36px; height: 36px; padding: 0; display: grid; place-items: center; color: var(--ink); background: var(--surface); border: 0; cursor: pointer; }
+.stepper button:hover { background: var(--paper); }
+.stepper button:focus-visible, .stepper input:focus-visible { outline: 3px solid var(--focus); outline-offset: -3px; }
+.stepper button[aria-disabled="true"] { color: var(--ink-3); cursor: not-allowed; background: var(--paper); }
+.stepper input { width: 52px; height: 36px; box-sizing: border-box; padding: 0; text-align: center; font: 12px var(--font-pixel); color: var(--ink); background: var(--surface); border: 0; border-left: var(--border); border-right: var(--border); -moz-appearance: textfield; }
+.stepper input::-webkit-inner-spin-button, .stepper input::-webkit-outer-spin-button { -webkit-appearance: none; margin: 0; }
+.upload, .field .upload { position: relative; display: grid; margin: 0; font: 400 14px/20px var(--font-sans); justify-items: center; gap: 6px; padding: 20px 16px; text-align: center; background: var(--surface); border: 2px dashed var(--line-soft); cursor: pointer; }
+.upload:hover, .upload.is-drag { border-color: var(--line); background: var(--paper); }
+.upload:focus-within { outline: 3px solid var(--focus); outline-offset: 2px; }
+.upload input[type="file"] { position: absolute; inset: 0; width: 100%; height: 100%; opacity: 0; cursor: pointer; }
+.upload-title { font: 800 15px var(--font-sans); }
+.upload-title u { color: var(--link); }
+.upload-hint { font-size: 13px; color: var(--ink-3); }
+.upload.is-error { border-color: var(--danger); border-style: solid; }
+.file-list { display: grid; gap: 8px; margin: 10px 0 0; padding: 0; list-style: none; }
+.file-list li { display: flex; align-items: center; gap: 10px; padding: 6px 6px 6px 10px; background: var(--surface); border: var(--border); font-size: 14px; }
+.file-list .file-name { flex: 1; min-width: 0; overflow: hidden; white-space: nowrap; text-overflow: ellipsis; font-weight: 600; }
+.file-list .file-size { font: 10px/1 var(--font-pixel); color: var(--ink-3); }
+
+/* ---------- nakładki: okno, szuflada, menu, podpowiedź ---------- */
+dialog.modal, dialog.drawer { padding: 0; color: var(--ink); background: var(--surface); border: var(--border); box-shadow: var(--shadow-lg); }
+dialog.modal { width: min(560px, calc(100vw - 32px)); max-height: calc(100vh - 64px); }
+dialog.modal[open] { animation: pp-pop var(--motion-slow) var(--ease-steps); }
+dialog.drawer { position: fixed; inset: 0 0 0 auto; width: min(380px, 92vw); height: 100%; max-height: none; margin: 0; border-width: 0 0 0 2px; box-shadow: -6px 0 0 var(--shadow-color); }
+dialog.drawer[open] { display: flex; flex-direction: column; animation: pp-slide var(--motion-slow) var(--ease-steps); }
+dialog.modal::backdrop, dialog.drawer::backdrop { background: rgba(0, 2, 28, .55); background-image: conic-gradient(rgba(0, 2, 28, .35) 25%, transparent 0 50%, rgba(0, 2, 28, .35) 0 75%, transparent 0); background-size: 4px 4px; }
+@keyframes pp-pop { from { transform: translateY(8px); opacity: 0; } }
+@keyframes pp-slide { from { transform: translateX(24px); opacity: 0; } }
+.modal-head { display: flex; align-items: center; justify-content: space-between; gap: 12px; padding: 12px 12px 12px 20px; border-bottom: var(--border); background: var(--paper); }
+.modal-head h2 { margin: 0; font: 900 18px/28px var(--font-sans); letter-spacing: -.45px; }
+.modal-body { padding: 20px; overflow: auto; }
+dialog.drawer .modal-body { flex: 1; }
+.modal-body > :first-child { margin-top: 0; }
+.modal-foot { display: flex; flex-wrap: wrap; justify-content: flex-end; gap: 12px; padding: 16px 20px; border-top: 2px dashed var(--line-soft); }
+dialog.drawer .panel-filters { border: 0; box-shadow: none; padding: 0; }
+dialog.drawer .panel-filters h2 { display: none; }
+.menu { position: relative; display: inline-block; }
+.menu-list { position: absolute; z-index: var(--z-dropdown); right: 0; top: calc(100% + 4px); min-width: 200px; margin: 0; padding: 4px; list-style: none; background: var(--surface); border: var(--border); box-shadow: var(--shadow-md); }
+.menu-list button, .menu-list a { display: flex; align-items: center; gap: 10px; width: 100%; min-height: 36px; padding: 0 10px; box-sizing: border-box; font: 600 14px var(--font-sans); color: var(--ink); text-align: left; text-decoration: none; background: none; border: 0; cursor: pointer; }
+.menu-list button:hover, .menu-list a:hover, .menu-list button:focus-visible, .menu-list a:focus-visible { background: var(--ink); color: var(--on-ink); outline: none; }
+.menu-list .is-danger { color: var(--danger); }
+.menu-list hr { margin: 4px 0; border: 0; border-top: 2px dashed var(--line-soft); }
+.tip { position: relative; display: inline-flex; vertical-align: middle; }
+.tip-body { position: absolute; z-index: var(--z-tooltip); left: 50%; bottom: 100%; width: max-content; max-width: min(260px, calc(100vw - 32px)); padding: 8px 10px; transform: translateX(calc(-50% + var(--tip-shift, 0px)));
+  font: 600 13px/18px var(--font-sans); color: var(--on-ink); background: var(--ink); border: 2px solid var(--ink); box-shadow: var(--shadow-sm); display: none; }
+.tip-body::after { content: ""; position: absolute; left: calc(50% - 4px - var(--tip-shift, 0px)); top: 100%; width: 8px; height: 6px; background: var(--ink); clip-path: polygon(0 0, 100% 0, 50% 100%); }
+.tip:hover .tip-body, .tip:focus-within .tip-body { display: block; }
+.tip.is-dismissed .tip-body { display: none; }
+
+/* ---------- nawigacja mobilna (opt-in: data-collapsible na .site-nav) ---------- */
+.nav-toggle { display: none; }
+@media (max-width: 600px) {
+  .nav-toggle { display: inline-grid; margin-left: auto; }
+  .site-nav[data-collapsible] { display: none; order: 10; flex-basis: 100%; flex-direction: column; gap: 0; border-top: 2px dashed var(--line-soft); }
+  .site-nav[data-collapsible].is-open { display: flex; }
+  .site-nav[data-collapsible] a { padding: 12px 0; border-bottom: 2px solid transparent; }
+}
+/* filtry w szufladzie poniżej 900 px: formularz z data-drawer-form chowa się w stronie i jest przenoszony do <dialog class="drawer"> */
+.filters-toggle { display: none; }
+@media (max-width: 900px) {
+  .filters-toggle { display: inline-flex; }
+  [data-drawer-form] { display: none; }
+  dialog [data-drawer-form] { display: block; }
+}
+
+/* ========== v1.8 — wzorce: formularz, wybór wierszy, ładowanie, wykresy ========== */
+
+/* ---------- podsumowanie błędów formularza (na górze, fokus po wysłaniu) ---------- */
+.error-summary:focus { outline: 3px solid var(--focus); outline-offset: 2px; }
+.error-summary ul { margin: 6px 0 0; padding: 0; list-style: none; }
+.error-summary li { margin: 4px 0; }
+.error-summary a { color: var(--ink); font-weight: 700; text-decoration: underline; text-underline-offset: 3px; }
+
+/* ---------- ostrzeżenie pola (podpowiada, nie blokuje wysłania) ---------- */
+.field.is-warning input, .field.is-warning textarea, .field.is-warning select { border-color: var(--status-warning); box-shadow: 2px 2px 0 var(--status-warning); }
+.field-warning { display: flex; gap: 8px; align-items: flex-start; margin: 8px 0 0; font: 600 13px/18px var(--font-sans); color: var(--ink); }
+.field-warning::before { content: "!"; flex: none; display: grid; place-items: end center; width: 18px; height: 18px; padding-bottom: 1px; box-sizing: border-box; font: 9px/1 var(--font-pixel); color: var(--on-status-warning); background: var(--status-warning); clip-path: polygon(50% 0, 100% 100%, 0 100%); }
+
+/* ---------- kroki formularza (postęp) ---------- */
+.steps-progress { display: flex; margin: 0 0 24px; padding: 0; list-style: none; counter-reset: step; }
+.steps-progress li { position: relative; flex: 1; display: grid; justify-items: center; align-content: start; gap: 6px; text-align: center; font: 600 13px/18px var(--font-sans); color: var(--ink-3); counter-increment: step; }
+.steps-progress li::before { content: counter(step); position: relative; z-index: 1; display: grid; place-items: center; width: 28px; height: 28px; box-sizing: border-box; font: 10px/1 var(--font-pixel); color: var(--ink-3); background: var(--surface); border: 2px dashed var(--line-soft); }
+.steps-progress li + li::after { content: ""; position: absolute; top: 13px; right: 50%; width: 100%; height: 2px; background: var(--line-soft); }
+.steps-progress li.is-done { color: var(--ink-2); }
+.steps-progress li.is-done::before { content: "✓"; font: 900 14px/1 var(--font-sans); color: var(--on-action); background: var(--action); border: var(--border); }
+.steps-progress li.is-done + li::after { background: var(--line); }
+.steps-progress li[aria-current="step"] { color: var(--ink); font-weight: 800; }
+.steps-progress li[aria-current="step"]::before { color: var(--on-ink); background: var(--ink); border: var(--border); }
+@media (max-width: 600px) { .steps-progress .step-label { display: none; } .steps-progress li[aria-current="step"] .step-label { display: block; } }
+.wizard-step > h2:first-child, .wizard-step > legend:first-child { margin-top: 0; }
+.wizard-nav { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 12px; margin-top: 24px; padding-top: 16px; border-top: 2px dashed var(--line-soft); }
+.wizard-nav .btn-primary { margin-left: auto; }
+
+/* ---------- wybór wierszy tabeli + pasek akcji zbiorczych ---------- */
+.table .col-check { width: 40px; padding-right: 0; }
+.table .col-check .checkbox { margin: 0; }
+.table tbody tr[aria-selected="true"] { background: var(--row-selected); box-shadow: inset 4px 0 0 var(--focus); }
+.bulk-bar { position: sticky; bottom: 16px; z-index: var(--z-sticky); display: flex; flex-wrap: wrap; align-items: center; gap: 12px; margin-top: 12px; padding: 10px 12px; color: var(--on-ink); background: var(--ink); border: var(--border); box-shadow: var(--shadow-md); }
+.bulk-count { margin-right: auto; font: 11px/1.6 var(--font-pixel); }
+
+/* ---------- ładowanie: pasek postępu, ładowanie w miejscu, „Pokaż więcej” ---------- */
+.progress { display: grid; gap: 6px; }
+.progress-label { display: flex; justify-content: space-between; gap: 12px; font: 600 13px var(--font-sans); }
+.progress-label .num { font: 10px/1.6 var(--font-pixel); color: var(--ink-2); }
+.progress-track { height: 16px; box-sizing: border-box; padding: 2px; overflow: hidden; background: var(--surface); border: var(--border); }
+.progress-fill { height: 100%; width: var(--value, 0%); background: repeating-linear-gradient(90deg, var(--action) 0 8px, transparent 8px 10px); transition: width var(--motion-base) var(--ease-steps); }
+.progress.is-indeterminate .progress-fill { width: 30%; animation: pp-indet 1.2s steps(8) infinite; }
+@keyframes pp-indet { from { transform: translateX(-100%); } to { transform: translateX(340%); } }
+.inline-loading { display: inline-flex; align-items: center; gap: 10px; min-height: 24px; font: 600 14px var(--font-sans); color: var(--ink-2); }
+.inline-loading::before { content: ""; flex: none; width: 4px; height: 4px; margin-right: 18px; background: var(--ink); box-shadow: 8px 0 0 var(--ink), 16px 0 0 var(--ink); animation: pp-dots 900ms steps(1) infinite; }
+.inline-loading.is-done::before { animation: none; width: 18px; height: 18px; margin-right: 0; box-shadow: none; background: var(--status-success); clip-path: var(--notch); }
+.inline-loading.is-error::before { animation: none; width: 18px; height: 18px; margin-right: 0; box-shadow: none; background: var(--status-error); clip-path: var(--notch); }
+.load-more { display: grid; justify-items: center; gap: 8px; margin-top: 20px; }
+.load-more[hidden] { display: none !important; }
+.load-more-info { font: 10px/1.6 var(--font-pixel); color: var(--ink-3); }
+@media (prefers-reduced-motion: reduce) { .progress.is-indeterminate .progress-fill { animation: none; width: 100%; opacity: .5; } .inline-loading::before { animation: none; } }
+
+/* ---------- wykresy (charts.js rysuje SVG; tu rama, legenda, dymek, tabela danych) ---------- */
+.chart { position: relative; min-width: 0; margin: 0; padding: 16px; background: var(--surface); border: var(--border); box-shadow: var(--shadow-md); }
+.chart-title { margin: 0; font: 800 15px/20px var(--font-sans); }
+.chart-sub { margin: 2px 0 12px; font-size: 13px; color: var(--ink-3); }
+.chart-plot { position: relative; }
+.chart svg { display: block; width: 100%; height: auto; overflow: visible; }
+.chart svg text { font: 8px var(--font-pixel); fill: var(--chart-axis); }
+.chart svg .lbl-strong { fill: var(--ink); }
+.chart .hit { fill: transparent; cursor: default; }
+.chart-legend { display: flex; flex-wrap: wrap; gap: 6px 16px; margin: 12px 0 0; padding: 0; list-style: none; font: 600 13px var(--font-sans); color: var(--ink-2); }
+.chart-legend li { display: inline-flex; align-items: center; gap: 6px; }
+.chart-legend .swatch { flex: none; width: 12px; height: 12px; background: var(--c); }
+.chart-legend .num { font: 9px/1.6 var(--font-pixel); color: var(--ink); }
+.chart-tip { position: absolute; z-index: var(--z-tooltip); pointer-events: none; padding: 6px 8px; font: 600 13px/18px var(--font-sans); color: var(--on-ink); background: var(--ink); border: 2px solid var(--ink); box-shadow: var(--shadow-sm); white-space: nowrap; transform: translate(-50%, calc(-100% - 8px)); }
+.chart-tip[hidden] { display: none; }
+.chart-tip b { display: block; font: 10px/1.6 var(--font-pixel); }
+.chart-data { margin-top: 12px; font-size: 13px; }
+.chart-data summary { cursor: pointer; font-weight: 700; color: var(--link); }
+.chart-data summary:focus-visible { outline: 3px solid var(--focus); outline-offset: 2px; }
+.chart-data .table-wrap { margin-top: 8px; box-shadow: none; }
+.stats { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 210px), 1fr)); gap: 16px; }
+.stat { display: grid; align-content: start; gap: 4px; padding: 14px 16px; background: var(--surface); border: var(--border); box-shadow: var(--shadow-sm); }
+.stat-label { font: 600 13px var(--font-sans); color: var(--ink-2); }
+.stat-value { font: 20px/1.4 var(--font-pixel); color: var(--ink); }
+.stat-delta { font: 600 13px var(--font-sans); color: var(--ink-2); }
+.stat-delta .up::before { content: "▲ "; color: var(--action); }
+.stat-delta .down::before { content: "▼ "; color: var(--danger); }
+.stat .chart-spark { margin-top: 6px; }
+
+/* ========== v1.10 — kandydaci przyjęci 2026-11-10 ========== */
+
+/* ---------- wiersz meta w karcie: 3–4 kluczowe atrybuty (Poziom, Tryb, Dodano) ----------
+   <ul class="card-meta"><li><span class="icon icon-sm i-user" aria-hidden="true"></span>Poziom: <b>Senior</b></li>…</ul> */
+.card-meta { display: flex; flex-wrap: wrap; gap: 6px 14px; margin: 0 0 10px; padding: 0; list-style: none; font-size: 13px; color: var(--ink-3); }
+.card-meta li { display: inline-flex; align-items: center; gap: 6px; }
+.card-meta b { font-weight: 700; color: var(--ink-2); }
+
+/* ---------- liczba pasujących pozycji przy opcji filtra (wylicza list-controls.js) ---------- */
+.checkbox .opt-n { margin-left: auto; font: 9px/1 var(--font-pixel); color: var(--ink-3); }
+.checkbox.is-zero { color: var(--ink-3); }
+.checkbox.is-zero input { border-color: var(--ink-3); }
+
+/* ---------- zakres od–do ---------- */
+.range { display: grid; grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr); align-items: end; gap: 8px; margin-top: 8px; }
+.range .field > span, .range .field > label { display: block; margin: 0 0 4px; font: 700 12px var(--font-sans); color: var(--ink-3); }
+.range .dash { padding-bottom: 10px; font-weight: 800; }
+.range + .field-error { margin-top: 8px; }
+
+/* ========== v1.11 — kandydaci z testów skilla przyjęci 2026-11-10 ========== */
+
+/* ---------- kod kraju: zamiast flag-emoji, zawsze z pełną nazwą obok ----------
+   <td><span class="cc" aria-hidden="true">PL</span>Polska</td> */
+.cc { display: inline-grid; place-items: center; min-width: 28px; height: 20px; margin-right: 6px; padding: 0 3px; box-sizing: border-box; font: 7px/1 var(--font-pixel); letter-spacing: .5px; color: var(--ink); background: var(--paper); border: var(--border); vertical-align: middle; }
+
+/* ---------- wyszukiwarka z listą wyboru (miasto, kategoria) ----------
+   <form class="search-main has-select" role="search"><input …><div class="select"><select …></select></div><button type="submit">Szukaj</button></form> */
+.search-main .select { flex: none; border-left: var(--border); }
+.search-main .select select { appearance: none; height: 100%; min-height: 44px; padding: 0 40px 0 12px; border: 0; border-radius: 0; background: transparent; font: 600 15px var(--font-sans); color: var(--ink); cursor: pointer; }
+.search-main .select select:focus-visible { outline: 3px solid var(--focus); outline-offset: -3px; }
+.search-main .select::after { bottom: auto; top: 50%; transform: translateY(-50%); }
+.search-main.has-select button { width: auto; padding: 0 18px; font-size: 12px; }
+@media (max-width: 600px) {
+  .search-main.has-select { flex-wrap: wrap; }
+  .search-main.has-select input { flex: 1 1 100%; }
+  .search-main.has-select .select { flex: 1 1 auto; border-left: 0; border-top: var(--border); }
+  .search-main.has-select .select select { width: 100%; }
+  .search-main.has-select button { border-top: var(--border); }
+}
+
+/* ---------- pionowa karta produktu (sklep, katalog, galeria) ----------
+   <article class="card card-vertical"><div class="card-art"><span class="sprite sprite-xl s-sword" aria-hidden="true"></span></div>
+   <h3>Nazwa</h3><span class="tier-tag tier-legendary">Legendarny</span><ul class="card-meta">…</ul>
+   <div class="card-foot"><span class="card-price">…</span><button class="btn btn-secondary btn-compact">…</button></div></article> */
+.card-vertical { flex-direction: column; gap: 10px; }
+.card-vertical > h3, .card-vertical .card-head h3 { margin: 0; font: 800 18px/24px var(--font-sans); }
+.card-vertical > .tier-tag { align-self: flex-start; }
+.card-vertical .card-meta { margin: 0; }
+.card-vertical .card-foot { flex-wrap: wrap; gap: 8px 12px; margin-top: auto; }
+.card-art { display: grid; place-items: center; height: 88px; background: var(--paper); border: var(--border); }
+.card-art img { max-height: 64px; image-rendering: pixelated; }
+.card-price { display: inline-flex; align-items: center; gap: 6px; font: 12px/1 var(--font-pixel); color: var(--ink); white-space: nowrap; }
+.card-price small { font: 600 12px var(--font-sans); color: var(--ink-3); }
+
+/* ---------- tryb wysokiego kontrastu (Windows, forced-colors) ----------
+   Przeglądarka usuwa wtedy cienie i tła — ramki i stany rysujemy kolorami systemowymi. */
+@media (forced-colors: active) {
+  .btn, .icon-btn, .tabs button, .pagination a, .switch-track { border: 2px solid ButtonText; }
+  .btn:focus-visible, .icon-btn:focus-visible { outline: 3px solid Highlight; outline-offset: -6px; }
+  .btn[aria-disabled="true"], .btn:disabled { color: GrayText; border-color: GrayText; }
+  .tabs [aria-selected="true"], .tabs [aria-pressed="true"], .pagination [aria-current="page"], .btn[aria-pressed="true"],
+  .icon-btn[aria-expanded="true"], .menu-list button:hover, .menu-list a:hover {
+    forced-color-adjust: none; background: Highlight; color: HighlightText; }
+  .checkbox input:checked, .radio input:checked { forced-color-adjust: none; background: Highlight; border-color: Highlight; }
+  .checkbox input:checked::after, .radio input:checked::after { background: HighlightText; box-shadow: none; }
+  .switch[aria-checked="true"] .switch-track { forced-color-adjust: none; background: Highlight; }
+  .switch-track::after { forced-color-adjust: none; background: ButtonText; }
+  .notice, .tier-tag, .tier, .load-error, .callout-danger { border-left-width: 10px; border-left-style: double; }
+  .rank-1, .rank-2, .rank-3 { border-width: 4px; }
+  .field.is-error input, .field input[aria-invalid="true"] { border-width: 4px; }
+  .skel { forced-color-adjust: none; background: GrayText; }
+  .table tbody tr[aria-selected="true"] { forced-color-adjust: none; background: Highlight; color: HighlightText; }
+  .steps-progress li[aria-current="step"]::before, .steps-progress li.is-done::before { forced-color-adjust: none; background: Highlight; color: HighlightText; }
+  .progress-fill { forced-color-adjust: none; background: Highlight; }
+  .chart svg { forced-color-adjust: none; }
+}
+
+
+</style>
+  <!-- Style tego ekranu: tylko układ i drobne dopasowania, wyłącznie z tokenami var(--…) -->
+  <style id="screen">
+    .board { max-width: 920px; margin: 0 auto; }
+    .board-note { margin: -12px 0 20px; font: 600 14px var(--font-sans); color: var(--ink-3); }
+
+    /* podium: długie nicki ucinają się wielokropkiem, meta pod nickiem */
+    .podium li { min-width: 0; }
+    .podium b { max-width: 100%; overflow: hidden; white-space: nowrap; text-overflow: ellipsis; font: 800 15px/20px var(--font-sans); }
+    .podium-meta { font: 600 12px var(--font-sans); color: var(--on-ink); }
+
+    /* tabela */
+    .board .table-wrap { position: relative; margin-top: 32px; } /* trzyma .sr-only z komórek wewnątrz przewijanej ramki */
+    .table .cell-entity a { display: block; max-width: 24ch; overflow: hidden; white-space: nowrap; text-overflow: ellipsis; }
+    .table .country { white-space: nowrap; color: var(--ink-2); }
+    .table td:first-child, .table th:first-child { width: 40px; }
+    .table th.num .sort { font: inherit; }
+    /* NOWY ELEMENT: kod kraju — mały kwadrat jak .rank, ale bez koloru (kraj nie jest rangą) */
+    .cc { display: inline-grid; place-items: center; width: 26px; height: 18px; margin-right: 8px; box-sizing: border-box;
+          font: 7px/1 var(--font-pixel); color: var(--ink); background: var(--surface); border: var(--border); vertical-align: middle; }
+    /* NOWY ELEMENT: brak zmiany pozycji — znak „=” + tekst dla czytnika */
+    .delta-same { color: var(--ink-3); }
+    /* miejsca 100+ mają 3 cyfry — kwadrat .rank rośnie w poziomie zamiast się przelewać */
+    .table .rank { width: auto; min-width: 28px; padding: 0 4px; }
+    .table .num .badge-sm { font-family: var(--font-sans); }
+
+    /* paginacja: przerwa i nieaktywna strzałka bez ramki-przycisku */
+    .board-foot { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 12px 24px; }
+    .board-foot .pagination { margin-top: 24px; }
+    .board-range { margin: 24px 0 0; font: 600 14px var(--font-sans); color: var(--ink-3); }
+    .pagination .gap { background: transparent; border-color: transparent; box-shadow: none; }
+    .pagination .is-off { color: var(--ink-3); background: var(--paper); box-shadow: none; border-color: var(--ink-3); cursor: not-allowed; }
+    .pagination a:hover { background: var(--paper); }
+
+    @media (max-width: 600px) {
+      .page-head .tabs { width: 100%; }
+      .page-head .tabs button { flex: 1 1 auto; justify-content: center; padding: 0 10px; white-space: nowrap; }
+      .table .country-name { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
+      .table .cc { margin-right: 0; }
+      .table .cell-entity a { max-width: 13ch; }
+      .podium { gap: 6px; padding: 16px 8px 0; }
+      .podium b { font-size: 13px; }
+      .podium-pts { font-size: 10px; }
+      .site-header .search-main { min-width: 0; flex: 1 1 100%; }
+    }
+  </style>
+</head>
+<body class="bg-dots">
+  <a class="sr-only" href="#tresc">Przejdź do treści</a>
+
+  <header class="site-header">
+    <div class="container">
+      <a class="logo" href="/">KOSMICZNY<span>KRET</span></a>
+      <nav class="site-nav" aria-label="Główna">
+        <a href="/graj">Graj</a>
+        <a href="/ranking" aria-current="page">Ranking</a>
+        <a href="/osiagniecia">Osiągnięcia</a>
+      </nav>
+      <form class="search-main" role="search" action="/ranking/szukaj">
+        <label class="sr-only" for="q">Szukaj gracza</label>
+        <input id="q" name="q" type="search" placeholder="Szukaj gracza po nicku">
+        <button type="submit" aria-label="Szukaj">&gt;</button>
+      </form>
+    </div>
+  </header>
+
+  <main id="tresc" class="container">
+    <div class="board">
+      <ol class="breadcrumbs">
+        <li><a href="/">Start</a></li>
+        <li>Ranking graczy</li>
+      </ol>
+
+      <div class="page-head">
+        <div>
+          <h1>High scores</h1>
+          <p>Najlepsi kopacze Kosmicznego Kreta. Liczy się najwyższy wynik z jednej rozgrywki w wybranym okresie.</p>
+        </div>
+        <div class="tabs" role="tablist" aria-label="Okres rankingu">
+          <button type="button" role="tab" id="tab-dzis" data-period="dzis" aria-selected="false" aria-controls="ranking" tabindex="-1">Dziś</button>
+          <button type="button" role="tab" id="tab-tydzien" data-period="tydzien" aria-selected="true" aria-controls="ranking">Ten tydzień</button>
+          <button type="button" role="tab" id="tab-wszech" data-period="wszech" aria-selected="false" aria-controls="ranking" tabindex="-1">Wszech czasów</button>
+        </div>
+      </div>
+
+      <section id="ranking" role="tabpanel" aria-labelledby="tab-tydzien">
+        <p class="board-note" id="note">Tydzień 3–9 listopada 2026 · reset w poniedziałek o 00:00</p>
+
+        <ol class="podium" id="podium" aria-label="Podium: miejsca 1–3">
+        <li class="podium-1"><span class="avatar avatar-xl" style="--av:var(--avatar-6)" aria-hidden="true">KK</span><b title="Kosmiczny_Kuba">Kosmiczny_Kuba</b><span class="podium-meta">Brazylia · 22 gier</span><span class="podium-pts">248 730<span class="sr-only"> pkt</span></span><span class="podium-step"><span class="sr-only">Miejsce </span>1</span></li>
+        <li class="podium-2"><span class="avatar avatar-xl" style="--av:var(--avatar-5)" aria-hidden="true">ZK</span><b title="ŻelaznyKretWszechświata">ŻelaznyKretWszechświata</b><span class="podium-meta">Czechy · 40 gier</span><span class="podium-pts">237 520<span class="sr-only"> pkt</span></span><span class="podium-step"><span class="sr-only">Miejsce </span>2</span></li>
+        <li class="podium-3"><span class="avatar avatar-xl" style="--av:var(--avatar-1)" aria-hidden="true">KM</span><b title="Kretowisko_Max">Kretowisko_Max</b><span class="podium-meta">Japonia · 38 gier</span><span class="podium-pts">226 800<span class="sr-only"> pkt</span></span><span class="podium-step"><span class="sr-only">Miejsce </span>3</span></li>
+        </ol>
+
+        <div class="table-wrap">
+          <table class="table" data-sort-manual>
+            <caption class="sr-only" id="caption">Ranking ten tydzień, miejsca 4–20</caption>
+            <thead>
+              <tr>
+                <th scope="col">#</th>
+                <th scope="col" aria-sort="none"><button type="button" class="sort" data-key="n">Gracz</button></th>
+                <th scope="col" aria-sort="none"><button type="button" class="sort" data-key="c">Kraj</button></th>
+                <th scope="col" class="num" aria-sort="descending"><button type="button" class="sort" data-key="s">Wynik</button></th>
+                <th scope="col" class="num" aria-sort="none"><button type="button" class="sort" data-key="g">Rozgrywki</button></th>
+                <th scope="col" class="num" aria-sort="none"><button type="button" class="sort" data-key="d">Zmiana</button></th>
+              </tr>
+            </thead>
+            <tbody id="rows">
+          <tr><td><span class="rank">4</span></td><td class="name"><span class="cell-entity"><span class="avatar" style="--av:var(--avatar-2)" aria-hidden="true">SA</span><a href="#gracz-4" title="Saturnina">Saturnina</a></span></td><td class="country"><span class="cc" aria-hidden="true">LT</span><span class="country-name">Litwa</span></td><td class="num">216 570</td><td class="num">10</td><td class="num"><span class="delta-up"><span class="sr-only">awans o </span>1</span></td></tr>
+          <tr><td><span class="rank">5</span></td><td class="name"><span class="cell-entity"><span class="avatar" style="--av:var(--avatar-4)" aria-hidden="true">HH</span><a href="#gracz-5" title="Hela_Hyperdrive">Hela_Hyperdrive</a></span></td><td class="country"><span class="cc" aria-hidden="true">PL</span><span class="country-name">Polska</span></td><td class="num">206 790</td><td class="num">29</td><td class="num"><span class="badge badge-sm badge-new">Nowy</span></td></tr>
+          <tr><td><span class="rank">6</span></td><td class="name"><span class="cell-entity"><span class="avatar" style="--av:var(--avatar-3)" aria-hidden="true">GG</span><a href="#gracz-6" title="Galaktyczna_Gosia">Galaktyczna_Gosia</a></span></td><td class="country"><span class="cc" aria-hidden="true">PL</span><span class="country-name">Polska</span></td><td class="num">197 470</td><td class="num">5</td><td class="num"><span class="delta-up"><span class="sr-only">awans o </span>2</span></td></tr>
+          <tr><td><span class="rank">7</span></td><td class="name"><span class="cell-entity"><span class="avatar" style="--av:var(--avatar-2)" aria-hidden="true">KZ</span><a href="#gracz-7" title="KretZMarsa">KretZMarsa</a></span></td><td class="country"><span class="cc" aria-hidden="true">SE</span><span class="country-name">Szwecja</span></td><td class="num">188 560</td><td class="num">16</td><td class="num"><span class="delta-down"><span class="sr-only">spadek o </span>5</span></td></tr>
+          <tr><td><span class="rank">8</span></td><td class="name"><span class="cell-entity"><span class="avatar" style="--av:var(--avatar-6)" aria-hidden="true">W9</span><a href="#gracz-8" title="Wiertło_9000">Wiertło_9000</a></span></td><td class="country"><span class="cc" aria-hidden="true">SE</span><span class="country-name">Szwecja</span></td><td class="num">180 030</td><td class="num">51</td><td class="num"><span class="delta-same"><span class="sr-only">bez zmian</span><span aria-hidden="true">=</span></span></td></tr>
+          <tr><td><span class="rank">9</span></td><td class="name"><span class="cell-entity"><span class="avatar" style="--av:var(--avatar-4)" aria-hidden="true">KZ</span><a href="#gracz-9" title="Kosmonauta_Z_Pod_Łomży_1987">Kosmonauta_Z_Pod_Łomży_1987</a></span></td><td class="country"><span class="cc" aria-hidden="true">PL</span><span class="country-name">Polska</span></td><td class="num">171 920</td><td class="num">16</td><td class="num"><span class="delta-down"><span class="sr-only">spadek o </span>5</span></td></tr>
+          <tr><td><span class="rank">10</span></td><td class="name"><span class="cell-entity"><span class="avatar" style="--av:var(--avatar-3)" aria-hidden="true">PG</span><a href="#gracz-10" title="Pyłek_Gwiezdny">Pyłek_Gwiezdny</a></span></td><td class="country"><span class="cc" aria-hidden="true">PL</span><span class="country-name">Polska</span></td><td class="num">164 180</td><td class="num">35</td><td class="num"><span class="delta-down"><span class="sr-only">spadek o </span>5</span></td></tr>
+          <tr><td><span class="rank">11</span></td><td class="name"><span class="cell-entity"><span class="avatar" style="--av:var(--avatar-5)" aria-hidden="true">TT</span><a href="#gracz-11" title="Tomek_Tunel">Tomek_Tunel</a></span></td><td class="country"><span class="cc" aria-hidden="true">ES</span><span class="country-name">Hiszpania</span></td><td class="num">156 750</td><td class="num">34</td><td class="num"><span class="delta-up"><span class="sr-only">awans o </span>1</span></td></tr>
+          <tr><td><span class="rank">12</span></td><td class="name"><span class="cell-entity"><span class="avatar" style="--av:var(--avatar-3)" aria-hidden="true">SS</span><a href="#gracz-12" title="Szpadel_Sigma">Szpadel_Sigma</a></span></td><td class="country"><span class="cc" aria-hidden="true">PL</span><span class="country-name">Polska</span></td><td class="num">149 680</td><td class="num">5</td><td class="num"><span class="delta-same"><span class="sr-only">bez zmian</span><span aria-hidden="true">=</span></span></td></tr>
+          <tr><td><span class="rank">13</span></td><td class="name"><span class="cell-entity"><span class="avatar" style="--av:var(--avatar-6)" aria-hidden="true">LG</span><a href="#gracz-13" title="Łopata_Galaktyczna">Łopata_Galaktyczna</a></span></td><td class="country"><span class="cc" aria-hidden="true">PL</span><span class="country-name">Polska</span></td><td class="num">142 910</td><td class="num">25</td><td class="num"><span class="delta-same"><span class="sr-only">bez zmian</span><span aria-hidden="true">=</span></span></td></tr>
+          <tr><td><span class="rank">14</span></td><td class="name"><span class="cell-entity"><span class="avatar" style="--av:var(--avatar-1)" aria-hidden="true">CM</span><a href="#gracz-14" title="Ciemna_Materia">Ciemna_Materia</a></span></td><td class="country"><span class="cc" aria-hidden="true">CA</span><span class="country-name">Kanada</span></td><td class="num">136 440</td><td class="num">31</td><td class="num"><span class="delta-down"><span class="sr-only">spadek o </span>1</span></td></tr>
+          <tr><td><span class="rank">15</span></td><td class="name"><span class="cell-entity"><span class="avatar" style="--av:var(--avatar-2)" aria-hidden="true">LL</span><a href="#gracz-15" title="Lunar_Lena">Lunar_Lena</a></span></td><td class="country"><span class="cc" aria-hidden="true">LT</span><span class="country-name">Litwa</span></td><td class="num">130 290</td><td class="num">47</td><td class="num"><span class="delta-same"><span class="sr-only">bez zmian</span><span aria-hidden="true">=</span></span></td></tr>
+          <tr><td><span class="rank">16</span></td><td class="name"><span class="cell-entity"><span class="avatar" style="--av:var(--avatar-3)" aria-hidden="true">ZZ</span><a href="#gracz-16" title="Zenek_Zenit">Zenek_Zenit</a></span></td><td class="country"><span class="cc" aria-hidden="true">DE</span><span class="country-name">Niemcy</span></td><td class="num">124 390</td><td class="num">35</td><td class="num"><span class="delta-down"><span class="sr-only">spadek o </span>1</span></td></tr>
+          <tr><td><span class="rank">17</span></td><td class="name"><span class="cell-entity"><span class="avatar" style="--av:var(--avatar-3)" aria-hidden="true">ND</span><a href="#gracz-17" title="NovaDigger">NovaDigger</a></span></td><td class="country"><span class="cc" aria-hidden="true">PL</span><span class="country-name">Polska</span></td><td class="num">118 750</td><td class="num">41</td><td class="num"><span class="delta-down"><span class="sr-only">spadek o </span>4</span></td></tr>
+          <tr><td><span class="rank">18</span></td><td class="name"><span class="cell-entity"><span class="avatar" style="--av:var(--avatar-2)" aria-hidden="true">MX</span><a href="#gracz-18" title="MoleRat_X">MoleRat_X</a></span></td><td class="country"><span class="cc" aria-hidden="true">BR</span><span class="country-name">Brazylia</span></td><td class="num">113 400</td><td class="num">57</td><td class="num"><span class="delta-same"><span class="sr-only">bez zmian</span><span aria-hidden="true">=</span></span></td></tr>
+          <tr><td><span class="rank">19</span></td><td class="name"><span class="cell-entity"><span class="avatar" style="--av:var(--avatar-4)" aria-hidden="true">NM</span><a href="#gracz-19" title="NeonMole">NeonMole</a></span></td><td class="country"><span class="cc" aria-hidden="true">CA</span><span class="country-name">Kanada</span></td><td class="num">108 270</td><td class="num">6</td><td class="num"><span class="delta-same"><span class="sr-only">bez zmian</span><span aria-hidden="true">=</span></span></td></tr>
+          <tr><td><span class="rank">20</span></td><td class="name"><span class="cell-entity"><span class="avatar" style="--av:var(--avatar-3)" aria-hidden="true">AA</span><a href="#gracz-20" title="Apogeum_Ania">Apogeum_Ania</a></span></td><td class="country"><span class="cc" aria-hidden="true">SK</span><span class="country-name">Słowacja</span></td><td class="num">103 360</td><td class="num">7</td><td class="num"><span class="delta-up"><span class="sr-only">awans o </span>4</span></td></tr>
+            </tbody>
+          </table>
+          <span class="sr-only" id="sort-status" aria-live="polite"></span>
+        </div>
+
+        <div class="board-foot">
+          <p class="board-range" id="range">Miejsca 4–20 z 180</p>
+          <nav aria-label="Strony rankingu">
+            <ul class="pagination" id="pages"><li><span class="is-off" aria-hidden="true">&lt;</span></li><li><span aria-current="page">1</span></li><li><a href="#p2" data-page="2" aria-label="Strona 2">2</a></li><li><a href="#p3" data-page="3" aria-label="Strona 3">3</a></li><li><span class="gap" aria-hidden="true">…</span></li><li><a href="#p9" data-page="9" aria-label="Strona 9">9</a></li><li><a href="#p2" data-page="2" aria-label="Następna strona">&gt;</a></li></ul>
+          </nav>
+        </div>
+      </section>
+    </div>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container">© 2026 Kosmiczny Kret · <a href="/zasady-rankingu">Zasady rankingu</a> · <a href="/regulamin">Regulamin</a> · <a href="/prywatnosc">Prywatność</a></div>
+  </footer>
+
+  <script>
+  (function () {
+    var DATA = {"dzis":{"label":"Dziś","note":"Dziś, 9 listopada 2026 · aktualizacja co 5 minut","pages":4,"rows":[{"r":1,"n":"Meteoryt_Jaś","m":"MJ","av":3,"cc":"FR","c":"Francja","s":61840,"g":11,"d":-6},{"r":2,"n":"NovaDigger","m":"ND","av":1,"cc":"PL","c":"Polska","s":59040,"g":9,"d":-5},{"r":3,"n":"Księżycowy_Bartek","m":"KB","av":6,"cc":"PL","c":"Polska","s":56360,"g":14,"d":-1},{"r":4,"n":"Czarna_Dziura_Ola","m":"CD","av":4,"cc":"PL","c":"Polska","s":53820,"g":4,"d":-4},{"r":5,"n":"Ciemna_Materia","m":"CM","av":6,"cc":"SK","c":"Słowacja","s":51360,"g":7,"d":"new"},{"r":6,"n":"Rakietowy_Rysiek","m":"RR","av":1,"cc":"FI","c":"Finlandia","s":49030,"g":5,"d":3},{"r":7,"n":"Ryjek_Retro","m":"RR","av":1,"cc":"PL","c":"Polska","s":46800,"g":3,"d":-1},{"r":8,"n":"Zośka_Kopiąca","m":"ZK","av":5,"cc":"ES","c":"Hiszpania","s":44670,"g":3,"d":-4},{"r":9,"n":"Krecik3000","m":"KR","av":4,"cc":"PL","c":"Polska","s":42650,"g":7,"d":-4},{"r":10,"n":"Kosmonauta_Z_Pod_Łomży_1987","m":"KZ","av":2,"cc":"PL","c":"Polska","s":40720,"g":5,"d":1},{"r":11,"n":"NeonMole","m":"NM","av":2,"cc":"SK","c":"Słowacja","s":38870,"g":14,"d":-1},{"r":12,"n":"Planeta_Piasku","m":"PP","av":5,"cc":"FR","c":"Francja","s":37110,"g":5,"d":"new"},{"r":13,"n":"Hela_Hyperdrive","m":"HH","av":1,"cc":"CZ","c":"Czechy","s":35420,"g":7,"d":"new"},{"r":14,"n":"Saturnina","m":"SA","av":5,"cc":"US","c":"USA","s":33810,"g":11,"d":3},{"r":15,"n":"Wąchacz_Gwiazd","m":"WG","av":2,"cc":"PL","c":"Polska","s":32260,"g":10,"d":-4},{"r":16,"n":"Grzybiarz_Kosmosu","m":"GK","av":2,"cc":"PL","c":"Polska","s":30770,"g":5,"d":-6},{"r":17,"n":"PixelMole","m":"PM","av":4,"cc":"SE","c":"Szwecja","s":29370,"g":9,"d":0},{"r":18,"n":"Mgławica_Ula","m":"MU","av":1,"cc":"CA","c":"Kanada","s":28020,"g":2,"d":-1},{"r":19,"n":"Kometa_Kasia","m":"KK","av":4,"cc":"DE","c":"Niemcy","s":26730,"g":4,"d":3},{"r":20,"n":"ŻelaznyKretWszechświata","m":"ZK","av":2,"cc":"ES","c":"Hiszpania","s":25490,"g":5,"d":-2},{"r":21,"n":"Lunar_Lena","m":"LL","av":2,"cc":"JP","c":"Japonia","s":24310,"g":11,"d":-3},{"r":22,"n":"RyjówkaTurbo","m":"RT","av":1,"cc":"PL","c":"Polska","s":23930,"g":2,"d":2},{"r":23,"n":"KretZMarsa","m":"KZ","av":3,"cc":"PL","c":"Polska","s":23560,"g":5,"d":-1},{"r":24,"n":"Wiertło_9000","m":"W9","av":1,"cc":"FR","c":"Francja","s":23190,"g":6,"d":-5},{"r":25,"n":"Ziemniak_Astralny","m":"ZA","av":5,"cc":"ES","c":"Hiszpania","s":22840,"g":6,"d":-1},{"r":26,"n":"Nebula_Nina","m":"NN","av":3,"cc":"PL","c":"Polska","s":22460,"g":8,"d":"new"},{"r":27,"n":"Zenek_Zenit","m":"ZZ","av":5,"cc":"PL","c":"Polska","s":22100,"g":2,"d":"new"},{"r":28,"n":"Spacekret_PL","m":"SP","av":3,"cc":"PL","c":"Polska","s":21750,"g":12,"d":-3},{"r":29,"n":"Orbiter_Kuba","m":"OK","av":4,"cc":"FI","c":"Finlandia","s":21410,"g":8,"d":1},{"r":30,"n":"Dżdżownica_Prime","m":"DP","av":1,"cc":"PL","c":"Polska","s":21050,"g":10,"d":5},{"r":31,"n":"BitDigger","m":"BD","av":1,"cc":"PL","c":"Polska","s":20700,"g":2,"d":0},{"r":32,"n":"Marek_Odwiert","m":"MO","av":4,"cc":"HU","c":"Węgry","s":20370,"g":12,"d":4},{"r":33,"n":"Łopata_Galaktyczna","m":"LG","av":5,"cc":"PL","c":"Polska","s":20030,"g":9,"d":-3},{"r":34,"n":"Ślimak_Orbitalny","m":"SO","av":5,"cc":"ES","c":"Hiszpania","s":19720,"g":1,"d":-4},{"r":35,"n":"TunelowaWiedźma","m":"TW","av":2,"cc":"ES","c":"Hiszpania","s":19390,"g":5,"d":3},{"r":36,"n":"Kopacz_Wąsaty","m":"KW","av":4,"cc":"CA","c":"Kanada","s":19060,"g":4,"d":6},{"r":37,"n":"Szpadel_Sigma","m":"SS","av":6,"cc":"PL","c":"Polska","s":18740,"g":6,"d":2},{"r":38,"n":"Gwiezdny_Ryjek","m":"GR","av":2,"cc":"PL","c":"Polska","s":18430,"g":4,"d":2},{"r":39,"n":"Galaktyczna_Gosia","m":"GG","av":1,"cc":"ES","c":"Hiszpania","s":18140,"g":6,"d":-6},{"r":40,"n":"Pluton_Piotrek","m":"PP","av":4,"cc":"PL","c":"Polska","s":17850,"g":2,"d":2},{"r":41,"n":"Krater_Krzysiek","m":"KK","av":5,"cc":"SE","c":"Szwecja","s":17560,"g":9,"d":23},{"r":42,"n":"Tomek_Tunel","m":"TT","av":1,"cc":"UA","c":"Ukraina","s":17270,"g":2,"d":20},{"r":43,"n":"Kosmiczny_Kuba","m":"KK","av":5,"cc":"GB","c":"Wielka Brytania","s":16970,"g":5,"d":21},{"r":44,"n":"AstroBorsuk","m":"AB","av":3,"cc":"SE","c":"Szwecja","s":16710,"g":3,"d":-1},{"r":45,"n":"MoleRat_X","m":"MX","av":6,"cc":"PL","c":"Polska","s":16440,"g":13,"d":"new"},{"r":46,"n":"Ufolud_Staś","m":"US","av":6,"cc":"FR","c":"Francja","s":16180,"g":2,"d":3},{"r":47,"n":"Szyb_Kopalni","m":"SK","av":1,"cc":"PL","c":"Polska","s":15920,"g":14,"d":-23},{"r":48,"n":"Apogeum_Ania","m":"AA","av":3,"cc":"ES","c":"Hiszpania","s":15640,"g":9,"d":-8},{"r":49,"n":"Pyłek_Gwiezdny","m":"PG","av":6,"cc":"LT","c":"Litwa","s":15360,"g":9,"d":-13},{"r":50,"n":"Kretowisko_Max","m":"KM","av":4,"cc":"PL","c":"Polska","s":15110,"g":7,"d":5},{"r":51,"n":"Grawitacja_Zero","m":"GZ","av":5,"cc":"PL","c":"Polska","s":14860,"g":11,"d":-13},{"r":52,"n":"Meteoryt_Jaś_85","m":"MJ","av":3,"cc":"BR","c":"Brazylia","s":14600,"g":13,"d":15},{"r":53,"n":"NovaDigger_28","m":"N2","av":2,"cc":"PL","c":"Polska","s":14340,"g":12,"d":-7},{"r":54,"n":"Księżycowy_Bartek_13","m":"KB","av":6,"cc":"CZ","c":"Czechy","s":14100,"g":9,"d":9},{"r":55,"n":"Czarna_Dziura_Ola_46","m":"CD","av":3,"cc":"BR","c":"Brazylia","s":13880,"g":2,"d":"new"},{"r":56,"n":"Ciemna_Materia_55","m":"CM","av":4,"cc":"DE","c":"Niemcy","s":13640,"g":8,"d":-3},{"r":57,"n":"Rakietowy_Rysiek_24","m":"RR","av":2,"cc":"JP","c":"Japonia","s":13430,"g":6,"d":-16},{"r":58,"n":"Ryjek_Retro_94","m":"RR","av":5,"cc":"BR","c":"Brazylia","s":13200,"g":14,"d":16},{"r":59,"n":"Zośka_Kopiąca_13","m":"ZK","av":5,"cc":"PL","c":"Polska","s":12960,"g":8,"d":24},{"r":60,"n":"Krecik3000_23","m":"K2","av":6,"cc":"BR","c":"Brazylia","s":12730,"g":9,"d":10},{"r":61,"n":"Kosmonauta_Z_Pod_Łomży_1987_80","m":"KZ","av":4,"cc":"PL","c":"Polska","s":12520,"g":5,"d":19},{"r":62,"n":"NeonMole_54","m":"N5","av":5,"cc":"JP","c":"Japonia","s":12320,"g":2,"d":1},{"r":63,"n":"Planeta_Piasku_68","m":"PP","av":1,"cc":"SK","c":"Słowacja","s":12130,"g":9,"d":-16},{"r":64,"n":"Hela_Hyperdrive_23","m":"HH","av":2,"cc":"PL","c":"Polska","s":11910,"g":9,"d":9},{"r":65,"n":"Saturnina_65","m":"S6","av":3,"cc":"PL","c":"Polska","s":11700,"g":6,"d":17},{"r":66,"n":"Wąchacz_Gwiazd_26","m":"WG","av":3,"cc":"HU","c":"Węgry","s":11510,"g":10,"d":"new"},{"r":67,"n":"Grzybiarz_Kosmosu_91","m":"GK","av":2,"cc":"PL","c":"Polska","s":11330,"g":1,"d":0},{"r":68,"n":"PixelMole_89","m":"P8","av":4,"cc":"CZ","c":"Czechy","s":11160,"g":6,"d":-20},{"r":69,"n":"Mgławica_Ula_65","m":"MU","av":2,"cc":"US","c":"USA","s":10980,"g":2,"d":23},{"r":70,"n":"Kometa_Kasia_69","m":"KK","av":5,"cc":"HU","c":"Węgry","s":10780,"g":1,"d":17},{"r":71,"n":"ŻelaznyKretWszechświata_70","m":"Z7","av":2,"cc":"PL","c":"Polska","s":10610,"g":14,"d":-17},{"r":72,"n":"Lunar_Lena_80","m":"LL","av":6,"cc":"US","c":"USA","s":10420,"g":14,"d":0},{"r":73,"n":"RyjówkaTurbo_46","m":"R4","av":2,"cc":"PL","c":"Polska","s":10230,"g":6,"d":-7},{"r":74,"n":"KretZMarsa_19","m":"K1","av":1,"cc":"PL","c":"Polska","s":10070,"g":3,"d":13},{"r":75,"n":"Wiertło_9000_55","m":"W9","av":6,"cc":"JP","c":"Japonia","s":9890,"g":13,"d":-13},{"r":76,"n":"Ziemniak_Astralny_4","m":"ZA","av":1,"cc":"PL","c":"Polska","s":9700,"g":4,"d":12},{"r":77,"n":"Nebula_Nina_66","m":"NN","av":4,"cc":"SE","c":"Szwecja","s":9510,"g":13,"d":-3},{"r":78,"n":"Zenek_Zenit_5","m":"ZZ","av":2,"cc":"PL","c":"Polska","s":9360,"g":13,"d":5},{"r":79,"n":"Spacekret_PL_16","m":"SP","av":1,"cc":"PL","c":"Polska","s":9210,"g":3,"d":22},{"r":80,"n":"Orbiter_Kuba_9","m":"OK","av":4,"cc":"PL","c":"Polska","s":9040,"g":11,"d":-11}]},"tydzien":{"label":"Ten tydzień","note":"Tydzień 3–9 listopada 2026 · reset w poniedziałek o 00:00","pages":9,"rows":[{"r":1,"n":"Kosmiczny_Kuba","m":"KK","av":6,"cc":"BR","c":"Brazylia","s":248730,"g":22,"d":4},{"r":2,"n":"ŻelaznyKretWszechświata","m":"ZK","av":5,"cc":"CZ","c":"Czechy","s":237520,"g":40,"d":-3},{"r":3,"n":"Kretowisko_Max","m":"KM","av":1,"cc":"JP","c":"Japonia","s":226800,"g":38,"d":1},{"r":4,"n":"Saturnina","m":"SA","av":2,"cc":"LT","c":"Litwa","s":216570,"g":10,"d":1},{"r":5,"n":"Hela_Hyperdrive","m":"HH","av":4,"cc":"PL","c":"Polska","s":206790,"g":29,"d":"new"},{"r":6,"n":"Galaktyczna_Gosia","m":"GG","av":3,"cc":"PL","c":"Polska","s":197470,"g":5,"d":2},{"r":7,"n":"KretZMarsa","m":"KZ","av":2,"cc":"SE","c":"Szwecja","s":188560,"g":16,"d":-5},{"r":8,"n":"Wiertło_9000","m":"W9","av":6,"cc":"SE","c":"Szwecja","s":180030,"g":51,"d":0},{"r":9,"n":"Kosmonauta_Z_Pod_Łomży_1987","m":"KZ","av":4,"cc":"PL","c":"Polska","s":171920,"g":16,"d":-5},{"r":10,"n":"Pyłek_Gwiezdny","m":"PG","av":3,"cc":"PL","c":"Polska","s":164180,"g":35,"d":-5},{"r":11,"n":"Tomek_Tunel","m":"TT","av":5,"cc":"ES","c":"Hiszpania","s":156750,"g":34,"d":1},{"r":12,"n":"Szpadel_Sigma","m":"SS","av":3,"cc":"PL","c":"Polska","s":149680,"g":5,"d":0},{"r":13,"n":"Łopata_Galaktyczna","m":"LG","av":6,"cc":"PL","c":"Polska","s":142910,"g":25,"d":0},{"r":14,"n":"Ciemna_Materia","m":"CM","av":1,"cc":"CA","c":"Kanada","s":136440,"g":31,"d":-1},{"r":15,"n":"Lunar_Lena","m":"LL","av":2,"cc":"LT","c":"Litwa","s":130290,"g":47,"d":0},{"r":16,"n":"Zenek_Zenit","m":"ZZ","av":3,"cc":"DE","c":"Niemcy","s":124390,"g":35,"d":-1},{"r":17,"n":"NovaDigger","m":"ND","av":3,"cc":"PL","c":"Polska","s":118750,"g":41,"d":-4},{"r":18,"n":"MoleRat_X","m":"MX","av":2,"cc":"BR","c":"Brazylia","s":113400,"g":57,"d":0},{"r":19,"n":"NeonMole","m":"NM","av":4,"cc":"CA","c":"Kanada","s":108270,"g":6,"d":0},{"r":20,"n":"Apogeum_Ania","m":"AA","av":3,"cc":"SK","c":"Słowacja","s":103360,"g":7,"d":4},{"r":21,"n":"Nebula_Nina","m":"NN","av":5,"cc":"PL","c":"Polska","s":98690,"g":11,"d":-6},{"r":22,"n":"Kopacz_Wąsaty","m":"KW","av":1,"cc":"PL","c":"Polska","s":97200,"g":60,"d":1},{"r":23,"n":"Zośka_Kopiąca","m":"ZK","av":1,"cc":"PL","c":"Polska","s":95710,"g":42,"d":6},{"r":24,"n":"Szyb_Kopalni","m":"SK","av":2,"cc":"PL","c":"Polska","s":94260,"g":17,"d":6},{"r":25,"n":"Marek_Odwiert","m":"MO","av":3,"cc":"JP","c":"Japonia","s":92820,"g":31,"d":0},{"r":26,"n":"Spacekret_PL","m":"SP","av":5,"cc":"GB","c":"Wielka Brytania","s":91410,"g":4,"d":-2},{"r":27,"n":"Rakietowy_Rysiek","m":"RR","av":3,"cc":"SE","c":"Szwecja","s":90010,"g":27,"d":2},{"r":28,"n":"Meteoryt_Jaś","m":"MJ","av":4,"cc":"BR","c":"Brazylia","s":88640,"g":14,"d":6},{"r":29,"n":"Ziemniak_Astralny","m":"ZA","av":4,"cc":"JP","c":"Japonia","s":87300,"g":16,"d":1},{"r":30,"n":"Krater_Krzysiek","m":"KK","av":2,"cc":"SE","c":"Szwecja","s":85950,"g":37,"d":0},{"r":31,"n":"Gwiezdny_Ryjek","m":"GR","av":5,"cc":"PL","c":"Polska","s":84650,"g":28,"d":-5},{"r":32,"n":"Planeta_Piasku","m":"PP","av":3,"cc":"PL","c":"Polska","s":83370,"g":39,"d":-5},{"r":33,"n":"TunelowaWiedźma","m":"TW","av":1,"cc":"PL","c":"Polska","s":82080,"g":11,"d":-6},{"r":34,"n":"RyjówkaTurbo","m":"RT","av":3,"cc":"US","c":"USA","s":80840,"g":8,"d":5},{"r":35,"n":"Ryjek_Retro","m":"RR","av":6,"cc":"HU","c":"Węgry","s":79610,"g":40,"d":3},{"r":36,"n":"Ufolud_Staś","m":"US","av":3,"cc":"PL","c":"Polska","s":78370,"g":18,"d":6},{"r":37,"n":"Kometa_Kasia","m":"KK","av":3,"cc":"PL","c":"Polska","s":77190,"g":19,"d":"new"},{"r":38,"n":"Mgławica_Ula","m":"MU","av":4,"cc":"PL","c":"Polska","s":76010,"g":24,"d":0},{"r":39,"n":"Orbiter_Kuba","m":"OK","av":3,"cc":"PL","c":"Polska","s":74850,"g":14,"d":4},{"r":40,"n":"Księżycowy_Bartek","m":"KB","av":3,"cc":"SK","c":"Słowacja","s":73720,"g":23,"d":-5},{"r":41,"n":"Dżdżownica_Prime","m":"DP","av":2,"cc":"FR","c":"Francja","s":72610,"g":21,"d":-3},{"r":42,"n":"Ślimak_Orbitalny","m":"SO","av":1,"cc":"CZ","c":"Czechy","s":71500,"g":39,"d":0},{"r":43,"n":"Grzybiarz_Kosmosu","m":"GK","av":5,"cc":"PL","c":"Polska","s":70410,"g":56,"d":0},{"r":44,"n":"BitDigger","m":"BD","av":4,"cc":"UA","c":"Ukraina","s":69320,"g":55,"d":0},{"r":45,"n":"PixelMole","m":"PM","av":2,"cc":"FI","c":"Finlandia","s":68270,"g":25,"d":0},{"r":46,"n":"Wąchacz_Gwiazd","m":"WG","av":6,"cc":"US","c":"USA","s":67210,"g":33,"d":-13},{"r":47,"n":"AstroBorsuk","m":"AB","av":1,"cc":"FI","c":"Finlandia","s":66170,"g":32,"d":23},{"r":48,"n":"Grawitacja_Zero","m":"GZ","av":5,"cc":"PL","c":"Polska","s":65170,"g":13,"d":-7},{"r":49,"n":"Pluton_Piotrek","m":"PP","av":2,"cc":"SE","c":"Szwecja","s":64160,"g":21,"d":-25},{"r":50,"n":"Czarna_Dziura_Ola","m":"CD","av":6,"cc":"CZ","c":"Czechy","s":63160,"g":38,"d":-11},{"r":51,"n":"Krecik3000","m":"KR","av":4,"cc":"FR","c":"Francja","s":62190,"g":39,"d":22},{"r":52,"n":"Kosmiczny_Kuba_56","m":"KK","av":6,"cc":"DE","c":"Niemcy","s":61220,"g":53,"d":-8},{"r":53,"n":"ŻelaznyKretWszechświata_36","m":"Z3","av":5,"cc":"FI","c":"Finlandia","s":60270,"g":22,"d":-20},{"r":54,"n":"Kretowisko_Max_47","m":"KM","av":6,"cc":"FR","c":"Francja","s":59350,"g":55,"d":-19},{"r":55,"n":"Saturnina_46","m":"S4","av":6,"cc":"HU","c":"Węgry","s":58440,"g":27,"d":0},{"r":56,"n":"Hela_Hyperdrive_7","m":"HH","av":6,"cc":"JP","c":"Japonia","s":57550,"g":42,"d":-5},{"r":57,"n":"Galaktyczna_Gosia_93","m":"GG","av":3,"cc":"PL","c":"Polska","s":56660,"g":29,"d":0},{"r":58,"n":"KretZMarsa_85","m":"K8","av":4,"cc":"DE","c":"Niemcy","s":55780,"g":4,"d":"new"},{"r":59,"n":"Wiertło_9000_22","m":"W9","av":1,"cc":"ES","c":"Hiszpania","s":54920,"g":14,"d":-23},{"r":60,"n":"Kosmonauta_Z_Pod_Łomży_1987_49","m":"KZ","av":6,"cc":"PL","c":"Polska","s":54080,"g":34,"d":0},{"r":61,"n":"Pyłek_Gwiezdny_90","m":"PG","av":4,"cc":"BR","c":"Brazylia","s":53260,"g":46,"d":18},{"r":62,"n":"Tomek_Tunel_91","m":"TT","av":6,"cc":"US","c":"USA","s":52440,"g":24,"d":-24},{"r":63,"n":"Szpadel_Sigma_80","m":"SS","av":5,"cc":"PL","c":"Polska","s":51650,"g":27,"d":"new"},{"r":64,"n":"Łopata_Galaktyczna_54","m":"LG","av":4,"cc":"SE","c":"Szwecja","s":50840,"g":25,"d":-8},{"r":65,"n":"Ciemna_Materia_7","m":"CM","av":6,"cc":"US","c":"USA","s":50060,"g":25,"d":5},{"r":66,"n":"Lunar_Lena_53","m":"LL","av":1,"cc":"BR","c":"Brazylia","s":49290,"g":10,"d":18},{"r":67,"n":"Zenek_Zenit_58","m":"ZZ","av":3,"cc":"PL","c":"Polska","s":48540,"g":32,"d":3},{"r":68,"n":"NovaDigger_5","m":"N5","av":1,"cc":"ES","c":"Hiszpania","s":47780,"g":28,"d":0},{"r":69,"n":"MoleRat_X_73","m":"MX","av":4,"cc":"PL","c":"Polska","s":47030,"g":22,"d":-2},{"r":70,"n":"NeonMole_42","m":"N4","av":2,"cc":"SK","c":"Słowacja","s":46310,"g":57,"d":0},{"r":71,"n":"Apogeum_Ania_10","m":"AA","av":4,"cc":"PL","c":"Polska","s":45600,"g":11,"d":0},{"r":72,"n":"Nebula_Nina_84","m":"NN","av":3,"cc":"ES","c":"Hiszpania","s":44870,"g":44,"d":24},{"r":73,"n":"Kopacz_Wąsaty_41","m":"KW","av":2,"cc":"PL","c":"Polska","s":44170,"g":39,"d":-5},{"r":74,"n":"Zośka_Kopiąca_51","m":"ZK","av":3,"cc":"PL","c":"Polska","s":43480,"g":8,"d":25},{"r":75,"n":"Szyb_Kopalni_3","m":"SK","av":1,"cc":"FR","c":"Francja","s":42790,"g":37,"d":7},{"r":76,"n":"Marek_Odwiert_21","m":"MO","av":5,"cc":"CZ","c":"Czechy","s":42130,"g":6,"d":4},{"r":77,"n":"Spacekret_PL_30","m":"SP","av":2,"cc":"PL","c":"Polska","s":41480,"g":44,"d":14},{"r":78,"n":"Rakietowy_Rysiek_35","m":"RR","av":4,"cc":"FI","c":"Finlandia","s":40850,"g":19,"d":22},{"r":79,"n":"Meteoryt_Jaś_46","m":"MJ","av":3,"cc":"PL","c":"Polska","s":40230,"g":20,"d":0},{"r":80,"n":"Ziemniak_Astralny_96","m":"ZA","av":1,"cc":"FI","c":"Finlandia","s":39610,"g":26,"d":20},{"r":81,"n":"Krater_Krzysiek_41","m":"KK","av":6,"cc":"FI","c":"Finlandia","s":38980,"g":29,"d":-7},{"r":82,"n":"Gwiezdny_Ryjek_19","m":"GR","av":2,"cc":"PL","c":"Polska","s":38380,"g":24,"d":-22},{"r":83,"n":"Planeta_Piasku_76","m":"PP","av":4,"cc":"ES","c":"Hiszpania","s":37800,"g":57,"d":-4},{"r":84,"n":"TunelowaWiedźma_2","m":"T2","av":4,"cc":"GB","c":"Wielka Brytania","s":37220,"g":5,"d":25},{"r":85,"n":"RyjówkaTurbo_68","m":"R6","av":3,"cc":"FI","c":"Finlandia","s":36640,"g":12,"d":-6},{"r":86,"n":"Ryjek_Retro_7","m":"RR","av":5,"cc":"UA","c":"Ukraina","s":36070,"g":14,"d":0},{"r":87,"n":"Ufolud_Staś_32","m":"US","av":3,"cc":"JP","c":"Japonia","s":35500,"g":36,"d":-5},{"r":88,"n":"Kometa_Kasia_43","m":"KK","av":1,"cc":"FI","c":"Finlandia","s":34930,"g":48,"d":"new"},{"r":89,"n":"Mgławica_Ula_88","m":"MU","av":1,"cc":"PL","c":"Polska","s":34370,"g":5,"d":13},{"r":90,"n":"Orbiter_Kuba_55","m":"OK","av":4,"cc":"BR","c":"Brazylia","s":33830,"g":57,"d":4},{"r":91,"n":"Księżycowy_Bartek_47","m":"KB","av":3,"cc":"SK","c":"Słowacja","s":33290,"g":17,"d":-4},{"r":92,"n":"Dżdżownica_Prime_78","m":"DP","av":1,"cc":"SK","c":"Słowacja","s":32780,"g":24,"d":24},{"r":93,"n":"Ślimak_Orbitalny_45","m":"SO","av":3,"cc":"LT","c":"Litwa","s":32270,"g":21,"d":24},{"r":94,"n":"Grzybiarz_Kosmosu_38","m":"GK","av":2,"cc":"HU","c":"Węgry","s":31760,"g":39,"d":-16},{"r":95,"n":"BitDigger_24","m":"B2","av":4,"cc":"PL","c":"Polska","s":31270,"g":49,"d":-12},{"r":96,"n":"PixelMole_64","m":"P6","av":3,"cc":"FR","c":"Francja","s":30760,"g":37,"d":3},{"r":97,"n":"Wąchacz_Gwiazd_16","m":"WG","av":5,"cc":"ES","c":"Hiszpania","s":30270,"g":23,"d":-18},{"r":98,"n":"AstroBorsuk_58","m":"A5","av":4,"cc":"JP","c":"Japonia","s":29780,"g":23,"d":13},{"r":99,"n":"Grawitacja_Zero_99","m":"GZ","av":4,"cc":"ES","c":"Hiszpania","s":29320,"g":27,"d":-24},{"r":100,"n":"Pluton_Piotrek_92","m":"PP","av":6,"cc":"US","c":"USA","s":28860,"g":10,"d":-24},{"r":101,"n":"Czarna_Dziura_Ola_98","m":"CD","av":1,"cc":"PL","c":"Polska","s":28410,"g":34,"d":13},{"r":102,"n":"Krecik3000_53","m":"K5","av":4,"cc":"LT","c":"Litwa","s":27970,"g":33,"d":0},{"r":103,"n":"Kosmiczny_Kuba_28","m":"KK","av":3,"cc":"LT","c":"Litwa","s":27540,"g":17,"d":"new"},{"r":104,"n":"ŻelaznyKretWszechświata_48","m":"Z4","av":6,"cc":"PL","c":"Polska","s":27120,"g":5,"d":0},{"r":105,"n":"Kretowisko_Max_78","m":"KM","av":2,"cc":"BR","c":"Brazylia","s":26690,"g":47,"d":0},{"r":106,"n":"Saturnina_11","m":"S1","av":5,"cc":"US","c":"USA","s":26260,"g":36,"d":0},{"r":107,"n":"Hela_Hyperdrive_6","m":"HH","av":1,"cc":"SK","c":"Słowacja","s":25850,"g":25,"d":0},{"r":108,"n":"Galaktyczna_Gosia_7","m":"GG","av":5,"cc":"PL","c":"Polska","s":25420,"g":49,"d":-18},{"r":109,"n":"KretZMarsa_71","m":"K7","av":2,"cc":"BR","c":"Brazylia","s":25030,"g":50,"d":-19},{"r":110,"n":"Wiertło_9000_38","m":"W9","av":4,"cc":"PL","c":"Polska","s":24640,"g":21,"d":-18},{"r":111,"n":"Kosmonauta_Z_Pod_Łomży_1987_50","m":"KZ","av":3,"cc":"PL","c":"Polska","s":24250,"g":22,"d":22},{"r":112,"n":"Pyłek_Gwiezdny_41","m":"PG","av":2,"cc":"PL","c":"Polska","s":23870,"g":7,"d":-21},{"r":113,"n":"Tomek_Tunel_77","m":"TT","av":4,"cc":"FI","c":"Finlandia","s":23470,"g":60,"d":0},{"r":114,"n":"Szpadel_Sigma_69","m":"SS","av":4,"cc":"SE","c":"Szwecja","s":23100,"g":51,"d":-20},{"r":115,"n":"Łopata_Galaktyczna_85","m":"LG","av":2,"cc":"JP","c":"Japonia","s":22740,"g":32,"d":2},{"r":116,"n":"Ciemna_Materia_97","m":"CM","av":1,"cc":"PL","c":"Polska","s":22370,"g":11,"d":-9},{"r":117,"n":"Lunar_Lena_4","m":"LL","av":1,"cc":"SK","c":"Słowacja","s":21990,"g":23,"d":14},{"r":118,"n":"Zenek_Zenit_98","m":"ZZ","av":6,"cc":"US","c":"USA","s":21650,"g":21,"d":-11},{"r":119,"n":"NovaDigger_34","m":"N3","av":1,"cc":"SE","c":"Szwecja","s":21310,"g":6,"d":2},{"r":120,"n":"MoleRat_X_69","m":"MX","av":6,"cc":"ES","c":"Hiszpania","s":20960,"g":50,"d":25},{"r":121,"n":"NeonMole_40","m":"N4","av":6,"cc":"GB","c":"Wielka Brytania","s":20610,"g":37,"d":0},{"r":122,"n":"Apogeum_Ania_84","m":"AA","av":1,"cc":"PL","c":"Polska","s":20290,"g":53,"d":-16},{"r":123,"n":"Nebula_Nina_55","m":"NN","av":3,"cc":"PL","c":"Polska","s":19960,"g":41,"d":6},{"r":124,"n":"Kopacz_Wąsaty_17","m":"KW","av":5,"cc":"PL","c":"Polska","s":19630,"g":60,"d":10},{"r":125,"n":"Zośka_Kopiąca_33","m":"ZK","av":2,"cc":"SE","c":"Szwecja","s":19310,"g":23,"d":-14},{"r":126,"n":"Szyb_Kopalni_63","m":"SK","av":4,"cc":"PL","c":"Polska","s":18980,"g":48,"d":8},{"r":127,"n":"Marek_Odwiert_79","m":"MO","av":1,"cc":"PL","c":"Polska","s":18670,"g":43,"d":-8},{"r":128,"n":"Spacekret_PL_90","m":"SP","av":5,"cc":"PL","c":"Polska","s":18350,"g":24,"d":5},{"r":129,"n":"Rakietowy_Rysiek_70","m":"RR","av":6,"cc":"PL","c":"Polska","s":18050,"g":58,"d":-10},{"r":130,"n":"Meteoryt_Jaś_89","m":"MJ","av":3,"cc":"PL","c":"Polska","s":17750,"g":60,"d":-25},{"r":131,"n":"Ziemniak_Astralny_23","m":"ZA","av":4,"cc":"SE","c":"Szwecja","s":17480,"g":50,"d":-8},{"r":132,"n":"Krater_Krzysiek_84","m":"KK","av":1,"cc":"JP","c":"Japonia","s":17190,"g":36,"d":0},{"r":133,"n":"Gwiezdny_Ryjek_35","m":"GR","av":5,"cc":"PL","c":"Polska","s":16910,"g":59,"d":12},{"r":134,"n":"Planeta_Piasku_38","m":"PP","av":2,"cc":"PL","c":"Polska","s":16630,"g":30,"d":-21},{"r":135,"n":"TunelowaWiedźma_34","m":"T3","av":2,"cc":"BR","c":"Brazylia","s":16350,"g":37,"d":21},{"r":136,"n":"RyjówkaTurbo_84","m":"R8","av":6,"cc":"FR","c":"Francja","s":16070,"g":4,"d":0},{"r":137,"n":"Ryjek_Retro_51","m":"RR","av":5,"cc":"DE","c":"Niemcy","s":15790,"g":35,"d":0},{"r":138,"n":"Ufolud_Staś_67","m":"US","av":5,"cc":"PL","c":"Polska","s":15520,"g":7,"d":-6},{"r":139,"n":"Kometa_Kasia_22","m":"KK","av":1,"cc":"PL","c":"Polska","s":15250,"g":20,"d":-12},{"r":140,"n":"Mgławica_Ula_89","m":"MU","av":6,"cc":"PL","c":"Polska","s":15000,"g":49,"d":-24},{"r":141,"n":"Orbiter_Kuba_28","m":"OK","av":3,"cc":"CA","c":"Kanada","s":14750,"g":51,"d":-5},{"r":142,"n":"Księżycowy_Bartek_15","m":"KB","av":1,"cc":"CZ","c":"Czechy","s":14480,"g":37,"d":"new"},{"r":143,"n":"Dżdżownica_Prime_69","m":"DP","av":1,"cc":"PL","c":"Polska","s":14220,"g":19,"d":18},{"r":144,"n":"Ślimak_Orbitalny_84","m":"SO","av":2,"cc":"SE","c":"Szwecja","s":13970,"g":58,"d":-20},{"r":145,"n":"Grzybiarz_Kosmosu_43","m":"GK","av":5,"cc":"ES","c":"Hiszpania","s":13720,"g":60,"d":0},{"r":146,"n":"BitDigger_70","m":"B7","av":1,"cc":"US","c":"USA","s":13510,"g":4,"d":"new"},{"r":147,"n":"PixelMole_41","m":"P4","av":6,"cc":"PL","c":"Polska","s":13280,"g":4,"d":0},{"r":148,"n":"Wąchacz_Gwiazd_47","m":"WG","av":6,"cc":"PL","c":"Polska","s":13070,"g":43,"d":15},{"r":149,"n":"AstroBorsuk_93","m":"A9","av":1,"cc":"US","c":"USA","s":12850,"g":6,"d":-7},{"r":150,"n":"Grawitacja_Zero_92","m":"GZ","av":6,"cc":"ES","c":"Hiszpania","s":12630,"g":43,"d":-15},{"r":151,"n":"Pluton_Piotrek_89","m":"PP","av":3,"cc":"PL","c":"Polska","s":12430,"g":54,"d":0},{"r":152,"n":"Czarna_Dziura_Ola_46","m":"CD","av":6,"cc":"PL","c":"Polska","s":12240,"g":58,"d":16},{"r":153,"n":"Krecik3000_69","m":"K6","av":2,"cc":"ES","c":"Hiszpania","s":12020,"g":36,"d":-8},{"r":154,"n":"Kosmiczny_Kuba_4","m":"KK","av":1,"cc":"PL","c":"Polska","s":11820,"g":24,"d":-5},{"r":155,"n":"ŻelaznyKretWszechświata_3","m":"Z3","av":4,"cc":"SK","c":"Słowacja","s":11630,"g":36,"d":-2},{"r":156,"n":"Kretowisko_Max_50","m":"KM","av":6,"cc":"PL","c":"Polska","s":11440,"g":53,"d":0},{"r":157,"n":"Saturnina_35","m":"S3","av":4,"cc":"PL","c":"Polska","s":11230,"g":49,"d":25},{"r":158,"n":"Hela_Hyperdrive_94","m":"HH","av":6,"cc":"PL","c":"Polska","s":11050,"g":53,"d":"new"},{"r":159,"n":"Galaktyczna_Gosia_8","m":"GG","av":2,"cc":"UA","c":"Ukraina","s":10840,"g":31,"d":5},{"r":160,"n":"KretZMarsa_95","m":"K9","av":3,"cc":"PL","c":"Polska","s":10670,"g":50,"d":-18},{"r":161,"n":"Wiertło_9000_39","m":"W9","av":5,"cc":"UA","c":"Ukraina","s":10470,"g":47,"d":-23},{"r":162,"n":"Kosmonauta_Z_Pod_Łomży_1987_70","m":"KZ","av":1,"cc":"BR","c":"Brazylia","s":10280,"g":50,"d":-18},{"r":163,"n":"Pyłek_Gwiezdny_45","m":"PG","av":6,"cc":"BR","c":"Brazylia","s":10110,"g":47,"d":0},{"r":164,"n":"Tomek_Tunel_12","m":"TT","av":5,"cc":"JP","c":"Japonia","s":9950,"g":8,"d":0},{"r":165,"n":"Szpadel_Sigma_75","m":"SS","av":4,"cc":"ES","c":"Hiszpania","s":9770,"g":12,"d":9},{"r":166,"n":"Łopata_Galaktyczna_78","m":"LG","av":3,"cc":"PL","c":"Polska","s":9610,"g":56,"d":-16},{"r":167,"n":"Ciemna_Materia_16","m":"CM","av":1,"cc":"PL","c":"Polska","s":9430,"g":5,"d":"new"},{"r":168,"n":"Lunar_Lena_39","m":"LL","av":3,"cc":"PL","c":"Polska","s":9250,"g":17,"d":-15},{"r":169,"n":"Zenek_Zenit_58","m":"ZZ","av":1,"cc":"PL","c":"Polska","s":9100,"g":35,"d":11},{"r":170,"n":"NovaDigger_2","m":"N2","av":4,"cc":"JP","c":"Japonia","s":8930,"g":44,"d":24},{"r":171,"n":"MoleRat_X_8","m":"MX","av":5,"cc":"SE","c":"Szwecja","s":8770,"g":11,"d":13},{"r":172,"n":"NeonMole_29","m":"N2","av":3,"cc":"SK","c":"Słowacja","s":8630,"g":44,"d":-1},{"r":173,"n":"Apogeum_Ania_20","m":"AA","av":6,"cc":"JP","c":"Japonia","s":8480,"g":49,"d":"new"},{"r":174,"n":"Nebula_Nina_27","m":"NN","av":2,"cc":"HU","c":"Węgry","s":8350,"g":60,"d":22},{"r":175,"n":"Kopacz_Wąsaty_92","m":"KW","av":1,"cc":"PL","c":"Polska","s":8200,"g":9,"d":21},{"r":176,"n":"Zośka_Kopiąca_11","m":"ZK","av":4,"cc":"FR","c":"Francja","s":8050,"g":17,"d":-18},{"r":177,"n":"Szyb_Kopalni_17","m":"SK","av":5,"cc":"SE","c":"Szwecja","s":7920,"g":6,"d":0},{"r":178,"n":"Marek_Odwiert_57","m":"MO","av":6,"cc":"PL","c":"Polska","s":7760,"g":9,"d":-21},{"r":179,"n":"Spacekret_PL_13","m":"SP","av":5,"cc":"UA","c":"Ukraina","s":7610,"g":19,"d":22},{"r":180,"n":"Rakietowy_Rysiek_84","m":"RR","av":4,"cc":"UA","c":"Ukraina","s":7460,"g":22,"d":-17}]},"wszech":{"label":"Wszech czasów","note":"Od premiery gry, 14 lutego 2024","pages":25,"rows":[{"r":1,"n":"Galaktyczna_Gosia","m":"GG","av":3,"cc":"JP","c":"Japonia","s":4918260,"g":1734,"d":-1},{"r":2,"n":"Gwiezdny_Ryjek","m":"GR","av":1,"cc":"FI","c":"Finlandia","s":4696610,"g":2412,"d":-2},{"r":3,"n":"Apogeum_Ania","m":"AA","av":3,"cc":"UA","c":"Ukraina","s":4485200,"g":132,"d":"new"},{"r":4,"n":"KretZMarsa","m":"KZ","av":6,"cc":"PL","c":"Polska","s":4283180,"g":3671,"d":0},{"r":5,"n":"Hela_Hyperdrive","m":"HH","av":5,"cc":"FR","c":"Francja","s":4090230,"g":2568,"d":5},{"r":6,"n":"Łopata_Galaktyczna","m":"LG","av":4,"cc":"CZ","c":"Czechy","s":3905930,"g":2111,"d":"new"},{"r":7,"n":"Grzybiarz_Kosmosu","m":"GK","av":2,"cc":"SK","c":"Słowacja","s":3729960,"g":3224,"d":-6},{"r":8,"n":"MoleRat_X","m":"MX","av":2,"cc":"JP","c":"Japonia","s":3562100,"g":2719,"d":6},{"r":9,"n":"Kretowisko_Max","m":"KM","av":1,"cc":"CA","c":"Kanada","s":3401550,"g":2099,"d":"new"},{"r":10,"n":"Wąchacz_Gwiazd","m":"WG","av":4,"cc":"CZ","c":"Czechy","s":3248170,"g":2015,"d":3},{"r":11,"n":"Ślimak_Orbitalny","m":"SO","av":4,"cc":"ES","c":"Hiszpania","s":3101680,"g":1708,"d":"new"},{"r":12,"n":"Pyłek_Gwiezdny","m":"PG","av":2,"cc":"UA","c":"Ukraina","s":2961940,"g":806,"d":0},{"r":13,"n":"Marek_Odwiert","m":"MO","av":3,"cc":"UA","c":"Ukraina","s":2828280,"g":2667,"d":-6},{"r":14,"n":"Ufolud_Staś","m":"US","av":6,"cc":"HU","c":"Węgry","s":2700780,"g":3435,"d":5},{"r":15,"n":"Szpadel_Sigma","m":"SS","av":4,"cc":"PL","c":"Polska","s":2578980,"g":3602,"d":-2},{"r":16,"n":"Ciemna_Materia","m":"CM","av":2,"cc":"DE","c":"Niemcy","s":2462870,"g":3592,"d":-2},{"r":17,"n":"Kometa_Kasia","m":"KK","av":6,"cc":"CA","c":"Kanada","s":2351930,"g":412,"d":"new"},{"r":18,"n":"Kosmonauta_Z_Pod_Łomży_1987","m":"KZ","av":2,"cc":"PL","c":"Polska","s":2245690,"g":2469,"d":1},{"r":19,"n":"PixelMole","m":"PM","av":2,"cc":"PL","c":"Polska","s":2144420,"g":3874,"d":0},{"r":20,"n":"Kosmiczny_Kuba","m":"KK","av":2,"cc":"PL","c":"Polska","s":2047680,"g":3316,"d":"new"},{"r":21,"n":"Zenek_Zenit","m":"ZZ","av":3,"cc":"PL","c":"Polska","s":1955250,"g":2888,"d":0},{"r":22,"n":"Krecik3000","m":"KR","av":1,"cc":"ES","c":"Hiszpania","s":1925870,"g":3671,"d":-6},{"r":23,"n":"Planeta_Piasku","m":"PP","av":5,"cc":"ES","c":"Hiszpania","s":1896970,"g":3652,"d":3},{"r":24,"n":"Saturnina","m":"SA","av":3,"cc":"UA","c":"Ukraina","s":1868450,"g":520,"d":4},{"r":25,"n":"Rakietowy_Rysiek","m":"RR","av":2,"cc":"PL","c":"Polska","s":1840320,"g":2282,"d":0},{"r":26,"n":"Ryjek_Retro","m":"RR","av":4,"cc":"PL","c":"Polska","s":1812580,"g":830,"d":-2},{"r":27,"n":"Spacekret_PL","m":"SP","av":1,"cc":"FR","c":"Francja","s":1785110,"g":2004,"d":-1},{"r":28,"n":"ŻelaznyKretWszechświata","m":"ZK","av":3,"cc":"PL","c":"Polska","s":1758320,"g":730,"d":6},{"r":29,"n":"Czarna_Dziura_Ola","m":"CD","av":4,"cc":"CZ","c":"Czechy","s":1731820,"g":2636,"d":-4},{"r":30,"n":"RyjówkaTurbo","m":"RT","av":1,"cc":"SK","c":"Słowacja","s":1705530,"g":2465,"d":2},{"r":31,"n":"TunelowaWiedźma","m":"TW","av":1,"cc":"PL","c":"Polska","s":1679800,"g":1732,"d":1},{"r":32,"n":"Wiertło_9000","m":"W9","av":2,"cc":"SE","c":"Szwecja","s":1654500,"g":1690,"d":1},{"r":33,"n":"Kopacz_Wąsaty","m":"KW","av":4,"cc":"PL","c":"Polska","s":1629330,"g":2233,"d":0},{"r":34,"n":"NovaDigger","m":"ND","av":4,"cc":"PL","c":"Polska","s":1604570,"g":3583,"d":-2},{"r":35,"n":"Meteoryt_Jaś","m":"MJ","av":4,"cc":"CZ","c":"Czechy","s":1580130,"g":1274,"d":6},{"r":36,"n":"Grawitacja_Zero","m":"GZ","av":4,"cc":"US","c":"USA","s":1556300,"g":2857,"d":4},{"r":37,"n":"Mgławica_Ula","m":"MU","av":3,"cc":"SK","c":"Słowacja","s":1532620,"g":523,"d":2},{"r":38,"n":"Lunar_Lena","m":"LL","av":4,"cc":"PL","c":"Polska","s":1509510,"g":544,"d":0},{"r":39,"n":"Orbiter_Kuba","m":"OK","av":4,"cc":"ES","c":"Hiszpania","s":1486690,"g":3852,"d":0},{"r":40,"n":"Szyb_Kopalni","m":"SK","av":5,"cc":"PL","c":"Polska","s":1464320,"g":517,"d":2},{"r":41,"n":"Pluton_Piotrek","m":"PP","av":5,"cc":"PL","c":"Polska","s":1442090,"g":3374,"d":-19},{"r":42,"n":"AstroBorsuk","m":"AB","av":2,"cc":"SK","c":"Słowacja","s":1420230,"g":134,"d":16},{"r":43,"n":"Ziemniak_Astralny","m":"ZA","av":5,"cc":"CZ","c":"Czechy","s":1398660,"g":857,"d":10},{"r":44,"n":"NeonMole","m":"NM","av":2,"cc":"FI","c":"Finlandia","s":1377440,"g":1086,"d":-10},{"r":45,"n":"BitDigger","m":"BD","av":3,"cc":"CZ","c":"Czechy","s":1356530,"g":3507,"d":"new"},{"r":46,"n":"Tomek_Tunel","m":"TT","av":5,"cc":"PL","c":"Polska","s":1336020,"g":1373,"d":-9},{"r":47,"n":"Księżycowy_Bartek","m":"KB","av":1,"cc":"BR","c":"Brazylia","s":1315750,"g":1620,"d":-7},{"r":48,"n":"Dżdżownica_Prime","m":"DP","av":6,"cc":"UA","c":"Ukraina","s":1295790,"g":1112,"d":21},{"r":49,"n":"Krater_Krzysiek","m":"KK","av":1,"cc":"CA","c":"Kanada","s":1275970,"g":3506,"d":12},{"r":50,"n":"Zośka_Kopiąca","m":"ZK","av":6,"cc":"PL","c":"Polska","s":1256680,"g":870,"d":-1},{"r":51,"n":"Nebula_Nina","m":"NN","av":1,"cc":"PL","c":"Polska","s":1237680,"g":3495,"d":11},{"r":52,"n":"Galaktyczna_Gosia_67","m":"GG","av":1,"cc":"FI","c":"Finlandia","s":1218890,"g":1578,"d":8},{"r":53,"n":"Gwiezdny_Ryjek_3","m":"GR","av":4,"cc":"JP","c":"Japonia","s":1200300,"g":2373,"d":-9},{"r":54,"n":"Apogeum_Ania_12","m":"AA","av":2,"cc":"UA","c":"Ukraina","s":1182140,"g":1888,"d":-13},{"r":55,"n":"KretZMarsa_41","m":"K4","av":3,"cc":"PL","c":"Polska","s":1164040,"g":3058,"d":0},{"r":56,"n":"Hela_Hyperdrive_40","m":"HH","av":2,"cc":"CZ","c":"Czechy","s":1146400,"g":1295,"d":-10},{"r":57,"n":"Łopata_Galaktyczna_10","m":"LG","av":2,"cc":"HU","c":"Węgry","s":1128900,"g":2312,"d":6},{"r":58,"n":"Grzybiarz_Kosmosu_86","m":"GK","av":2,"cc":"PL","c":"Polska","s":1111710,"g":1806,"d":19},{"r":59,"n":"MoleRat_X_70","m":"MX","av":5,"cc":"PL","c":"Polska","s":1094810,"g":2894,"d":-1},{"r":60,"n":"Kretowisko_Max_80","m":"KM","av":3,"cc":"PL","c":"Polska","s":1078060,"g":768,"d":20},{"r":61,"n":"Wąchacz_Gwiazd_98","m":"WG","av":6,"cc":"LT","c":"Litwa","s":1061640,"g":823,"d":-23},{"r":62,"n":"Ślimak_Orbitalny_16","m":"SO","av":2,"cc":"JP","c":"Japonia","s":1045670,"g":400,"d":-25},{"r":63,"n":"Pyłek_Gwiezdny_87","m":"PG","av":2,"cc":"SK","c":"Słowacja","s":1029700,"g":2332,"d":20},{"r":64,"n":"Marek_Odwiert_4","m":"MO","av":1,"cc":"CA","c":"Kanada","s":1013880,"g":2547,"d":13},{"r":65,"n":"Ufolud_Staś_48","m":"US","av":2,"cc":"PL","c":"Polska","s":998390,"g":3514,"d":-7},{"r":66,"n":"Szpadel_Sigma_21","m":"SS","av":6,"cc":"ES","c":"Hiszpania","s":983060,"g":3099,"d":12},{"r":67,"n":"Ciemna_Materia_68","m":"CM","av":5,"cc":"SE","c":"Szwecja","s":968200,"g":3845,"d":0},{"r":68,"n":"Kometa_Kasia_28","m":"KK","av":1,"cc":"PL","c":"Polska","s":953600,"g":1438,"d":-5},{"r":69,"n":"Kosmonauta_Z_Pod_Łomży_1987_28","m":"KZ","av":1,"cc":"PL","c":"Polska","s":939240,"g":2359,"d":16},{"r":70,"n":"PixelMole_77","m":"P7","av":2,"cc":"LT","c":"Litwa","s":924790,"g":1188,"d":-3},{"r":71,"n":"Kosmiczny_Kuba_21","m":"KK","av":2,"cc":"FI","c":"Finlandia","s":910730,"g":1241,"d":0},{"r":72,"n":"Zenek_Zenit_17","m":"ZZ","av":6,"cc":"SE","c":"Szwecja","s":897010,"g":1623,"d":-18},{"r":73,"n":"Krecik3000_93","m":"K9","av":3,"cc":"PL","c":"Polska","s":883240,"g":244,"d":11},{"r":74,"n":"Planeta_Piasku_50","m":"PP","av":2,"cc":"LT","c":"Litwa","s":869800,"g":1031,"d":13},{"r":75,"n":"Saturnina_4","m":"S4","av":6,"cc":"GB","c":"Wielka Brytania","s":856700,"g":3859,"d":1},{"r":76,"n":"Rakietowy_Rysiek_24","m":"RR","av":3,"cc":"US","c":"USA","s":843570,"g":2099,"d":13},{"r":77,"n":"Ryjek_Retro_65","m":"RR","av":5,"cc":"GB","c":"Wielka Brytania","s":830510,"g":448,"d":0},{"r":78,"n":"Spacekret_PL_94","m":"SP","av":6,"cc":"BR","c":"Brazylia","s":817650,"g":1880,"d":2},{"r":79,"n":"ŻelaznyKretWszechświata_70","m":"Z7","av":3,"cc":"UA","c":"Ukraina","s":805290,"g":1509,"d":4},{"r":80,"n":"Czarna_Dziura_Ola_48","m":"CD","av":2,"cc":"LT","c":"Litwa","s":793050,"g":3272,"d":0},{"r":81,"n":"RyjówkaTurbo_85","m":"R8","av":5,"cc":"CZ","c":"Czechy","s":780760,"g":2546,"d":"new"},{"r":82,"n":"TunelowaWiedźma_30","m":"T3","av":2,"cc":"BR","c":"Brazylia","s":768930,"g":2925,"d":-18},{"r":83,"n":"Wiertło_9000_68","m":"W9","av":2,"cc":"JP","c":"Japonia","s":757060,"g":2201,"d":19},{"r":84,"n":"Kopacz_Wąsaty_4","m":"KW","av":5,"cc":"SE","c":"Szwecja","s":745620,"g":1732,"d":13},{"r":85,"n":"NovaDigger_81","m":"N8","av":6,"cc":"HU","c":"Węgry","s":734340,"g":3768,"d":1},{"r":86,"n":"Meteoryt_Jaś_59","m":"MJ","av":3,"cc":"US","c":"USA","s":723320,"g":3719,"d":0},{"r":87,"n":"Grawitacja_Zero_48","m":"GZ","av":3,"cc":"PL","c":"Polska","s":712430,"g":2825,"d":19},{"r":88,"n":"Mgławica_Ula_81","m":"MU","av":3,"cc":"PL","c":"Polska","s":701730,"g":3215,"d":23},{"r":89,"n":"Lunar_Lena_36","m":"LL","av":4,"cc":"JP","c":"Japonia","s":691130,"g":1569,"d":-15},{"r":90,"n":"Orbiter_Kuba_22","m":"OK","av":6,"cc":"PL","c":"Polska","s":680410,"g":3289,"d":-9},{"r":91,"n":"Szyb_Kopalni_18","m":"SK","av":1,"cc":"LT","c":"Litwa","s":669800,"g":3735,"d":"new"},{"r":92,"n":"Pluton_Piotrek_28","m":"PP","av":4,"cc":"US","c":"USA","s":659730,"g":603,"d":-4},{"r":93,"n":"AstroBorsuk_14","m":"A1","av":2,"cc":"UA","c":"Ukraina","s":649450,"g":829,"d":-15},{"r":94,"n":"Ziemniak_Astralny_78","m":"ZA","av":5,"cc":"FI","c":"Finlandia","s":639470,"g":362,"d":"new"},{"r":95,"n":"NeonMole_19","m":"N1","av":1,"cc":"BR","c":"Brazylia","s":629530,"g":2951,"d":-20},{"r":96,"n":"BitDigger_67","m":"B6","av":4,"cc":"FR","c":"Francja","s":619930,"g":777,"d":19},{"r":97,"n":"Tomek_Tunel_49","m":"TT","av":4,"cc":"JP","c":"Japonia","s":610250,"g":2152,"d":-24},{"r":98,"n":"Księżycowy_Bartek_76","m":"KB","av":4,"cc":"FI","c":"Finlandia","s":601020,"g":2925,"d":0},{"r":99,"n":"Dżdżownica_Prime_38","m":"DP","av":2,"cc":"BR","c":"Brazylia","s":591810,"g":2998,"d":-18},{"r":100,"n":"Krater_Krzysiek_71","m":"KK","av":4,"cc":"SE","c":"Szwecja","s":582740,"g":1486,"d":"new"},{"r":101,"n":"Zośka_Kopiąca_78","m":"ZK","av":3,"cc":"PL","c":"Polska","s":573810,"g":149,"d":0},{"r":102,"n":"Nebula_Nina_35","m":"NN","av":3,"cc":"PL","c":"Polska","s":565150,"g":3551,"d":9},{"r":103,"n":"Galaktyczna_Gosia_8","m":"GG","av":1,"cc":"LT","c":"Litwa","s":556570,"g":3800,"d":0},{"r":104,"n":"Gwiezdny_Ryjek_90","m":"GR","av":3,"cc":"SK","c":"Słowacja","s":548120,"g":1500,"d":3},{"r":105,"n":"Apogeum_Ania_16","m":"AA","av":3,"cc":"CZ","c":"Czechy","s":539730,"g":3305,"d":-1},{"r":106,"n":"KretZMarsa_87","m":"K8","av":6,"cc":"PL","c":"Polska","s":531330,"g":1294,"d":-6},{"r":107,"n":"Hela_Hyperdrive_77","m":"HH","av":2,"cc":"SK","c":"Słowacja","s":523140,"g":2261,"d":"new"},{"r":108,"n":"Łopata_Galaktyczna_98","m":"LG","av":4,"cc":"ES","c":"Hiszpania","s":514970,"g":3131,"d":0},{"r":109,"n":"Grzybiarz_Kosmosu_47","m":"GK","av":5,"cc":"DE","c":"Niemcy","s":507170,"g":2772,"d":22},{"r":110,"n":"MoleRat_X_2","m":"MX","av":2,"cc":"HU","c":"Węgry","s":499470,"g":319,"d":12},{"r":111,"n":"Kretowisko_Max_87","m":"KM","av":3,"cc":"US","c":"USA","s":491900,"g":2305,"d":24},{"r":112,"n":"Wąchacz_Gwiazd_37","m":"WG","av":2,"cc":"DE","c":"Niemcy","s":484390,"g":1611,"d":-14},{"r":113,"n":"Ślimak_Orbitalny_78","m":"SO","av":1,"cc":"PL","c":"Polska","s":477090,"g":1029,"d":-15},{"r":114,"n":"Pyłek_Gwiezdny_17","m":"PG","av":5,"cc":"PL","c":"Polska","s":469790,"g":3823,"d":4},{"r":115,"n":"Marek_Odwiert_83","m":"MO","av":6,"cc":"PL","c":"Polska","s":462640,"g":2952,"d":3},{"r":116,"n":"Ufolud_Staś_92","m":"US","av":4,"cc":"PL","c":"Polska","s":455570,"g":1392,"d":-19},{"r":117,"n":"Szpadel_Sigma_52","m":"SS","av":1,"cc":"GB","c":"Wielka Brytania","s":448460,"g":3828,"d":"new"},{"r":118,"n":"Ciemna_Materia_2","m":"CM","av":3,"cc":"JP","c":"Japonia","s":441640,"g":834,"d":-15},{"r":119,"n":"Kometa_Kasia_17","m":"KK","av":1,"cc":"SE","c":"Szwecja","s":434680,"g":530,"d":13},{"r":120,"n":"Kosmonauta_Z_Pod_Łomży_1987_52","m":"KZ","av":4,"cc":"PL","c":"Polska","s":428130,"g":1860,"d":-6},{"r":121,"n":"PixelMole_61","m":"P6","av":2,"cc":"UA","c":"Ukraina","s":421500,"g":1961,"d":0},{"r":122,"n":"Kosmiczny_Kuba_41","m":"KK","av":5,"cc":"PL","c":"Polska","s":415030,"g":776,"d":"new"},{"r":123,"n":"Zenek_Zenit_26","m":"ZZ","av":1,"cc":"FI","c":"Finlandia","s":408650,"g":962,"d":-3},{"r":124,"n":"Krecik3000_88","m":"K8","av":2,"cc":"PL","c":"Polska","s":402270,"g":3495,"d":-13},{"r":125,"n":"Planeta_Piasku_26","m":"PP","av":5,"cc":"PL","c":"Polska","s":395920,"g":2017,"d":0},{"r":126,"n":"Saturnina_65","m":"S6","av":6,"cc":"CZ","c":"Czechy","s":389900,"g":3195,"d":"new"},{"r":127,"n":"Rakietowy_Rysiek_19","m":"RR","av":2,"cc":"GB","c":"Wielka Brytania","s":383850,"g":3639,"d":-24},{"r":128,"n":"Ryjek_Retro_99","m":"RR","av":3,"cc":"US","c":"USA","s":377930,"g":1402,"d":0},{"r":129,"n":"Spacekret_PL_41","m":"SP","av":2,"cc":"FR","c":"Francja","s":372090,"g":276,"d":24},{"r":130,"n":"ŻelaznyKretWszechświata_16","m":"Z1","av":2,"cc":"UA","c":"Ukraina","s":366490,"g":3264,"d":1},{"r":131,"n":"Czarna_Dziura_Ola_77","m":"CD","av":3,"cc":"PL","c":"Polska","s":360690,"g":825,"d":0},{"r":132,"n":"RyjówkaTurbo_70","m":"R7","av":5,"cc":"PL","c":"Polska","s":355000,"g":353,"d":0},{"r":133,"n":"TunelowaWiedźma_86","m":"T8","av":6,"cc":"DE","c":"Niemcy","s":349520,"g":2952,"d":-19},{"r":134,"n":"Wiertło_9000_79","m":"W9","av":4,"cc":"ES","c":"Hiszpania","s":344060,"g":3370,"d":0},{"r":135,"n":"Kopacz_Wąsaty_82","m":"KW","av":3,"cc":"SK","c":"Słowacja","s":338770,"g":2681,"d":15},{"r":136,"n":"NovaDigger_60","m":"N6","av":5,"cc":"SK","c":"Słowacja","s":333380,"g":2413,"d":-21},{"r":137,"n":"Meteoryt_Jaś_37","m":"MJ","av":1,"cc":"PL","c":"Polska","s":328170,"g":1885,"d":16},{"r":138,"n":"Grawitacja_Zero_68","m":"GZ","av":3,"cc":"JP","c":"Japonia","s":323130,"g":1529,"d":"new"},{"r":139,"n":"Mgławica_Ula_85","m":"MU","av":5,"cc":"ES","c":"Hiszpania","s":318010,"g":3313,"d":-9},{"r":140,"n":"Lunar_Lena_59","m":"LL","av":4,"cc":"PL","c":"Polska","s":312900,"g":1646,"d":-16},{"r":141,"n":"Orbiter_Kuba_85","m":"OK","av":2,"cc":"ES","c":"Hiszpania","s":308050,"g":3795,"d":0},{"r":142,"n":"Szyb_Kopalni_67","m":"SK","av":3,"cc":"CZ","c":"Czechy","s":303270,"g":2912,"d":23},{"r":143,"n":"Pluton_Piotrek_10","m":"PP","av":6,"cc":"PL","c":"Polska","s":298340,"g":1773,"d":-1},{"r":144,"n":"AstroBorsuk_75","m":"A7","av":5,"cc":"PL","c":"Polska","s":293690,"g":144,"d":20},{"r":145,"n":"Ziemniak_Astralny_18","m":"ZA","av":1,"cc":"GB","c":"Wielka Brytania","s":289100,"g":1293,"d":-5},{"r":146,"n":"NeonMole_45","m":"N4","av":6,"cc":"PL","c":"Polska","s":284480,"g":1650,"d":17},{"r":147,"n":"BitDigger_93","m":"B9","av":5,"cc":"PL","c":"Polska","s":279880,"g":3063,"d":17},{"r":148,"n":"Tomek_Tunel_71","m":"TT","av":6,"cc":"HU","c":"Węgry","s":275500,"g":3547,"d":9},{"r":149,"n":"Księżycowy_Bartek_70","m":"KB","av":2,"cc":"DE","c":"Niemcy","s":271260,"g":915,"d":19},{"r":150,"n":"Dżdżownica_Prime_44","m":"DP","av":3,"cc":"PL","c":"Polska","s":266880,"g":916,"d":3},{"r":151,"n":"Krater_Krzysiek_94","m":"KK","av":5,"cc":"PL","c":"Polska","s":262830,"g":1056,"d":-21},{"r":152,"n":"Zośka_Kopiąca_63","m":"ZK","av":3,"cc":"LT","c":"Litwa","s":258810,"g":3747,"d":11},{"r":153,"n":"Nebula_Nina_44","m":"NN","av":5,"cc":"FI","c":"Finlandia","s":254620,"g":2046,"d":-7},{"r":154,"n":"Galaktyczna_Gosia_2","m":"GG","av":5,"cc":"PL","c":"Polska","s":250410,"g":2070,"d":2},{"r":155,"n":"Gwiezdny_Ryjek_61","m":"GR","av":5,"cc":"JP","c":"Japonia","s":246360,"g":1521,"d":13},{"r":156,"n":"Apogeum_Ania_5","m":"AA","av":5,"cc":"BR","c":"Brazylia","s":242360,"g":2538,"d":2},{"r":157,"n":"KretZMarsa_17","m":"K1","av":5,"cc":"PL","c":"Polska","s":238410,"g":425,"d":-20},{"r":158,"n":"Hela_Hyperdrive_76","m":"HH","av":3,"cc":"PL","c":"Polska","s":234600,"g":2213,"d":12},{"r":159,"n":"Łopata_Galaktyczna_46","m":"LG","av":3,"cc":"PL","c":"Polska","s":230960,"g":2300,"d":0},{"r":160,"n":"Grzybiarz_Kosmosu_41","m":"GK","av":3,"cc":"FI","c":"Finlandia","s":227160,"g":1044,"d":"new"},{"r":161,"n":"MoleRat_X_39","m":"MX","av":3,"cc":"SE","c":"Szwecja","s":223490,"g":1427,"d":-25},{"r":162,"n":"Kretowisko_Max_91","m":"KM","av":3,"cc":"BR","c":"Brazylia","s":220020,"g":2498,"d":0},{"r":163,"n":"Wąchacz_Gwiazd_91","m":"WG","av":3,"cc":"PL","c":"Polska","s":216580,"g":2360,"d":23},{"r":164,"n":"Ślimak_Orbitalny_46","m":"SO","av":6,"cc":"BR","c":"Brazylia","s":212940,"g":1730,"d":-20},{"r":165,"n":"Pyłek_Gwiezdny_85","m":"PG","av":1,"cc":"PL","c":"Polska","s":209390,"g":1374,"d":0},{"r":166,"n":"Marek_Odwiert_25","m":"MO","av":2,"cc":"BR","c":"Brazylia","s":206110,"g":3493,"d":-19},{"r":167,"n":"Ufolud_Staś_35","m":"US","av":5,"cc":"PL","c":"Polska","s":202710,"g":923,"d":1},{"r":168,"n":"Szpadel_Sigma_11","m":"SS","av":1,"cc":"PL","c":"Polska","s":199470,"g":2804,"d":20},{"r":169,"n":"Ciemna_Materia_58","m":"CM","av":5,"cc":"PL","c":"Polska","s":196390,"g":3323,"d":-17},{"r":170,"n":"Kometa_Kasia_60","m":"KK","av":5,"cc":"PL","c":"Polska","s":193090,"g":2194,"d":-12},{"r":171,"n":"Kosmonauta_Z_Pod_Łomży_1987_13","m":"KZ","av":6,"cc":"PL","c":"Polska","s":190020,"g":3818,"d":-19},{"r":172,"n":"PixelMole_38","m":"P3","av":6,"cc":"CA","c":"Kanada","s":186810,"g":2978,"d":3},{"r":173,"n":"Kosmiczny_Kuba_29","m":"KK","av":6,"cc":"GB","c":"Wielka Brytania","s":183930,"g":2786,"d":17},{"r":174,"n":"Zenek_Zenit_88","m":"ZZ","av":2,"cc":"PL","c":"Polska","s":181100,"g":181,"d":0},{"r":175,"n":"Krecik3000_90","m":"K9","av":4,"cc":"PL","c":"Polska","s":178110,"g":1655,"d":0},{"r":176,"n":"Planeta_Piasku_86","m":"PP","av":2,"cc":"CZ","c":"Czechy","s":175170,"g":1317,"d":-10},{"r":177,"n":"Saturnina_65","m":"S6","av":2,"cc":"PL","c":"Polska","s":172200,"g":1182,"d":-1},{"r":178,"n":"Rakietowy_Rysiek_92","m":"RR","av":1,"cc":"CA","c":"Kanada","s":169600,"g":2967,"d":-12},{"r":179,"n":"Ryjek_Retro_5","m":"RR","av":6,"cc":"ES","c":"Hiszpania","s":166930,"g":1544,"d":-16},{"r":180,"n":"Spacekret_PL_4","m":"SP","av":4,"cc":"FI","c":"Finlandia","s":164110,"g":3005,"d":-14},{"r":181,"n":"ŻelaznyKretWszechświata_85","m":"Z8","av":1,"cc":"PL","c":"Polska","s":161620,"g":1540,"d":0},{"r":182,"n":"Czarna_Dziura_Ola_59","m":"CD","av":3,"cc":"SE","c":"Szwecja","s":159130,"g":3382,"d":23},{"r":183,"n":"RyjówkaTurbo_60","m":"R6","av":5,"cc":"PL","c":"Polska","s":156500,"g":1471,"d":21},{"r":184,"n":"TunelowaWiedźma_23","m":"T2","av":1,"cc":"PL","c":"Polska","s":154100,"g":1078,"d":-7},{"r":185,"n":"Wiertło_9000_44","m":"W9","av":5,"cc":"SK","c":"Słowacja","s":151750,"g":214,"d":-15},{"r":186,"n":"Kopacz_Wąsaty_67","m":"KW","av":2,"cc":"ES","c":"Hiszpania","s":149300,"g":635,"d":"new"},{"r":187,"n":"NovaDigger_27","m":"N2","av":6,"cc":"PL","c":"Polska","s":147000,"g":3012,"d":-25},{"r":188,"n":"Meteoryt_Jaś_70","m":"MJ","av":5,"cc":"FI","c":"Finlandia","s":144410,"g":3073,"d":-4},{"r":189,"n":"Grawitacja_Zero_75","m":"GZ","av":1,"cc":"FI","c":"Finlandia","s":142110,"g":2842,"d":0},{"r":190,"n":"Mgławica_Ula_78","m":"MU","av":3,"cc":"PL","c":"Polska","s":139870,"g":1838,"d":-9},{"r":191,"n":"Lunar_Lena_99","m":"LL","av":5,"cc":"HU","c":"Węgry","s":137420,"g":1902,"d":21},{"r":192,"n":"Orbiter_Kuba_52","m":"OK","av":4,"cc":"PL","c":"Polska","s":135010,"g":1312,"d":13},{"r":193,"n":"Szyb_Kopalni_62","m":"SK","av":2,"cc":"PL","c":"Polska","s":132770,"g":1483,"d":-9},{"r":194,"n":"Pluton_Piotrek_57","m":"PP","av":3,"cc":"DE","c":"Niemcy","s":130550,"g":2001,"d":-21},{"r":195,"n":"AstroBorsuk_14","m":"A1","av":4,"cc":"US","c":"USA","s":128330,"g":2706,"d":-19},{"r":196,"n":"Ziemniak_Astralny_79","m":"ZA","av":4,"cc":"PL","c":"Polska","s":126160,"g":2861,"d":-21},{"r":197,"n":"NeonMole_23","m":"N2","av":3,"cc":"PL","c":"Polska","s":124110,"g":1763,"d":-15},{"r":198,"n":"BitDigger_98","m":"B9","av":4,"cc":"BR","c":"Brazylia","s":121900,"g":2844,"d":6},{"r":199,"n":"Tomek_Tunel_74","m":"TT","av":1,"cc":"BR","c":"Brazylia","s":119680,"g":2029,"d":11},{"r":200,"n":"Księżycowy_Bartek_43","m":"KB","av":1,"cc":"PL","c":"Polska","s":117620,"g":1425,"d":21},{"r":201,"n":"Dżdżownica_Prime_98","m":"DP","av":5,"cc":"PL","c":"Polska","s":115680,"g":3499,"d":0},{"r":202,"n":"Krater_Krzysiek_19","m":"KK","av":3,"cc":"SE","c":"Szwecja","s":113920,"g":1811,"d":14},{"r":203,"n":"Zośka_Kopiąca_97","m":"ZK","av":6,"cc":"SK","c":"Słowacja","s":111880,"g":896,"d":"new"},{"r":204,"n":"Nebula_Nina_34","m":"NN","av":2,"cc":"ES","c":"Hiszpania","s":109960,"g":1527,"d":15},{"r":205,"n":"Galaktyczna_Gosia_81","m":"GG","av":2,"cc":"LT","c":"Litwa","s":107930,"g":1511,"d":-16},{"r":206,"n":"Gwiezdny_Ryjek_58","m":"GR","av":4,"cc":"PL","c":"Polska","s":105910,"g":591,"d":19},{"r":207,"n":"Apogeum_Ania_54","m":"AA","av":4,"cc":"GB","c":"Wielka Brytania","s":104170,"g":1289,"d":13},{"r":208,"n":"KretZMarsa_10","m":"K1","av":6,"cc":"SE","c":"Szwecja","s":102500,"g":1399,"d":0},{"r":209,"n":"Hela_Hyperdrive_95","m":"HH","av":6,"cc":"PL","c":"Polska","s":100890,"g":2158,"d":-16},{"r":210,"n":"Łopata_Galaktyczna_19","m":"LG","av":5,"cc":"PL","c":"Polska","s":99260,"g":193,"d":14},{"r":211,"n":"Grzybiarz_Kosmosu_9","m":"GK","av":5,"cc":"PL","c":"Polska","s":97670,"g":1210,"d":-23},{"r":212,"n":"MoleRat_X_59","m":"MX","av":2,"cc":"LT","c":"Litwa","s":96110,"g":3691,"d":-6},{"r":213,"n":"Kretowisko_Max_13","m":"KM","av":4,"cc":"GB","c":"Wielka Brytania","s":94360,"g":511,"d":19},{"r":214,"n":"Wąchacz_Gwiazd_65","m":"WG","av":4,"cc":"PL","c":"Polska","s":92760,"g":1755,"d":0},{"r":215,"n":"Ślimak_Orbitalny_55","m":"SO","av":4,"cc":"FR","c":"Francja","s":91190,"g":2881,"d":16},{"r":216,"n":"Pyłek_Gwiezdny_40","m":"PG","av":3,"cc":"BR","c":"Brazylia","s":89750,"g":1769,"d":-12},{"r":217,"n":"Marek_Odwiert_29","m":"MO","av":3,"cc":"CA","c":"Kanada","s":88350,"g":3709,"d":-15},{"r":218,"n":"Ufolud_Staś_94","m":"US","av":4,"cc":"PL","c":"Polska","s":86940,"g":1500,"d":0},{"r":219,"n":"Szpadel_Sigma_42","m":"SS","av":6,"cc":"PL","c":"Polska","s":85500,"g":3579,"d":0},{"r":220,"n":"Ciemna_Materia_6","m":"CM","av":5,"cc":"PL","c":"Polska","s":83900,"g":1446,"d":-3},{"r":221,"n":"Kometa_Kasia_44","m":"KK","av":4,"cc":"SK","c":"Słowacja","s":82580,"g":1299,"d":-7},{"r":222,"n":"Kosmonauta_Z_Pod_Łomży_1987_30","m":"KZ","av":3,"cc":"BR","c":"Brazylia","s":81260,"g":227,"d":17},{"r":223,"n":"PixelMole_15","m":"P1","av":4,"cc":"LT","c":"Litwa","s":79780,"g":2714,"d":0},{"r":224,"n":"Kosmiczny_Kuba_84","m":"KK","av":2,"cc":"ES","c":"Hiszpania","s":78550,"g":280,"d":0},{"r":225,"n":"Zenek_Zenit_20","m":"ZZ","av":5,"cc":"PL","c":"Polska","s":77080,"g":1445,"d":18},{"r":226,"n":"Krecik3000_53","m":"K5","av":5,"cc":"HU","c":"Węgry","s":75600,"g":3561,"d":-21},{"r":227,"n":"Planeta_Piasku_53","m":"PP","av":1,"cc":"LT","c":"Litwa","s":74080,"g":2785,"d":0},{"r":228,"n":"Saturnina_18","m":"S1","av":3,"cc":"PL","c":"Polska","s":72800,"g":581,"d":25},{"r":229,"n":"Rakietowy_Rysiek_73","m":"RR","av":4,"cc":"PL","c":"Polska","s":71520,"g":3435,"d":"new"},{"r":230,"n":"Ryjek_Retro_83","m":"RR","av":4,"cc":"BR","c":"Brazylia","s":70120,"g":1257,"d":20},{"r":231,"n":"Spacekret_PL_17","m":"SP","av":1,"cc":"PL","c":"Polska","s":68780,"g":3728,"d":14},{"r":232,"n":"ŻelaznyKretWszechświata_8","m":"Z8","av":1,"cc":"SE","c":"Szwecja","s":67640,"g":1482,"d":-24},{"r":233,"n":"Czarna_Dziura_Ola_14","m":"CD","av":1,"cc":"PL","c":"Polska","s":66520,"g":3732,"d":0},{"r":234,"n":"RyjówkaTurbo_90","m":"R9","av":1,"cc":"PL","c":"Polska","s":65160,"g":2117,"d":9},{"r":235,"n":"TunelowaWiedźma_99","m":"T9","av":3,"cc":"CA","c":"Kanada","s":64010,"g":1226,"d":1},{"r":236,"n":"Wiertło_9000_17","m":"W9","av":5,"cc":"PL","c":"Polska","s":62990,"g":3192,"d":1},{"r":237,"n":"Kopacz_Wąsaty_89","m":"KW","av":3,"cc":"CZ","c":"Czechy","s":61990,"g":290,"d":0},{"r":238,"n":"NovaDigger_43","m":"N4","av":5,"cc":"BR","c":"Brazylia","s":61050,"g":299,"d":"new"},{"r":239,"n":"Meteoryt_Jaś_11","m":"MJ","av":3,"cc":"FI","c":"Finlandia","s":59940,"g":1043,"d":"new"},{"r":240,"n":"Grawitacja_Zero_93","m":"GZ","av":5,"cc":"CA","c":"Kanada","s":59000,"g":605,"d":19},{"r":241,"n":"Mgławica_Ula_53","m":"MU","av":6,"cc":"DE","c":"Niemcy","s":58000,"g":1971,"d":-2},{"r":242,"n":"Lunar_Lena_5","m":"LL","av":4,"cc":"PL","c":"Polska","s":56940,"g":3810,"d":0},{"r":243,"n":"Orbiter_Kuba_48","m":"OK","av":4,"cc":"PL","c":"Polska","s":56050,"g":3766,"d":4},{"r":244,"n":"Szyb_Kopalni_7","m":"SK","av":1,"cc":"SE","c":"Szwecja","s":54810,"g":2221,"d":2},{"r":245,"n":"Pluton_Piotrek_89","m":"PP","av":4,"cc":"JP","c":"Japonia","s":53660,"g":797,"d":1},{"r":246,"n":"AstroBorsuk_91","m":"A9","av":4,"cc":"PL","c":"Polska","s":52460,"g":718,"d":-6},{"r":247,"n":"Ziemniak_Astralny_25","m":"ZA","av":5,"cc":"PL","c":"Polska","s":51620,"g":475,"d":8},{"r":248,"n":"NeonMole_6","m":"N6","av":3,"cc":"SE","c":"Szwecja","s":50470,"g":982,"d":0},{"r":249,"n":"BitDigger_49","m":"B4","av":3,"cc":"PL","c":"Polska","s":49640,"g":2368,"d":22},{"r":250,"n":"Tomek_Tunel_39","m":"TT","av":3,"cc":"PL","c":"Polska","s":48520,"g":1476,"d":"new"},{"r":251,"n":"Księżycowy_Bartek_51","m":"KB","av":1,"cc":"FR","c":"Francja","s":47550,"g":909,"d":-22},{"r":252,"n":"Dżdżownica_Prime_46","m":"DP","av":4,"cc":"PL","c":"Polska","s":46700,"g":2509,"d":0},{"r":253,"n":"Krater_Krzysiek_83","m":"KK","av":1,"cc":"PL","c":"Polska","s":45710,"g":159,"d":-21},{"r":254,"n":"Zośka_Kopiąca_48","m":"ZK","av":2,"cc":"FR","c":"Francja","s":44960,"g":2523,"d":0},{"r":255,"n":"Nebula_Nina_75","m":"NN","av":2,"cc":"BR","c":"Brazylia","s":44190,"g":2947,"d":0},{"r":256,"n":"Galaktyczna_Gosia_2","m":"GG","av":2,"cc":"JP","c":"Japonia","s":43210,"g":666,"d":11},{"r":257,"n":"Gwiezdny_Ryjek_76","m":"GR","av":2,"cc":"UA","c":"Ukraina","s":42430,"g":148,"d":-12},{"r":258,"n":"Apogeum_Ania_9","m":"AA","av":4,"cc":"GB","c":"Wielka Brytania","s":41610,"g":1521,"d":-19},{"r":259,"n":"KretZMarsa_85","m":"K8","av":3,"cc":"PL","c":"Polska","s":40910,"g":3450,"d":-25},{"r":260,"n":"Hela_Hyperdrive_17","m":"HH","av":6,"cc":"UA","c":"Ukraina","s":39960,"g":711,"d":-5},{"r":261,"n":"Łopata_Galaktyczna_47","m":"LG","av":4,"cc":"LT","c":"Litwa","s":39050,"g":1244,"d":-3},{"r":262,"n":"Grzybiarz_Kosmosu_70","m":"GK","av":5,"cc":"SE","c":"Szwecja","s":38230,"g":944,"d":-24},{"r":263,"n":"MoleRat_X_85","m":"MX","av":4,"cc":"UA","c":"Ukraina","s":37460,"g":3288,"d":-7},{"r":264,"n":"Kretowisko_Max_88","m":"KM","av":3,"cc":"FR","c":"Francja","s":36690,"g":404,"d":0},{"r":265,"n":"Wąchacz_Gwiazd_99","m":"WG","av":2,"cc":"LT","c":"Litwa","s":35810,"g":407,"d":11},{"r":266,"n":"Ślimak_Orbitalny_81","m":"SO","av":3,"cc":"PL","c":"Polska","s":35140,"g":3359,"d":"new"},{"r":267,"n":"Pyłek_Gwiezdny_77","m":"PG","av":1,"cc":"PL","c":"Polska","s":34350,"g":1616,"d":21},{"r":268,"n":"Marek_Odwiert_62","m":"MO","av":6,"cc":"PL","c":"Polska","s":33550,"g":3181,"d":-1},{"r":269,"n":"Ufolud_Staś_39","m":"US","av":5,"cc":"PL","c":"Polska","s":32840,"g":3862,"d":17},{"r":270,"n":"Szpadel_Sigma_66","m":"SS","av":3,"cc":"HU","c":"Węgry","s":31950,"g":543,"d":17},{"r":271,"n":"Ciemna_Materia_83","m":"CM","av":3,"cc":"HU","c":"Węgry","s":31380,"g":1952,"d":-14},{"r":272,"n":"Kometa_Kasia_58","m":"KK","av":3,"cc":"UA","c":"Ukraina","s":30710,"g":2800,"d":-24},{"r":273,"n":"Kosmonauta_Z_Pod_Łomży_1987_85","m":"KZ","av":5,"cc":"PL","c":"Polska","s":30060,"g":1622,"d":0},{"r":274,"n":"PixelMole_51","m":"P5","av":4,"cc":"FR","c":"Francja","s":29460,"g":3344,"d":9},{"r":275,"n":"Kosmiczny_Kuba_93","m":"KK","av":5,"cc":"PL","c":"Polska","s":28810,"g":594,"d":17},{"r":276,"n":"Zenek_Zenit_36","m":"ZZ","av":5,"cc":"FR","c":"Francja","s":28270,"g":465,"d":0},{"r":277,"n":"Krecik3000_50","m":"K5","av":5,"cc":"PL","c":"Polska","s":27800,"g":2385,"d":-9},{"r":278,"n":"Planeta_Piasku_85","m":"PP","av":4,"cc":"US","c":"USA","s":27010,"g":1873,"d":8},{"r":279,"n":"Saturnina_14","m":"S1","av":3,"cc":"FI","c":"Finlandia","s":26450,"g":3366,"d":-16},{"r":280,"n":"Rakietowy_Rysiek_51","m":"RR","av":4,"cc":"PL","c":"Polska","s":26040,"g":2300,"d":-15},{"r":281,"n":"Ryjek_Retro_32","m":"RR","av":6,"cc":"PL","c":"Polska","s":25440,"g":3441,"d":"new"},{"r":282,"n":"Spacekret_PL_37","m":"SP","av":2,"cc":"UA","c":"Ukraina","s":24700,"g":940,"d":7},{"r":283,"n":"ŻelaznyKretWszechświata_10","m":"Z1","av":1,"cc":"PL","c":"Polska","s":24090,"g":908,"d":-7},{"r":284,"n":"Czarna_Dziura_Ola_44","m":"CD","av":1,"cc":"GB","c":"Wielka Brytania","s":23620,"g":3588,"d":20},{"r":285,"n":"RyjówkaTurbo_46","m":"R4","av":3,"cc":"ES","c":"Hiszpania","s":22950,"g":2064,"d":-12},{"r":286,"n":"TunelowaWiedźma_98","m":"T9","av":2,"cc":"PL","c":"Polska","s":22260,"g":3742,"d":5},{"r":287,"n":"Wiertło_9000_4","m":"W9","av":6,"cc":"FI","c":"Finlandia","s":21540,"g":2847,"d":-25},{"r":288,"n":"Kopacz_Wąsaty_11","m":"KW","av":2,"cc":"UA","c":"Ukraina","s":21130,"g":3538,"d":-3},{"r":289,"n":"NovaDigger_35","m":"N3","av":3,"cc":"US","c":"USA","s":20680,"g":3800,"d":-16},{"r":290,"n":"Meteoryt_Jaś_79","m":"MJ","av":3,"cc":"FR","c":"Francja","s":20270,"g":2811,"d":-20},{"r":291,"n":"Grawitacja_Zero_97","m":"GZ","av":2,"cc":"JP","c":"Japonia","s":19700,"g":424,"d":-17},{"r":292,"n":"Mgławica_Ula_86","m":"MU","av":1,"cc":"DE","c":"Niemcy","s":19270,"g":2458,"d":8},{"r":293,"n":"Lunar_Lena_33","m":"LL","av":4,"cc":"PL","c":"Polska","s":18650,"g":3242,"d":-17},{"r":294,"n":"Orbiter_Kuba_24","m":"OK","av":5,"cc":"FI","c":"Finlandia","s":18060,"g":409,"d":-17},{"r":295,"n":"Szyb_Kopalni_57","m":"SK","av":3,"cc":"HU","c":"Węgry","s":17480,"g":1615,"d":-19},{"r":296,"n":"Pluton_Piotrek_80","m":"PP","av":5,"cc":"UA","c":"Ukraina","s":17160,"g":1848,"d":9},{"r":297,"n":"AstroBorsuk_61","m":"A6","av":2,"cc":"HU","c":"Węgry","s":16630,"g":346,"d":"new"},{"r":298,"n":"Ziemniak_Astralny_47","m":"ZA","av":2,"cc":"FI","c":"Finlandia","s":16100,"g":302,"d":3},{"r":299,"n":"NeonMole_8","m":"N8","av":4,"cc":"LT","c":"Litwa","s":15550,"g":1247,"d":13},{"r":300,"n":"BitDigger_58","m":"B5","av":6,"cc":"FR","c":"Francja","s":15260,"g":1031,"d":"new"},{"r":301,"n":"Tomek_Tunel_16","m":"TT","av":2,"cc":"PL","c":"Polska","s":14670,"g":2897,"d":17},{"r":302,"n":"Księżycowy_Bartek_90","m":"KB","av":2,"cc":"CZ","c":"Czechy","s":14260,"g":605,"d":23},{"r":303,"n":"Dżdżownica_Prime_69","m":"DP","av":4,"cc":"ES","c":"Hiszpania","s":13830,"g":3072,"d":0},{"r":304,"n":"Krater_Krzysiek_84","m":"KK","av":3,"cc":"BR","c":"Brazylia","s":13450,"g":1572,"d":14},{"r":305,"n":"Zośka_Kopiąca_65","m":"ZK","av":6,"cc":"UA","c":"Ukraina","s":13120,"g":2953,"d":-19},{"r":306,"n":"Nebula_Nina_47","m":"NN","av":3,"cc":"HU","c":"Węgry","s":12670,"g":3546,"d":3},{"r":307,"n":"Galaktyczna_Gosia_19","m":"GG","av":1,"cc":"UA","c":"Ukraina","s":12310,"g":2159,"d":3},{"r":308,"n":"Gwiezdny_Ryjek_67","m":"GR","av":3,"cc":"FR","c":"Francja","s":12090,"g":3604,"d":-16},{"r":309,"n":"Apogeum_Ania_4","m":"AA","av":3,"cc":"US","c":"USA","s":11580,"g":379,"d":-5},{"r":310,"n":"KretZMarsa_38","m":"K3","av":4,"cc":"DE","c":"Niemcy","s":11140,"g":503,"d":-7},{"r":311,"n":"Hela_Hyperdrive_80","m":"HH","av":6,"cc":"ES","c":"Hiszpania","s":10890,"g":3705,"d":24},{"r":312,"n":"Łopata_Galaktyczna_3","m":"LG","av":5,"cc":"UA","c":"Ukraina","s":10540,"g":3015,"d":14},{"r":313,"n":"Grzybiarz_Kosmosu_12","m":"GK","av":3,"cc":"SE","c":"Szwecja","s":10310,"g":3742,"d":"new"},{"r":314,"n":"MoleRat_X_87","m":"MX","av":6,"cc":"GB","c":"Wielka Brytania","s":10100,"g":2899,"d":"new"},{"r":315,"n":"Kretowisko_Max_60","m":"KM","av":6,"cc":"BR","c":"Brazylia","s":9610,"g":3371,"d":-2},{"r":316,"n":"Wąchacz_Gwiazd_20","m":"WG","av":6,"cc":"HU","c":"Węgry","s":9080,"g":288,"d":12},{"r":317,"n":"Ślimak_Orbitalny_91","m":"SO","av":4,"cc":"ES","c":"Hiszpania","s":8930,"g":955,"d":3},{"r":318,"n":"Pyłek_Gwiezdny_90","m":"PG","av":4,"cc":"CA","c":"Kanada","s":8650,"g":1617,"d":-4},{"r":319,"n":"Marek_Odwiert_20","m":"MO","av":5,"cc":"PL","c":"Polska","s":8400,"g":3844,"d":-9},{"r":320,"n":"Ufolud_Staś_25","m":"US","av":6,"cc":"CA","c":"Kanada","s":8120,"g":1597,"d":"new"},{"r":321,"n":"Szpadel_Sigma_31","m":"SS","av":6,"cc":"PL","c":"Polska","s":7770,"g":3273,"d":18},{"r":322,"n":"Ciemna_Materia_38","m":"CM","av":4,"cc":"LT","c":"Litwa","s":7320,"g":174,"d":0},{"r":323,"n":"Kometa_Kasia_10","m":"KK","av":4,"cc":"PL","c":"Polska","s":6860,"g":3489,"d":-4},{"r":324,"n":"Kosmonauta_Z_Pod_Łomży_1987_57","m":"KZ","av":6,"cc":"FI","c":"Finlandia","s":6470,"g":3133,"d":-1},{"r":325,"n":"PixelMole_77","m":"P7","av":5,"cc":"US","c":"USA","s":6030,"g":1711,"d":-23},{"r":326,"n":"Kosmiczny_Kuba_41","m":"KK","av":3,"cc":"FR","c":"Francja","s":5830,"g":3621,"d":22},{"r":327,"n":"Zenek_Zenit_76","m":"ZZ","av":4,"cc":"LT","c":"Litwa","s":5730,"g":3703,"d":-10},{"r":328,"n":"Krecik3000_45","m":"K4","av":6,"cc":"FR","c":"Francja","s":5270,"g":2132,"d":0},{"r":329,"n":"Planeta_Piasku_24","m":"PP","av":2,"cc":"SK","c":"Słowacja","s":4870,"g":612,"d":15},{"r":330,"n":"Saturnina_70","m":"S7","av":2,"cc":"BR","c":"Brazylia","s":4440,"g":1922,"d":1},{"r":331,"n":"Rakietowy_Rysiek_55","m":"RR","av":4,"cc":"ES","c":"Hiszpania","s":4350,"g":1554,"d":0},{"r":332,"n":"Ryjek_Retro_41","m":"RR","av":6,"cc":"BR","c":"Brazylia","s":4090,"g":2581,"d":22},{"r":333,"n":"Spacekret_PL_40","m":"SP","av":2,"cc":"PL","c":"Polska","s":4000,"g":1281,"d":9},{"r":334,"n":"ŻelaznyKretWszechświata_40","m":"Z4","av":3,"cc":"SE","c":"Szwecja","s":3700,"g":3071,"d":10},{"r":335,"n":"Czarna_Dziura_Ola_42","m":"CD","av":2,"cc":"UA","c":"Ukraina","s":3510,"g":3449,"d":0},{"r":336,"n":"RyjówkaTurbo_13","m":"R1","av":6,"cc":"DE","c":"Niemcy","s":3370,"g":2902,"d":5},{"r":337,"n":"TunelowaWiedźma_17","m":"T1","av":2,"cc":"FR","c":"Francja","s":3080,"g":1582,"d":-6},{"r":338,"n":"Wiertło_9000_53","m":"W9","av":2,"cc":"CZ","c":"Czechy","s":2740,"g":2450,"d":16},{"r":339,"n":"Kopacz_Wąsaty_44","m":"KW","av":5,"cc":"PL","c":"Polska","s":2390,"g":1152,"d":14},{"r":340,"n":"NovaDigger_81","m":"N8","av":2,"cc":"US","c":"USA","s":2140,"g":1245,"d":"new"},{"r":341,"n":"Meteoryt_Jaś_63","m":"MJ","av":1,"cc":"LT","c":"Litwa","s":2080,"g":471,"d":12},{"r":342,"n":"Grawitacja_Zero_51","m":"GZ","av":3,"cc":"PL","c":"Polska","s":1820,"g":2753,"d":15},{"r":343,"n":"Mgławica_Ula_16","m":"MU","av":2,"cc":"PL","c":"Polska","s":1550,"g":1775,"d":15},{"r":344,"n":"Lunar_Lena_84","m":"LL","av":5,"cc":"FI","c":"Finlandia","s":1310,"g":2203,"d":-24},{"r":345,"n":"Orbiter_Kuba_10","m":"OK","av":6,"cc":"FR","c":"Francja","s":1120,"g":2706,"d":14},{"r":346,"n":"Szyb_Kopalni_60","m":"SK","av":4,"cc":"DE","c":"Niemcy","s":870,"g":3001,"d":"new"},{"r":347,"n":"Pluton_Piotrek_82","m":"PP","av":5,"cc":"ES","c":"Hiszpania","s":660,"g":230,"d":16},{"r":348,"n":"AstroBorsuk_34","m":"A3","av":4,"cc":"JP","c":"Japonia","s":280,"g":3248,"d":-3},{"r":349,"n":"Ziemniak_Astralny_76","m":"ZA","av":3,"cc":"BR","c":"Brazylia","s":160,"g":535,"d":0},{"r":350,"n":"NeonMole_98","m":"N9","av":2,"cc":"PL","c":"Polska","s":110,"g":1023,"d":-15},{"r":351,"n":"BitDigger_22","m":"B2","av":6,"cc":"PL","c":"Polska","s":-190,"g":1352,"d":0},{"r":352,"n":"Tomek_Tunel_61","m":"TT","av":5,"cc":"PL","c":"Polska","s":-300,"g":3778,"d":-9},{"r":353,"n":"Księżycowy_Bartek_70","m":"KB","av":1,"cc":"FR","c":"Francja","s":-590,"g":1831,"d":7},{"r":354,"n":"Dżdżownica_Prime_3","m":"DP","av":1,"cc":"JP","c":"Japonia","s":-600,"g":1204,"d":10},{"r":355,"n":"Krater_Krzysiek_16","m":"KK","av":6,"cc":"CZ","c":"Czechy","s":-870,"g":3301,"d":20},{"r":356,"n":"Zośka_Kopiąca_10","m":"ZK","av":2,"cc":"UA","c":"Ukraina","s":-1180,"g":3653,"d":0},{"r":357,"n":"Nebula_Nina_55","m":"NN","av":6,"cc":"US","c":"USA","s":-1510,"g":766,"d":0},{"r":358,"n":"Galaktyczna_Gosia_72","m":"GG","av":1,"cc":"DE","c":"Niemcy","s":-1790,"g":609,"d":-19},{"r":359,"n":"Gwiezdny_Ryjek_7","m":"GR","av":2,"cc":"PL","c":"Polska","s":-1800,"g":1363,"d":-5},{"r":360,"n":"Apogeum_Ania_10","m":"AA","av":4,"cc":"CA","c":"Kanada","s":-1820,"g":3841,"d":"new"},{"r":361,"n":"KretZMarsa_93","m":"K9","av":2,"cc":"GB","c":"Wielka Brytania","s":-1850,"g":2408,"d":-16},{"r":362,"n":"Hela_Hyperdrive_35","m":"HH","av":1,"cc":"PL","c":"Polska","s":-1840,"g":3885,"d":-19},{"r":363,"n":"Łopata_Galaktyczna_97","m":"LG","av":3,"cc":"CA","c":"Kanada","s":-2080,"g":2088,"d":-8},{"r":364,"n":"Grzybiarz_Kosmosu_38","m":"GK","av":1,"cc":"PL","c":"Polska","s":-2150,"g":176,"d":-16},{"r":365,"n":"MoleRat_X_62","m":"MX","av":3,"cc":"PL","c":"Polska","s":-2140,"g":289,"d":24},{"r":366,"n":"Kretowisko_Max_98","m":"KM","av":2,"cc":"PL","c":"Polska","s":-2340,"g":2280,"d":-1},{"r":367,"n":"Wąchacz_Gwiazd_51","m":"WG","av":1,"cc":"LT","c":"Litwa","s":-2410,"g":2111,"d":-24},{"r":368,"n":"Ślimak_Orbitalny_29","m":"SO","av":5,"cc":"GB","c":"Wielka Brytania","s":-2600,"g":2459,"d":0},{"r":369,"n":"Pyłek_Gwiezdny_92","m":"PG","av":5,"cc":"ES","c":"Hiszpania","s":-2600,"g":2802,"d":0},{"r":370,"n":"Marek_Odwiert_76","m":"MO","av":5,"cc":"DE","c":"Niemcy","s":-2770,"g":1151,"d":4},{"r":371,"n":"Ufolud_Staś_21","m":"US","av":3,"cc":"PL","c":"Polska","s":-3110,"g":1081,"d":20},{"r":372,"n":"Szpadel_Sigma_23","m":"SS","av":1,"cc":"PL","c":"Polska","s":-3310,"g":1814,"d":-3},{"r":373,"n":"Ciemna_Materia_18","m":"CM","av":2,"cc":"US","c":"USA","s":-3450,"g":986,"d":-24},{"r":374,"n":"Kometa_Kasia_79","m":"KK","av":3,"cc":"ES","c":"Hiszpania","s":-3780,"g":2847,"d":-22},{"r":375,"n":"Kosmonauta_Z_Pod_Łomży_1987_50","m":"KZ","av":1,"cc":"SK","c":"Słowacja","s":-4010,"g":1171,"d":4},{"r":376,"n":"PixelMole_84","m":"P8","av":3,"cc":"SE","c":"Szwecja","s":-4160,"g":386,"d":25},{"r":377,"n":"Kosmiczny_Kuba_96","m":"KK","av":1,"cc":"PL","c":"Polska","s":-4500,"g":3241,"d":3},{"r":378,"n":"Zenek_Zenit_38","m":"ZZ","av":3,"cc":"GB","c":"Wielka Brytania","s":-4610,"g":1997,"d":23},{"r":379,"n":"Krecik3000_66","m":"K6","av":6,"cc":"PL","c":"Polska","s":-4810,"g":2515,"d":-17},{"r":380,"n":"Planeta_Piasku_70","m":"PP","av":6,"cc":"CA","c":"Kanada","s":-4980,"g":2234,"d":-13},{"r":381,"n":"Saturnina_32","m":"S3","av":6,"cc":"GB","c":"Wielka Brytania","s":-5050,"g":2317,"d":0},{"r":382,"n":"Rakietowy_Rysiek_56","m":"RR","av":1,"cc":"PL","c":"Polska","s":-5000,"g":3238,"d":0},{"r":383,"n":"Ryjek_Retro_3","m":"RR","av":6,"cc":"PL","c":"Polska","s":-5270,"g":2114,"d":-1},{"r":384,"n":"Spacekret_PL_48","m":"SP","av":3,"cc":"GB","c":"Wielka Brytania","s":-5560,"g":3016,"d":-25},{"r":385,"n":"ŻelaznyKretWszechświata_37","m":"Z3","av":3,"cc":"PL","c":"Polska","s":-5530,"g":2349,"d":-5},{"r":386,"n":"Czarna_Dziura_Ola_41","m":"CD","av":1,"cc":"BR","c":"Brazylia","s":-5510,"g":1822,"d":16},{"r":387,"n":"RyjówkaTurbo_27","m":"R2","av":3,"cc":"CA","c":"Kanada","s":-5650,"g":1735,"d":13},{"r":388,"n":"TunelowaWiedźma_14","m":"T1","av":4,"cc":"US","c":"USA","s":-5820,"g":3525,"d":22},{"r":389,"n":"Wiertło_9000_29","m":"W9","av":2,"cc":"PL","c":"Polska","s":-6010,"g":1529,"d":18},{"r":390,"n":"Kopacz_Wąsaty_88","m":"KW","av":4,"cc":"SE","c":"Szwecja","s":-5990,"g":1996,"d":18},{"r":391,"n":"NovaDigger_76","m":"N7","av":1,"cc":"CA","c":"Kanada","s":-6020,"g":2544,"d":-2},{"r":392,"n":"Meteoryt_Jaś_46","m":"MJ","av":4,"cc":"CA","c":"Kanada","s":-6140,"g":846,"d":-21},{"r":393,"n":"Grawitacja_Zero_88","m":"GZ","av":6,"cc":"HU","c":"Węgry","s":-6420,"g":620,"d":20},{"r":394,"n":"Mgławica_Ula_3","m":"MU","av":4,"cc":"CZ","c":"Czechy","s":-6570,"g":2486,"d":-3},{"r":395,"n":"Lunar_Lena_32","m":"LL","av":3,"cc":"PL","c":"Polska","s":-6490,"g":1753,"d":14},{"r":396,"n":"Orbiter_Kuba_32","m":"OK","av":1,"cc":"PL","c":"Polska","s":-6570,"g":1029,"d":-10},{"r":397,"n":"Szyb_Kopalni_49","m":"SK","av":6,"cc":"PL","c":"Polska","s":-6670,"g":149,"d":-10},{"r":398,"n":"Pluton_Piotrek_16","m":"PP","av":6,"cc":"FR","c":"Francja","s":-6650,"g":778,"d":20},{"r":399,"n":"AstroBorsuk_89","m":"A8","av":1,"cc":"JP","c":"Japonia","s":-6590,"g":2458,"d":22},{"r":400,"n":"Ziemniak_Astralny_45","m":"ZA","av":6,"cc":"SK","c":"Słowacja","s":-6640,"g":893,"d":0},{"r":401,"n":"NeonMole_53","m":"N5","av":5,"cc":"UA","c":"Ukraina","s":-6710,"g":1336,"d":"new"},{"r":402,"n":"BitDigger_50","m":"B5","av":1,"cc":"GB","c":"Wielka Brytania","s":-6930,"g":2149,"d":7},{"r":403,"n":"Tomek_Tunel_39","m":"TT","av":1,"cc":"PL","c":"Polska","s":-6970,"g":716,"d":-13},{"r":404,"n":"Księżycowy_Bartek_5","m":"KB","av":5,"cc":"JP","c":"Japonia","s":-7150,"g":814,"d":23},{"r":405,"n":"Dżdżownica_Prime_55","m":"DP","av":6,"cc":"PL","c":"Polska","s":-7130,"g":2392,"d":-21},{"r":406,"n":"Krater_Krzysiek_44","m":"KK","av":2,"cc":"PL","c":"Polska","s":-7200,"g":2526,"d":-8},{"r":407,"n":"Zośka_Kopiąca_16","m":"ZK","av":6,"cc":"UA","c":"Ukraina","s":-7360,"g":1772,"d":-9},{"r":408,"n":"Nebula_Nina_72","m":"NN","av":6,"cc":"SK","c":"Słowacja","s":-7400,"g":2600,"d":16},{"r":409,"n":"Galaktyczna_Gosia_13","m":"GG","av":3,"cc":"US","c":"USA","s":-7550,"g":2714,"d":-5},{"r":410,"n":"Gwiezdny_Ryjek_64","m":"GR","av":3,"cc":"FR","c":"Francja","s":-7500,"g":2464,"d":-14},{"r":411,"n":"Apogeum_Ania_50","m":"AA","av":1,"cc":"UA","c":"Ukraina","s":-7610,"g":1647,"d":12},{"r":412,"n":"KretZMarsa_17","m":"K1","av":2,"cc":"UA","c":"Ukraina","s":-7570,"g":456,"d":4},{"r":413,"n":"Hela_Hyperdrive_96","m":"HH","av":3,"cc":"JP","c":"Japonia","s":-7820,"g":932,"d":-23},{"r":414,"n":"Łopata_Galaktyczna_55","m":"LG","av":3,"cc":"PL","c":"Polska","s":-7960,"g":1667,"d":-6},{"r":415,"n":"Grzybiarz_Kosmosu_32","m":"GK","av":6,"cc":"PL","c":"Polska","s":-8050,"g":2611,"d":21},{"r":416,"n":"MoleRat_X_50","m":"MX","av":4,"cc":"SE","c":"Szwecja","s":-8180,"g":3192,"d":-13},{"r":417,"n":"Kretowisko_Max_11","m":"KM","av":5,"cc":"PL","c":"Polska","s":-8280,"g":451,"d":-24},{"r":418,"n":"Wąchacz_Gwiazd_78","m":"WG","av":3,"cc":"FR","c":"Francja","s":-8230,"g":476,"d":1},{"r":419,"n":"Ślimak_Orbitalny_39","m":"SO","av":4,"cc":"DE","c":"Niemcy","s":-8260,"g":3850,"d":-15},{"r":420,"n":"Pyłek_Gwiezdny_88","m":"PG","av":3,"cc":"US","c":"USA","s":-8430,"g":3606,"d":0},{"r":421,"n":"Marek_Odwiert_10","m":"MO","av":1,"cc":"JP","c":"Japonia","s":-8610,"g":692,"d":-12},{"r":422,"n":"Ufolud_Staś_57","m":"US","av":5,"cc":"UA","c":"Ukraina","s":-8740,"g":1390,"d":-8},{"r":423,"n":"Szpadel_Sigma_52","m":"SS","av":2,"cc":"FR","c":"Francja","s":-8970,"g":2231,"d":-25},{"r":424,"n":"Ciemna_Materia_94","m":"CM","av":6,"cc":"PL","c":"Polska","s":-9240,"g":995,"d":-12},{"r":425,"n":"Kometa_Kasia_78","m":"KK","av":5,"cc":"FR","c":"Francja","s":-9370,"g":2224,"d":-11},{"r":426,"n":"Kosmonauta_Z_Pod_Łomży_1987_87","m":"KZ","av":5,"cc":"DE","c":"Niemcy","s":-9630,"g":1180,"d":"new"},{"r":427,"n":"PixelMole_12","m":"P1","av":2,"cc":"SK","c":"Słowacja","s":-9760,"g":1214,"d":-5},{"r":428,"n":"Kosmiczny_Kuba_11","m":"KK","av":1,"cc":"PL","c":"Polska","s":-10020,"g":1373,"d":2},{"r":429,"n":"Zenek_Zenit_26","m":"ZZ","av":6,"cc":"ES","c":"Hiszpania","s":-10240,"g":982,"d":24},{"r":430,"n":"Krecik3000_40","m":"K4","av":5,"cc":"DE","c":"Niemcy","s":-10340,"g":3697,"d":0},{"r":431,"n":"Planeta_Piasku_67","m":"PP","av":5,"cc":"BR","c":"Brazylia","s":-10240,"g":230,"d":0},{"r":432,"n":"Saturnina_70","m":"S7","av":2,"cc":"PL","c":"Polska","s":-10480,"g":763,"d":-11},{"r":433,"n":"Rakietowy_Rysiek_79","m":"RR","av":1,"cc":"PL","c":"Polska","s":-10470,"g":3385,"d":17},{"r":434,"n":"Ryjek_Retro_51","m":"RR","av":6,"cc":"FI","c":"Finlandia","s":-10580,"g":919,"d":-13},{"r":435,"n":"Spacekret_PL_47","m":"SP","av":1,"cc":"PL","c":"Polska","s":-10700,"g":1735,"d":12},{"r":436,"n":"ŻelaznyKretWszechświata_85","m":"Z8","av":6,"cc":"LT","c":"Litwa","s":-10610,"g":3514,"d":-13},{"r":437,"n":"Czarna_Dziura_Ola_89","m":"CD","av":3,"cc":"SE","c":"Szwecja","s":-10820,"g":1533,"d":-13},{"r":438,"n":"RyjówkaTurbo_29","m":"R2","av":2,"cc":"JP","c":"Japonia","s":-11060,"g":1714,"d":4},{"r":439,"n":"TunelowaWiedźma_44","m":"T4","av":2,"cc":"PL","c":"Polska","s":-11150,"g":1392,"d":0},{"r":440,"n":"Wiertło_9000_74","m":"W9","av":1,"cc":"CA","c":"Kanada","s":-11210,"g":3871,"d":22},{"r":441,"n":"Kopacz_Wąsaty_69","m":"KW","av":4,"cc":"PL","c":"Polska","s":-11390,"g":3371,"d":20},{"r":442,"n":"NovaDigger_76","m":"N7","av":6,"cc":"GB","c":"Wielka Brytania","s":-11540,"g":3127,"d":17},{"r":443,"n":"Meteoryt_Jaś_85","m":"MJ","av":1,"cc":"PL","c":"Polska","s":-11700,"g":3450,"d":-2},{"r":444,"n":"Grawitacja_Zero_47","m":"GZ","av":5,"cc":"PL","c":"Polska","s":-11760,"g":3232,"d":2},{"r":445,"n":"Mgławica_Ula_38","m":"MU","av":3,"cc":"PL","c":"Polska","s":-11780,"g":1546,"d":"new"},{"r":446,"n":"Lunar_Lena_74","m":"LL","av":2,"cc":"PL","c":"Polska","s":-11830,"g":1688,"d":"new"},{"r":447,"n":"Orbiter_Kuba_31","m":"OK","av":5,"cc":"HU","c":"Węgry","s":-12040,"g":3884,"d":0},{"r":448,"n":"Szyb_Kopalni_27","m":"SK","av":3,"cc":"PL","c":"Polska","s":-12100,"g":2420,"d":4},{"r":449,"n":"Pluton_Piotrek_96","m":"PP","av":2,"cc":"BR","c":"Brazylia","s":-12070,"g":1579,"d":10},{"r":450,"n":"AstroBorsuk_15","m":"A1","av":3,"cc":"CA","c":"Kanada","s":-12000,"g":2491,"d":0},{"r":451,"n":"Ziemniak_Astralny_74","m":"ZA","av":3,"cc":"SK","c":"Słowacja","s":-11870,"g":3007,"d":6},{"r":452,"n":"NeonMole_92","m":"N9","av":5,"cc":"UA","c":"Ukraina","s":-11790,"g":1457,"d":-4},{"r":453,"n":"BitDigger_7","m":"B7","av":3,"cc":"HU","c":"Węgry","s":-11910,"g":480,"d":-9},{"r":454,"n":"Tomek_Tunel_58","m":"TT","av":2,"cc":"LT","c":"Litwa","s":-11740,"g":3803,"d":16},{"r":455,"n":"Księżycowy_Bartek_69","m":"KB","av":3,"cc":"BR","c":"Brazylia","s":-11930,"g":2283,"d":-5},{"r":456,"n":"Dżdżownica_Prime_46","m":"DP","av":1,"cc":"PL","c":"Polska","s":-11900,"g":2008,"d":-16},{"r":457,"n":"Krater_Krzysiek_87","m":"KK","av":3,"cc":"DE","c":"Niemcy","s":-11890,"g":3682,"d":24},{"r":458,"n":"Zośka_Kopiąca_12","m":"ZK","av":4,"cc":"PL","c":"Polska","s":-11990,"g":3652,"d":0},{"r":459,"n":"Nebula_Nina_24","m":"NN","av":5,"cc":"JP","c":"Japonia","s":-11930,"g":2873,"d":-3},{"r":460,"n":"Galaktyczna_Gosia_29","m":"GG","av":3,"cc":"PL","c":"Polska","s":-11910,"g":2123,"d":-24},{"r":461,"n":"Gwiezdny_Ryjek_53","m":"GR","av":3,"cc":"PL","c":"Polska","s":-11810,"g":3235,"d":-22},{"r":462,"n":"Apogeum_Ania_93","m":"AA","av":2,"cc":"ES","c":"Hiszpania","s":-11720,"g":1431,"d":-24},{"r":463,"n":"KretZMarsa_43","m":"K4","av":2,"cc":"PL","c":"Polska","s":-11840,"g":2223,"d":0},{"r":464,"n":"Hela_Hyperdrive_12","m":"HH","av":5,"cc":"ES","c":"Hiszpania","s":-11970,"g":825,"d":-15},{"r":465,"n":"Łopata_Galaktyczna_97","m":"LG","av":4,"cc":"US","c":"USA","s":-11820,"g":2079,"d":"new"},{"r":466,"n":"Grzybiarz_Kosmosu_77","m":"GK","av":3,"cc":"UA","c":"Ukraina","s":-11990,"g":2657,"d":0},{"r":467,"n":"MoleRat_X_23","m":"MX","av":5,"cc":"PL","c":"Polska","s":-11990,"g":1458,"d":11},{"r":468,"n":"Kretowisko_Max_80","m":"KM","av":4,"cc":"PL","c":"Polska","s":-12040,"g":470,"d":"new"},{"r":469,"n":"Wąchacz_Gwiazd_39","m":"WG","av":2,"cc":"LT","c":"Litwa","s":-11890,"g":1603,"d":3},{"r":470,"n":"Ślimak_Orbitalny_47","m":"SO","av":3,"cc":"FR","c":"Francja","s":-12050,"g":1927,"d":-17},{"r":471,"n":"Pyłek_Gwiezdny_18","m":"PG","av":4,"cc":"UA","c":"Ukraina","s":-12060,"g":2800,"d":0},{"r":472,"n":"Marek_Odwiert_70","m":"MO","av":3,"cc":"SE","c":"Szwecja","s":-12090,"g":3637,"d":17},{"r":473,"n":"Ufolud_Staś_33","m":"US","av":2,"cc":"PL","c":"Polska","s":-12170,"g":3241,"d":0},{"r":474,"n":"Szpadel_Sigma_43","m":"SS","av":5,"cc":"PL","c":"Polska","s":-12090,"g":2905,"d":-25},{"r":475,"n":"Ciemna_Materia_36","m":"CM","av":3,"cc":"CZ","c":"Czechy","s":-11980,"g":1412,"d":-18},{"r":476,"n":"Kometa_Kasia_52","m":"KK","av":1,"cc":"BR","c":"Brazylia","s":-12110,"g":3101,"d":25},{"r":477,"n":"Kosmonauta_Z_Pod_Łomży_1987_4","m":"KZ","av":2,"cc":"UA","c":"Ukraina","s":-12190,"g":3159,"d":16},{"r":478,"n":"PixelMole_84","m":"P8","av":6,"cc":"PL","c":"Polska","s":-12410,"g":3258,"d":16},{"r":479,"n":"Kosmiczny_Kuba_30","m":"KK","av":3,"cc":"LT","c":"Litwa","s":-12430,"g":3630,"d":1},{"r":480,"n":"Zenek_Zenit_81","m":"ZZ","av":6,"cc":"PL","c":"Polska","s":-12440,"g":243,"d":-22},{"r":481,"n":"Krecik3000_33","m":"K3","av":3,"cc":"JP","c":"Japonia","s":-12520,"g":2529,"d":15},{"r":482,"n":"Planeta_Piasku_63","m":"PP","av":1,"cc":"FR","c":"Francja","s":-12500,"g":522,"d":6},{"r":483,"n":"Saturnina_46","m":"S4","av":5,"cc":"US","c":"USA","s":-12650,"g":3636,"d":-12},{"r":484,"n":"Rakietowy_Rysiek_93","m":"RR","av":2,"cc":"PL","c":"Polska","s":-12520,"g":2141,"d":19},{"r":485,"n":"Ryjek_Retro_65","m":"RR","av":6,"cc":"GB","c":"Wielka Brytania","s":-12410,"g":3391,"d":12},{"r":486,"n":"Spacekret_PL_83","m":"SP","av":3,"cc":"LT","c":"Litwa","s":-12430,"g":486,"d":21},{"r":487,"n":"ŻelaznyKretWszechświata_19","m":"Z1","av":6,"cc":"JP","c":"Japonia","s":-12610,"g":271,"d":-20},{"r":488,"n":"Czarna_Dziura_Ola_8","m":"CD","av":6,"cc":"PL","c":"Polska","s":-12780,"g":2934,"d":-4},{"r":489,"n":"RyjówkaTurbo_71","m":"R7","av":4,"cc":"LT","c":"Litwa","s":-12760,"g":945,"d":-6},{"r":490,"n":"TunelowaWiedźma_74","m":"T7","av":5,"cc":"FR","c":"Francja","s":-12900,"g":3353,"d":8},{"r":491,"n":"Wiertło_9000_51","m":"W9","av":1,"cc":"CA","c":"Kanada","s":-13060,"g":1625,"d":6},{"r":492,"n":"Kopacz_Wąsaty_25","m":"KW","av":5,"cc":"PL","c":"Polska","s":-13030,"g":352,"d":-23},{"r":493,"n":"NovaDigger_27","m":"N2","av":6,"cc":"SE","c":"Szwecja","s":-12880,"g":2852,"d":7},{"r":494,"n":"Meteoryt_Jaś_68","m":"MJ","av":6,"cc":"GB","c":"Wielka Brytania","s":-13090,"g":2083,"d":6},{"r":495,"n":"Grawitacja_Zero_4","m":"GZ","av":2,"cc":"ES","c":"Hiszpania","s":-13240,"g":265,"d":-7},{"r":496,"n":"Mgławica_Ula_4","m":"MU","av":6,"cc":"GB","c":"Wielka Brytania","s":-13230,"g":3507,"d":-5},{"r":497,"n":"Lunar_Lena_42","m":"LL","av":4,"cc":"PL","c":"Polska","s":-13140,"g":2201,"d":-18},{"r":498,"n":"Orbiter_Kuba_41","m":"OK","av":6,"cc":"FR","c":"Francja","s":-13300,"g":2476,"d":0},{"r":499,"n":"Szyb_Kopalni_76","m":"SK","av":6,"cc":"GB","c":"Wielka Brytania","s":-13480,"g":1740,"d":"new"},{"r":500,"n":"Pluton_Piotrek_13","m":"PP","av":5,"cc":"DE","c":"Niemcy","s":-13500,"g":3607,"d":8}]}};
+    var PER = 20;
+    var state = { period: 'tydzien', page: 1, key: 's', dir: 'descending' };
+    var LABEL = { s: 'Wynik', g: 'Rozgrywki', n: 'Gracz', c: 'Kraj', d: 'Zmiana' };
+    var TEXT_KEYS = { n: 1, c: 1 };
+    function key(p, k) { return k === 'd' ? (p.d === 'new' ? 1000 : p.d) : p[k]; }
+    var $ = function (id) { return document.getElementById(id); };
+    var esc = function (s) { return String(s).replace(/[&<>"]/g, function (c) { return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]; }); };
+    var fmt = function (x) { return String(x).replace(/\B(?=(\d{3})+(?!\d))/g, '\u00a0'); };
+
+    function delta(d) {
+      if (d === 'new') return '<span class="badge badge-sm badge-new">Nowy</span>';
+      if (d === 0) return '<span class="delta-same"><span class="sr-only">bez zmian</span><span aria-hidden="true">=</span></span>';
+      if (d > 0) return '<span class="delta-up"><span class="sr-only">awans o </span>' + d + '</span>';
+      return '<span class="delta-down"><span class="sr-only">spadek o </span>' + (-d) + '</span>';
+    }
+    function row(p) {
+      var n = esc(p.n);
+      return '<tr><td><span class="rank">' + p.r + '</span></td>' +
+        '<td class="name"><span class="cell-entity"><span class="avatar" style="--av:var(--avatar-' + p.av + ')" aria-hidden="true">' + p.m + '</span>' +
+        '<a href="#gracz-' + p.r + '" title="' + n + '">' + n + '</a></span></td>' +
+        '<td class="country"><span class="cc" aria-hidden="true">' + p.cc + '</span><span class="country-name">' + esc(p.c) + '</span></td>' +
+        '<td class="num">' + fmt(p.s) + '</td><td class="num">' + fmt(p.g) + '</td><td class="num">' + delta(p.d) + '</td></tr>';
+    }
+    function podium(rows) {
+      return rows.slice(0, 3).map(function (p) {
+        var n = esc(p.n);
+        return '<li class="podium-' + p.r + '"><span class="avatar avatar-xl" style="--av:var(--avatar-' + p.av + ')" aria-hidden="true">' + p.m + '</span>' +
+          '<b title="' + n + '">' + n + '</b><span class="podium-meta">' + esc(p.c) + ' · ' + fmt(p.g) + ' gier</span>' +
+          '<span class="podium-pts">' + fmt(p.s) + '<span class="sr-only"> pkt</span></span>' +
+          '<span class="podium-step"><span class="sr-only">Miejsce </span>' + p.r + '</span></li>';
+      }).join('');
+    }
+    function pages(cur, total) {
+      var arrow = function (n, ch, label) {
+        return n ? '<li><a href="#p' + n + '" data-page="' + n + '" aria-label="' + label + '">' + ch + '</a></li>'
+                 : '<li><span class="is-off" aria-hidden="true">' + ch + '</span></li>';
+      };
+      var out = [arrow(cur > 1 ? cur - 1 : 0, '&lt;', 'Poprzednia strona')];
+      var set = [1, 2, 3, total, cur - 1, cur, cur + 1].filter(function (n, i, a) { return n >= 1 && n <= total && a.indexOf(n) === i; }).sort(function (a, b) { return a - b; });
+      var prev = 0;
+      set.forEach(function (n) {
+        if (n - prev > 1) out.push('<li><span class="gap" aria-hidden="true">…</span></li>');
+        out.push(n === cur ? '<li><span aria-current="page">' + n + '</span></li>'
+                           : '<li><a href="#p' + n + '" data-page="' + n + '" aria-label="Strona ' + n + '">' + n + '</a></li>');
+        prev = n;
+      });
+      out.push(arrow(cur < total ? cur + 1 : 0, '&gt;', 'Następna strona'));
+      return out.join('');
+    }
+    function render(focusPages) {
+      var d = DATA[state.period];
+      var from = state.page === 1 ? 4 : (state.page - 1) * PER + 1;
+      var to = state.page * PER;
+      $('note').textContent = d.note;
+      $('podium').innerHTML = podium(d.rows);
+      // miejsca 1–3 są na podium; tabela sortuje pozostałe wiersze przez wszystkie strony
+      var list = d.rows.slice(3);
+      var isDefault = state.key === 's' && state.dir === 'descending';
+      if (!isDefault) {
+        list = list.slice().sort(function (a, b) {
+          var x = key(a, state.key), y = key(b, state.key);
+          var r = TEXT_KEYS[state.key] ? String(x).localeCompare(String(y), 'pl') : (x - y);
+          if (!r) return a.r - b.r;   // remis: kolejność rankingu
+          return state.dir === 'ascending' ? r : -r;
+        });
+      }
+      $('rows').innerHTML = list.slice(from - 4, to - 3).map(row).join('');
+      document.querySelectorAll('th .sort[data-key]').forEach(function (b) {
+        b.closest('th').setAttribute('aria-sort', b.dataset.key === state.key ? state.dir : 'none');
+      });
+      $('caption').textContent = 'Ranking ' + d.label.toLowerCase() + ', ' + (isDefault ? 'miejsca ' + from + '–' + to : 'sortowanie: ' + LABEL[state.key] + (state.dir === 'ascending' ? ' rosnąco' : ' malejąco') + ', pozycje ' + (from - 3) + '–' + (to - 3));
+      $('range').textContent = 'Miejsca ' + from + '–' + to + ' z ' + fmt(d.pages * PER);
+      $('pages').innerHTML = pages(state.page, d.pages);
+      $('ranking').setAttribute('aria-labelledby', 'tab-' + state.period);
+      document.querySelectorAll('[role="tab"]').forEach(function (t) {
+        var on = t.dataset.period === state.period;
+        t.setAttribute('aria-selected', on ? 'true' : 'false');
+        t.tabIndex = on ? 0 : -1;
+      });
+      if (focusPages) { var cur = $('pages').querySelector('[aria-current="page"]'); if (cur) cur.setAttribute('tabindex', '-1'), cur.focus(); }
+      try { history.replaceState(null, '', '#' + state.period + '-' + state.page); } catch (e) {}
+    }
+
+    var tabs = Array.prototype.slice.call(document.querySelectorAll('[role="tab"]'));
+    tabs.forEach(function (t, i) {
+      t.addEventListener('click', function () { state.period = t.dataset.period; state.page = 1; render(); });
+      t.addEventListener('keydown', function (e) {
+        var k = e.key === 'ArrowRight' ? 1 : e.key === 'ArrowLeft' ? -1 : 0;
+        if (!k) return;
+        var next = tabs[(i + k + tabs.length) % tabs.length];
+        next.focus(); next.click(); e.preventDefault();
+      });
+    });
+    document.querySelectorAll('th .sort[data-key]').forEach(function (b) {
+      b.addEventListener('click', function () {
+        var k = b.dataset.key;
+        state.dir = state.key === k ? (state.dir === 'descending' ? 'ascending' : 'descending') : (TEXT_KEYS[k] ? 'ascending' : 'descending');
+        state.key = k; state.page = 1;
+        render();
+        $('sort-status').textContent = 'Posortowano: ' + LABEL[k] + (state.dir === 'ascending' ? ', rosnąco' : ', malejąco');
+      });
+    });
+    $('pages').addEventListener('click', function (e) {
+      var a = e.target.closest('a[data-page]');
+      if (!a) return;
+      e.preventDefault();
+      state.page = +a.dataset.page; render(true);
+      $('ranking').scrollIntoView({ block: 'start' });
+    });
+
+    var m = /^#(dzis|tydzien|wszech)-(\d+)$/.exec(location.hash);
+    if (m) { state.period = m[1]; state.page = Math.min(Math.max(+m[2], 1), DATA[m[1]].pages); render(); }
+  })();
+  </script>
+</body>
+</html>

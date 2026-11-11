@@ -1,0 +1,4 @@
+schema_version: "1.1"
+name: game-item-shop
+expected_outcome: |
+  Ekran sklepu z przedmiotami: siatka kart produktów z cenami w foncie pikselowym, rzadkość jako nazwa + kolor tieru, koszyk boczny z podsumowaniem; przycisk kupna zablokowany przez aria-disabled z kłódką i widocznym powodem; zgodny z zasadami systemu.

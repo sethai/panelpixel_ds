@@ -1,0 +1,9 @@
+{
+  "eval_name": "employer-dashboard-table",
+  "prompt": "Potrzebuję panelu pracodawcy w stylu Panel & Piksel: lista moich ogłoszeń jako tabela (stanowisko, status, pakiet, wyświetlenia, aplikacje, data wygaśnięcia, akcje), zakładki statusów Aktywne/Szkice/Wygasłe, przycisk Dodaj ofertę, callout że 2 oferty wygasają w tym tygodniu, paginacja. Pakiety jako tiery rzadkości. Jeden plik HTML.",
+  "assertions": [
+    "Plik HTML korzysta z tokens.css i components.css systemu (linkiem obok pliku albo wklejonych) i nie zmienia ich wartości.",
+    "check_screen.py nie zgłasza żadnego ERROR dla ekranu.",
+    "Strona nie przewija się poziomo w szerokości 390 px ani 1280 px."
+  ]
+}
